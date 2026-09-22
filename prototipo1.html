@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>UNIFORTEX · Asesor Integral EPP</title>
+    <meta name="description" content="Asesor inteligente y configurador de kits de EPP, uniformes y bioseguridad.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;0,800;1,400;1,700;1,800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --ama: #FDC417;
+            --nar: #D35914;
+            --neg: #1D1D1B;
+            --gri: #323231;
+            --bla: #FFF;
+            --gcl: #C5C5C5;
+            --npu: #000;
+            --gw: linear-gradient(135deg, #FDC417, #D35914);
+            --gd: linear-gradient(135deg, #1D1D1B, #323231)
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: Poppins, sans-serif;
+            color: var(--neg);
+            background: #fff;
+            line-height: 1.6;
+            overflow-x: hidden
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-weight: 800;
+            font-style: italic;
+            text-transform: uppercase;
+            line-height: 1.1
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.4rem)
+        }
+
+        h2 {
+            font-size: clamp(1.5rem, 3vw, 2.3rem)
+        }
+
+        p {
+            font-style: italic
+        }
+
+        .container {
+            width: min(1180px, 92%);
+            margin: 0 auto
+        }
+
+        section {
+            padding: clamp(3rem, 7vw, 6rem) 0
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            padding: .9rem 1.8rem;
+            border: none;
+            border-radius: 999px;
+            font-family: Poppins;
+            font-weight: 800;
+            font-style: italic;
+            text-transform: uppercase;
+            font-size: .8rem;
+            cursor: pointer;
+            transition: .3s;
+            text-decoration: none
+        }
+
+        .btn-w {
+            background: var(--gw);
+            color: var(--neg)
+        }
+
+        .btn-w:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(211, 89, 20, .45)
+        }
+
+        .btn-d {
+            background: var(--neg);
+            color: #fff
+        }
+
+        .btn-d:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, .35)
+        }
+
+        .btn-o {
+            background: transparent;
+            border: 2px solid var(--neg);
+            color: var(--neg)
+        }
+
+        .btn-o:hover {
+            background: var(--neg);
+            color: #fff
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: #000;
+            border-bottom: 2px solid rgba(253, 196, 23, .18)
+        }
+
+        /* Fila 1: logo centrado */
+        .nav-brand-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: .9rem 1rem .5rem
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: .85rem;
+            text-decoration: none
+        }
+
+        .brand svg {
+            width: 54px;
+            height: 60px
+        }
+
+        .brand b {
+            font-weight: 800;
+            font-style: italic;
+            text-transform: uppercase;
+            color: #fff;
+            font-size: 1.65rem;
+            letter-spacing: 2px
+        }
+
+        .brand b i {
+            color: var(--ama)
+        }
+
+        /* ===== MENÚ DE NAVEGACIÓN (bajo el logo) ===== */
+        .nav-btns-row {
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            background: #000;
+            border-top: 1px solid rgba(253, 196, 23, .12)
+        }
+
+        /* Cada ítem del menú */
+        .nav-item {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            padding: .65rem 1.5rem;
+            font-family: Poppins;
+            font-weight: 600;
+            font-style: italic;
+            text-transform: uppercase;
+            font-size: .73rem;
+            letter-spacing: .8px;
+            color: #fff;
+            text-decoration: none;
+            background: none;
+            border: none;
+            border-radius: 0;
+            cursor: pointer;
+            position: relative;
+            transition: color .22s ease
+        }
+
+        /* Línea de subrayado dorado animada */
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            right: 50%;
+            height: 2.5px;
+            background: var(--ama);
+            transition: left .22s ease, right .22s ease;
+            border-radius: 2px 2px 0 0
+        }
+
+        .nav-item:hover {
+            color: var(--ama)
+        }
+
+        .nav-item:hover::after {
+            left: 0;
+            right: 0
+        }
+
+        /* Separador vertical sutil entre ítems */
+        .nav-item+.nav-item {
+            border-left: 1px solid rgba(255, 255, 255, .07)
+        }
+
+        /* Ícono de carrito: destaca levemente */
+        .nav-item-cart {
+            font-size: .95rem;
+            padding: .65rem 1.2rem
+        }
+
+        .nav-item-cart:hover {
+            color: var(--ama)
+        }
+
+        /* ===== HERO: TARJETA FLOTANTE CON CARRUSEL ===== */
+        /* Fondo exterior de la página (claro, da la sensación de cuadro flotante) */
+        .hero-wrapper {
+            background: #f0efed;
+            padding: 1.6rem 1rem 2rem
+        }
+
+        /* La tarjeta principal con bordes redondeados */
+        .hero-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 22px;
+            min-height: 460px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 28px 75px rgba(0, 0, 0, .24);
+            width: min(1120px, 100%);
+            margin: 0 auto
+        }
+
+        /* Carrusel de fondos dentro de la tarjeta */
+        .hero-carousel {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none
+        }
+
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 1.3s ease-in-out, transform 8s ease-out;
+            transform: scale(1.06)
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+            transform: scale(1)
+        }
+
+        /* Slide 1 – foto real del proyecto */
+        .slide-photo {
+            background: url('imagenes/fondo1.jpg') center/cover no-repeat
+        }
+
+        /* Slide 2 – negro industrial */
+        .slide-black {
+            background:
+                radial-gradient(circle at 70% 25%, rgba(50, 50, 49, .5) 0%, transparent 55%),
+                radial-gradient(circle at 15% 75%, rgba(29, 29, 27, .8) 0%, transparent 50%),
+                linear-gradient(135deg, #0a0a09 0%, #151514 55%, #0d0d0c 100%)
+        }
+
+        /* Slide 3 – dorado corporativo */
+        .slide-gold {
+            background:
+                radial-gradient(circle at 75% 20%, rgba(253, 196, 23, .28) 0%, transparent 52%),
+                radial-gradient(circle at 20% 75%, rgba(211, 89, 20, .22) 0%, transparent 58%),
+                linear-gradient(135deg, #171309 0%, #26200b 48%, #131008 100%)
+        }
+
+        /* Overlay: oscurece el fondo para legibilidad */
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            background: linear-gradient(105deg,
+                    rgba(12, 12, 11, .93) 0%,
+                    rgba(14, 14, 13, .84) 50%,
+                    rgba(14, 14, 13, .68) 100%);
+            backdrop-filter: blur(1.5px);
+            -webkit-backdrop-filter: blur(1.5px)
+        }
+
+        /* Contenido centrado dentro de la tarjeta */
+        .hero-card-body {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            padding: 3rem 3.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            gap: 0
+        }
+
+        /* Insignia/badge superior */
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .45rem;
+            background: rgba(253, 196, 23, .13);
+            border: 1px solid rgba(253, 196, 23, .45);
+            color: var(--ama);
+            padding: .3rem .9rem;
+            border-radius: 999px;
+            font-size: .7rem;
+            font-weight: 700;
+            font-style: italic;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 1.1rem
+        }
+
+        /* Título principal dentro de la tarjeta */
+        .hero-card-body h1 {
+            font-size: clamp(2rem, 4.5vw, 3.1rem);
+            line-height: 1.12;
+            text-transform: uppercase;
+            font-weight: 800;
+            font-style: italic;
+            margin-bottom: .75rem
+        }
+
+        .hero-card-body h1 .gold {
+            background: var(--gw);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent
+        }
+
+        /* Descripción */
+        .hero-card-body .hero-desc {
+            color: #d5d5d3;
+            font-size: .9rem;
+            line-height: 1.65;
+            max-width: 620px;
+            margin: 0 auto 1.55rem;
+            font-style: italic
+        }
+
+        /* Estadísticas rápidas */
+        .hero-stats {
+            display: flex;
+            gap: 2.8rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 1.85rem;
+            padding-bottom: 1.6rem;
+            border-bottom: 1px solid rgba(255, 255, 255, .12)
+        }
+
+        .hstat b {
+            display: block;
+            font-size: 2rem;
+            font-weight: 800;
+            font-style: italic;
+            background: var(--gw);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1
+        }
+
+        .hstat small {
+            text-transform: uppercase;
+            font-size: .63rem;
+            letter-spacing: 1.2px;
+            color: var(--gcl);
+            font-style: italic;
+            display: block;
+            margin-top: .25rem
+        }
+
+        /* Botones de la tarjeta hero */
+        .hero-btns {
+            display: flex;
+            gap: .85rem;
+            flex-wrap: wrap;
+            justify-content: center
+        }
+
+        /* Puntos indicadores del carrusel */
+        .carousel-dots {
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 4;
+            display: flex;
+            gap: .5rem;
+            align-items: center
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .3);
+            border: none;
+            cursor: pointer;
+            transition: all .3s ease;
+            padding: 0
+        }
+
+        .carousel-dot:hover {
+            background: rgba(253, 196, 23, .65)
+        }
+
+        .carousel-dot.active {
+            width: 28px;
+            background: var(--gw);
+            box-shadow: 0 0 10px rgba(253, 196, 23, .55)
+        }
+
+        .grid {
+            display: grid;
+            gap: 1.4rem
+        }
+
+        .g3 {
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr))
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 16px;
+            padding: 1.4rem;
+            transition: .3s;
+            position: relative;
+            overflow: hidden
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, .1);
+            border-color: var(--ama)
+        }
+
+        .card .ico {
+            font-size: 2.2rem;
+            margin-bottom: .6rem
+        }
+
+        .card h4 {
+            font-style: italic;
+            text-transform: uppercase;
+            font-size: .95rem;
+            font-weight: 700
+        }
+
+        .card .pr {
+            font-weight: 800;
+            font-style: italic;
+            color: var(--nar);
+            font-size: 1.2rem;
+            margin: .5rem 0
+        }
+
+        .tag {
+            position: absolute;
+            top: .8rem;
+            right: .8rem;
+            font-size: .6rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-style: italic;
+            background: var(--gw);
+            color: var(--neg);
+            padding: .2rem .6rem;
+            border-radius: 999px
+        }
+
+        .cfg {
+            background: var(--gd);
+            color: #fff;
+            border-radius: 20px;
+            padding: 2rem;
+            position: sticky;
+            top: 90px
+        }
+
+        .cfg h3 {
+            color: var(--ama);
+            margin-bottom: 1rem
+        }
+
+        .cfg ul {
+            list-style: none;
+            max-height: 260px;
+            overflow: auto;
+            margin-bottom: 1rem
+        }
+
+        .cfg li {
+            display: flex;
+            justify-content: space-between;
+            padding: .5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+            font-size: .85rem;
+            font-style: italic
+        }
+
+        .total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.3rem;
+            font-weight: 800;
+            font-style: italic;
+            padding: 1rem 0;
+            border-top: 2px solid var(--ama)
+        }
+
+        .sec-dark {
+            background: var(--gd);
+            color: #fff
+        }
+
+        .sec-dark p {
+            color: var(--gcl)
+        }
+
+        /* chatbot */
+        #chatBtn {
+            position: fixed;
+            bottom: 22px;
+            right: 22px;
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+            background: var(--gw);
+            border: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+            z-index: 200;
+            box-shadow: 0 10px 30px rgba(211, 89, 20, .5);
+            transition: .3s
+        }
+
+        #chatBtn:hover {
+            transform: scale(1.1) rotate(8deg)
+        }
+
+        #chatBox {
+            position: fixed;
+            bottom: 96px;
+            right: 22px;
+            width: min(370px, 90vw);
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, .3);
+            z-index: 200;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid #eee
+        }
+
+        #chatBox.open {
+            display: flex
+        }
+
+        .chat-head {
+            background: var(--gd);
+            color: #fff;
+            padding: .9rem 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: .7rem
+        }
+
+        .chat-head svg {
+            width: 26px;
+            height: 28px
+        }
+
+        .chat-head b {
+            font-style: italic;
+            text-transform: uppercase;
+            font-size: .85rem
+        }
+
+        .chat-head small {
+            display: block;
+            font-size: .65rem;
+            color: var(--ama)
+        }
+
+        #chatLog {
+            height: 280px;
+            overflow-y: auto;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: .6rem;
+            background: #fafafa
+        }
+
+        .msg {
+            max-width: 82%;
+            padding: .6rem .9rem;
+            border-radius: 14px;
+            font-size: .82rem;
+            font-style: italic;
+            line-height: 1.4
+        }
+
+        .bot {
+            background: #eee;
+            color: var(--neg);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px
+        }
+
+        .usr {
+            background: var(--gw);
+            color: var(--neg);
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+            font-weight: 600
+        }
+
+        .opts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .4rem;
+            padding: 0 1rem .8rem;
+            background: #fafafa
+        }
+
+        .opts button {
+            background: #fff;
+            border: 1.5px solid var(--nar);
+            color: var(--nar);
+            padding: .35rem .8rem;
+            border-radius: 999px;
+            font-size: .72rem;
+            font-style: italic;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .2s
+        }
+
+        .opts button:hover {
+            background: var(--gw);
+            color: var(--neg);
+            border-color: transparent
+        }
+
+        #chatForm {
+            display: flex;
+            border-top: 1px solid #eee
+        }
+
+        #chatForm input {
+            flex: 1;
+            border: none;
+            padding: .9rem;
+            font-family: Poppins;
+            font-size: .85rem;
+            outline: none
+        }
+
+        #chatForm button {
+            background: var(--gw);
+            border: none;
+            padding: 0 1.2rem;
+            font-weight: 800;
+            cursor: pointer;
+            font-size: 1.1rem
+        }
+
+        /* modal */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .75);
+            z-index: 300;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem
+        }
+
+        .modal.open {
+            display: flex
+        }
+
+        .modal-box {
+            background: #fff;
+            border-radius: 20px;
+            padding: 2rem;
+            width: min(560px, 100%);
+            max-height: 90vh;
+            overflow: auto;
+            position: relative
+        }
+
+        .modal-box h3 {
+            margin-bottom: 1rem
+        }
+
+        .modal-box input,
+        .modal-box select,
+        .modal-box textarea {
+            width: 100%;
+            padding: .8rem;
+            border: 1.5px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: .8rem;
+            font-family: Poppins;
+            font-style: italic;
+            font-size: .85rem
+        }
+
+        .modal-box input:focus,
+        .modal-box textarea:focus {
+            outline: none;
+            border-color: var(--nar)
+        }
+
+        .close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gri)
+        }
+
+        .dash-row {
+            display: flex;
+            justify-content: space-between;
+            padding: .7rem 0;
+            border-bottom: 1px solid #eee;
+            font-size: .85rem;
+            font-style: italic
+        }
+
+        footer {
+            background: #000;
+            color: var(--gcl);
+            padding: 3rem 0 1.5rem;
+            font-size: .8rem;
+            font-style: italic
+        }
+
+        footer .fg {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem
+        }
+
+        footer h5 {
+            color: var(--ama);
+            text-transform: uppercase;
+            font-style: italic;
+            font-weight: 700;
+            margin-bottom: .8rem;
+            font-size: .8rem
+        }
+
+        footer a {
+            color: var(--gcl);
+            text-decoration: none;
+            display: block;
+            padding: .2rem 0
+        }
+
+        footer a:hover {
+            color: var(--ama)
+        }
+
+        .copy {
+            border-top: 1px solid #222;
+            padding-top: 1.2rem;
+            text-align: center;
+            font-size: .72rem
+        }
+
+        @media(max-width: 860px) {
+            .hero-card-body {
+                padding: 2.2rem 1.3rem
+            }
+
+            .hero-stats {
+                gap: 1.6rem
+            }
+
+            nav ul {
+                display: none
+            }
+
+            nav ul.open {
+                display: flex;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--neg);
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem
+            }
+
+            .menu-btn {
+                display: block
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <defs>
+            <linearGradient id="gW" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#FDC417" />
+                <stop offset="1" stop-color="#D35914" />
+            </linearGradient>
+            <linearGradient id="gD" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#1D1D1B" />
+                <stop offset="1" stop-color="#323231" />
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <header>
+        <!-- Fila 1: Logo centrado -->
+        <div class="nav-brand-row">
+            <a href="#" class="brand">
+                <svg viewBox="0 0 100 112">
+                    <path d="M50 2 L95 17 V60 C95 88 74 103 50 110 C26 103 5 88 5 60 V17 Z" fill="url(#gD)" />
+                    <path d="M17 76 C19 42 32 31 50 31 C68 31 81 42 83 76 C66 81 34 81 17 76 Z" fill="none"
+                        stroke="url(#gW)" stroke-width="5" stroke-linejoin="round" />
+                    <path
+                        d="M44 68 L43 55 L45 46 L48 38 L51 44 L55 40 L58 46 L63 50 L66 54 L63 57 L58 57 L54 60 L50 68 Z"
+                        fill="url(#gW)" />
+                </svg>
+                <b>UNI<i>FORTEX</i></b>
+            </a>
+        </div>
+
+        <!-- Fila 2: Menú de navegación horizontal -->
+        <nav class="nav-btns-row" role="navigation" aria-label="Menú principal">
+            <a href="#config" class="nav-item">Catálogo</a>
+            <button class="nav-item" onclick="document.getElementById('cotiza').scrollIntoView({behavior:'smooth'})">
+                Diseño Personalizado
+            </button>
+            <a href="#cotiza" class="nav-item">Contacto</a>
+            <a href="#cotiza" class="nav-item">Financiamiento</a>
+            <button class="nav-item nav-item-cart" onclick="openChat()"
+                aria-label="Carrito de compras">&#128722;</button>
+        </nav>
+    </header>
+
+    <!-- ===== HERO · Tarjeta Flotante con Carrusel ===== -->
+    <div class="hero-wrapper">
+        <div class="hero-card" id="heroCard">
+
+            <!-- Carrusel de 3 fondos dentro de la tarjeta -->
+            <div class="hero-carousel" id="heroCarousel">
+                <div class="hero-slide active slide-photo"></div>
+                <div class="hero-slide slide-black"></div>
+                <div class="hero-slide slide-gold"></div>
+                <div class="hero-overlay"></div>
+            </div>
+
+            <!-- Contenido centrado sobre el fondo oscuro -->
+            <div class="hero-card-body">
+
+                <!-- Insignia de bienvenida -->
+                <span class="hero-badge">🛡️ GRUPO UNIFORTEX &middot; EPP &amp; Dotación Corporativa</span>
+
+                <!-- Titular principal -->
+                <h1>Tu seguridad,<br><span class="gold">nuestra misión</span></h1>
+
+                <!-- Descripción breve de los servicios -->
+                <p class="hero-desc">
+                    Equipamos a tu equipo con <b>EPP certificado</b> bajo normas ANSI y ASTM, y confeccionamos
+                    <b>uniformes industriales y corporativos</b> a la medida de tu empresa.
+                    Un solo proveedor, todas tus soluciones.
+                </p>
+
+                <!-- Estadísticas rápidas -->
+                <div class="hero-stats">
+                    <div class="hstat"><b>+40</b><small>Años de experiencia</small></div>
+                    <div class="hstat"><b>500+</b><small>Clientes activos</small></div>
+                    <div class="hstat"><b>100%</b><small>Cobertura EPP</small></div>
+                </div>
+
+                <!-- Tres botones de acción: borde dorado, fondo negro -->
+                <div class="hero-btns">
+                    <a href="#config" class="btn btn-o"
+                        style="border-color:var(--ama);color:var(--ama);background:#000">🛒 Catálogo</a>
+                    <a href="#cotiza" class="btn btn-o"
+                        style="border-color:var(--ama);color:var(--ama);background:#000">💳 Financiamiento</a>
+                    <button class="btn btn-o" style="border-color:var(--ama);color:var(--ama);background:#000"
+                        onclick="document.getElementById('cotiza').scrollIntoView({behavior:'smooth'})">
+                        🎨 Diseño Personalizado
+                    </button>
+                </div>
+
+            </div><!-- /hero-card-body -->
+
+            <!-- Indicadores del carrusel -->
+            <div class="carousel-dots" id="carouselDots">
+                <button class="carousel-dot active" onclick="goToSlide(0)" aria-label="Foto UNIFORTEX"></button>
+                <button class="carousel-dot" onclick="goToSlide(1)" aria-label="Fondo Negro"></button>
+                <button class="carousel-dot" onclick="goToSlide(2)" aria-label="Fondo Dorado"></button>
+            </div>
+
+        </div><!-- /hero-card -->
+    </div><!-- /hero-wrapper -->
+
+    <section id="config">
+        <div class="container">
+            <h2 style="text-align:center">Configura tu <span style="color:var(--nar)">kit</span></h2>
+            <p style="text-align:center;max-width:600px;margin:.6rem auto 2.5rem;color:var(--gri)">Añade productos y
+                arma la equipación completa de tu equipo. El precio se actualiza en tiempo real.</p>
+            <div style="display:grid;grid-template-columns:1fr 340px;gap:2rem" class="cfg-grid">
+                <div class="grid g3" id="productGrid"></div>
+                <div class="cfg">
+                    <h3>🧰 Tu Kit</h3>
+                    <ul id="cartList">
+                        <li style="border:none;color:var(--gcl)">Aún no hay productos…</li>
+                    </ul>
+                    <div class="total"><span>TOTAL</span><span id="cartTotal">$0.00</span></div>
+                    <button class="btn btn-w" style="width:100%;justify-content:center" onclick="enviarCotizacion()">📄
+                        Enviar cotización</button>
+                    <button class="btn btn-o"
+                        style="width:100%;justify-content:center;margin-top:.6rem;border-color:#555;color:#ccc"
+                        onclick="clearCart()">Vaciar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sec-dark" id="cotiza">
+        <div class="container" style="max-width:760px;text-align:center">
+            <h2>Cotiza en <span style="color:var(--ama)">60 segundos</span></h2>
+            <p style="margin:.8rem 0 2rem">Recibe una propuesta a medida con precios por volumen, tiempos de entrega y
+                asesoría técnica.</p>
+            <form
+                onsubmit="event.preventDefault();alert('✅ Cotización enviada. Un asesor UNIFORTEX te contactará en menos de 24h.');this.reset()"
+                style="display:grid;gap:.8rem">
+                <input required placeholder="Nombre y apellido"
+                    style="padding:1rem;border:none;border-radius:10px;font-family:Poppins;font-style:italic">
+                <input required type="email" placeholder="Correo corporativo"
+                    style="padding:1rem;border:none;border-radius:10px;font-family:Poppins;font-style:italic">
+                <input required placeholder="Empresa / RIF"
+                    style="padding:1rem;border:none;border-radius:10px;font-family:Poppins;font-style:italic">
+                <textarea rows="3" placeholder="Cuéntanos qué necesitas…"
+                    style="padding:1rem;border:none;border-radius:10px;font-family:Poppins;font-style:italic"></textarea>
+                <button class="btn btn-w" style="justify-content:center">Solicitar cotización</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="fg">
+                <div>
+                    <div class="brand" style="margin-bottom:.8rem">
+                        <svg viewBox="0 0 100 112" style="width:36px;height:40px">
+                            <path d="M50 2 L95 17 V60 C95 88 74 103 50 110 C26 103 5 88 5 60 V17 Z" fill="url(#gD)" />
+                            <path d="M17 76 C19 42 32 31 50 31 C68 31 81 42 83 76 C66 81 34 81 17 76 Z" fill="none"
+                                stroke="url(#gW)" stroke-width="5" />
+                            <path
+                                d="M44 68 L43 55 L45 46 L48 38 L51 44 L55 40 L58 46 L63 50 L66 54 L63 57 L58 57 L54 60 L50 68 Z"
+                                fill="url(#gW)" />
+                        </svg>
+                        <b style="color:#fff">UNI<i>FORTEX</i></b>
+                    </div>
+                    <p>Grupo Unifortex EPP · Protección, seguridad y estilo para el trabajador venezolano.</p>
+                </div>
+                <div>
+                    <h5>Soluciones</h5><a href="#">EPP</a><a href="#">Uniformes</a><a href="#">Bioseguridad</a>
+                </div>
+                <div>
+                    <h5>Empresa</h5><a href="#">Nosotros</a><a href="#">Misión y Visión</a><a href="#">Contacto</a>
+                </div>
+                <div>
+                    <h5>Contacto</h5><a href="#">📧 ventas@unifortex.com</a><a href="#">📞 +58 000-000-0000</a>
+                </div>
+            </div>
+            <div class="copy">© 2026 GRUPO UNIFORTEX EPP · Todos los derechos reservados</div>
+        </div>
+    </footer>
+
+    <!-- Chatbot -->
+    <button id="chatBtn" onclick="toggleChat()" aria-label="Abrir asesor">🤖</button>
+    <div id="chatBox">
+        <div class="chat-head">
+            <svg viewBox="0 0 100 112">
+                <path d="M50 2 L95 17 V60 C95 88 74 103 50 110 C26 103 5 88 5 60 V17 Z" fill="url(#gD)" />
+                <path d="M17 76 C19 42 32 31 50 31 C68 31 81 42 83 76 C66 81 34 81 17 76 Z" fill="none"
+                    stroke="url(#gW)" stroke-width="5" />
+                <path d="M44 68 L43 55 L45 46 L48 38 L51 44 L55 40 L58 46 L63 50 L66 54 L63 57 L58 57 L54 60 L50 68 Z"
+                    fill="url(#gW)" />
+            </svg>
+            <div><b>Asesor UNIFORTEX</b><small>● En línea</small></div>
+        </div>
+        <div id="chatLog"></div>
+        <div class="opts" id="chatOpts"></div>
+        <form id="chatForm" onsubmit="event.preventDefault();sendMsg()">
+            <input id="chatInput" placeholder="Escribe tu respuesta…" autocomplete="off">
+            <button type="submit">➤</button>
+        </form>
+    </div>
+
+    <!-- Modal Panel Cliente -->
+    <div class="modal" id="panelModal">
+        <div class="modal-box">
+            <button class="close" onclick="closeModal('panelModal')">✕</button>
+            <h3>Panel de Cliente</h3>
+            <div id="loginView">
+                <p style="color:var(--gri);margin-bottom:1rem">Accede para ver tus pedidos, kits guardados y alertas de
+                    reposición.</p>
+                <input id="cliEmail" placeholder="Correo corporativo" value="compras@empresa.com">
+                <button class="btn btn-w" style="width:100%;justify-content:center" onclick="loginClient()">Ingresar al
+                    panel</button>
+            </div>
+            <div id="dashView" style="display:none">
+                <p style="margin-bottom:1rem"><b id="cliName">compras@empresa.com</b> · Plan Empresarial</p>
+                <h4
+                    style="font-style:italic;text-transform:uppercase;font-size:.8rem;color:var(--nar);margin:1rem 0 .5rem">
+                    Pedidos recientes</h4>
+                <div class="dash-row"><span>#UF-1042 · Kit Construcción x25</span><span style="color:#0a0">En
+                        tránsito</span></div>
+                <div class="dash-row"><span>#UF-1038 · Uniformes x60</span><span style="color:#0a0">Entregado</span>
+                </div>
+                <div class="dash-row"><span>#UF-1031 · Bioseguridad x120</span><span style="color:#0a0">Entregado</span>
+                </div>
+                <h4
+                    style="font-style:italic;text-transform:uppercase;font-size:.8rem;color:var(--nar);margin:1.5rem 0 .5rem">
+                    Alertas de reposición</h4>
+                <div class="dash-row"><span>⛑️ Cascos · stock bajo</span><span style="color:var(--nar)">Reordenar</span>
+                </div>
+                <div class="dash-row"><span>🧤 Guantes · vencen en 15 días</span><span
+                        style="color:var(--nar)">Reordenar</span></div>
+                <button class="btn btn-d" style="width:100%;justify-content:center;margin-top:1.5rem"
+                    onclick="closeModal('panelModal')">Cerrar sesión</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* ---------- LOGO inline repetido ---------- */
+        /* ---------- PRODUCTOS ---------- */
+        const PRODUCTS = [
+            { id: 1, ico: '⛑️', name: 'Casco de Seguridad', price: 18.5, cat: 'EPP' },
+            { id: 2, ico: '🕶️', name: 'Lentes de Protección', price: 7.2, cat: 'EPP' },
+            { id: 3, ico: '🧤', name: 'Guantes Anticorte', price: 9.8, cat: 'EPP' },
+            { id: 4, ico: '🦺', name: 'Chaleco Reflectivo', price: 12.4, cat: 'EPP' },
+            { id: 5, ico: '🥾', name: 'Botas Dieléctricas', price: 34.9, cat: 'EPP' },
+            { id: 6, ico: '👕', name: 'Camisa Industrial', price: 22.0, cat: 'Uniforme' },
+            { id: 7, ico: '👖', name: 'Jean Reforzado', price: 28.5, cat: 'Uniforme' },
+            { id: 8, ico: '😷', name: 'Mascarilla KN95 (x50)', price: 15.9, cat: 'Bioseguridad' },
+            { id: 9, ico: '🧴', name: 'Gel Antibacterial 1L', price: 6.5, cat: 'Bioseguridad' }
+        ];
+        let cart = {};
+        const grid = document.getElementById('productGrid');
+        grid.innerHTML = PRODUCTS.map(p => `
+ <div class="card">
+  <span class="tag">${p.cat}</span>
+  <div class="ico">${p.ico}</div>
+  <h4>${p.name}</h4>
+  <div class="pr">$${p.price.toFixed(2)}</div>
+  <button class="btn btn-w" style="padding:.5rem 1.1rem;font-size:.72rem" onclick="addCart(${p.id})">+ Añadir</button>
+ </div>`).join('');
+
+        function addCart(id) {
+            cart[id] = (cart[id] || 0) + 1; renderCart();
+        }
+        function renderCart() {
+            const list = document.getElementById('cartList');
+            const ids = Object.keys(cart);
+            if (!ids.length) { list.innerHTML = '<li style="border:none;color:var(--gcl)">Aún no hay productos…</li>'; document.getElementById('cartTotal').textContent = '$0.00'; return; }
+            let total = 0;
+            list.innerHTML = ids.map(id => {
+                const p = PRODUCTS.find(x => x.id == id); const q = cart[id]; total += p.price * q;
+                return `<li><span>${p.ico} ${p.name} <b style="color:var(--ama)">×${q}</b></span><span>$${(p.price * q).toFixed(2)} <button style="background:none;border:none;color:#f66;cursor:pointer;font-size:1rem" onclick="delCart(${id})">✕</button></span></li>`;
+            }).join('');
+            document.getElementById('cartTotal').textContent = '$' + total.toFixed(2);
+        }
+        function delCart(id) { delete cart[id]; renderCart(); }
+        function clearCart() { cart = {}; renderCart(); }
+        function enviarCotizacion() {
+            if (!Object.keys(cart).length) { alert('Añade al menos un producto a tu kit.'); return; }
+            document.getElementById('cotiza').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        /* ---------- CHATBOT ---------- */
+        const chatBox = document.getElementById('chatBox');
+        const chatLog = document.getElementById('chatLog');
+        const chatOpts = document.getElementById('chatOpts');
+        const chatInput = document.getElementById('chatInput');
+        let step = 0; let profile = {};
+        const SECTORS = {
+            'Construcción': ['⛑️ Casco', '🦺 Chaleco reflectivo', '🥾 Botas de seguridad', '🧤 Guantes anticorte'],
+            'Industria': ['🕶️ Lentes', '🧤 Guantes', '⛑️ Casco', '👕 Uniforme ignífugo'],
+            'Salud': ['😷 Mascarilla KN95', '🧴 Gel antibacterial', '🧤 Guantes de nitrilo', '👕 Bata desechable'],
+            'Alimentos': ['🧤 Guantes', '😷 Mascarilla', '🧴 Gel antibacterial', '👕 Uniforme sanitario'],
+            'Logística': ['🦺 Chaleco reflectivo', '⛑️ Casco', '🥾 Botas', '👕 Uniforme industrial']
+        };
+        function toggleChat() { chatBox.classList.toggle('open'); }
+        function openChat() { chatBox.classList.add('open'); if (!chatLog.children.length) botSay('¡Hola! 👋 Soy tu asesor UNIFORTEX. ¿En qué sector opera tu empresa?'); }
+        function botSay(t) { addMsg(t, 'bot'); }
+        function addMsg(t, who) { const d = document.createElement('div'); d.className = 'msg ' + who; d.innerHTML = t; chatLog.appendChild(d); chatLog.scrollTop = chatLog.scrollHeight; }
+        function setOpts(arr) {
+            chatOpts.innerHTML = '';
+            arr.forEach(o => { const b = document.createElement('button'); b.textContent = o; b.onclick = () => { addMsg(o, 'usr'); handle(o); }; chatOpts.appendChild(b); });
+        }
+        function sendMsg() {
+            const v = chatInput.value.trim(); if (!v) return; addMsg(v, 'usr'); chatInput.value = ''; handle(v);
+        }
+        function handle(v) {
+            if (step === 0) {
+                const key = Object.keys(SECTORS).find(k => k.toLowerCase() === v.toLowerCase()) || 'Construcción';
+                profile.sector = key; step = 1;
+                botSay(`Excelente. Para <b>${key}</b> recomendamos:<br>${SECTORS[key].map(x => '• ' + x).join('<br>')}`);
+                setTimeout(() => { botSay('¿Cuántos trabajadores necesitan equiparse?'); setOpts(['1-10', '11-50', '51-200', '+200']); }, 700);
+            }
+            else if (step === 1) {
+                profile.size = v; step = 2;
+                botSay(`Perfecto. Con <b>${v}</b> trabajadores podemos ofrecerte precios por volumen 🎯`);
+                setTimeout(() => { botSay('¿Quieres que cargue un kit sugerido en tu configurador?'); setOpts(['Sí, cárgalo', 'Solo estaba curioseando']); }, 700);
+            }
+            else if (step === 2) {
+                if (v.toLowerCase().includes('sí')) {
+                    cart = { 1: 1, 4: 1, 5: 1, 3: 1, 6: 1 }; renderCart();
+                    botSay('✅ Kit cargado. Revisa el configurador y ajusta cantidades. ¿Algo más?');
+                } else botSay('Sin problema 😊 Cuando quieras, aquí estaré. ¡Protege a tu equipo!');
+                setOpts(['Hablar con un humano', 'Ver catálogo', 'Cerrar']);
+                step = 3;
+            }
+            else if (step === 3) {
+                if (v.toLowerCase().includes('humano')) { botSay('📞 Un asesor te contactará. Deja tu correo en el formulario de cotización.'); }
+                else if (v.toLowerCase().includes('catálogo')) { document.getElementById('config').scrollIntoView({ behavior: 'smooth' }); }
+                else { botSay('¡Gracias por visitar UNIFORTEX! 🛡️'); }
+                setOpts([]); step = 0;
+            }
+        }
+
+        /* ---------- MODALES ---------- */
+        function openModal(id) { document.getElementById(id).classList.add('open'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+        function loginClient() {
+            const e = document.getElementById('cliEmail').value || 'cliente@empresa.com';
+            document.getElementById('cliName').textContent = e;
+            document.getElementById('loginView').style.display = 'none';
+            document.getElementById('dashView').style.display = 'block';
+        }
+        document.querySelectorAll('.modal').forEach(m => m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open') }));
+
+        /* ---------- RESPONSIVE CFG ---------- */
+        function fixCfg() { const g = document.querySelector('.cfg-grid'); if (!g) return; g.style.gridTemplateColumns = window.innerWidth < 900 ? '1fr' : '1fr 340px'; }
+        fixCfg(); window.addEventListener('resize', fixCfg);
+
+        /* ---------- CARRUSEL HERO ---------- */
+        let curSlide = 0, slideTimer = null;
+        const heroSlides = document.querySelectorAll('.hero-slide');
+        const heroDots = document.querySelectorAll('.carousel-dot');
+        function goToSlide(n) {
+            heroSlides.forEach((s, i) => s.classList.toggle('active', i === n));
+            heroDots.forEach((d, i) => d.classList.toggle('active', i === n));
+            curSlide = n;
+            if (slideTimer) clearInterval(slideTimer);
+            slideTimer = setInterval(() => { goToSlide((curSlide + 1) % heroSlides.length); }, 5500);
+        }
+        if (heroSlides.length) slideTimer = setInterval(() => { goToSlide((curSlide + 1) % heroSlides.length); }, 5500);
+    </script>
+</body>
+
+</html>
