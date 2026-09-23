@@ -642,169 +642,260 @@
         }
 
         /* ========================================================
-           NUEVO CATÁLOGO DE PRODUCTOS (ESTILO REFERENCIA MOTOS TORO)
+           CATÁLOGO DE PRODUCTOS UNIFORTEX (IDENTIDAD CORPORATIVA)
            ======================================================== */
         .catalog-container {
             width: min(1320px, 94%);
             margin: 0 auto;
         }
 
+        #config {
+            background:
+                radial-gradient(circle at 8% 8%, rgba(253, 196, 23, .08), transparent 28%),
+                linear-gradient(180deg, #f4f5f7 0%, #fbfbfa 48%, #f0f1f3 100%) !important;
+            padding-top: 2rem;
+            padding-bottom: 4rem;
+            min-height: 85vh;
+        }
+
         /* ========================================================
-           HUB CENTRALIZADO DE BÚSQUEDA Y FILTRADO
+           HUB CENTRALIZADO DE BÚSQUEDA Y FILTRADO (ESTILO CORPORATIVO DARK/GOLD)
            ======================================================== */
         .catalog-filter-hub {
-            max-width: 880px;
-            margin: 0 auto 2.2rem;
+            max-width: 1080px;
+            margin: 0 auto 2.4rem;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            text-align: center;
+            align-items: stretch;
+            text-align: left;
+            padding: clamp(1.4rem, 3.2vw, 2.3rem);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 28px;
+            background:
+                radial-gradient(circle at 92% 0%, rgba(211, 89, 20, .28), transparent 30%),
+                linear-gradient(135deg, #171817 0%, #272826 58%, #111211 100%);
+            box-shadow: 0 24px 55px rgba(20, 22, 22, .25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .catalog-filter-hub::after {
+            content: '';
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            right: -100px;
+            bottom: -120px;
+            border: 1px solid rgba(253, 196, 23, .25);
+            border-radius: 50%;
+            box-shadow: 0 0 0 20px rgba(253, 196, 23, .04), 0 0 0 42px rgba(253, 196, 23, .03);
+            pointer-events: none;
+        }
+
+        .catalog-hub-header,
+        .catalog-central-search-card,
+        .catalog-search-hint,
+        .cat-pills-wrapper,
+        .catalog-status-bar {
+            position: relative;
+            z-index: 1;
         }
 
         .catalog-hub-header {
-            margin-bottom: 1.25rem;
+            margin-bottom: 1.45rem;
         }
 
         .catalog-hub-tag {
-            font-size: .67rem;
+            display: inline-block;
+            font-size: .68rem;
             font-weight: 800;
             letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--nar);
-            background: rgba(211, 89, 20, 0.08);
-            border: 1px solid rgba(211, 89, 20, 0.22);
-            padding: .25rem .75rem;
+            color: var(--ama);
+            background: rgba(253, 196, 23, .12);
+            border: 1px solid rgba(253, 196, 23, .35);
+            padding: .35rem .85rem;
             border-radius: 999px;
-            display: inline-block;
-            margin-bottom: .45rem;
+            margin-bottom: .6rem;
+            text-transform: uppercase;
         }
 
         .catalog-hub-title {
-            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-size: clamp(1.8rem, 4vw, 2.65rem);
             font-weight: 800;
-            font-style: italic;
-            text-transform: uppercase;
-            color: var(--neg);
+            color: #ffffff;
+            margin-bottom: .35rem;
+            letter-spacing: -.5px;
             line-height: 1.15;
-            margin-bottom: .25rem;
+        }
+
+        .catalog-hub-title span {
+            color: var(--ama) !important;
         }
 
         .catalog-hub-sub {
-            font-size: .83rem;
-            color: #6c727f;
-            font-style: italic;
+            font-size: .88rem;
+            color: #bfc2c2;
+            margin: 0;
+            max-width: 620px;
+            font-style: normal;
         }
 
         /* Barra central combinada: Input + Select */
         .catalog-central-search-card {
-            width: 100%;
-            background: #ffffff;
-            border: 1.5px solid #e3e4e8;
-            border-radius: 999px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
             display: flex;
             align-items: center;
-            padding: .35rem .5rem .35rem 1.2rem;
-            gap: .8rem;
-            transition: border-color .2s ease, box-shadow .2s ease;
+            gap: .75rem;
+            background: #ffffff;
+            border: 2px solid rgba(253, 196, 23, .25);
+            border-radius: 16px;
+            padding: .45rem .55rem .45rem 1.1rem;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, .22);
             margin-bottom: 1.1rem;
+            transition: border-color .2s ease, box-shadow .2s ease;
         }
 
         .catalog-central-search-card:focus-within {
-            border-color: #8b1818;
-            box-shadow: 0 10px 30px rgba(139, 24, 24, 0.12);
+            border-color: var(--ama);
+            box-shadow: 0 0 0 4px rgba(253, 196, 23, .16), 0 14px 34px rgba(0, 0, 0, .28);
+            transform: translateY(-1px);
         }
 
         .catalog-search-input-group {
             display: flex;
             align-items: center;
-            gap: .55rem;
             flex: 1;
-            min-width: 0;
+            gap: .75rem;
         }
 
-        .catalog-search-input-group .search-ico {
-            font-size: .95rem;
-            color: #888;
+        .catalog-search-icon {
+            width: 20px;
+            height: 20px;
+            color: var(--nar);
             flex-shrink: 0;
         }
 
-        .catalog-search-input-group input {
+        #catalogSearchInput {
+            width: 100%;
             border: none;
             outline: none;
-            width: 100%;
             font-family: Poppins, sans-serif;
-            font-size: .84rem;
-            color: #222;
+            font-size: .92rem;
+            font-weight: 600;
+            color: var(--neg);
             background: transparent;
         }
 
-        .catalog-search-input-group input::placeholder {
+        #catalogSearchInput::placeholder {
             color: #9aa0a6;
-            font-style: italic;
+            font-weight: 400;
         }
 
-        .catalog-search-input-group button {
-            background: none;
+        .catalog-search-clear-btn {
             border: none;
-            color: #999;
+            background: #e4e6eb;
+            color: #444;
+            font-size: .75rem;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
             cursor: pointer;
-            font-size: .85rem;
-            padding: .2rem .4rem;
-            transition: color .2s;
-            display: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background .2s;
         }
 
-        .catalog-search-input-group button:hover {
-            color: #ff3b30;
+        .catalog-search-clear-btn:hover {
+            background: var(--nar);
+            color: #fff;
         }
 
         /* Selector de categoría integrado */
         .catalog-cat-select-group {
             display: flex;
             align-items: center;
-            gap: .4rem;
-            background: #f4f5f7;
-            border-radius: 999px;
-            padding: .35rem .85rem;
-            border: 1px solid #e1e3e8;
-            flex-shrink: 0;
+            border-left: 1px solid #d9dce0;
+            padding-left: .75rem;
+            background: #f1f2f3;
+            border-radius: 10px;
+            padding: .25rem .65rem;
         }
 
-        .catalog-cat-select-group .cat-select-ico {
-            font-size: .8rem;
-        }
-
-        .catalog-cat-select-group select {
+        #catalogCategorySelect {
             border: none;
+            outline: none;
             background: transparent;
             font-family: Poppins, sans-serif;
-            font-size: .78rem;
+            font-size: .84rem;
             font-weight: 700;
-            color: #333;
-            outline: none;
+            color: var(--neg);
             cursor: pointer;
-            padding-right: .2rem;
         }
 
-        /* Píldoras horizontales en tira centrada */
+        /* Indicador de ayuda bajo la búsqueda */
+        .catalog-search-hint {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            font-size: .75rem;
+            color: #aeb3b3;
+            margin: -.35rem 0 .9rem;
+            padding: 0 .4rem;
+        }
+
+        .catalog-search-hint strong {
+            color: var(--ama);
+        }
+
+        /* Panel de categorías desplazable horizontal */
         .cat-pills-wrapper {
             width: 100%;
-            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
             position: relative;
-            margin-bottom: .85rem;
+            border: 1px solid rgba(255, 255, 255, .13);
+            border-radius: 16px;
+            padding: .45rem .45rem;
+            background: rgba(0, 0, 0, .2);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04);
+        }
+
+        .cat-scroll-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #303331;
+            color: var(--ama);
+            border: 1px solid rgba(253, 196, 23, .28);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            line-height: 1;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: all .2s ease;
+            user-select: none;
+        }
+
+        .cat-scroll-btn:hover {
+            background: var(--ama);
+            color: var(--neg);
+            border-color: var(--ama);
+            transform: scale(1.05);
         }
 
         .cat-pills-scroll {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: .45rem;
+            gap: .5rem;
             overflow-x: auto;
-            white-space: nowrap;
-            padding: .35rem .2rem;
+            scroll-behavior: smooth;
             scrollbar-width: none;
-            -webkit-overflow-scrolling: touch;
+            -ms-overflow-style: none;
+            flex: 1;
+            padding: .15rem 0;
         }
 
         .cat-pills-scroll::-webkit-scrollbar {
@@ -812,224 +903,225 @@
         }
 
         .cat-pill {
-            background: #f1f2f4;
-            color: #4b525d;
-            border: 1px solid #e3e5e9;
-            font-family: Poppins, sans-serif;
-            font-weight: 700;
-            font-size: .74rem;
-            padding: .35rem .85rem;
+            white-space: nowrap;
+            border: 1px solid rgba(255, 255, 255, .14);
+            background: rgba(255, 255, 255, .08);
+            color: #e6e7e7;
+            padding: .48rem .95rem;
             border-radius: 999px;
+            font-family: Poppins, sans-serif;
+            font-size: .78rem;
+            font-weight: 700;
             cursor: pointer;
             transition: all .2s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: .3rem;
-            user-select: none;
-            flex-shrink: 0;
         }
 
         .cat-pill:hover {
-            background: #e3e6eb;
-            color: #111;
-            transform: translateY(-1px);
+            background: rgba(253, 196, 23, .16);
+            color: #ffffff;
+            border-color: rgba(253, 196, 23, .55);
         }
 
         .cat-pill.active {
-            background: #8b1818;
-            color: #fff;
-            border-color: #8b1818;
-            box-shadow: 0 4px 12px rgba(139, 24, 24, 0.32);
-        }
-
-        /* Barra de estado discreta */
-        .catalog-status-bar {
-            display: inline-flex;
-            align-items: center;
-            gap: .6rem;
-            background: #f5f6f8;
-            border: 1px solid #e5e7eb;
-            border-radius: 999px;
-            padding: .3rem .95rem;
-            font-size: .75rem;
-            color: #555;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .catalog-status-count b {
+            background: var(--gw);
             color: var(--neg);
+            border-color: transparent;
+            box-shadow: 0 5px 14px rgba(253, 196, 23, .3);
             font-weight: 800;
         }
 
+        /* Barra de estado discreta y centrada */
+        .catalog-status-bar {
+            display: inline-flex;
+            align-items: center;
+            gap: .8rem;
+            margin-top: .9rem;
+            padding: .35rem 1.1rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .14);
+            font-size: .77rem;
+            color: #d0d3d3;
+            align-self: center;
+        }
+
+        .catalog-status-count b {
+            color: #ffffff;
+        }
+
         .catalog-status-divider {
-            color: #bbb;
+            color: #666;
         }
 
         .catalog-status-filter b {
-            color: #8b1818;
+            color: var(--ama);
         }
 
         .catalog-reset-link {
             background: none;
             border: none;
             color: var(--nar);
+            font-family: Poppins, sans-serif;
+            font-size: .75rem;
             font-weight: 700;
             cursor: pointer;
             text-decoration: underline;
-            font-size: .75rem;
-            font-family: Poppins, sans-serif;
-            padding: 0;
-            margin-left: .2rem;
+            margin-left: .4rem;
         }
 
         .catalog-reset-link:hover {
-            color: #b04308;
+            color: var(--ama);
         }
 
-        @media (max-width: 768px) {
-            .catalog-central-search-card {
-                flex-direction: column;
-                border-radius: 18px;
-                padding: .8rem 1rem;
-                gap: .6rem;
-            }
-
-            .catalog-cat-select-group {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .cat-pills-scroll {
-                justify-content: flex-start;
-            }
-        }
-
-        /* Grid de Tarjetas de Producto */
+        /* ========================================================
+           GRID DE TARJETAS DE PRODUCTO
+           ======================================================== */
         .catalog-grid-motos {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-            gap: 1.6rem;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.45rem;
         }
 
-        /* Tarjeta individual estilo referencia */
+        /* Tarjeta individual estilo corporativo */
         .prod-card-moto {
             background: #ffffff;
-            border: 1px solid #eaeaea;
-            border-radius: 20px;
+            border: 1px solid #e0e2e5;
+            border-top: 3.5px solid var(--ama);
+            border-radius: 18px;
             padding: 1.15rem;
             display: flex;
             flex-direction: column;
             position: relative;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
-            transition: transform .28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow .28s ease, border-color .28s ease;
+            box-shadow: 0 8px 22px rgba(25, 28, 31, .07);
+            transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+            overflow: hidden;
             content-visibility: auto;
             contain-intrinsic-size: 0 380px;
         }
 
         .prod-card-moto:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 18px 38px rgba(0, 0, 0, 0.09);
-            border-color: #d0d0ce;
+            transform: translateY(-8px);
+            border-color: #c9cdd1;
+            border-top-color: var(--nar);
+            box-shadow: 0 20px 38px rgba(25, 28, 31, .14);
         }
 
-        /* Badge superior derecho */
+        /* Badge superior derecho de código */
         .card-moto-badge {
             position: absolute;
-            top: .9rem;
-            right: .9rem;
-            background: linear-gradient(135deg, #8b1515, #5c0b0b);
-            color: #fff;
-            font-size: .68rem;
+            top: 1.4rem;
+            right: 1.4rem;
+            background: rgba(29, 29, 27, .92);
+            color: var(--ama);
+            border: 1px solid rgba(253, 196, 23, .45);
+            font-size: .65rem;
             font-weight: 800;
-            padding: .22rem .62rem;
-            border-radius: 999px;
-            box-shadow: 0 3px 8px rgba(139, 21, 21, 0.3);
+            padding: .2rem .55rem;
+            border-radius: 6px;
+            letter-spacing: .5px;
             z-index: 2;
-            display: inline-flex;
-            align-items: center;
-            gap: .3rem;
-            letter-spacing: .3px;
         }
 
         /* Recuadro visual del producto */
         .card-moto-media {
-            background: #fbfbf9;
-            border: 1px solid #f1f1ee;
-            border-radius: 14px;
-            height: 160px;
+            width: 100%;
+            height: 180px;
+            border-radius: 13px;
+            background:
+                radial-gradient(circle at 50% 40%, rgba(255, 255, 255, .95), transparent 44%),
+                linear-gradient(135deg, #f1f2f0, #e4e6e6);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1rem;
+            margin-bottom: .9rem;
+            cursor: pointer;
             position: relative;
             overflow: hidden;
-            cursor: pointer;
+        }
+
+        .card-moto-media::after {
+            content: 'VER FICHA';
+            position: absolute;
+            left: .75rem;
+            bottom: .65rem;
+            padding: .2rem .5rem;
+            border-radius: 5px;
+            background: rgba(29, 29, 27, .82);
+            color: #ffffff;
+            font-size: .58rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            opacity: 0;
+            transform: translateY(4px);
+            transition: opacity .2s ease, transform .2s ease;
+        }
+
+        .prod-card-moto:hover .card-moto-media::after {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .card-moto-emoji {
-            font-size: 4.6rem;
-            text-shadow: 0 6px 14px rgba(0, 0, 0, 0.13);
-            transition: transform .3s cubic-bezier(0.16, 1, 0.3, 1);
-            user-select: none;
+            font-size: 4.8rem;
+            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, .14));
+            transition: transform .3s cubic-bezier(.175, .885, .32, 1.275);
             will-change: transform;
         }
 
         .prod-card-moto:hover .card-moto-emoji {
-            transform: scale(1.1);
+            transform: scale(1.1) translateY(-2px);
         }
 
         /* Marca y Categoría pequeña */
         .card-moto-brand {
-            font-size: .67rem;
+            font-size: .65rem;
             font-weight: 800;
-            color: #8c9099;
-            letter-spacing: 1.4px;
+            color: var(--nar);
             text-transform: uppercase;
+            letter-spacing: .5px;
             margin-bottom: .25rem;
         }
 
         /* Título del Producto */
         .card-moto-title {
-            font-size: 1.08rem;
+            font-size: .98rem;
             font-weight: 800;
-            font-style: italic;
-            color: #17181c;
+            color: var(--neg);
+            margin-bottom: .75rem;
             line-height: 1.25;
-            margin-bottom: .6rem;
-            min-height: 2.7rem;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
             cursor: pointer;
+            transition: color .2s ease;
+            font-style: normal;
+            letter-spacing: -.2px;
         }
 
         .card-moto-title:hover {
-            color: #8b1818;
+            color: var(--nar);
         }
 
         /* Micro-especificaciones (Tela y Tallas) */
         .card-moto-specs {
             display: flex;
             flex-direction: column;
-            gap: .25rem;
+            gap: .35rem;
+            background: #f3f5f5;
+            border: 1px solid #e3e6e8;
+            border-radius: 8px;
+            padding: .5rem .75rem;
+            margin-bottom: 1rem;
             font-size: .73rem;
-            color: #555b66;
-            margin-bottom: .95rem;
-            background: #f8f9fa;
-            padding: .5rem .7rem;
-            border-radius: 9px;
-            border: 1px solid #ebecee;
+            color: #555;
         }
 
         .card-moto-specs div {
-            display: flex;
-            align-items: center;
-            gap: .35rem;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+        }
+
+        .card-moto-specs span {
+            font-weight: 600;
+            color: #222;
         }
 
         /* Fila de Precios */
@@ -1037,9 +1129,8 @@
             display: flex;
             align-items: baseline;
             justify-content: space-between;
-            margin-bottom: 1rem;
+            margin-bottom: 1.05rem;
             margin-top: auto;
-            padding-top: .4rem;
         }
 
         .card-moto-price {
@@ -1049,59 +1140,56 @@
         }
 
         .card-moto-price b {
-            font-size: 1.45rem;
+            font-size: 1.35rem;
             font-weight: 900;
-            color: #141518;
-            letter-spacing: -.5px;
+            color: var(--neg);
         }
 
         .card-moto-price span {
             font-size: .75rem;
             color: #777;
-            font-weight: 700;
+            font-weight: 600;
         }
 
         .card-moto-bulk {
             font-size: .72rem;
             font-weight: 700;
-            color: #8b1818;
-            background: #fcf1f1;
-            padding: .2rem .5rem;
+            color: #a4420b;
+            background: rgba(211, 89, 20, 0.08);
+            padding: .2rem .55rem;
             border-radius: 6px;
-            border: 1px solid rgba(139, 24, 24, 0.15);
+            border: 1px solid rgba(211, 89, 20, 0.22);
         }
 
         /* Botones de acción */
         .card-moto-actions {
             display: flex;
-            align-items: center;
-            gap: .55rem;
+            gap: .5rem;
         }
 
         .btn-moto-details {
             flex: 1;
-            border: 1.5px solid #8b1818;
-            background: #ffffff;
-            color: #8b1818;
+            border: 1.5px solid var(--neg);
+            background: var(--neg);
+            color: #ffffff;
             border-radius: 999px;
             padding: .65rem 1rem;
             font-family: Poppins, sans-serif;
-            font-size: .82rem;
+            font-size: .8rem;
             font-weight: 800;
-            font-style: italic;
             cursor: pointer;
-            transition: all .22s ease;
-            text-align: center;
-            display: flex;
+            transition: all .2s ease;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: .35rem;
         }
 
         .btn-moto-details:hover {
-            background: #8b1818;
-            color: #ffffff;
-            box-shadow: 0 6px 16px rgba(139, 24, 24, 0.28);
+            background: var(--gw);
+            border-color: transparent;
+            color: var(--neg);
+            box-shadow: 0 6px 18px rgba(211, 89, 20, .35);
             transform: translateY(-1px);
         }
 
@@ -1109,9 +1197,9 @@
             width: 42px;
             height: 42px;
             border-radius: 50%;
-            border: 1px solid var(--ama);
-            background: var(--neg);
-            color: #fff;
+            background: #f1f2f4;
+            border: 1px solid #d9dce0;
+            color: var(--neg);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1123,36 +1211,121 @@
 
         .btn-moto-cart:hover {
             background: var(--gw);
+            border-color: transparent;
             color: var(--neg);
             transform: scale(1.08);
             box-shadow: 0 4px 12px rgba(253, 196, 23, 0.45);
         }
 
         /* Modal Detalle de Producto */
+        /* Modal Detalle de Producto Ampliado y Optimizado para Pantalla */
         .prod-modal-box {
-            max-width: 640px;
-            width: 92%;
-            background: #1c1c1a;
-            color: #fff;
+            max-width: 820px;
+            width: 94%;
+            background: #171816;
+            color: #ffffff;
             border: 1px solid rgba(253, 196, 23, 0.35);
-            border-radius: 20px;
-            padding: 2.2rem;
+            border-radius: 18px;
+            padding: 1.25rem 1.6rem;
             position: relative;
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
-            max-height: 90vh;
+            max-height: 94vh;
             overflow-y: auto;
+        }
+
+        /* Pestañas de la Ficha Técnica (Detallado vs Mayorista) */
+        .prod-modal-tabs {
+            display: flex;
+            background: #111211;
+            padding: 3px;
+            border-radius: 10px;
+            margin: .55rem 0 .8rem;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            gap: 5px;
+        }
+
+        .modal-tab-btn {
+            flex: 1;
+            padding: .5rem .85rem;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            background: transparent;
+            color: #9ca3af;
+            font-family: 'Poppins', sans-serif;
+            font-size: .82rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .45rem;
+            transition: all .2s ease;
+        }
+
+        .modal-tab-btn:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Estado Activo Detallado (Gama Acero / Titanio / Plata) */
+        .modal-tab-btn.active-detal {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: #ffffff;
+            border: 1px solid rgba(148, 163, 184, 0.45);
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.35);
+        }
+
+        /* Estado Activo Mayorista (Gama Oro / Fuego Unifortex) */
+        .modal-tab-btn.active-mayor {
+            background: linear-gradient(135deg, #fdc417 0%, #d97706 100%);
+            color: #111827;
+            font-weight: 800;
+            border: 1px solid #fdc417;
+            box-shadow: 0 3px 14px rgba(253, 196, 23, 0.4);
+        }
+
+        /* Botones de Selección Interactiva de Tallas */
+        .modal-size-btn {
+            padding: .28rem .65rem;
+            border-radius: 7px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            background: rgba(255, 255, 255, 0.05);
+            color: #e5e7eb;
+            font-family: 'Poppins', sans-serif;
+            font-size: .78rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all .16s ease;
+            user-select: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-size-btn:hover,
+        .modal-size-btn.active-size {
+            background: var(--ama);
+            color: #111110;
+            border-color: var(--ama);
+            font-weight: 800;
+            box-shadow: 0 2px 8px rgba(253, 196, 23, 0.45);
+            transform: scale(1.05);
         }
 
         .prod-modal-grid {
             display: grid;
-            grid-template-columns: 180px 1fr;
-            gap: 1.8rem;
-            margin-top: 1rem;
+            grid-template-columns: 220px 1fr;
+            gap: 1.3rem;
+            margin-top: .6rem;
         }
 
         @media (max-width: 640px) {
             .prod-modal-grid {
                 grid-template-columns: 1fr;
+            }
+            .catalog-search-hint {
+                flex-direction: column;
+                gap: .25rem;
             }
         }
 
@@ -1670,38 +1843,297 @@
         }
 
         footer {
-            background: #000;
+            background: #0c0c0b;
             color: var(--gcl);
-            padding: 3rem 0 1.5rem;
-            font-size: .8rem;
-            font-style: italic
+            padding: 3.5rem 0 1.5rem;
+            font-size: .83rem;
+            border-top: 1px solid rgba(253, 196, 23, 0.2);
+            position: relative;
+            z-index: 10;
         }
 
         footer .fg {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem
+            grid-template-columns: 1.15fr 0.75fr 2.1fr;
+            gap: 2.2rem;
+            margin-bottom: 2.5rem;
+            align-items: start;
+        }
+
+        @media (max-width: 1024px) {
+            footer .fg {
+                grid-template-columns: 1fr 1fr;
+                gap: 1.8rem;
+            }
+            .footer-col-maps {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 640px) {
+            footer .fg {
+                grid-template-columns: 1fr;
+                gap: 1.8rem;
+            }
         }
 
         footer h5 {
             color: var(--ama);
             text-transform: uppercase;
-            font-style: italic;
-            font-weight: 700;
-            margin-bottom: .8rem;
-            font-size: .8rem
+            font-style: normal;
+            font-weight: 800;
+            margin-bottom: .9rem;
+            font-size: .85rem;
+            letter-spacing: .5px;
+            display: flex;
+            align-items: center;
+            gap: .4rem;
         }
 
         footer a {
             color: var(--gcl);
             text-decoration: none;
             display: block;
-            padding: .2rem 0
+            padding: .25rem 0;
+            transition: color .2s ease;
         }
 
         footer a:hover {
-            color: var(--ama)
+            color: var(--ama);
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            margin-bottom: .85rem;
+        }
+
+        .footer-logo-img {
+            height: 38px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.95)) drop-shadow(0 0 8px rgba(253, 196, 23, 0.5));
+        }
+
+        .footer-contact-pills {
+            display: flex;
+            flex-direction: column;
+            gap: .45rem;
+            margin-top: .85rem;
+        }
+
+        .footer-link-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: .45rem;
+            color: #d1d5db !important;
+            font-size: .78rem;
+            padding: .3rem .6rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            width: fit-content;
+            transition: all .2s ease;
+        }
+
+        .footer-link-pill:hover {
+            background: rgba(253, 196, 23, 0.12);
+            border-color: rgba(253, 196, 23, 0.35);
+            color: var(--ama) !important;
+            transform: translateX(3px);
+        }
+
+        .footer-social-wrapper {
+            margin-top: .85rem;
+            display: flex;
+            flex-direction: column;
+            gap: .35rem;
+        }
+
+        .footer-social-label {
+            font-size: .72rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: .05em;
+            color: var(--ama);
+            display: flex;
+            align-items: center;
+            gap: .35rem;
+        }
+
+        .footer-social-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .45rem;
+        }
+
+        .footer-social-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            color: #d1d5db !important;
+            font-size: .78rem;
+            font-weight: 600;
+            padding: .3rem .65rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 8px;
+            transition: all .2s ease;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .footer-social-pill:hover {
+            background: rgba(253, 196, 23, 0.15);
+            border-color: var(--ama);
+            color: var(--ama) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Sedes en Google Maps dentro del Footer */
+        .footer-col-maps {
+            width: 100%;
+        }
+
+        .footer-maps-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.1rem;
+            margin-top: .6rem;
+        }
+
+        @media (max-width: 680px) {
+            .footer-maps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .footer-map-card {
+            background: #141413;
+            border: 1px solid rgba(253, 196, 23, 0.22);
+            border-radius: 14px;
+            padding: .85rem;
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+            transition: border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+        }
+
+        .footer-map-card:hover {
+            border-color: var(--ama);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55), 0 0 15px rgba(253, 196, 23, 0.15);
+        }
+
+        .footer-map-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: .5rem;
+        }
+
+        .footer-map-badge {
+            font-size: .76rem;
+            font-weight: 800;
+            color: var(--ama);
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            display: flex;
+            align-items: center;
+            gap: .3rem;
+            font-style: normal;
+        }
+
+        .footer-map-btn {
+            font-size: .68rem;
+            font-weight: 800;
+            color: var(--neg) !important;
+            background: var(--gw);
+            padding: .28rem .7rem;
+            border-radius: 999px;
+            text-decoration: none !important;
+            display: inline-flex;
+            align-items: center;
+            gap: .25rem;
+            transition: transform .2s ease, box-shadow .2s ease;
+            white-space: nowrap;
+            font-style: normal;
+        }
+
+        .footer-map-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 14px rgba(253, 196, 23, 0.45);
+        }
+
+        .footer-map-addr {
+            font-size: .74rem;
+            color: #d1d5db;
+            margin: 0;
+            line-height: 1.35;
+            font-style: normal;
+        }
+
+        .footer-map-frame-wrap {
+            position: relative;
+            width: 100%;
+            height: 135px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: #1e1e1c;
+        }
+
+        .footer-map-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        .footer-map-overlay-link {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            cursor: pointer;
+            text-decoration: none;
+            background: rgba(0, 0, 0, 0);
+            transition: background .2s ease;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            padding: .45rem;
+        }
+
+        .footer-map-overlay-link:hover {
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        .footer-map-overlay-hint {
+            background: rgba(29, 29, 27, 0.92);
+            color: var(--ama);
+            font-size: .65rem;
+            font-weight: 700;
+            padding: .22rem .55rem;
+            border-radius: 6px;
+            border: 1px solid rgba(253, 196, 23, 0.35);
+            pointer-events: none;
+            opacity: 0;
+            transform: translateY(4px);
+            transition: opacity .2s ease, transform .2s ease;
+            font-style: normal;
+        }
+
+        .footer-map-frame-wrap:hover .footer-map-overlay-hint {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .footer-map-meta {
+            font-size: .68rem;
+            color: var(--gcl);
+            font-style: italic;
         }
 
         .copy {
@@ -2166,25 +2598,37 @@
             color: #fff;
         }
 
-        /* ===== TARJETAS INFORMATIVAS DE CONTACTO ===== */
+        /* ===== TARJETAS INFORMATIVAS DE CONTACTO (4 EN LÍNEA) ===== */
         .contact-cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.5rem;
-            margin: 2.2rem 0 3.5rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0 2rem;
             text-align: left;
         }
 
+        @media (max-width: 1024px) {
+            .contact-cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 580px) {
+            .contact-cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .contact-info-card {
-            background: rgba(24, 24, 22, 0.92);
-            border: 1px solid rgba(253, 196, 23, 0.25);
-            border-radius: 20px;
-            padding: 1.8rem;
+            background: rgba(24, 24, 22, 0.94);
+            border: 1px solid rgba(253, 196, 23, 0.22);
+            border-radius: 16px;
+            padding: 1.15rem 1rem;
             display: flex;
             flex-direction: column;
-            gap: 1.1rem;
+            gap: .8rem;
             transition: all .28s cubic-bezier(0.165, 0.84, 0.44, 1);
-            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
             backdrop-filter: blur(10px);
             position: relative;
             overflow: hidden;
@@ -2203,9 +2647,9 @@
         }
 
         .contact-info-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
             border-color: var(--ama);
-            box-shadow: 0 16px 38px rgba(0, 0, 0, 0.65), 0 0 24px rgba(253, 196, 23, 0.28);
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.35), 0 0 20px rgba(253, 196, 23, 0.22);
         }
 
         .contact-info-card:hover::before {
@@ -2215,25 +2659,25 @@
         .contact-card-header {
             display: flex;
             align-items: center;
-            gap: .85rem;
+            gap: .7rem;
         }
 
         .contact-card-ico {
-            width: 48px;
-            height: 48px;
-            border-radius: 14px;
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
             background: rgba(253, 196, 23, 0.12);
             border: 1.5px solid rgba(253, 196, 23, 0.35);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.4rem;
+            font-size: 1.15rem;
             flex-shrink: 0;
             box-shadow: 0 4px 12px rgba(0,0,0,.25);
         }
 
         .contact-card-title {
-            font-size: 1.1rem;
+            font-size: .88rem;
             font-weight: 800;
             color: #fff;
             margin: 0;
@@ -2249,24 +2693,24 @@
             margin: 0;
             display: flex;
             flex-direction: column;
-            gap: .9rem;
+            gap: .65rem;
         }
 
         .contact-card-item {
-            font-size: .88rem;
+            font-size: .76rem;
             color: var(--gcl);
-            line-height: 1.5;
+            line-height: 1.4;
             display: flex;
             flex-direction: column;
-            gap: .25rem;
+            gap: .15rem;
         }
 
         .contact-card-item strong {
             color: #fff;
-            font-size: .94rem;
+            font-size: .78rem;
             display: flex;
             align-items: center;
-            gap: .4rem;
+            gap: .35rem;
         }
 
         .contact-link {
@@ -2275,9 +2719,10 @@
             font-weight: 600;
             display: inline-flex;
             align-items: center;
-            gap: .4rem;
+            gap: .35rem;
             transition: all .2s ease;
             font-style: normal;
+            font-size: .78rem;
         }
 
         .contact-link:hover {
@@ -2292,8 +2737,8 @@
             justify-content: space-between;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: .55rem .8rem;
-            border-radius: 10px;
+            padding: .45rem .65rem;
+            border-radius: 8px;
             transition: all .2s ease;
         }
 
@@ -2305,20 +2750,20 @@
         .social-chips-list {
             display: flex;
             flex-direction: column;
-            gap: .65rem;
+            gap: .45rem;
         }
 
         .social-chip-btn {
             display: inline-flex;
             align-items: center;
             justify-content: space-between;
-            padding: .65rem .95rem;
-            border-radius: 12px;
+            padding: .45rem .7rem;
+            border-radius: 9px;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.12);
             color: #fff;
             text-decoration: none;
-            font-size: .88rem;
+            font-size: .76rem;
             font-weight: 600;
             font-style: normal;
             transition: all .22s ease;
@@ -2328,32 +2773,37 @@
             background: rgba(253, 196, 23, 0.16);
             border-color: var(--ama);
             color: var(--ama);
-            transform: translateX(4px);
+            transform: translateX(3px);
         }
 
         .contact-badge-pill {
             display: inline-block;
-            font-size: .72rem;
+            font-size: .65rem;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: .5px;
-            padding: 3px 9px;
+            padding: 2px 7px;
             border-radius: 6px;
             background: rgba(253, 196, 23, 0.15);
             border: 1px solid rgba(253, 196, 23, 0.35);
             color: var(--ama);
-            margin-top: .35rem;
+            margin-top: .2rem;
             width: fit-content;
         }
 
         .contact-form-box {
             background: rgba(18, 18, 16, 0.95);
             border: 1px solid rgba(253, 196, 23, 0.2);
-            border-radius: 24px;
-            padding: 2.5rem;
-            box-shadow: 0 12px 35px rgba(0,0,0,0.6);
-            max-width: 760px;
+            border-radius: 22px;
+            padding: 2rem 2.2rem;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+            max-width: 820px;
             margin: 0 auto;
+            color: #fff;
+        }
+
+        .contact-form-box h3 {
+            color: #ffffff !important;
         }
 
 
@@ -2439,12 +2889,211 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 1.8rem;
-            padding: 1.1rem 1.6rem;
-            background: rgba(255, 255, 255, .05);
+            gap: 1.4rem;
+            margin-bottom: 2.2rem;
+            padding: clamp(1.4rem, 3.2vw, 2.2rem);
+            background:
+                radial-gradient(circle at 92% 0%, rgba(211, 89, 20, .28), transparent 30%),
+                linear-gradient(135deg, #171817 0%, #272826 58%, #111211 100%);
+            border: 1px solid rgba(253, 196, 23, .28);
+            border-radius: 26px;
+            box-shadow: 0 20px 50px rgba(20, 22, 22, .2);
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .oc-top-bar::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            right: -90px;
+            bottom: -110px;
+            border: 1px solid rgba(253, 196, 23, .22);
+            border-radius: 50%;
+            box-shadow: 0 0 0 18px rgba(253, 196, 23, .04), 0 0 0 38px rgba(253, 196, 23, .03);
+            pointer-events: none;
+        }
+
+        /* Tarjeta superior corporativa para Contacto & Cotizaciones */
+        .contact-header-hub {
+            max-width: 1080px;
+            margin: 0 auto 2.4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            text-align: left;
+            padding: clamp(1.4rem, 3.2vw, 2.3rem);
+            border: 1px solid rgba(253, 196, 23, .28);
+            border-radius: 28px;
+            background:
+                radial-gradient(circle at 92% 0%, rgba(211, 89, 20, .28), transparent 30%),
+                linear-gradient(135deg, #171817 0%, #272826 58%, #111211 100%);
+            box-shadow: 0 24px 55px rgba(20, 22, 22, .2);
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+        }
+
+        .contact-header-hub::after {
+            content: '';
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            right: -100px;
+            bottom: -120px;
             border: 1px solid rgba(253, 196, 23, .25);
-            border-radius: 16px;
+            border-radius: 50%;
+            box-shadow: 0 0 0 20px rgba(253, 196, 23, .04), 0 0 0 42px rgba(253, 196, 23, .03);
+            pointer-events: none;
+        }
+
+        .contact-hub-header {
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-hub-tag {
+            display: inline-block;
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--ama);
+            background: rgba(253, 196, 23, .12);
+            border: 1px solid rgba(253, 196, 23, .3);
+            padding: .35rem .75rem;
+            border-radius: 999px;
+            margin-bottom: .6rem;
+        }
+
+        .contact-hub-title {
+            font-size: clamp(1.5rem, 3.2vw, 2.2rem);
+            font-weight: 800;
+            color: #fff;
+            margin: 0 0 .5rem;
+            line-height: 1.15;
+        }
+
+        .contact-hub-sub {
+            font-size: clamp(.84rem, 1.4vw, .95rem);
+            color: #bfc2c2;
+            margin: 0;
+            max-width: 780px;
+            line-height: 1.5;
+        }
+
+        .contact-hub-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem;
+            margin-top: 1.2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-hub-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            font-size: .75rem;
+            font-weight: 600;
+            color: #e5e7eb;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: .32rem .7rem;
+            border-radius: 999px;
+        }
+
+        /* Tarjeta superior corporativa para Taller de Diseño */
+        .diseno-header-hub {
+            max-width: 1080px;
+            margin: 0 auto 2.4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            text-align: left;
+            padding: clamp(1.4rem, 3.2vw, 2.3rem);
+            border: 1px solid rgba(253, 196, 23, .28);
+            border-radius: 28px;
+            background:
+                radial-gradient(circle at 92% 0%, rgba(211, 89, 20, .28), transparent 30%),
+                linear-gradient(135deg, #171817 0%, #272826 58%, #111211 100%);
+            box-shadow: 0 24px 55px rgba(20, 22, 22, .2);
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+        }
+
+        .diseno-header-hub::after {
+            content: '';
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            right: -100px;
+            bottom: -120px;
+            border: 1px solid rgba(253, 196, 23, .25);
+            border-radius: 50%;
+            box-shadow: 0 0 0 20px rgba(253, 196, 23, .04), 0 0 0 42px rgba(253, 196, 23, .03);
+            pointer-events: none;
+        }
+
+        .diseno-hub-header {
+            position: relative;
+            z-index: 2;
+        }
+
+        .diseno-hub-tag {
+            display: inline-block;
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--ama);
+            background: rgba(253, 196, 23, .12);
+            border: 1px solid rgba(253, 196, 23, .3);
+            padding: .35rem .75rem;
+            border-radius: 999px;
+            margin-bottom: .6rem;
+        }
+
+        .diseno-hub-title {
+            font-size: clamp(1.5rem, 3.2vw, 2.2rem);
+            font-weight: 800;
+            color: #fff;
+            margin: 0 0 .5rem;
+            line-height: 1.15;
+        }
+
+        .diseno-hub-sub {
+            font-size: clamp(.84rem, 1.4vw, .95rem);
+            color: #bfc2c2;
+            margin: 0;
+            max-width: 780px;
+            line-height: 1.5;
+        }
+
+        .diseno-hub-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem;
+            margin-top: 1.2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .diseno-hub-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            font-size: .75rem;
+            font-weight: 600;
+            color: #e5e7eb;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: .32rem .7rem;
+            border-radius: 999px;
         }
 
         .oc-grid {
@@ -2631,13 +3280,15 @@
         .cart-drawer-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.72);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            z-index: 998;
+            background: rgba(0, 0, 0, 0.76);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 2998 !important;
             opacity: 0;
             pointer-events: none;
             transition: opacity .35s ease;
+            touch-action: none;
+            overscroll-behavior: contain;
         }
 
         .cart-drawer-overlay.open {
@@ -2650,40 +3301,49 @@
             top: 0;
             right: 0;
             bottom: 0;
-            width: min(440px, 94vw);
-            background: linear-gradient(180deg, #1c1c1a 0%, #131312 100%);
-            border-left: 1px solid rgba(253, 196, 23, 0.25);
-            box-shadow: -15px 0 45px rgba(0, 0, 0, 0.85);
-            z-index: 999;
+            height: 100vh;
+            height: 100dvh;
+            width: min(460px, 100vw);
+            background: linear-gradient(180deg, #1c1c1a 0%, #121211 100%);
+            border-left: 1.5px solid rgba(253, 196, 23, 0.3);
+            box-shadow: -15px 0 50px rgba(0, 0, 0, 0.88);
+            z-index: 2999 !important;
             transform: translateX(100%);
-            transition: transform .38s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform .36s cubic-bezier(0.16, 1, 0.3, 1);
             display: flex;
             flex-direction: column;
             color: #fff;
+            overflow: hidden;
+            overscroll-behavior: contain;
         }
 
         .cart-drawer.open {
             transform: translateX(0);
         }
 
-        /* Cabecera del Drawer */
+        /* Cabecera del Drawer (Visible y nunca tapada por el Header de navegación) */
         .cart-drawer-header {
-            padding: 1.25rem 1.4rem;
+            padding: 1.35rem 1.4rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid rgba(253, 196, 23, 0.15);
-            background: rgba(0, 0, 0, 0.4);
+            border-bottom: 1px solid rgba(253, 196, 23, 0.2);
+            background: #181816;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
         .cart-drawer-title-box {
             display: flex;
             flex-direction: column;
-            gap: .2rem;
+            gap: .25rem;
         }
 
         .cart-drawer-title {
-            font-size: 1.15rem;
+            font-size: 1.18rem;
             font-weight: 800;
             font-style: italic;
             text-transform: uppercase;
@@ -2692,21 +3352,22 @@
             display: flex;
             align-items: center;
             gap: .5rem;
+            margin: 0;
         }
 
         .cart-drawer-title span.cart-ico {
             color: var(--ama);
-            font-size: 1.2rem;
+            font-size: 1.25rem;
         }
 
         .cart-count-pill {
             font-size: .68rem;
             background: rgba(253, 196, 23, 0.15);
             color: var(--ama);
-            border: 1px solid rgba(253, 196, 23, 0.3);
+            border: 1px solid rgba(253, 196, 23, 0.35);
             border-radius: 999px;
-            padding: .15rem .55rem;
-            font-weight: 700;
+            padding: .15rem .6rem;
+            font-weight: 800;
             letter-spacing: 0;
             font-style: normal;
         }
@@ -2715,40 +3376,48 @@
             font-size: .75rem;
             color: var(--gcl);
             font-style: italic;
+            margin: 0;
         }
 
+        /* Botón equis de cerrar - amplio, contrastado y nunca cortado */
         .cart-drawer-close {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #fff;
-            width: 34px;
-            height: 34px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1.5px solid rgba(253, 196, 23, 0.4);
+            color: #ffffff;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 1.15rem;
+            font-weight: 800;
             transition: all .2s ease;
+            flex-shrink: 0;
+            margin-left: .5rem;
         }
 
         .cart-drawer-close:hover {
             background: var(--nar);
             border-color: var(--nar);
             color: #fff;
-            transform: rotate(90deg);
+            transform: rotate(90deg) scale(1.08);
+            box-shadow: 0 4px 14px rgba(211, 89, 20, 0.5);
         }
 
-        /* Cuerpo / Lista de Productos */
+        /* Cuerpo / Lista de Productos con scroll independiente sin bloquear ni mover el fondo */
         .cart-drawer-body {
-            flex: 1;
+            flex: 1 1 auto;
+            min-height: 0;
             overflow-y: auto;
+            overscroll-behavior: contain;
             padding: 1.25rem 1.4rem;
             display: flex;
             flex-direction: column;
             gap: .85rem;
             scrollbar-width: thin;
-            scrollbar-color: rgba(253, 196, 23, 0.3) transparent;
+            scrollbar-color: var(--ama) rgba(255, 255, 255, 0.06);
         }
 
         .cart-drawer-body::-webkit-scrollbar {
@@ -2756,16 +3425,16 @@
         }
 
         .cart-drawer-body::-webkit-scrollbar-thumb {
-            background: rgba(253, 196, 23, 0.3);
+            background: var(--ama);
             border-radius: 4px;
         }
 
         /* Tarjeta de ítem individual dentro del drawer */
         .cart-drawer-item {
             background: #222220;
-            border: 1px solid rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 12px;
-            padding: .9rem 1rem;
+            padding: .95rem 1rem;
             display: flex;
             flex-direction: column;
             gap: .7rem;
@@ -2773,7 +3442,8 @@
         }
 
         .cart-drawer-item:hover {
-            border-color: rgba(253, 196, 23, 0.35);
+            border-color: rgba(253, 196, 23, 0.4);
+            transform: translateY(-1px);
         }
 
         .cart-item-top {
@@ -2783,15 +3453,15 @@
         }
 
         .cart-item-ico {
-            width: 44px;
-            height: 44px;
-            background: rgba(253, 196, 23, 0.08);
-            border: 1px solid rgba(253, 196, 23, 0.2);
-            border-radius: 9px;
+            font-size: 2.2rem;
+            background: #141412;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            width: 52px;
+            height: 52px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.45rem;
             flex-shrink: 0;
         }
 
@@ -2800,136 +3470,147 @@
             min-width: 0;
         }
 
-        .cart-item-cat {
-            font-size: .65rem;
-            color: var(--ama);
-            text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: .5px;
-            margin-bottom: .1rem;
-        }
-
         .cart-item-name {
             font-size: .88rem;
-            font-weight: 700;
+            font-weight: 800;
             color: #fff;
+            margin-bottom: .2rem;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
-        .cart-item-unit-price {
-            font-size: .78rem;
-            color: var(--gcl);
+        .cart-item-cat {
+            font-size: .7rem;
+            color: var(--nar);
+            font-weight: 700;
+            text-transform: uppercase;
         }
 
         .cart-item-del-btn {
             background: none;
             border: none;
-            color: #777;
+            color: #ff5252;
+            font-size: 1.15rem;
             cursor: pointer;
             padding: .3rem;
-            font-size: 1rem;
-            line-height: 1;
-            transition: color .2s ease;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .2s;
         }
 
         .cart-item-del-btn:hover {
-            color: #ff5252;
+            background: rgba(255, 82, 82, 0.15);
+            transform: scale(1.15);
         }
 
         .cart-item-bottom {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            padding-top: .5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: .65rem;
         }
 
         .cart-qty-ctrl {
             display: inline-flex;
             align-items: center;
-            background: #181816;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 8px;
-            padding: .15rem;
+            background: #151514;
+            border: 1px solid rgba(253, 196, 23, 0.3);
+            border-radius: 999px;
+            padding: .2rem;
+            gap: .3rem;
         }
 
         .cart-qty-btn {
-            background: transparent;
+            background: rgba(255, 255, 255, 0.08);
             border: none;
             color: #fff;
-            width: 26px;
-            height: 26px;
-            border-radius: 6px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
             cursor: pointer;
             font-weight: 800;
             font-size: .85rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background .2s ease, color .2s ease;
+            transition: background .15s;
         }
 
         .cart-qty-btn:hover {
-            background: rgba(253, 196, 23, 0.25);
-            color: var(--ama);
-        }
-
-        .cart-qty-num {
-            font-size: .82rem;
-            font-weight: 800;
-            min-width: 28px;
-            text-align: center;
+            background: var(--nar);
             color: #fff;
         }
 
-        .cart-item-subtotal {
+        .cart-qty-num {
+            font-size: .85rem;
+            font-weight: 800;
+            color: #fff;
+            min-width: 26px;
+            text-align: center;
+        }
+
+        .cart-item-pricing {
+            text-align: right;
+        }
+
+        .cart-item-unit-price {
+            font-size: .72rem;
+            color: var(--gcl);
+        }
+
+        .cart-item-total-price {
             font-size: .95rem;
             font-weight: 800;
-            font-style: italic;
             color: var(--ama);
         }
 
         /* Estado Vacío dentro del Drawer */
         .cart-drawer-empty {
-            flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 2.5rem 1.5rem;
+            padding: 3rem 1rem;
             color: var(--gcl);
+            margin: auto;
         }
 
         .cart-drawer-empty-ico {
-            font-size: 3.5rem;
+            font-size: 4rem;
             margin-bottom: 1rem;
-            opacity: .7;
-            filter: drop-shadow(0 0 10px rgba(253, 196, 23, 0.3));
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
+            opacity: .6;
         }
 
         .cart-drawer-empty h4 {
-            color: #fff;
             font-size: 1.15rem;
+            font-weight: 800;
+            color: #fff;
             margin-bottom: .4rem;
-            text-transform: uppercase;
         }
 
         .cart-drawer-empty p {
             font-size: .82rem;
+            max-width: 280px;
             margin-bottom: 1.5rem;
-            max-width: 260px;
-            line-height: 1.5;
+            color: #aaa;
         }
 
-        /* Pie del Drawer */
+        /* Pie del Drawer: Totales y Botón de checkout */
         .cart-drawer-footer {
             background: #141413;
             border-top: 1px solid rgba(253, 196, 23, 0.2);
             padding: 1.25rem 1.4rem;
             box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.4);
+            flex-shrink: 0;
+            position: sticky;
+            bottom: 0;
+            z-index: 10;
         }
 
         .cart-drawer-totals-box {
@@ -2966,81 +3647,95 @@
             width: 100%;
             background: var(--gw);
             color: var(--neg);
-            padding: .95rem 1.2rem;
-            border-radius: 10px;
-            font-size: .88rem;
+            border: none;
+            border-radius: 999px;
+            padding: .95rem;
+            font-family: Poppins, sans-serif;
+            font-size: .9rem;
             font-weight: 800;
             font-style: italic;
             text-transform: uppercase;
-            letter-spacing: .6px;
-            border: none;
             cursor: pointer;
+            transition: all .25s ease;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: .5rem;
-            transition: all .25s ease;
-            box-shadow: 0 4px 18px rgba(211, 89, 20, 0.4);
+            box-shadow: 0 8px 20px rgba(211, 89, 20, 0.35);
         }
 
         .btn-confirmar-compra:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(253, 196, 23, 0.55);
+            box-shadow: 0 12px 25px rgba(211, 89, 20, 0.55);
         }
 
         .cart-drawer-actions-sub {
             display: flex;
-            gap: .6rem;
-            margin-top: .75rem;
+            gap: .65rem;
+            margin-top: .85rem;
         }
 
         .btn-drawer-sec {
-            flex: 2;
-            padding: .6rem;
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #ddd;
-            font-size: .72rem;
-            border-radius: 8px;
+            flex: 1.4;
+            padding: .65rem .85rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            color: #e5e7eb;
+            font-family: 'Poppins', sans-serif;
+            font-size: .78rem;
+            font-weight: 600;
+            border-radius: 10px;
             cursor: pointer;
-            transition: background .2s ease, border-color .2s ease;
-            text-align: center;
+            transition: all .25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .4rem;
         }
 
         .btn-drawer-sec:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: #fff;
-            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(253, 196, 23, 0.6);
+            color: #ffffff;
+            transform: translateY(-1px);
         }
 
         .btn-drawer-clear {
             flex: 1;
-            padding: .6rem;
-            background: transparent;
-            border: 1px solid rgba(255, 82, 82, 0.25);
-            color: #ff7777;
-            font-size: .72rem;
-            border-radius: 8px;
+            padding: .65rem .85rem;
+            background: rgba(239, 68, 68, 0.06);
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            color: #fca5a5;
+            font-family: 'Poppins', sans-serif;
+            font-size: .78rem;
+            font-weight: 600;
+            border-radius: 10px;
             cursor: pointer;
-            transition: background .2s ease;
-            text-align: center;
+            transition: all .25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .35rem;
         }
 
         .btn-drawer-clear:hover {
-            background: rgba(255, 82, 82, 0.12);
-            border-color: #ff5252;
+            background: rgba(239, 68, 68, 0.18);
+            border-color: #ef4444;
+            color: #ffffff;
+            transform: translateY(-1px);
         }
 
         .cart-drawer-b2b-note {
             text-align: center;
-            font-size: .67rem;
+            font-size: .68rem;
             color: var(--gcl);
-            margin-top: .75rem;
-            opacity: .85;
+            margin-top: .85rem;
+            opacity: .9;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: .3rem;
+            gap: .35rem;
+            line-height: 1.4;
         }
 
         /* Badge del Carrito en el Menú Superior */
@@ -3250,8 +3945,14 @@
                             </div>
                         </div>
 
-                        <!-- Fila de Píldoras Rápidas (Scroll Horizontal Suave) -->
+                        <div class="catalog-search-hint">
+                            <span>Busca por nombre, código, material o categoría.</span>
+                            <span><strong>Tip:</strong> usa las flechas para explorar todas las categorías</span>
+                        </div>
+
+                        <!-- Panel de categorías desplazable -->
                         <div class="cat-pills-wrapper">
+                            <button class="cat-scroll-btn" type="button" onclick="desplazarCategorias(-1)" aria-label="Mostrar categorías anteriores">‹</button>
                             <div class="cat-pills-scroll" id="catPillsList">
                                 <button class="cat-pill active" onclick="filtrarCatalogo('Todos', this)">Todos</button>
                                 <button class="cat-pill" onclick="filtrarCatalogo('Pantalones & Jeans', this)">👖 Pantalones</button>
@@ -3266,6 +3967,7 @@
                                 <button class="cat-pill" onclick="filtrarCatalogo('Respiratoria', this)">😷 Respiratoria</button>
                                 <button class="cat-pill" onclick="filtrarCatalogo('Impermeables & Vial', this)">🌧️ Impermeables</button>
                             </div>
+                            <button class="cat-scroll-btn" type="button" onclick="desplazarCategorias(1)" aria-label="Mostrar más categorías">›</button>
                         </div>
 
                         <!-- Barra de Estado Compacta y Centrada -->
@@ -3288,17 +3990,23 @@
 
         <!-- ===== VISTA 2: DISEÑO PERSONALIZADO ===== -->
         <div class="tab-view" id="view-diseno">
-            <section id="diseno" style="background:#f9f9f8;border-top:1px solid #eee;padding-top:2.5rem">
+            <section id="diseno" style="background:#fbfbfa;padding:2rem 0 4.5rem;min-height:85vh">
         <div class="container">
-            <div style="text-align:center;max-width:720px;margin:0 auto 2.5rem">
-                <span class="hero-badge"
-                    style="background:rgba(211,89,20,.1);border-color:rgba(211,89,20,.35);color:var(--nar)">🎨 Taller de
-                    Personalización</span>
-                <h2>Diseño &amp; <span style="color:var(--nar)">Bordados</span></h2>
-                <p style="color:var(--gri);margin-top:.5rem">
-                    Personaliza uniformes, camisas industriales y cascos de protección con el logotipo corporativo y colores
-                    de tu empresa. Confección bajo norma y acabados de alta resistencia.
-                </p>
+            <!-- TARJETA SUPERIOR CON LOS COLORES CORPORATIVOS -->
+            <div class="diseno-header-hub">
+                <div class="diseno-hub-header">
+                    <span class="diseno-hub-tag">🎨 TALLER DE PERSONALIZACIÓN &amp; BORDADOS</span>
+                    <h2 class="diseno-hub-title">Diseño &amp; <span style="color:var(--nar)">Bordados</span> <span class="gold">Corporativos</span></h2>
+                    <p class="diseno-hub-sub">
+                        Personaliza uniformes, camisas industriales y cascos de protección con el logotipo corporativo y colores de tu empresa. Confección bajo norma COVENIN y acabados de alta resistencia.
+                    </p>
+                </div>
+                <div class="diseno-hub-pills">
+                    <span class="diseno-hub-badge">🧵 Bordado Computarizado HD</span>
+                    <span class="diseno-hub-badge">🖨️ Serigrafía / Estampado Textil</span>
+                    <span class="diseno-hub-badge">🎨 Selección de Colores Corporativos</span>
+                    <span class="diseno-hub-badge">🛡️ Normas COVENIN &amp; OSHA</span>
+                </div>
             </div>
 
             <div class="diseno-grid">
@@ -3534,23 +4242,26 @@
 
         <!-- ===== VISTA 3: ORDEN DE COMPRA ===== -->
         <div class="tab-view" id="view-orden-compra">
-            <section id="orden-compra"
-                style="background:#0e0e0d;color:#fff;border-top:2px solid rgba(253,196,23,.18);border-bottom:2px solid rgba(253,196,23,.18);padding-top:2.5rem">
+            <section id="orden-compra" style="background:#fbfbfa;color:var(--neg);padding:2rem 0 4.5rem;min-height:85vh">
         <div class="container">
+            <!-- TARJETA SUPERIOR CON LOS COLORES CORPORATIVOS -->
             <div class="oc-top-bar">
-                <div>
-                    <span class="hero-badge" style="margin-bottom:.4rem">📋 Portal Corporativo B2B</span>
-                    <h2 style="font-size:clamp(1.4rem,3vw,2rem);margin:0">Orden de <span class="gold"
+                <div style="position:relative;z-index:2">
+                    <span class="hero-badge" style="margin-bottom:.5rem;background:rgba(253,196,23,.12);border-color:rgba(253,196,23,.3);color:var(--ama)">📋 Portal Corporativo B2B</span>
+                    <h2 style="font-size:clamp(1.4rem,3vw,2rem);margin:0;color:#fff">Orden de <span class="gold"
                             style="background:var(--gw);-webkit-background-clip:text;background-clip:text;color:transparent">Compra
                             Empresarial</span></h2>
+                    <p style="margin:.45rem 0 0;font-size:.85rem;color:#bfc2c2;max-width:620px;line-height:1.5">
+                        Genera tu orden formal con desglose de ítems, cálculo automático de IVA y cotización lista para emitir o descargar en PDF.
+                    </p>
                 </div>
-                <div style="display:flex;gap:.8rem;align-items:center;flex-wrap:wrap">
+                <div style="display:flex;gap:.8rem;align-items:center;flex-wrap:wrap;position:relative;z-index:2">
                     <span
-                        style="background:rgba(253,196,23,.15);border:1px solid var(--ama);color:var(--ama);padding:.4rem .9rem;border-radius:999px;font-size:.72rem;font-weight:700"
+                        style="background:rgba(253,196,23,.15);border:1px solid var(--ama);color:var(--ama);padding:.45rem 1rem;border-radius:999px;font-size:.74rem;font-weight:700;letter-spacing:.03em"
                         id="ocNumeroDisplay">
                         O.C. Nº: UF-2026-4820
                     </span>
-                    <button class="btn btn-w" style="padding:.55rem 1.2rem;font-size:.72rem" onclick="importarKitAOrden()">
+                    <button class="btn btn-w" style="padding:.55rem 1.2rem;font-size:.74rem" onclick="importarKitAOrden()">
                         📥 Cargar Productos del Kit
                     </button>
                 </div>
@@ -3697,12 +4408,22 @@
 
         <!-- ===== VISTA 4: CONTACTO Y COTIZACIÓN ===== -->
         <div class="tab-view" id="view-cotiza">
-            <section class="sec-dark" id="cotiza" style="padding:3.5rem 0 5rem;min-height:80vh">
-                <div class="container" style="max-width:1100px;text-align:center">
-                    <h2>Información de <span style="color:var(--ama)">Contacto</span></h2>
-                    <p style="margin:.8rem auto 2.2rem;max-width:720px;color:var(--gcl)">
-                        Comunícate directamente con nuestro equipo de atención corporativa, visítanos en nuestras sedes de Maracay y Caracas, o solicita tu cotización formal a medida.
-                    </p>
+            <section id="cotiza" style="background:#fbfbfa;padding:2rem 0 4.5rem;min-height:85vh">
+                <div class="container" style="max-width:1100px">
+                    <!-- TARJETA SUPERIOR CON LOS COLORES CORPORATIVOS -->
+                    <div class="contact-header-hub">
+                        <div class="contact-hub-header">
+                            <span class="contact-hub-tag">🛡️ ATENCIÓN CORPORATIVA &amp; COTIZACIONES</span>
+                            <h2 class="contact-hub-title">Información de <span style="color:var(--nar)">Contacto</span> &amp; <span class="gold">Sedes</span></h2>
+                            <p class="contact-hub-sub">Comunícate directamente con nuestro equipo de atención corporativa, visítanos en nuestras sedes de Maracay y Caracas, o solicita tu cotización formal a medida con soporte técnico garantizado.</p>
+                        </div>
+                        <div class="contact-hub-pills">
+                            <span class="contact-hub-badge">🏢 2 Sedes Físicas</span>
+                            <span class="contact-hub-badge">💬 Atención Inmediata</span>
+                            <span class="contact-hub-badge">📋 Cotización Digital en 60s</span>
+                            <span class="contact-hub-badge">🇻🇪 Despacho a Nivel Nacional</span>
+                        </div>
+                    </div>
 
                     <!-- CUADRÍCULA DE CARTAS DE DATOS INFORMATIVOS -->
                     <div class="contact-cards-grid">
@@ -3745,23 +4466,23 @@
                                 <li class="contact-phone-row">
                                     <div>
                                         <div style="font-size:.72rem;color:var(--gcl);text-transform:uppercase;font-weight:700">Atención Ventas</div>
-                                        <a href="tel:+584144938316" class="contact-link">+58 414-4938316</a>
+                                        <a href="tel:+584144938316" class="contact-link" onclick="navigateToTab('cotiza')">+58 414-4938316</a>
                                     </div>
-                                    <a href="https://wa.me/584144938316" target="_blank" rel="noopener noreferrer" class="btn-logo-action" style="background:#25d366;border-color:#25d366;width:28px;height:28px" title="Escribir por WhatsApp">💬</a>
+                                    <a href="https://wa.me/584144938316" target="_blank" rel="noopener noreferrer" class="btn-logo-action" style="background:#25d366;border-color:#25d366;width:28px;height:28px" title="Escribir por WhatsApp" onclick="navigateToTab('cotiza')">💬</a>
                                 </li>
                                 <li class="contact-phone-row">
                                     <div>
                                         <div style="font-size:.72rem;color:var(--gcl);text-transform:uppercase;font-weight:700">Asesoría Comercial</div>
-                                        <a href="tel:+584243409898" class="contact-link">+58 424-3409898</a>
+                                        <a href="tel:+584243409898" class="contact-link" onclick="navigateToTab('cotiza')">+58 424-3409898</a>
                                     </div>
-                                    <a href="https://wa.me/584243409898" target="_blank" rel="noopener noreferrer" class="btn-logo-action" style="background:#25d366;border-color:#25d366;width:28px;height:28px" title="Escribir por WhatsApp">💬</a>
+                                    <a href="https://wa.me/584243409898" target="_blank" rel="noopener noreferrer" class="btn-logo-action" style="background:#25d366;border-color:#25d366;width:28px;height:28px" title="Escribir por WhatsApp" onclick="navigateToTab('cotiza')">💬</a>
                                 </li>
                                 <li class="contact-phone-row">
                                     <div>
                                         <div style="font-size:.72rem;color:var(--gcl);text-transform:uppercase;font-weight:700">Cotizaciones B2B</div>
-                                        <a href="tel:+584243056068" class="contact-link">+58 424-3056068</a>
+                                        <a href="tel:+584243056068" class="contact-link" onclick="navigateToTab('cotiza')">+58 424-3056068</a>
                                     </div>
-                                    <a href="https://wa.me/584243056068" target="_blank" rel="noopener noreferrer" class="btn-logo-action" style="background:#25d366;border-color:#25d366;width:28px;height:28px" title="Escribir por WhatsApp">💬</a>
+                                    <a href="https://wa.me/584243056068" target="_blank" rel="noopener noreferrer" class="btn-logo-action" style="background:#25d366;border-color:#25d366;width:28px;height:28px" title="Escribir por WhatsApp" onclick="navigateToTab('cotiza')">💬</a>
                                 </li>
                             </ul>
                         </div>
@@ -3776,15 +4497,15 @@
                                 </div>
                             </div>
                             <div class="social-chips-list">
-                                <a href="https://instagram.com/grupounifortex" target="_blank" rel="noopener noreferrer" class="social-chip-btn">
+                                <a href="https://instagram.com/grupounifortex" target="_blank" rel="noopener noreferrer" class="social-chip-btn" onclick="navigateToTab('cotiza')">
                                     <span>📸 Instagram</span>
                                     <span style="color:var(--ama)">@grupounifortex ↗</span>
                                 </a>
-                                <a href="https://tiktok.com/@grupounifortex" target="_blank" rel="noopener noreferrer" class="social-chip-btn">
+                                <a href="https://tiktok.com/@grupounifortex" target="_blank" rel="noopener noreferrer" class="social-chip-btn" onclick="navigateToTab('cotiza')">
                                     <span>🎵 TikTok</span>
                                     <span style="color:var(--ama)">@grupounifortex ↗</span>
                                 </a>
-                                <a href="https://facebook.com/grupounifortex" target="_blank" rel="noopener noreferrer" class="social-chip-btn">
+                                <a href="https://facebook.com/grupounifortex" target="_blank" rel="noopener noreferrer" class="social-chip-btn" onclick="navigateToTab('cotiza')">
                                     <span>👥 Facebook</span>
                                     <span style="color:var(--ama)">@grupounifortex ↗</span>
                                 </a>
@@ -3820,46 +4541,120 @@
 
                     </div>
 
-                    <!-- FORMULARIO DE COTIZACIÓN RÁPIDA -->
+                    <!-- FORMULARIO DE COTIZACIÓN RÁPIDA (ENFOQUE PERSONAL) -->
                     <div class="contact-form-box">
-                        <h3 style="margin-bottom:.5rem;font-size:1.4rem">Cotiza en <span style="color:var(--ama)">60 segundos</span></h3>
-                        <p style="margin:0 0 1.8rem;color:var(--gcl);font-size:.92rem">
-                            Recibe una propuesta a medida con precios por volumen, tiempos de entrega y asesoría técnica.
+                        <h3 style="margin-bottom:.5rem;font-size:1.4rem;color:#ffffff !important">Cotiza en <span style="color:var(--ama)">60 segundos</span></h3>
+                        <p style="margin:0 0 1.5rem;color:var(--gcl);font-size:.92rem">
+                            Déjanos tus datos de contacto y te enviaremos una propuesta personalizada a tu medida con atención directa e inmediata.
                         </p>
-                        <form
-                            onsubmit="event.preventDefault();alert('✅ Cotización enviada con éxito. Un asesor UNIFORTEX se comunicará en breve.');this.reset()"
-                            style="display:grid;gap:1rem;text-align:left">
-                            <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:1rem">
-                                <div>
-                                    <label style="display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gcl);margin-bottom:.3rem">Nombre Completo *</label>
-                                    <input required placeholder="Ej: Ing. Carlos Pérez"
-                                        style="width:100%;padding:.95rem 1rem;border:1px solid rgba(255,255,255,0.15);border-radius:10px;background:rgba(255,255,255,0.06);color:#fff;font-family:Poppins;font-style:italic">
+
+                        
+                        <!-- BANNER DINÁMICO DE DETECCIÓN DE CARRITO PARA COTIZACIÓN Y ORDEN DE COMPRA -->
+                        <div id="cotizaCartBannerContainer" style="margin-bottom:1.4rem">
+                            <!-- Estado A: Cuando el cliente TIENE productos en el carrito -->
+                            <div id="cotizaCartActiveBox" style="display:none;background:linear-gradient(135deg, rgba(253,196,23,0.12) 0%, rgba(226,30,44,0.08) 100%);border:1px solid rgba(253,196,23,0.4);border-radius:14px;padding:1.1rem 1.25rem;box-shadow:0 6px 24px rgba(0,0,0,0.22);text-align:left">
+                                <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:.85rem">
+                                    <div style="flex:1;min-width:240px">
+                                        <div style="display:inline-flex;align-items:center;gap:.35rem;background:var(--ama);color:#111;font-size:.7rem;font-weight:800;padding:.25rem .6rem;border-radius:6px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.45rem">
+                                            🛒 Material en Carrito Detectado
+                                        </div>
+                                        <h4 style="margin:0 0 .25rem;font-size:1.08rem;color:#ffffff;display:flex;align-items:center;gap:.5rem">
+                                            Prendas listas para cotizar <span id="cotizaCartCountBadge" style="color:var(--ama);font-weight:700">(0 prendas)</span>
+                                        </h4>
+                                        <p style="margin:0;font-size:.82rem;color:var(--gcl);line-height:1.4">
+                                            Detectamos tus prendas seleccionadas. Puedes descargar directamente tu <b>Cotización Oficial en PDF</b> con membrete y precios o transferirlas a tu <b>Orden de Compra</b>.
+                                        </p>
+                                    </div>
+
+                                    <div style="background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.12);padding:.6rem .95rem;border-radius:10px;text-align:right;min-width:145px">
+                                        <div style="font-size:.68rem;color:var(--gcl);text-transform:uppercase;letter-spacing:.04em">Total Cotización</div>
+                                        <div id="cotizaCartTotalVal" style="font-size:1.35rem;font-weight:800;color:var(--ama);line-height:1.15;margin:.15rem 0">$0.00</div>
+                                        <div style="font-size:.68rem;color:#9ca3af">IVA (16%) Incluido</div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <label style="display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gcl);margin-bottom:.3rem">Correo Corporativo *</label>
-                                    <input required type="email" placeholder="contacto@tuempresa.com"
-                                        style="width:100%;padding:.95rem 1rem;border:1px solid rgba(255,255,255,0.15);border-radius:10px;background:rgba(255,255,255,0.06);color:#fff;font-family:Poppins;font-style:italic">
+
+                                <!-- Chips con resumen de prendas del carrito -->
+                                <div id="cotizaCartChipsList" style="display:flex;flex-wrap:wrap;gap:.45rem;max-height:115px;overflow-y:auto;padding:.4rem 0;margin-bottom:1rem;border-top:1px solid rgba(255,255,255,0.08);border-bottom:1px solid rgba(255,255,255,0.08)">
+                                    <!-- Se inyecta dinámicamente -->
+                                </div>
+
+                                <!-- Botones de acción directa -->
+                                <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(210px, 1fr));gap:.75rem">
+                                    <button type="button" class="btn btn-w" onclick="generarPDFCotizacionCarrito()"
+                                        style="justify-content:center;padding:.8rem 1rem;font-size:.88rem;box-shadow:0 4px 16px rgba(226,30,44,0.35);cursor:pointer">
+                                        📄 Descargar Cotización en PDF
+                                    </button>
+                                    <button type="button" class="btn btn-o" onclick="transferirCarritoAOrdenDesdeCotiza()"
+                                        style="justify-content:center;padding:.8rem 1rem;font-size:.88rem;border-color:rgba(253,196,23,0.6);color:var(--ama);cursor:pointer">
+                                        📋 Pasar a Orden de Compra B2B ↗
+                                    </button>
                                 </div>
                             </div>
-                            <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:1rem">
-                                <div>
-                                    <label style="display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gcl);margin-bottom:.3rem">Empresa / RIF *</label>
-                                    <input required placeholder="Ej: Inversiones Globales C.A. / J-12345678-9"
-                                        style="width:100%;padding:.95rem 1rem;border:1px solid rgba(255,255,255,0.15);border-radius:10px;background:rgba(255,255,255,0.06);color:#fff;font-family:Poppins;font-style:italic">
+
+                            <!-- Estado B: Cuando el carrito está vacío -->
+                            <div id="cotizaCartEmptyBox" style="background:rgba(255,255,255,0.04);border:1px dashed rgba(255,255,255,0.2);border-radius:12px;padding:.9rem 1.15rem;text-align:left;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem">
+                                <div style="display:flex;align-items:center;gap:.7rem;max-width:440px">
+                                    <span style="font-size:1.5rem">💡</span>
+                                    <div style="font-size:.82rem;color:var(--gcl);line-height:1.4">
+                                        <b style="color:#ffffff">¿Deseas una cotización con prendas específicas?</b><br>
+                                        Añade productos a tu carrito desde nuestro catálogo y podrás generar tu cotización formal con membrete en PDF al instante.
+                                    </div>
                                 </div>
+                                <button type="button" onclick="navigateToTab('diseno')" class="btn btn-o"
+                                    style="padding:.5rem .95rem;font-size:.8rem;border-color:var(--ama);color:var(--ama);border-radius:8px;cursor:pointer">
+                                    🛍️ Explorar Catálogo
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Mensaje de aviso amigable y suave si faltan datos obligatorios -->
+                        <div id="cotizaFriendlyNotice" style="display:none;background:rgba(253,196,23,0.12);border:1px solid rgba(253,196,23,0.4);color:var(--ama);padding:.85rem 1.1rem;border-radius:12px;font-size:.85rem;margin-bottom:1.2rem;line-height:1.45;transition:all .3s ease"></div>
+
+                        <form id="formCotizaPersonal" onsubmit="return enviarCotizacionPersonal(event)" novalidate style="display:grid;gap:1.1rem;text-align:left">
+                            <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(210px, 1fr));gap:1rem">
+                                <!-- 1. Nombre Completo (Obligatorio) -->
                                 <div>
-                                    <label style="display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gcl);margin-bottom:.3rem">Teléfono de Contacto</label>
-                                    <input placeholder="Ej: +58 412 1234567"
-                                        style="width:100%;padding:.95rem 1rem;border:1px solid rgba(255,255,255,0.15);border-radius:10px;background:rgba(255,255,255,0.06);color:#fff;font-family:Poppins;font-style:italic">
+                                    <label for="cotizaNombre" style="display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--gcl);margin-bottom:.35rem">
+                                        Nombre Completo <span style="color:var(--ama)">*</span>
+                                    </label>
+                                    <input type="text" id="cotizaNombre" placeholder="Ej: Carlos Pérez" required
+                                        style="width:100%;padding:.9rem 1rem;border:1px solid rgba(255,255,255,0.15);border-radius:10px;background:rgba(255,255,255,0.06);color:#fff;font-family:Poppins;font-size:.86rem;outline:none;transition:border-color .2s"
+                                        onfocus="this.style.borderColor='var(--ama)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+                                </div>
+
+                                <!-- 2. Teléfono / WhatsApp (Obligatorio) -->
+                                <div>
+                                    <label for="cotizaTelefono" style="display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--gcl);margin-bottom:.35rem">
+                                        Teléfono / WhatsApp <span style="color:var(--ama)">*</span>
+                                    </label>
+                                    <input type="tel" id="cotizaTelefono" placeholder="Ej: +58 412 1234567" required
+                                        style="width:100%;padding:.9rem 1rem;border:1px solid rgba(255,255,255,0.15);border-radius:10px;background:rgba(255,255,255,0.06);color:#fff;font-family:Poppins;font-size:.86rem;outline:none;transition:border-color .2s"
+                                        onfocus="this.style.borderColor='var(--ama)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+                                </div>
+
+                                <!-- 3. Correo Electrónico (Obligatorio) -->
+                                <div>
+                                    <label for="cotizaEmail" style="display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--gcl);margin-bottom:.35rem">
+                                        Correo Electrónico <span style="color:var(--ama)">*</span>
+                                    </label>
+                                    <input type="email" id="cotizaEmail" placeholder="tu@correo.com" required
+                                        style="width:100%;padding:.9rem 1rem;border:1px solid rgba(255,255,255,0.15);border-radius:10px;background:rgba(255,255,255,0.06);color:#fff;font-family:Poppins;font-size:.86rem;outline:none;transition:border-color .2s"
+                                        onfocus="this.style.borderColor='var(--ama)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
                                 </div>
                             </div>
+
+                            <!-- 4. Comentarios o Dudas (Opcional - Si no deja comentario no pasa nada) -->
                             <div>
-                                <label style="display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gcl);margin-bottom:.3rem">Detalle de Requerimiento o Muestra *</label>
-                                <textarea rows="3" placeholder="Indica productos, tallas estimadas, cantidades o detalles del diseño personalizado..."
-                                    style="width:100%;padding:.95rem 1rem;border:1px solid rgba(255,255,255,0.15);border-radius:10px;background:rgba(255,255,255,0.06);color:#fff;font-family:Poppins;font-style:italic"></textarea>
+                                <label for="cotizaComentarios" style="display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--gcl);margin-bottom:.35rem">
+                                    Comentarios o Requerimiento <span style="color:#9ca3af;font-weight:400;text-transform:none">(Opcional)</span>
+                                </label>
+                                <textarea id="cotizaComentarios" rows="3" placeholder="Escribe aquí cualquier duda, prendas de tu interés, cantidades estimadas o detalles que desees comentarnos (opcional)..."
+                                    style="width:100%;padding:.9rem 1rem;border:1px solid rgba(255,255,255,0.15);border-radius:10px;background:rgba(255,255,255,0.06);color:#fff;font-family:Poppins;font-size:.86rem;outline:none;resize:vertical;transition:border-color .2s"
+                                    onfocus="this.style.borderColor='var(--ama)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'"></textarea>
                             </div>
-                            <button class="btn btn-w" style="justify-content:center;padding:1rem;font-size:1rem;margin-top:.5rem">
-                                📨 Enviar Solicitud de Cotización
+
+                            <button type="submit" class="btn btn-w" style="justify-content:center;padding:1rem;font-size:.95rem;margin-top:.4rem;width:100%">
+                                📨 Solicitar Cotización Personal
                             </button>
                         </form>
                     </div>
@@ -3873,30 +4668,116 @@
     <footer>
         <div class="container">
             <div class="fg">
+                <!-- Columna 1: Marca y Contactos Principales -->
                 <div>
                     <div class="footer-brand">
                         <img src="imagenes pasantias/escudo.png" alt="Escudo Unifortex" class="brand-escudo-img" style="height:36px;max-width:36px">
                         <img src="imagenes pasantias/logo.png" alt="Grupo Unifortex" class="footer-logo-img">
                     </div>
-                    <p>Grupo Unifortex EPP · Protección, seguridad y estilo para el trabajador venezolano.</p>
+                    <p style="font-size:.82rem;line-height:1.5;color:#bfc2c2">Grupo Unifortex EPP · Protección, seguridad y estilo para el trabajador venezolano con confección bajo normas COVENIN y OSHA.</p>
+                    <div class="footer-contact-pills">
+                        <a href="mailto:grupounifortexventas@gmail.com" class="footer-link-pill" onclick="navigateToTab('cotiza')">📧 grupounifortexventas@gmail.com</a>
+                        <a href="https://wa.me/584144938316" target="_blank" rel="noopener noreferrer" class="footer-link-pill" onclick="navigateToTab('cotiza')">💬 WhatsApp Ventas: +58 414-4938316</a>
+                        <a href="https://wa.me/584243409898" target="_blank" rel="noopener noreferrer" class="footer-link-pill" onclick="navigateToTab('cotiza')">💬 WhatsApp Asesoría: +58 424-3409898</a>
+                        <a href="https://wa.me/584243056068" target="_blank" rel="noopener noreferrer" class="footer-link-pill" onclick="navigateToTab('cotiza')">💬 WhatsApp B2B: +58 424-3056068</a>
+                    </div>
+
+                    <!-- Redes Sociales Oficiales bajo los números -->
+                    <div class="footer-social-wrapper">
+                        <span class="footer-social-label">🌐 Síguenos en Redes</span>
+                        <div class="footer-social-chips">
+                            <a href="https://instagram.com/grupounifortex" target="_blank" rel="noopener noreferrer" class="footer-social-pill" onclick="navigateToTab('cotiza')" title="Instagram @grupounifortex">
+                                <span>📸 Instagram</span>
+                            </a>
+                            <a href="https://tiktok.com/@grupounifortex" target="_blank" rel="noopener noreferrer" class="footer-social-pill" onclick="navigateToTab('cotiza')" title="TikTok @grupounifortex">
+                                <span>🎵 TikTok</span>
+                            </a>
+                            <a href="https://facebook.com/grupounifortex" target="_blank" rel="noopener noreferrer" class="footer-social-pill" onclick="navigateToTab('cotiza')" title="Facebook @grupounifortex">
+                                <span>👥 Facebook</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Columna 2: Soluciones Industriales -->
                 <div>
-                    <h5>Soluciones</h5><a href="#">EPP</a><a href="#">Uniformes</a><a href="#">Bioseguridad</a>
+                    <h5>🛡️ Soluciones</h5>
+                    <a href="#config" onclick="navigateToTab('config');filtrarCatalogo('Todos');">Catálogo General</a>
+                    <a href="#config" onclick="navigateToTab('config');filtrarCatalogo('Pantalones & Jeans');">Pantalones & Jeans</a>
+                    <a href="#config" onclick="navigateToTab('config');filtrarCatalogo('Camisas & Chemises');">Camisas & Chemises</a>
+                    <a href="#config" onclick="navigateToTab('config');filtrarCatalogo('Bragas & Batas');">Bragas Industriales</a>
+                    <a href="#config" onclick="navigateToTab('config');filtrarCatalogo('Calzado');">Calzado de Seguridad</a>
+                    <a href="#config" onclick="navigateToTab('config');filtrarCatalogo('Respiratoria');">Protección Respiratoria</a>
+                    <a href="#diseno" onclick="navigateToTab('diseno')">Personalizador de Prendas</a>
+                    <a href="#orden-compra" onclick="navigateToTab('orden-compra')">Generador Orden de Compra</a>
                 </div>
-                <div>
-                    <h5>Empresa</h5><a href="#">Nosotros</a><a href="#">Misión y Visión</a><a href="#">Contacto</a>
-                </div>
-                <div>
-                    <h5>Contacto & Sedes</h5>
-                    <a href="mailto:grupounifortexventas@gmail.com">📧 grupounifortexventas@gmail.com</a>
-                    <a href="tel:+584144938316">📞 +58 414-4938316</a>
-                    <a href="tel:+584243409898">📞 +58 424-3409898</a>
-                    <a href="tel:+584243056068">📞 +58 424-3056068</a>
-                    <p style="font-size:.76rem;color:var(--gcl);margin-top:.5rem;line-height:1.4">
-                        📍 Maracay: C.C. Ciudad Jardín, Local 20<br>
-                        📍 Caracas: Av. Libertador, Edif. Fertec, Piso 4<br>
-                        ⏰ Horario Maracay: 8:00 am - 5:00 pm
-                    </p>
+
+                <!-- Columna 3: Las 2 Ubicaciones en Google Maps -->
+                <div class="footer-col-maps">
+                    <h5>📍 Nuestras Sedes en Google Maps</h5>
+                    <div class="footer-maps-grid">
+                        
+                        <!-- Sede Maracay -->
+                        <div class="footer-map-card">
+                            <div class="footer-map-header">
+                                <span class="footer-map-badge">🏢 Sede Maracay</span>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Centro+Comercial+Ciudad+Jard%C3%ADn+Maracay+Aragua" 
+                                   target="_blank" rel="noopener noreferrer" 
+                                   class="footer-map-btn" 
+                                   title="Abrir ubicación exacta en Google Maps">
+                                    Abrir Maps ↗
+                                </a>
+                            </div>
+                            <p class="footer-map-addr">📍 C.C. Ciudad Jardín, Local 20, Maracay, Edo. Aragua</p>
+                            <div class="footer-map-frame-wrap">
+                                <iframe 
+                                    src="https://maps.google.com/maps?q=Centro+Comercial+Ciudad+Jardin+Maracay+Aragua&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                                    class="footer-map-iframe" 
+                                    title="Google Maps Sede Maracay" 
+                                    loading="lazy" 
+                                    referrerpolicy="no-referrer-when-downgrade">
+                                </iframe>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Centro+Comercial+Ciudad+Jard%C3%ADn+Maracay+Aragua" 
+                                   target="_blank" rel="noopener noreferrer" 
+                                   class="footer-map-overlay-link" 
+                                   aria-label="Abrir Sede Maracay en Google Maps">
+                                    <span class="footer-map-overlay-hint">Click para abrir en Google Maps ↗</span>
+                                </a>
+                            </div>
+                            <div class="footer-map-meta">⏰ Horario: Lun - Vie 8:00 am - 5:00 pm</div>
+                        </div>
+
+                        <!-- Sede Caracas -->
+                        <div class="footer-map-card">
+                            <div class="footer-map-header">
+                                <span class="footer-map-badge">🏢 Sede Caracas</span>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Edificio+Fertec+Av+Libertador+Caracas" 
+                                   target="_blank" rel="noopener noreferrer" 
+                                   class="footer-map-btn" 
+                                   title="Abrir ubicación exacta en Google Maps">
+                                    Abrir Maps ↗
+                                </a>
+                            </div>
+                            <p class="footer-map-addr">📍 Av. Libertador, Edif. Fertec, Piso 4, Caracas</p>
+                            <div class="footer-map-frame-wrap">
+                                <iframe 
+                                    src="https://maps.google.com/maps?q=Edificio+Fertec+Av+Libertador+Caracas&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                                    class="footer-map-iframe" 
+                                    title="Google Maps Sede Caracas" 
+                                    loading="lazy" 
+                                    referrerpolicy="no-referrer-when-downgrade">
+                                </iframe>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Edificio+Fertec+Av+Libertador+Caracas" 
+                                   target="_blank" rel="noopener noreferrer" 
+                                   class="footer-map-overlay-link" 
+                                   aria-label="Abrir Sede Caracas en Google Maps">
+                                    <span class="footer-map-overlay-hint">Click para abrir en Google Maps ↗</span>
+                                </a>
+                            </div>
+                            <div class="footer-map-meta">🏢 Oficinas Administrativas & Atención Mayorista</div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
             <div class="copy">© 2026 GRUPO UNIFORTEX EPP · Todos los derechos reservados</div>
@@ -3953,8 +4834,12 @@
             </button>
 
             <div class="cart-drawer-actions-sub">
-                <button class="btn-drawer-sec" onclick="closeCartDrawer()">Seguir explorando</button>
-                <button class="btn-drawer-clear" onclick="clearCart()">Vaciar carrito</button>
+                <button type="button" class="btn-drawer-sec" onclick="closeCartDrawer()" title="Cerrar carrito y seguir explorando el catálogo">
+                    <span>🛍️</span> Seguir explorando
+                </button>
+                <button type="button" class="btn-drawer-clear" onclick="clearCart()" title="Vaciar todos los productos del carrito">
+                    <span>🗑️</span> Vaciar carrito
+                </button>
             </div>
 
             <div class="cart-drawer-b2b-note">
@@ -4792,8 +5677,17 @@
         let currentCatalogSearch = '';
         let currentModalProduct = null;
         let modalQty = 1;
+        let catalogSearchTimer = null;
 
-        /* ---------- RENDERIZADO DEL CATÁLOGO (ESTILO MOTOS TORO) ---------- */
+        function normalizarTextoCatalogo(value) {
+            return String(value || '')
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .toLowerCase()
+                .trim();
+        }
+
+        /* ---------- RENDERIZADO DEL CATÁLOGO UNIFORTEX ---------- */
         function renderCatalog(filter = 'Todos', search = '') {
             currentCatalogFilter = filter;
             currentCatalogSearch = search;
@@ -4801,14 +5695,15 @@
             const counterTxt = document.getElementById('catalogCounterTxt');
             if (!grid) return;
 
+            const q = normalizarTextoCatalogo(search);
+            const terms = q ? q.split(/\s+/).filter(Boolean) : [];
+
             let filtered = PRODUCTS.filter(p => {
                 const matchesCat = (filter === 'Todos') || (p.cat === filter);
-                const q = search.trim().toLowerCase();
-                const matchesSearch = !q || 
-                    p.name.toLowerCase().includes(q) || 
-                    p.code.toLowerCase().includes(q) || 
-                    p.mat.toLowerCase().includes(q) ||
-                    p.cat.toLowerCase().includes(q);
+                const searchableText = normalizarTextoCatalogo([
+                    p.name, p.code, p.mat, p.matShort, p.sizes, p.sizeShort, p.cat
+                ].join(' '));
+                const matchesSearch = !terms.length || terms.every(term => searchableText.includes(term));
                 return matchesCat && matchesSearch;
             });
 
@@ -4843,7 +5738,7 @@
                             <b>$${p.price.toFixed(2)}</b>
                             <span>USD</span>
                         </div>
-                        <div class="card-moto-bulk">Lotes: $${(p.price * 0.88).toFixed(2)}</div>
+                        <div class="card-moto-bulk">Lotes (+50): $${(p.price * 0.88).toFixed(2)}</div>
                     </div>
                     <div class="card-moto-actions">
                         <button class="btn-moto-details" onclick="abrirDetalleProducto(${p.id})">
@@ -4902,8 +5797,17 @@
         function buscarEnCatalogo(val) {
             const clearBtn = document.getElementById('clearSearchBtn');
             if (clearBtn) clearBtn.style.display = val.trim() ? 'block' : 'none';
-            actualizarEstadoFiltrosCatalogo(currentCatalogFilter, val);
-            renderCatalog(currentCatalogFilter, val);
+            clearTimeout(catalogSearchTimer);
+            catalogSearchTimer = setTimeout(() => {
+                actualizarEstadoFiltrosCatalogo(currentCatalogFilter, val);
+                renderCatalog(currentCatalogFilter, val);
+            }, 120);
+        }
+
+        function desplazarCategorias(direction) {
+            const list = document.getElementById('catPillsList');
+            if (!list) return;
+            list.scrollBy({ left: direction * Math.max(220, list.clientWidth * .65), behavior: 'smooth' });
         }
 
         function limpiarBusquedaCatalogo() {
@@ -4913,6 +5817,7 @@
             if (input) input.value = '';
             if (clearBtn) clearBtn.style.display = 'none';
             if (sel) sel.value = 'Todos';
+            clearTimeout(catalogSearchTimer);
 
             document.querySelectorAll('#catPillsList .cat-pill').forEach(b => {
                 b.classList.toggle('active', (b.getAttribute('onclick') || '').includes("'Todos'"));
@@ -4922,15 +5827,49 @@
             renderCatalog('Todos', '');
         }
 
-        /* ---------- MODAL FICHA TÉCNICA Y ESPECIFICACIONES ---------- */
-        function modModalQty(delta) {
-            modalQty = Math.max(1, modalQty + delta);
-            const span = document.getElementById('modalQtyNum');
-            if (span) span.textContent = modalQty;
-            const sub = document.getElementById('modalSubtotalCalc');
-            if (sub && currentModalProduct) {
-                sub.textContent = '$' + (currentModalProduct.price * modalQty).toFixed(2);
+        /* ---------- MODAL FICHA TÉCNICA (PESTAÑAS DETALLADO VS MAYORISTA, TALLAS Y ENTRADA CONTINUA) ---------- */
+        const DETAL_MAX_QTY = 11; // Límite de venta al detal (de 12 en adelante es Mayorista)
+        let currentModalTier = 'detal'; // 'detal' | 'mayor'
+        let modalSelectedSize = '';
+        let cartSizes = {}; // Guarda la talla elegida para cada producto del carrito
+
+        function parseProductSizes(sizesStr) {
+            if (!sizesStr) return ['Única'];
+            const s = String(sizesStr).trim();
+            if (s.includes(' - ')) {
+                return s.split(' - ').map(x => x.trim()).filter(Boolean);
             }
+            if (s.includes('-')) {
+                return s.split('-').map(x => x.trim()).filter(Boolean);
+            }
+            const rangeMatch = s.match(/(\d+)\s+al\s+(\d+)/i);
+            if (rangeMatch) {
+                const start = parseInt(rangeMatch[1], 10);
+                const end = parseInt(rangeMatch[2], 10);
+                const isFootwear = start >= 35 && end <= 46;
+                const step = (start % 2 === 0 && end % 2 === 0 && (end - start) > 8) ? 2 : 1;
+                const list = [];
+                for (let n = start; n <= end; n += step) {
+                    list.push(String(n));
+                }
+                if (list.length) return list;
+            }
+            if (s.toLowerCase().includes('única') || s.toLowerCase().includes('unica')) {
+                return ['Talla Única'];
+            }
+            if (s.toLowerCase().includes('ajustable') || s.toLowerCase().includes('universal') || s.toLowerCase().includes('estándar') || s.toLowerCase().includes('estandar')) {
+                return ['Ajustable Universal'];
+            }
+            return [s];
+        }
+
+        function getProductPrice(p, qty = 1) {
+            if (!p) return 0;
+            // A partir de 12 unidades (límite mayorista), aplicar automáticamente tarifa mayorista B2B (18% dto)
+            if (qty >= 12) {
+                return +(p.price * 0.82).toFixed(2);
+            }
+            return p.price;
         }
 
         function abrirDetalleProducto(id) {
@@ -4938,51 +5877,13 @@
             if (!p) return;
             currentModalProduct = p;
             modalQty = 1;
-            const content = document.getElementById('productDetailContent');
-            if (!content) return;
+            currentModalTier = 'detal';
 
-            content.innerHTML = `
-                <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1rem;flex-wrap:wrap">
-                    <span class="card-moto-badge" style="position:static">🏷️ ${p.code}</span>
-                    <span style="font-size:.75rem;background:rgba(253,196,23,.15);color:var(--ama);border:1px solid rgba(253,196,23,.3);padding:.2rem .6rem;border-radius:999px;font-weight:700">
-                        ${p.cat}
-                    </span>
-                </div>
-                <div class="prod-modal-grid">
-                    <div style="display:flex;flex-direction:column;align-items:center;background:#141412;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:1.5rem;justify-content:center;text-align:center">
-                        <span style="font-size:5rem;filter:drop-shadow(0 10px 20px rgba(0,0,0,.6))">${p.ico}</span>
-                        <div style="margin-top:1rem;font-size:1.6rem;font-weight:900;color:var(--ama)">$${p.price.toFixed(2)} <span style="font-size:.8rem;color:#aaa">USD</span></div>
-                        <div style="font-size:.72rem;color:#8b1818;font-weight:700;background:#fce8e8;padding:.2rem .5rem;border-radius:6px;margin-top:.4rem">Lotes (+50): $${(p.price * 0.88).toFixed(2)}</div>
-                    </div>
-                    <div>
-                        <h3 style="font-size:1.35rem;font-weight:800;color:#fff;margin-bottom:.85rem;line-height:1.2">${p.name}</h3>
-                        <div style="background:#252523;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1rem;margin-bottom:1rem;display:flex;flex-direction:column;gap:.6rem;font-size:.82rem">
-                            <div><b style="color:var(--ama)">🧵 Material / Tela:</b><br><span style="color:#ddd">${p.mat}</span></div>
-                            <div><b style="color:var(--ama)">📏 Tallas / Presentación:</b><br><span style="color:#ddd">${p.sizes}</span></div>
-                            <div><b style="color:var(--ama)">🛡️ Uso y Garantía:</b><br><span style="color:#ccc">Dotación industrial corporativa, obras civiles, manufactura, servicios y protección ocupacional garantizada bajo normas COVENIN / OSHA.</span></div>
-                        </div>
-                        <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem;flex-wrap:wrap">
-                            <span style="font-size:.82rem;color:var(--gcl);font-weight:700">Cantidad requerida:</span>
-                            <div class="cart-qty-ctrl" style="background:#141412;border-color:rgba(253,196,23,.3);padding:.25rem">
-                                <button class="cart-qty-btn" style="width:30px;height:30px" onclick="modModalQty(-1)">−</button>
-                                <span class="cart-qty-num" id="modalQtyNum" style="font-size:.95rem;min-width:34px">1</span>
-                                <button class="cart-qty-btn" style="width:30px;height:30px" onclick="modModalQty(1)">+</button>
-                            </div>
-                            <div style="margin-left:auto;font-size:.92rem;color:#fff">
-                                Subtotal: <b id="modalSubtotalCalc" style="color:var(--ama);font-size:1.15rem">$${p.price.toFixed(2)}</b>
-                            </div>
-                        </div>
-                        <div style="display:flex;gap:.75rem">
-                            <button class="btn btn-w" style="flex:1;justify-content:center;padding:.85rem 1.2rem;font-size:.82rem" onclick="addCartFromModal(${p.id})">
-                                🛒 Añadir a mi Pedido
-                            </button>
-                            <button class="btn btn-o" style="padding:.85rem 1.2rem;color:#ccc;border-color:#555" onclick="cerrarDetalleProducto()">
-                                Cerrar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
+            // Inicializar talla seleccionada con la primera disponible
+            const sizesArr = parseProductSizes(p.sizes);
+            modalSelectedSize = sizesArr[0] || 'Única';
+
+            renderModalFullContent();
             openModal('productDetailModal');
         }
 
@@ -4990,10 +5891,365 @@
             closeModal('productDetailModal');
         }
 
+        function seleccionarTallaModal(size) {
+            modalSelectedSize = size;
+            const disp = document.getElementById('modalSelectedSizeDisplay');
+            if (disp) disp.textContent = size;
+
+            const allBtns = document.querySelectorAll('#modalSizesContainer .modal-size-btn');
+            allBtns.forEach(b => {
+                const isThis = b.getAttribute('data-size') === size;
+                b.classList.toggle('active-size', isThis);
+            });
+        }
+
+        function cambiarTierModal(tier) {
+            if (!currentModalProduct) return;
+            currentModalTier = tier;
+
+            // Ajuste de cantidad al cambiar manualmente de pestaña
+            if (tier === 'mayor' && modalQty <= DETAL_MAX_QTY) {
+                modalQty = 12; // Mínimo mayorista
+            } else if (tier === 'detal' && modalQty > DETAL_MAX_QTY) {
+                modalQty = 1; // Volver a detal
+            }
+
+            const input = document.getElementById('modalQtyInput');
+            if (input) input.value = modalQty;
+
+            actualizarTierVisualmente(tier === 'mayor');
+        }
+
+        // ENTRADA CONTINUA: NO destruye el input en el DOM para NO perder el foco ni el cursor al borrar o escribir
+        function onModalQtyInput(val) {
+            if (val === '' || isNaN(val)) return;
+            const num = parseInt(val, 10);
+            if (num <= 0) return;
+            modalQty = num;
+
+            const previousTier = currentModalTier;
+            const isMayorNow = modalQty > DETAL_MAX_QTY;
+            currentModalTier = isMayorNow ? 'mayor' : 'detal';
+
+            if (previousTier !== currentModalTier) {
+                // Se cruzó el límite entre detal y mayorista: actualiza colores, precios y textos sin tocar el input
+                actualizarTierVisualmente(isMayorNow);
+            } else {
+                actualizarCalculosModal();
+            }
+        }
+
+        function onModalQtyBlur(val) {
+            let num = parseInt(val, 10);
+            if (isNaN(num) || num < 1) num = 1;
+            modalQty = num;
+
+            const input = document.getElementById('modalQtyInput');
+            if (input) input.value = modalQty;
+
+            const isMayorNow = modalQty > DETAL_MAX_QTY;
+            currentModalTier = isMayorNow ? 'mayor' : 'detal';
+            actualizarTierVisualmente(isMayorNow);
+        }
+
+        function modModalQty(delta) {
+            const newQty = Math.max(1, modalQty + delta);
+            modalQty = newQty;
+
+            const input = document.getElementById('modalQtyInput');
+            if (input) input.value = modalQty;
+
+            const isMayorNow = modalQty > DETAL_MAX_QTY;
+            currentModalTier = isMayorNow ? 'mayor' : 'detal';
+            actualizarTierVisualmente(isMayorNow);
+        }
+
+        function actualizarCalculosModal() {
+            if (!currentModalProduct) return;
+            const p = currentModalProduct;
+            const isMayor = currentModalTier === 'mayor';
+            const unitPrice = isMayor ? +(p.price * 0.82).toFixed(2) : p.price;
+            const subtotal = unitPrice * modalQty;
+            const ahorroTotal = isMayor ? ((p.price - unitPrice) * modalQty) : 0;
+
+            const subCalc = document.getElementById('modalSubtotalCalc');
+            if (subCalc) {
+                subCalc.textContent = '$' + subtotal.toFixed(2);
+                subCalc.style.color = isMayor ? 'var(--ama)' : '#ffffff';
+            }
+
+            const ahorroTxt = document.getElementById('modalAhorroTxt');
+            if (ahorroTxt) {
+                if (isMayor && ahorroTotal > 0) {
+                    ahorroTxt.style.display = 'block';
+                    ahorroTxt.textContent = 'Tarifa mayorista aplicada ($' + unitPrice.toFixed(2) + ' c/u)';
+                } else {
+                    ahorroTxt.style.display = 'none';
+                }
+            }
+        }
+
+        // Actualiza el aspecto de la ficha técnica al cambiar entre Detal y Mayorista SIN destruir el DOM del input
+        function actualizarTierVisualmente(isMayor) {
+            const p = currentModalProduct;
+            if (!p) return;
+            const unitPrice = isMayor ? +(p.price * 0.82).toFixed(2) : p.price;
+
+            // 1. Pestañas
+            const tabDetal = document.getElementById('tabDetalBtn');
+            const tabMayor = document.getElementById('tabMayorBtn');
+            if (tabDetal) {
+                tabDetal.className = 'modal-tab-btn ' + (!isMayor ? 'active-detal' : '');
+            }
+            if (tabMayor) {
+                tabMayor.className = 'modal-tab-btn ' + (isMayor ? 'active-mayor' : '');
+                const badgeMayor = tabMayor.querySelector('span:last-child');
+                if (badgeMayor) {
+                    badgeMayor.style.background = isMayor ? '#111' : '#fdc417';
+                    badgeMayor.style.color = isMayor ? '#fdc417' : '#111';
+                }
+            }
+
+            // 2. Indicador superior
+            const indBadge = document.getElementById('modalTierIndicatorBadge');
+            if (indBadge) {
+                indBadge.textContent = isMayor ? '⭐ Tarifa Mayorista' : '🛍️ Tarifa Detallado';
+                indBadge.style.cssText = 'font-size:.72rem;padding:.2rem .65rem;border-radius:20px;font-weight:700;display:inline-flex;align-items:center;gap:.3rem;' +
+                    (isMayor ? 'background:rgba(253,196,23,.2);color:var(--ama);border:1px solid rgba(253,196,23,.4)' : 'background:rgba(148,163,184,.15);color:#cbd5e1;border:1px solid rgba(148,163,184,.3)');
+            }
+
+            // 3. Tarjeta de producto izquierda
+            const mediaCard = document.getElementById('modalMediaCard');
+            if (mediaCard) {
+                mediaCard.style.cssText = 'display:flex;flex-direction:column;align-items:center;border-radius:14px;padding:1rem .9rem;justify-content:center;text-align:center;transition:all .25s ease;' +
+                    (isMayor ? 'background:linear-gradient(180deg, rgba(253,196,23,0.12) 0%, #151410 100%);border:1px solid rgba(253,196,23,0.5);box-shadow:0 4px 16px rgba(253,196,23,0.15)' : 'background:linear-gradient(180deg, #181d26 0%, #0f1217 100%);border:1px solid rgba(148,163,184,0.3);box-shadow:0 4px 16px rgba(0,0,0,0.3)');
+            }
+
+            // 4. Bloque de precios (aclarando directamente el valor de ser mayorista)
+            const priceBlock = document.getElementById('modalPriceBlock');
+            if (priceBlock) {
+                priceBlock.innerHTML = isMayor ? `
+                    <div style="font-size:.78rem;color:#9ca3af;text-decoration:line-through;margin-bottom:2px">$${p.price.toFixed(2)} USD</div>
+                    <div style="font-size:1.55rem;font-weight:900;color:var(--ama);line-height:1.15">$${unitPrice.toFixed(2)} <span style="font-size:.75rem;color:#e5e7eb">USD/u</span></div>
+                    <div style="display:inline-block;font-size:.7rem;color:var(--ama);font-weight:800;background:rgba(253,196,23,.15);border:1px solid rgba(253,196,23,.35);padding:.18rem .5rem;border-radius:6px;margin-top:.3rem">
+                        🏭 Tarifa Mayorista
+                    </div>
+                ` : `
+                    <div style="font-size:1.55rem;font-weight:900;color:#ffffff;line-height:1.15">$${p.price.toFixed(2)} <span style="font-size:.75rem;color:#9ca3af">USD/u</span></div>
+                    <div style="display:inline-block;font-size:.7rem;color:#94a3b8;font-weight:700;background:rgba(148,163,184,.15);border:1px solid rgba(148,163,184,.3);padding:.18rem .5rem;border-radius:6px;margin-top:.3rem">
+                        🛍️ Tarifa Detallado
+                    </div>
+                `;
+            }
+
+            // 5. Hint de límite izquierdo
+            const hintBox = document.getElementById('modalTierHintBox');
+            if (hintBox) {
+                hintBox.innerHTML = isMayor ? `
+                    <span style="color:#fef08a">Al ser pedido mayorista (≥ 12 unid.) el valor unitario es de <b>$${unitPrice.toFixed(2)} USD</b>.</span>
+                ` : `
+                    <span style="color:var(--gcl)">Compras de 1 a 11 unidades ($${p.price.toFixed(2)} USD/u).</span>
+                `;
+            }
+
+            // 6. Tarjeta informativa derecha (mensaje claro y sobrio)
+            const noticeBox = document.getElementById('modalTierNoticeBox');
+            if (noticeBox) {
+                noticeBox.style.cssText = 'border-radius:9px;padding:.5rem .8rem;margin-bottom:.55rem;font-size:.77rem;line-height:1.35;display:flex;align-items:center;gap:.6rem;' +
+                    (isMayor ? 'background:linear-gradient(135deg, rgba(253,196,23,0.12) 0%, rgba(226,30,44,0.08) 100%);border:1px solid rgba(253,196,23,0.35);color:#fef08a' : 'background:#161d27;border:1px solid rgba(148,163,184,0.22);color:#cbd5e1');
+                noticeBox.innerHTML = `
+                    <span style="font-size:1.15rem">${isMayor ? '🏭' : '🛍️'}</span>
+                    <div>
+                        ${isMayor ? `
+                            <b>Tarifa Mayorista (≥ 12 unid.):</b> Al ser compra mayorista cuenta con una tarifa de <b>$${unitPrice.toFixed(2)} USD</b> por unidad.
+                        ` : `
+                            <b>Tarifa Detallado:</b> Valor unitario de <b>$${p.price.toFixed(2)} USD</b> para compras de 1 a 11 unidades.
+                        `}
+                    </div>
+                `;
+            }
+
+            // 7. Borde del input de cantidad
+            const qtyCtrl = document.getElementById('modalQtyCtrlBox');
+            if (qtyCtrl) {
+                qtyCtrl.style.borderColor = isMayor ? 'var(--ama)' : 'rgba(148,163,184,.35)';
+            }
+
+            // 8. Mensaje de límite inferior
+            const limitHint = document.getElementById('modalLimitHint');
+            if (limitHint) {
+                limitHint.textContent = isMayor ? 'Tarifa Mayorista activa (≥ 12 unidades). Al bajar a 11 o menos volverá a Detal.' : 'Tarifa Detal (1 a 11 unidades). Al ingresar 12 o más unidades cambiará automáticamente a Mayorista.';
+                if (limitHint.parentElement && limitHint.parentElement.style) limitHint.parentElement.style.color = isMayor ? 'var(--ama)' : '#94a3b8';
+            }
+
+            // 9. Recalcular subtotal
+            actualizarCalculosModal();
+        }
+
+        function renderModalFullContent() {
+            const p = currentModalProduct;
+            if (!p) return;
+            const content = document.getElementById('productDetailContent');
+            if (!content) return;
+
+            const isMayor = currentModalTier === 'mayor';
+            const unitPrice = isMayor ? +(p.price * 0.82).toFixed(2) : p.price;
+            const subtotal = unitPrice * modalQty;
+            const ahorroTotal = isMayor ? ((p.price - unitPrice) * modalQty) : 0;
+            const sizesArr = parseProductSizes(p.sizes);
+
+            content.innerHTML = `
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.55rem;flex-wrap:wrap;gap:.4rem">
+                    <div style="display:flex;align-items:center;gap:.45rem;flex-wrap:wrap">
+                        <span class="card-moto-badge" style="position:static">🏷️ ${p.code}</span>
+                        <span style="font-size:.72rem;background:rgba(253,196,23,.15);color:var(--ama);border:1px solid rgba(253,196,23,.3);padding:.18rem .55rem;border-radius:999px;font-weight:700">
+                            ${p.cat}
+                        </span>
+                    </div>
+                    <div id="modalTierIndicatorBadge" style="font-size:.72rem;padding:.2rem .65rem;border-radius:20px;font-weight:700;display:inline-flex;align-items:center;gap:.3rem;${isMayor ? 'background:rgba(253,196,23,.2);color:var(--ama);border:1px solid rgba(253,196,23,.4)' : 'background:rgba(148,163,184,.15);color:#cbd5e1;border:1px solid rgba(148,163,184,.3)'}">
+                        ${isMayor ? '⭐ Tarifa Mayorista' : '🛍️ Tarifa Detallado'}
+                    </div>
+                </div>
+
+                <!-- PESTAÑAS DETALLADO VS MAYORISTA -->
+                <div class="prod-modal-tabs">
+                    <button type="button" id="tabDetalBtn" class="modal-tab-btn ${!isMayor ? 'active-detal' : ''}" onclick="cambiarTierModal('detal')">
+                        <span>🛍️ Venta al Detal</span>
+                        <span style="font-size:.72rem;opacity:.85;font-weight:500">(1 a 11 unid.)</span>
+                    </button>
+                    <button type="button" id="tabMayorBtn" class="modal-tab-btn ${isMayor ? 'active-mayor' : ''}" onclick="cambiarTierModal('mayor')">
+                        <span>🏭 Venta al Mayor</span>
+                        <span style="font-size:.7rem;background:${isMayor ? '#111' : '#fdc417'};color:${isMayor ? '#fdc417' : '#111'};padding:1px 6px;border-radius:4px;font-weight:800">Tarifa B2B (≥12)</span>
+                    </button>
+                </div>
+
+                <div class="prod-modal-grid">
+                    <!-- COLUMNA IZQUIERDA: TARJETA DE PRODUCTO Y PRECIO -->
+                    <div id="modalMediaCard" style="display:flex;flex-direction:column;align-items:center;border-radius:14px;padding:1rem .9rem;justify-content:center;text-align:center;transition:all .25s ease;${isMayor ? 'background:linear-gradient(180deg, rgba(253,196,23,0.12) 0%, #151410 100%);border:1px solid rgba(253,196,23,0.5);box-shadow:0 4px 16px rgba(253,196,23,0.15)' : 'background:linear-gradient(180deg, #181d26 0%, #0f1217 100%);border:1px solid rgba(148,163,184,0.3);box-shadow:0 4px 16px rgba(0,0,0,0.3)'}">
+                        <span style="font-size:3.8rem;filter:drop-shadow(0 8px 16px rgba(0,0,0,.6));line-height:1">${p.ico}</span>
+                        
+                        <div id="modalPriceBlock" style="margin-top:.7rem;width:100%">
+                            ${isMayor ? `
+                                <div style="font-size:.78rem;color:#9ca3af;text-decoration:line-through;margin-bottom:2px">$${p.price.toFixed(2)} USD</div>
+                                <div style="font-size:1.55rem;font-weight:900;color:var(--ama);line-height:1.15">$${unitPrice.toFixed(2)} <span style="font-size:.75rem;color:#e5e7eb">USD/u</span></div>
+                                <div style="display:inline-block;font-size:.7rem;color:var(--ama);font-weight:800;background:rgba(253,196,23,.15);border:1px solid rgba(253,196,23,.35);padding:.18rem .5rem;border-radius:6px;margin-top:.3rem">
+                                    🏭 Tarifa Mayorista
+                                </div>
+                            ` : `
+                                <div style="font-size:1.55rem;font-weight:900;color:#ffffff;line-height:1.15">$${p.price.toFixed(2)} <span style="font-size:.75rem;color:#9ca3af">USD/u</span></div>
+                                <div style="display:inline-block;font-size:.7rem;color:#94a3b8;font-weight:700;background:rgba(148,163,184,.15);border:1px solid rgba(148,163,184,.3);padding:.18rem .5rem;border-radius:6px;margin-top:.3rem">
+                                    🛍️ Tarifa Detallado
+                                </div>
+                            `}
+                        </div>
+
+                        <div id="modalTierHintBox" style="margin-top:.6rem;font-size:.72rem;line-height:1.35;width:100%;padding-top:.55rem;border-top:1px solid rgba(255,255,255,0.08)">
+                            ${isMayor ? `
+                                <span style="color:#fef08a">Al ser pedido mayorista (≥ 12 unid.) el valor unitario es de <b>$${unitPrice.toFixed(2)} USD</b>.</span>
+                            ` : `
+                                <span style="color:var(--gcl)">Compras de 1 a 11 unidades ($${p.price.toFixed(2)} USD/u).</span>
+                            `}
+                        </div>
+                    </div>
+
+                    <!-- COLUMNA DERECHA: ESPECIFICACIONES, TALLAS INTERACTIVAS Y CANTIDAD -->
+                    <div>
+                        <h3 style="font-size:1.15rem;font-weight:800;color:#fff;margin-bottom:.4rem;line-height:1.25">${p.name}</h3>
+
+                        <!-- Tarjeta de condición directa sin justificaciones -->
+                        <div id="modalTierNoticeBox" style="border-radius:9px;padding:.5rem .8rem;margin-bottom:.55rem;font-size:.77rem;line-height:1.35;display:flex;align-items:center;gap:.6rem;${isMayor ? 'background:linear-gradient(135deg, rgba(253,196,23,0.12) 0%, rgba(226,30,44,0.08) 100%);border:1px solid rgba(253,196,23,0.35);color:#fef08a' : 'background:#161d27;border:1px solid rgba(148,163,184,0.22);color:#cbd5e1'}">
+                            <span style="font-size:1.15rem">${isMayor ? '🏭' : '🛍️'}</span>
+                            <div>
+                                ${isMayor ? `
+                                    <b>Tarifa Mayorista (≥ 12 unid.):</b> Al ser compra mayorista cuenta con una tarifa de <b>$${unitPrice.toFixed(2)} USD</b> por unidad.
+                                ` : `
+                                    <b>Tarifa Detallado:</b> Valor unitario de <b>$${p.price.toFixed(2)} USD</b> para compras de 1 a 11 unidades.
+                                `}
+                            </div>
+                        </div>
+
+                        <!-- Ficha de materiales y especificaciones técnicas compactas -->
+                        <div style="background:#20211f;border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:.55rem .8rem;margin-bottom:.55rem;display:flex;flex-direction:column;gap:.35rem;font-size:.76rem">
+                            <div><b style="color:var(--ama)">🧵 Material / Tela:</b> <span style="color:#ddd">${p.mat}</span></div>
+                            <div><b style="color:var(--ama)">🛡️ Certificación:</b> <span style="color:#ccc">Normas COVENIN / OSHA Industrial con costuras de alta tenacidad.</span></div>
+                        </div>
+
+                        <!-- SELECTOR INTERACTIVO DE TALLAS CON BOTONES -->
+                        <div style="margin-bottom:.6rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:.5rem .75rem">
+                            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.35rem">
+                                <span style="font-size:.76rem;font-weight:700;color:var(--gcl)">Selecciona la Talla:</span>
+                                <span style="font-size:.73rem;color:#cbd5e1">Elegida: <b id="modalSelectedSizeDisplay" style="color:var(--ama);font-weight:800">${modalSelectedSize}</b></span>
+                            </div>
+                            <div id="modalSizesContainer" style="display:flex;flex-wrap:wrap;gap:.35rem;max-height:65px;overflow-y:auto;padding:2px 0">
+                                ${sizesArr.map(s => `
+                                    <button type="button" class="modal-size-btn ${s === modalSelectedSize ? 'active-size' : ''}"
+                                        onmouseenter="seleccionarTallaModal('${s}')"
+                                        onclick="seleccionarTallaModal('${s}')"
+                                        data-size="${s}">
+                                        ${s}
+                                    </button>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <!-- SELECTOR DE CANTIDAD CON ENTRADA NUMÉRICA LIBRE -->
+                        <div style="background:rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:.55rem .85rem;margin-bottom:.75rem">
+                            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.6rem;margin-bottom:.35rem">
+                                <div style="display:flex;align-items:center;gap:.65rem">
+                                    <label for="modalQtyInput" style="font-size:.8rem;color:var(--gcl);font-weight:700">Cantidad:</label>
+                                    
+                                    <!-- Control con input numérico editable libremente SIN interrupciones -->
+                                    <div id="modalQtyCtrlBox" class="cart-qty-ctrl" style="background:#121211;border:1px solid ${isMayor ? 'var(--ama)' : 'rgba(148,163,184,.35)'};padding:.15rem .35rem;display:flex;align-items:center;border-radius:8px;gap:2px">
+                                        <button type="button" class="cart-qty-btn" style="width:28px;height:28px;cursor:pointer" onclick="modModalQty(-1)" title="Disminuir">−</button>
+                                        <input type="number" id="modalQtyInput" min="1" max="9999" value="${modalQty}"
+                                            style="width:58px;text-align:center;background:transparent;border:none;color:#fff;font-family:Poppins,sans-serif;font-weight:800;font-size:.98rem;outline:none;-moz-appearance:textfield"
+                                            oninput="onModalQtyInput(this.value)"
+                                            onchange="onModalQtyBlur(this.value)"
+                                            title="Escribe directamente la cantidad deseada">
+                                        <button type="button" class="cart-qty-btn" style="width:28px;height:28px;cursor:pointer" onclick="modModalQty(1)" title="Aumentar">+</button>
+                                    </div>
+                                </div>
+
+                                <div style="text-align:right">
+                                    <div style="font-size:.68rem;color:var(--gcl);text-transform:uppercase;letter-spacing:.04em">Subtotal Estimado</div>
+                                    <div style="display:flex;align-items:baseline;justify-content:flex-end;gap:.3rem">
+                                        <b id="modalSubtotalCalc" style="color:${isMayor ? 'var(--ama)' : '#ffffff'};font-size:1.2rem">$${subtotal.toFixed(2)}</b>
+                                        <span style="font-size:.72rem;color:#9ca3af">USD</span>
+                                    </div>
+                                    <div id="modalAhorroTxt" style="font-size:.7rem;color:var(--ama);font-weight:700;display:${isMayor && ahorroTotal > 0 ? 'block' : 'none'}">
+                                        Tarifa mayorista ($${unitPrice.toFixed(2)} c/u)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Mensaje orientador del límite automático -->
+                            <div style="font-size:.72rem;color:${isMayor ? 'var(--ama)' : '#94a3b8'};display:flex;align-items:center;gap:.35rem;padding-top:.35rem;border-top:1px dashed rgba(255,255,255,0.08)">
+                                <span>${isMayor ? '⚡' : 'ℹ️'}</span>
+                                <span id="modalLimitHint">
+                                    ${isMayor ? 'Tarifa Mayorista activa (≥ 12 unidades). Al bajar a 11 o menos volverá a Detal.' : 'Tarifa Detal (1 a 11 unidades). Al ingresar 12 o más unidades cambiará automáticamente a Mayorista.'}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div style="display:flex;gap:.65rem">
+                            <button class="btn btn-w" style="flex:1;justify-content:center;padding:.75rem 1.1rem;font-size:.84rem;box-shadow:0 4px 15px ${isMayor ? 'rgba(253,196,23,0.35)' : 'rgba(226,30,44,0.35)'};cursor:pointer" onclick="addCartFromModal(${p.id})">
+                                🛒 Añadir a mi Pedido
+                            </button>
+                            <button class="btn btn-o" style="padding:.75rem 1.1rem;color:#ccc;border-color:#555;cursor:pointer" onclick="cerrarDetalleProducto()">
+                                Cerrar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
         function addCartFromModal(id) {
-            addCart(id, modalQty);
+            const size = modalSelectedSize || '';
+            addCart(id, modalQty, size);
             cerrarDetalleProducto();
         }
+
 
         /* ---------- GESTIÓN DEL CARRITO & DRAWER ---------- */
         let toastTimer = null;
@@ -5013,6 +6269,12 @@
             const overlay = document.getElementById('cartDrawerOverlay');
             if (drawer) drawer.classList.add('open');
             if (overlay) overlay.classList.add('open');
+
+            // Bloquear scroll de la página de fondo de forma inmediata y confiable
+            document.documentElement.style.overflow = 'hidden';
+            document.body.style.overflow = 'hidden';
+            document.body.style.touchAction = 'none';
+
             renderCart();
         }
 
@@ -5021,20 +6283,44 @@
             const overlay = document.getElementById('cartDrawerOverlay');
             if (drawer) drawer.classList.remove('open');
             if (overlay) overlay.classList.remove('open');
+
+            // Restaurar scroll de la página de fondo
+            document.documentElement.style.overflow = '';
+            document.body.style.overflow = '';
+            document.body.style.touchAction = '';
         }
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeCartDrawer();
         });
 
-        function addCart(id, qty = 1) {
+        // Prevenir que el overlay propague eventos de rueda hacia el fondo difuminado
+        window.addEventListener('DOMContentLoaded', () => {
+            const overlay = document.getElementById('cartDrawerOverlay');
+            if (overlay) {
+                overlay.addEventListener('wheel', (e) => e.preventDefault(), { passive: false });
+                overlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+            }
+        });
+
+        function addCart(id, qty = 1, size = '') {
             const addQty = parseInt(qty) || 1;
             cart[id] = (cart[id] || 0) + addQty;
+            if (size) {
+                cartSizes[id] = size;
+            } else if (!cartSizes[id]) {
+                const p = PRODUCTS.find(x => x.id == id);
+                const sizesArr = parseProductSizes(p ? p.sizes : '');
+                cartSizes[id] = sizesArr[0] || 'Única';
+            }
             renderCart();
             openCartDrawer();
             const p = PRODUCTS.find(x => x.id == id);
             const extra = addQty > 1 ? ` (×${addQty})` : '';
-            mostrarToast(`🛒 <b>${p ? p.name : 'Producto'}</b>${extra} añadido al carrito`);
+            const esMayorista = cart[id] >= 12;
+            const extraMayor = esMayorista ? ' <span style="color:var(--ama);font-weight:700">[Mayorista]</span>' : '';
+            const sizeNote = cartSizes[id] ? ` [Talla: ${cartSizes[id]}]` : '';
+            mostrarToast(`🛒 <b>${p ? p.name : 'Producto'}</b>${extra}${sizeNote}${extraMayor} añadido al carrito`);
         }
 
         function modCart(id, delta) {
@@ -5079,7 +6365,10 @@
                 const q = cart[id];
                 totalQty += q;
                 const p = PRODUCTS.find(x => x.id == id);
-                if (p) subtotal += p.price * q;
+                if (p) {
+                    const unitPrice = getProductPrice(p, q);
+                    subtotal += unitPrice * q;
+                }
             });
 
             const iva = subtotal * 0.16;
@@ -5114,7 +6403,8 @@
                     list.innerHTML = ids.map(id => {
                         const p = PRODUCTS.find(x => x.id == id);
                         const q = cart[id];
-                        return `<li><span>${p.ico} ${p.name} <b style="color:var(--ama)">×${q}</b></span><span>$${(p.price * q).toFixed(2)} <button style="background:none;border:none;color:#f66;cursor:pointer;font-size:1rem" onclick="delCart(${id})" title="Eliminar">✕</button></span></li>`;
+                        const unitPrice = getProductPrice(p, q);
+                        return `<li><span>${p.ico} ${p.name} <b style="color:var(--ama)">×${q}</b></span><span>$${(unitPrice * q).toFixed(2)} <button style="background:none;border:none;color:#f66;cursor:pointer;font-size:1rem" onclick="delCart(${id})" title="Eliminar">✕</button></span></li>`;
                     }).join('');
                     cartTotal.textContent = '$' + subtotal.toFixed(2);
                 }
@@ -5143,7 +6433,8 @@
                         const p = PRODUCTS.find(x => x.id == id);
                         if (!p) return '';
                         const q = cart[id];
-                        const itemSub = p.price * q;
+                        const unitPrice = getProductPrice(p, q);
+                        const itemSub = unitPrice * q;
                         return `
                         <div class="cart-drawer-item">
                             <div class="cart-item-top">
@@ -5151,7 +6442,10 @@
                                 <div class="cart-item-info">
                                     <div class="cart-item-cat">${p.cat}</div>
                                     <div class="cart-item-name" title="${p.name}">${p.name}</div>
-                                    <div class="cart-item-unit-price">$${p.price.toFixed(2)} c/u</div>
+                                    <div style="font-size:.72rem;color:var(--ama);font-weight:700;margin-top:2px">
+                                        Talla: <span style="color:#fff">${cartSizes[id] || 'Estándar'}</span>
+                                    </div>
+                                    <div class="cart-item-unit-price">$${unitPrice.toFixed(2)} c/u ${q >= 12 ? '<span style="color:var(--ama);font-weight:700;font-size:.7rem">(Mayorista)</span>' : ''}</div>
                                 </div>
                                 <button class="cart-item-del-btn" onclick="delCart(${id})" aria-label="Eliminar ${p.name}" title="Quitar del carrito">✕</button>
                             </div>
@@ -5172,6 +6466,9 @@
             if (drawerSubtotal) drawerSubtotal.textContent = '$' + subtotal.toFixed(2);
             if (drawerIva) drawerIva.textContent = '$' + iva.toFixed(2);
             if (drawerTotal) drawerTotal.textContent = '$' + total.toFixed(2);
+
+            // Actualizar banner de cotización en vista de Contacto/Cotiza
+            actualizarBannerCotizacionCarrito();
         }
 
         function confirmarCompraDesdeDrawer() {
@@ -5184,10 +6481,12 @@
             ids.forEach(id => {
                 const p = PRODUCTS.find(x => x.id == id);
                 if (p) {
+                    const q = cart[id] || 1;
+                    const sizeTxt = cartSizes[id] ? ` (Talla: ${cartSizes[id]})` : '';
                     ocItems.push({
-                        nombre: `${p.ico} ${p.name}`,
-                        cant: cart[id] || 1,
-                        precio: p.price
+                        nombre: `${p.ico} ${p.name}${sizeTxt}`,
+                        cant: q,
+                        precio: getProductPrice(p, q)
                     });
                 }
             });
@@ -5660,6 +6959,7 @@
         function saveState() {
             try {
                 localStorage.setItem('uf_cart', JSON.stringify(cart));
+                localStorage.setItem('uf_cartSizes', JSON.stringify(cartSizes));
                 localStorage.setItem('uf_ocItems', JSON.stringify(ocItems));
                 localStorage.setItem('uf_chatHistory', JSON.stringify(chatHistory));
                 localStorage.setItem('uf_chatStep', chatStep);
@@ -5677,6 +6977,8 @@
         function loadState() {
             try {
                 const savedCart = localStorage.getItem('uf_cart');
+                const savedCartSizes = localStorage.getItem('uf_cartSizes');
+                if (savedCartSizes) { try { cartSizes = JSON.parse(savedCartSizes); } catch(e){} }
                 if (savedCart) { cart = JSON.parse(savedCart); renderCart(); }
 
                 const savedOC = localStorage.getItem('uf_ocItems');
@@ -5715,13 +7017,13 @@
 
         // Auto-guardado en cada modificación de carrito / OC
         const _origAddCart = addCart;
-        addCart = function(id, qty) { _origAddCart(id, qty); saveState(); };
+        addCart = function(id, qty, size) { _origAddCart(id, qty, size); saveState(); };
         const _origModCart = modCart;
         modCart = function(id, delta) { _origModCart(id, delta); saveState(); };
         const _origDelCart = delCart;
-        delCart = function(id) { _origDelCart(id); saveState(); };
+        delCart = function(id) { if (cartSizes[id]) delete cartSizes[id]; _origDelCart(id); saveState(); };
         const _origClearCart = clearCart;
-        clearCart = function() { _origClearCart(); saveState(); };
+        clearCart = function() { cartSizes = {}; _origClearCart(); saveState(); };
         const _origCambiarCantOC = cambiarCantOC;
         cambiarCantOC = function(idx, d) { _origCambiarCantOC(idx, d); saveState(); };
         const _origEliminarItemOC = eliminarItemOC;
@@ -7001,6 +8303,494 @@
             window.print();
         }
 
+        
+        /* ---------- INTEGRACIÓN CARRITO Y GENERACIÓN DE COTIZACIÓN EN PDF ---------- */
+        function actualizarBannerCotizacionCarrito() {
+            const activeBox = document.getElementById('cotizaCartActiveBox');
+            const emptyBox = document.getElementById('cotizaCartEmptyBox');
+            const countBadge = document.getElementById('cotizaCartCountBadge');
+            const totalVal = document.getElementById('cotizaCartTotalVal');
+            const chipsList = document.getElementById('cotizaCartChipsList');
+
+            if (!activeBox || !emptyBox) return;
+
+            const ids = Object.keys(cart);
+            let totalItems = 0;
+            let subtotal = 0;
+
+            ids.forEach(id => {
+                const q = cart[id] || 0;
+                totalItems += q;
+                const p = PRODUCTS.find(x => x.id == id);
+                if (p) subtotal += p.price * q;
+            });
+
+            const iva = subtotal * 0.16;
+            const total = subtotal + iva;
+
+            if (ids.length > 0 && totalItems > 0) {
+                activeBox.style.display = 'block';
+                emptyBox.style.display = 'none';
+
+                if (countBadge) {
+                    countBadge.textContent = '(' + totalItems + ' ' + (totalItems === 1 ? 'prenda' : 'prendas') + ')';
+                }
+                if (totalVal) {
+                    totalVal.textContent = '$' + total.toFixed(2);
+                }
+
+                if (chipsList) {
+                    chipsList.innerHTML = ids.map(id => {
+                        const p = PRODUCTS.find(x => x.id == id);
+                        if (!p) return '';
+                        const q = cart[id];
+                        const itemSub = p.price * q;
+                        return '<div style="display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);padding:.3rem .7rem;border-radius:20px;font-size:.76rem;color:#ffffff;white-space:nowrap">' +
+                            '<span>' + p.ico + ' ' + p.name + '</span>' +
+                            '<b style="color:var(--ama)">×' + q + '</b>' +
+                            '<span style="color:var(--gcl);font-size:.72rem">($' + itemSub.toFixed(2) + ')</span>' +
+                        '</div>';
+                    }).join('');
+                }
+            } else {
+                activeBox.style.display = 'none';
+                emptyBox.style.display = 'flex';
+            }
+        }
+
+        function transferirCarritoAOrdenDesdeCotiza() {
+            const ids = Object.keys(cart);
+            if (!ids.length) {
+                alert('Tu carrito está vacío. Agrega prendas desde el catálogo para continuar.');
+                return;
+            }
+            ocItems = [];
+            ids.forEach(id => {
+                const p = PRODUCTS.find(x => x.id == id);
+                if (p) {
+                    const q = cart[id] || 1;
+                    const sizeTxt = cartSizes[id] ? ` (Talla: ${cartSizes[id]})` : '';
+                    ocItems.push({
+                        nombre: p.ico + ' ' + p.name + sizeTxt,
+                        cant: q,
+                        precio: getProductPrice(p, q)
+                    });
+                }
+            });
+            renderOCTable();
+            navigateToTab('orden-compra');
+            mostrarToast('✅ ¡Material del carrito transferido a tu Orden de Compra B2B!');
+        }
+
+        function generarPDFCotizacionCarrito() {
+            const ids = Object.keys(cart);
+            if (!ids.length) {
+                alert('⚠️ Tu carrito está vacío. Por favor selecciona prendas en nuestro catálogo para generar tu cotización formal con membrete en PDF.');
+                navigateToTab('diseno');
+                return;
+            }
+
+            // Datos del formulario de cotización (si fueron ingresados)
+            const nombreInput = document.getElementById('cotizaNombre');
+            const telInput = document.getElementById('cotizaTelefono');
+            const emailInput = document.getElementById('cotizaEmail');
+            const comentariosInput = document.getElementById('cotizaComentarios');
+
+            const nombreVal = (nombreInput ? nombreInput.value.trim() : '') || (window.ultimaCotizacionData?.nombre) || 'Cliente Corporativo / Solicitante';
+            const telVal = (telInput ? telInput.value.trim() : '') || (window.ultimaCotizacionData?.telefono) || 'A coordinar';
+            const emailVal = (emailInput ? emailInput.value.trim() : '') || (window.ultimaCotizacionData?.email) || 'Por confirmar';
+            const comentariosVal = (comentariosInput ? comentariosInput.value.trim() : '') || (window.ultimaCotizacionData?.comentarios) || 'Dotación industrial estándar según catálogo Unifortex.';
+
+            // Cálculos de productos
+            let subtotal = 0;
+            let totalPrendas = 0;
+            const itemsDetalle = [];
+
+            ids.forEach((id, index) => {
+                const p = PRODUCTS.find(x => x.id == id);
+                if (p) {
+                    const cant = cart[id] || 1;
+                    totalPrendas += cant;
+                    const unitPrice = getProductPrice(p, cant);
+                    const itemSub = unitPrice * cant;
+                    subtotal += itemSub;
+                    const esMayor = cant >= 12;
+                    itemsDetalle.push({
+                        idx: index + 1,
+                        ico: p.ico,
+                        name: p.name + (cartSizes[id] ? ' [Talla: ' + cartSizes[id] + ']' : '') + (esMayor ? ' [Tarifa Mayorista]' : ''),
+                        cat: p.cat || 'Seguridad Industrial',
+                        norma: p.norma || p.material || 'COVENIN / OSHA Industrial',
+                        cant: cant,
+                        precio: unitPrice,
+                        subtotal: itemSub
+                    });
+                }
+            });
+
+            const iva = subtotal * 0.16;
+            const total = subtotal + iva;
+            const cotNum = 'COT-2026-' + Math.floor(1000 + Math.random() * 9000);
+            const fechaHoy = new Date().toLocaleDateString('es-VE', { year: 'numeric', month: 'long', day: 'numeric' });
+
+            // Filas de productos
+            const rowsHtml = itemsDetalle.map(item => {
+                return '<tr>' +
+                    '<td style="text-align:center;font-weight:700;color:#6b7280">' + item.idx + '</td>' +
+                    '<td><b style="color:#111827">' + item.ico + ' ' + item.name + '</b></td>' +
+                    '<td><span style="color:#4b5563;font-size:11px">' + item.cat + ' | ' + item.norma + '</span></td>' +
+                    '<td style="text-align:center;font-weight:800;color:#111827">' + item.cant + '</td>' +
+                    '<td style="text-align:right;color:#374151">$' + item.precio.toFixed(2) + '</td>' +
+                    '<td style="text-align:right;font-weight:800;color:#111827">$' + item.subtotal.toFixed(2) + '</td>' +
+                '</tr>';
+            }).join('');
+
+            // Construir HTML de la página imprimible
+            const printableHtml = '<!DOCTYPE html>' +
+'<html lang="es">' +
+'<head>' +
+'    <meta charset="UTF-8">' +
+'    <title>Cotización Oficial ' + cotNum + ' - UNIFORTEX INDUSTRIAL</title>' +
+'    <style>' +
+'        * { box-sizing: border-box; margin: 0; padding: 0; }' +
+'        body {' +
+'            font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;' +
+'            color: #1f2937;' +
+'            background: #f8fafc;' +
+'            padding: 24px;' +
+'            font-size: 13px;' +
+'            line-height: 1.5;' +
+'        }' +
+'        .sheet {' +
+'            max-width: 840px;' +
+'            margin: 0 auto;' +
+'            background: #ffffff;' +
+'            border-radius: 12px;' +
+'            box-shadow: 0 4px 20px rgba(0,0,0,0.08);' +
+'            padding: 36px 40px;' +
+'        }' +
+'        .toolbar {' +
+'            max-width: 840px;' +
+'            margin: 0 auto 16px auto;' +
+'            display: flex;' +
+'            align-items: center;' +
+'            justify-content: space-between;' +
+'            background: #111827;' +
+'            color: #fff;' +
+'            padding: 12px 20px;' +
+'            border-radius: 10px;' +
+'            box-shadow: 0 4px 14px rgba(0,0,0,0.15);' +
+'        }' +
+'        .btn-print {' +
+'            background: #e21e2c;' +
+'            color: #fff;' +
+'            border: none;' +
+'            padding: 8px 18px;' +
+'            border-radius: 6px;' +
+'            font-weight: 700;' +
+'            font-size: 13px;' +
+'            cursor: pointer;' +
+'            display: inline-flex;' +
+'            align-items: center;' +
+'            gap: 6px;' +
+'        }' +
+'        .btn-close {' +
+'            background: rgba(255,255,255,0.15);' +
+'            color: #fff;' +
+'            border: none;' +
+'            padding: 8px 14px;' +
+'            border-radius: 6px;' +
+'            font-size: 12px;' +
+'            cursor: pointer;' +
+'        }' +
+'        .header-grid {' +
+'            display: grid;' +
+'            grid-template-columns: 1.5fr 1fr;' +
+'            gap: 20px;' +
+'            border-bottom: 2px solid #e21e2c;' +
+'            padding-bottom: 20px;' +
+'            margin-bottom: 24px;' +
+'        }' +
+'        .brand-title {' +
+'            font-size: 22px;' +
+'            font-weight: 900;' +
+'            letter-spacing: -0.02em;' +
+'            color: #111827;' +
+'            display: flex;' +
+'            align-items: center;' +
+'            gap: 8px;' +
+'        }' +
+'        .brand-sub {' +
+'            font-size: 11px;' +
+'            color: #4b5563;' +
+'            margin-top: 3px;' +
+'            line-height: 1.35;' +
+'        }' +
+'        .badge-rif {' +
+'            display: inline-block;' +
+'            background: #fee2e2;' +
+'            color: #991b1b;' +
+'            font-weight: 800;' +
+'            font-size: 11px;' +
+'            padding: 2px 8px;' +
+'            border-radius: 4px;' +
+'            margin-top: 6px;' +
+'        }' +
+'        .quote-box {' +
+'            background: #f8fafc;' +
+'            border: 1px solid #e2e8f0;' +
+'            border-radius: 8px;' +
+'            padding: 14px 16px;' +
+'            text-align: right;' +
+'        }' +
+'        .quote-box h3 {' +
+'            color: #e21e2c;' +
+'            font-size: 15px;' +
+'            font-weight: 800;' +
+'            margin-bottom: 4px;' +
+'            text-transform: uppercase;' +
+'            letter-spacing: .04em;' +
+'        }' +
+'        .quote-box .num {' +
+'            font-size: 17px;' +
+'            font-weight: 900;' +
+'            color: #111827;' +
+'            margin-bottom: 6px;' +
+'        }' +
+'        .meta-line {' +
+'            font-size: 11px;' +
+'            color: #64748b;' +
+'        }' +
+'        .section-box {' +
+'            background: #fafafa;' +
+'            border: 1px solid #e5e7eb;' +
+'            border-radius: 8px;' +
+'            padding: 14px 18px;' +
+'            margin-bottom: 22px;' +
+'        }' +
+'        .section-box h4 {' +
+'            font-size: 12px;' +
+'            text-transform: uppercase;' +
+'            letter-spacing: .05em;' +
+'            color: #4b5563;' +
+'            margin-bottom: 8px;' +
+'            border-bottom: 1px solid #e5e7eb;' +
+'            padding-bottom: 4px;' +
+'        }' +
+'        .cust-grid {' +
+'            display: grid;' +
+'            grid-template-columns: 1fr 1fr;' +
+'            gap: 10px 18px;' +
+'            font-size: 12px;' +
+'        }' +
+'        .cust-field b { color: #111827; }' +
+'        .cust-field span { color: #4b5563; }' +
+'        table.prod-table {' +
+'            width: 100%;' +
+'            border-collapse: collapse;' +
+'            margin-bottom: 20px;' +
+'        }' +
+'        table.prod-table th {' +
+'            background: #111827;' +
+'            color: #ffffff;' +
+'            font-size: 11px;' +
+'            text-transform: uppercase;' +
+'            letter-spacing: .04em;' +
+'            padding: 10px 12px;' +
+'            text-align: left;' +
+'        }' +
+'        table.prod-table td {' +
+'            padding: 11px 12px;' +
+'            border-bottom: 1px solid #e5e7eb;' +
+'            font-size: 12px;' +
+'        }' +
+'        table.prod-table tr:nth-child(even) {' +
+'            background: #fbfbfa;' +
+'        }' +
+'        .totals-container {' +
+'            display: flex;' +
+'            justify-content: flex-end;' +
+'            margin-bottom: 24px;' +
+'        }' +
+'        .totals-table {' +
+'            width: 330px;' +
+'            border-collapse: collapse;' +
+'        }' +
+'        .totals-table td {' +
+'            padding: 6px 12px;' +
+'            font-size: 12px;' +
+'        }' +
+'        .totals-table tr.grand-total {' +
+'            background: #111827;' +
+'            color: #ffffff;' +
+'        }' +
+'        .totals-table tr.grand-total td {' +
+'            padding: 10px 12px;' +
+'            font-size: 14px;' +
+'            font-weight: 800;' +
+'        }' +
+'        .grand-total-val {' +
+'            color: #fdc417 !important;' +
+'            font-size: 17px !important;' +
+'        }' +
+'        .terms-box {' +
+'            border-top: 1px solid #e5e7eb;' +
+'            padding-top: 14px;' +
+'            margin-bottom: 24px;' +
+'            font-size: 10.5px;' +
+'            color: #64748b;' +
+'            line-height: 1.5;' +
+'        }' +
+'        .terms-box b { color: #374151; }' +
+'        .signatures {' +
+'            display: grid;' +
+'            grid-template-columns: 1fr 1fr;' +
+'            gap: 40px;' +
+'            margin-top: 30px;' +
+'            padding-top: 20px;' +
+'            text-align: center;' +
+'        }' +
+'        .sign-line {' +
+'            border-top: 1px dashed #9ca3af;' +
+'            padding-top: 8px;' +
+'            font-size: 11px;' +
+'            color: #4b5563;' +
+'        }' +
+'        .sign-line b { display: block; color: #111827; font-size: 12px; }' +
+'        @media print {' +
+'            body { background: #fff !important; padding: 0 !important; }' +
+'            .toolbar { display: none !important; }' +
+'            .sheet {' +
+'                box-shadow: none !important;' +
+'                border-radius: 0 !important;' +
+'                padding: 0 !important;' +
+'                max-width: 100% !important;' +
+'            }' +
+'            @page {' +
+'                size: letter portrait;' +
+'                margin: 14mm 15mm;' +
+'            }' +
+'        }' +
+'    </style>' +
+'</head>' +
+'<body>' +
+'    <div class="toolbar">' +
+'        <div>' +
+'            <b>UNIFORTEX INDUSTRIAL C.A.</b> | Vista previa oficial de cotización' +
+'            <span style="font-size:11px;color:#9ca3af;margin-left:10px">(Selecciona "Guardar como PDF" en Destino de impresión)</span>' +
+'        </div>' +
+'        <div style="display:flex;gap:8px">' +
+'            <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Guardar en PDF</button>' +
+'            <button class="btn-close" onclick="window.close()">✕ Cerrar</button>' +
+'        </div>' +
+'    </div>' +
+'    <div class="sheet">' +
+'        <div class="header-grid">' +
+'            <div>' +
+'                <div class="brand-title">🛡️ UNIFORTEX INDUSTRIAL C.A.</div>' +
+'                <div class="brand-sub">' +
+'                    Fabricación de Uniformes Industriales, Ropa de Trabajo y Distribución de EPP Certificado.<br>' +
+'                    <b>Sede Principal Maracay:</b> Zona Ind. San Vicente II, Calle F, Galpón 14, Edo. Aragua.<br>' +
+'                    <b>Sede Comercial Caracas:</b> Av. Principal de Las Mercedes, Centro Empresarial, Caracas.<br>' +
+'                    <b>Teléfonos:</b> +58 (243) 234-5678 / +58 (412) UNIFORT (864-3678) / +58 (414) 888-9900<br>' +
+'                    <b>Email:</b> cotizaciones@unifortex.com | <b>Web:</b> www.unifortex.com' +
+'                </div>' +
+'                <div class="badge-rif">R.I.F.: J-31048921-4 | NIT: 0142987114</div>' +
+'            </div>' +
+'            <div class="quote-box">' +
+'                <h3>Cotización Comercial</h3>' +
+'                <div class="num">' + cotNum + '</div>' +
+'                <div class="meta-line"><b>Fecha de Emisión:</b> ' + fechaHoy + '</div>' +
+'                <div class="meta-line"><b>Vigencia Oferta:</b> 15 días continuos</div>' +
+'                <div class="meta-line"><b>Condición:</b> Confección y Suministro B2B</div>' +
+'                <div class="meta-line"><b>Asesor Comercial:</b> Dpto. Ventas Técnicas</div>' +
+'            </div>' +
+'        </div>' +
+'        <div class="section-box">' +
+'            <h4>Información del Solicitante / Cliente</h4>' +
+'            <div class="cust-grid">' +
+'                <div class="cust-field"><b>Cliente / Razón Social:</b> <span>' + nombreVal + '</span></div>' +
+'                <div class="cust-field"><b>Teléfono / WhatsApp:</b> <span>' + telVal + '</span></div>' +
+'                <div class="cust-field"><b>Correo Electrónico:</b> <span>' + emailVal + '</span></div>' +
+'                <div class="cust-field"><b>Condiciones Requeridas:</b> <span>' + comentariosVal + '</span></div>' +
+'            </div>' +
+'        </div>' +
+'        <table class="prod-table">' +
+'            <thead>' +
+'                <tr>' +
+'                    <th style="width:38px;text-align:center">#</th>' +
+'                    <th>Descripción de la Prenda / EPP</th>' +
+'                    <th>Categoría & Norma</th>' +
+'                    <th style="width:65px;text-align:center">Cant.</th>' +
+'                    <th style="width:95px;text-align:right">P. Unit ($)</th>' +
+'                    <th style="width:105px;text-align:right">Subtotal ($)</th>' +
+'                </tr>' +
+'            </thead>' +
+'            <tbody>' +
+                rowsHtml +
+'            </tbody>' +
+'        </table>' +
+'        <div class="totals-container">' +
+'            <table class="totals-table">' +
+'                <tr>' +
+'                    <td style="color:#4b5563">Subtotal Neto (' + totalPrendas + ' prendas):</td>' +
+'                    <td style="text-align:right;font-weight:700">$' + subtotal.toFixed(2) + '</td>' +
+'                </tr>' +
+'                <tr>' +
+'                    <td style="color:#4b5563">IVA Estimado (16%):</td>' +
+'                    <td style="text-align:right;font-weight:700">$' + iva.toFixed(2) + '</td>' +
+'                </tr>' +
+'                <tr class="grand-total">' +
+'                    <td>TOTAL GENERAL (USD):</td>' +
+'                    <td style="text-align:right" class="grand-total-val">$' + total.toFixed(2) + '</td>' +
+'                </tr>' +
+'            </table>' +
+'        </div>' +
+'        <div class="terms-box">' +
+'            <p><b>Condiciones Comerciales y de Suministro:</b></p>' +
+'            <ul style="padding-left:18px;margin-top:4px">' +
+'                <li><b>Moneda y Facturación:</b> Precios expresados en Dólares de los Estados Unidos (USD). Pagos en Bolívares calculados a la tasa oficial del Banco Central de Venezuela (BCV) a la fecha de pago.</li>' +
+'                <li><b>Tiempos de Despacho:</b> Inmediato para existencias en inventario. De 7 a 12 días hábiles para órdenes de confección con bordado computarizado o tallas especiales.</li>' +
+'                <li><b>Garantía de Calidad:</b> Confección con costuras triples reforzadas, hilos de alta tenacidad y telas certificadas (Algodón, Dril, Gabardina, Ignífugas). Calzado con normativas COVENIN.</li>' +
+'                <li><b>Despacho y Envíos:</b> Entregas directas en sedes Maracay y Caracas. Despacho nacional por encomiendas aseguradas.</li>' +
+'            </ul>' +
+'        </div>' +
+'        <div class="signatures">' +
+'            <div class="sign-line">' +
+'                <b>UNIFORTEX INDUSTRIAL C.A.</b>' +
+'                <span>Dpto. de Ventas Técnicas & Cotizaciones</span><br>' +
+'                <span style="font-size:10px;color:#9ca3af;font-style:italic">[Documento emitido electrónicamente con validez comercial]</span>' +
+'            </div>' +
+'            <div class="sign-line">' +
+'                <b>Aceptación / Aprobación del Cliente</b>' +
+'                <span>Firma Autorizada, Nombre y Sello de la Empresa</span>' +
+'            </div>' +
+'        </div>' +
+'    </div>' +
+'</body>' +
+'</html>';
+
+            // Abrir documento en ventana emergente o pestaña
+            const printWindow = window.open('', '_blank', 'width=950,height=800,scrollbars=yes,resizable=yes');
+            if (!printWindow) {
+                alert('⚠️ El navegador bloqueó la ventana emergente. Por favor permite las ventanas emergentes en este sitio para generar tu cotización en PDF.');
+                return;
+            }
+
+            printWindow.document.open();
+            printWindow.document.write(printableHtml);
+            printWindow.document.close();
+
+            // Disparar diálogo de impresión automáticamente
+            setTimeout(() => {
+                try {
+                    printWindow.focus();
+                    printWindow.print();
+                } catch(e) {}
+            }, 350);
+        }
+
+
         /* ---------- NAVEGACIÓN POR PESTAÑAS CON DESLIZAMIENTO HORIZONTAL ---------- */
         const TAB_KEYS = ['inicio', 'config', 'diseno', 'orden-compra', 'cotiza'];
         let currentTabIndex = 0;
@@ -7016,6 +8806,7 @@
 
             isTabTransitioning = true;
             if (typeof resetHeaderScrollState === 'function') resetHeaderScrollState();
+            if (targetId === 'cotiza') setTimeout(actualizarBannerCotizacionCarrito, 50);
             window.scrollTo(0, 0);
             document.documentElement.scrollTop = 0;
             document.body.scrollTop = 0;
@@ -7052,6 +8843,7 @@
 
         // Cargar vista por Hash si existe en la URL
         window.addEventListener('load', () => {
+            actualizarBannerCotizacionCarrito();
             const hash = window.location.hash.replace('#', '');
             if (TAB_KEYS.includes(hash)) {
                 TAB_KEYS.forEach(key => {
@@ -7115,6 +8907,103 @@
             }, { passive: true });
 
             checkScroll();
+        }
+
+        /* ---------- COTIZACIÓN RÁPIDA (ENFOQUE PERSONAL) ---------- */
+        function enviarCotizacionPersonal(event) {
+            if (event) event.preventDefault();
+
+            const nombreInput = document.getElementById('cotizaNombre');
+            const telefonoInput = document.getElementById('cotizaTelefono');
+            const emailInput = document.getElementById('cotizaEmail');
+            const comentariosInput = document.getElementById('cotizaComentarios');
+            const notice = document.getElementById('cotizaFriendlyNotice');
+
+            const nombre = nombreInput ? nombreInput.value.trim() : '';
+            const telefono = telefonoInput ? telefonoInput.value.trim() : '';
+            const email = emailInput ? emailInput.value.trim() : '';
+            const comentarios = comentariosInput ? comentariosInput.value.trim() : '';
+
+            // Lista de campos faltantes obligatorios
+            const faltantes = [];
+            if (!nombre) faltantes.push('tu nombre completo');
+            if (!telefono) faltantes.push('tu teléfono o WhatsApp');
+            if (!email) faltantes.push('tu correo electrónico');
+
+            if (faltantes.length > 0) {
+                let mensajeAmigable = '';
+                if (faltantes.length === 3) {
+                    mensajeAmigable = '👋 ¡Hola! Para poder enviarte tu cotización personalizada, por favor facilítanos tu nombre, teléfono y correo electrónico. ¡Con gusto te atenderemos!';
+                } else if (faltantes.length === 2) {
+                    mensajeAmigable = `👋 ¡Casi listo! Solo nos falta ${faltantes[0]} y ${faltantes[1]} para poder enviarte la cotización.`;
+                } else {
+                    mensajeAmigable = `👋 ¡Solo un detalle! Por favor indícanos ${faltantes[0]} para poder enviarte la información.`;
+                }
+
+                if (notice) {
+                    notice.style.display = 'block';
+                    notice.style.background = 'rgba(253, 196, 23, 0.12)';
+                    notice.style.borderColor = 'rgba(253, 196, 23, 0.4)';
+                    notice.style.color = 'var(--ama)';
+                    notice.innerHTML = `<div style="display:flex;align-items:center;gap:.6rem"><span style="font-size:1.2rem">💡</span><div>${mensajeAmigable}</div></div>`;
+                    notice.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+
+                if (!nombre && nombreInput) nombreInput.focus();
+                else if (!telefono && telefonoInput) telefonoInput.focus();
+                else if (!email && emailInput) emailInput.focus();
+
+                return false;
+            }
+
+            // Validación suave de formato de correo
+            if (!email.includes('@') || !email.includes('.')) {
+                if (notice) {
+                    notice.style.display = 'block';
+                    notice.style.background = 'rgba(253, 196, 23, 0.12)';
+                    notice.style.borderColor = 'rgba(253, 196, 23, 0.4)';
+                    notice.style.color = 'var(--ama)';
+                    notice.innerHTML = `<div style="display:flex;align-items:center;gap:.6rem"><span style="font-size:1.2rem">✉️</span><div>👋 Por favor revisa que tu correo electrónico tenga un formato válido (ejemplo: nombre@correo.com) para poder responderte.</div></div>`;
+                    if (emailInput) emailInput.focus();
+                }
+                return false;
+            }
+
+            // Guardar datos en memoria para que el PDF los conserve aunque el formulario se limpie
+            window.ultimaCotizacionData = { nombre, telefono, email, comentarios };
+
+            // Éxito: El campo de comentarios es opcional (si no dejó comentarios, no pasa nada)
+            const detalleComentario = comentarios ? ' y revisaremos con atención tus comentarios' : '';
+            const tienePrendasEnCarro = Object.keys(cart).length > 0;
+            const extraCarroMsg = tienePrendasEnCarro ? '\n\n📄 Nota: Tienes productos en tu carrito. Puedes descargar tu cotización formal en PDF con membrete usando el botón que aparece arriba.' : '';
+            const confirmMsg = `✅ ¡Muchas gracias, ${nombre}! Hemos recibido tu solicitud correctamente${detalleComentario}. Un asesor se comunicará contigo vía WhatsApp o correo a la brevedad.${extraCarroMsg}`;
+
+            if (notice) {
+                notice.style.display = 'block';
+                notice.style.background = 'rgba(37, 211, 102, 0.15)';
+                notice.style.borderColor = '#25d366';
+                notice.style.color = '#25d366';
+                const extraNoticeCarro = tienePrendasEnCarro ? '<div style="margin-top:.45rem;padding-top:.4rem;border-top:1px solid rgba(37,211,102,0.3);font-size:.82rem;color:#ffffff">📄 <b>Tip:</b> Tienes productos en el carrito. Haz clic en <b>"Descargar Cotización en PDF"</b> arriba para guardarla o imprimirla al instante.</div>' : '';
+                notice.innerHTML = `<div style="display:flex;align-items:flex-start;gap:.6rem"><span style="font-size:1.2rem">✨</span><div><div>${confirmMsg.replace('\n\n', '<br><br>')}</div>${extraNoticeCarro}</div></div>`;
+            }
+
+            alert(confirmMsg);
+
+            // Limpiar formulario
+            const form = document.getElementById('formCotizaPersonal');
+            if (form) form.reset();
+
+            // Ocultar mensaje después de un tiempo prudencial
+            setTimeout(() => {
+                if (notice) {
+                    notice.style.display = 'none';
+                    notice.style.background = 'rgba(253, 196, 23, 0.12)';
+                    notice.style.borderColor = 'rgba(253, 196, 23, 0.4)';
+                    notice.style.color = 'var(--ama)';
+                }
+            }, 8000);
+
+            return false;
         }
 
         initHeaderScrollAnimation();
