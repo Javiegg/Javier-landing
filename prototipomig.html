@@ -968,6 +968,7 @@
             scroll-behavior: smooth;
             scrollbar-width: none;
             -ms-overflow-style: none;
+            overscroll-behavior: contain;
             flex: 1;
             padding: .15rem 0;
         }
@@ -3982,6 +3983,387 @@
             transform: translateX(-50%) translateY(0);
             opacity: 1;
         }
+
+        /* ========================================================
+           OPTIMIZACIÓN PREMIUM MÓVIL (SMARTPHONES < 680px Y < 480px)
+           Equilibrio de proporciones, elegancia y funcionalidad táctil
+           ======================================================== */
+        @media (max-width: 680px) {
+            /* 1. Contenedores y márgenes generales */
+            .container,
+            .catalog-container {
+                padding-left: 0.95rem !important;
+                padding-right: 0.95rem !important;
+                width: 100% !important;
+            }
+
+            section {
+                padding-top: 1.25rem !important;
+                padding-bottom: 2.8rem !important;
+            }
+
+            /* 2. Tarjetas Hub y Cabeceras de Sección */
+            .catalog-filter-hub,
+            .diseno-header-hub,
+            .oc-top-bar,
+            .contact-header-hub {
+                padding: 1.25rem 1rem !important;
+                border-radius: 18px !important;
+                margin-bottom: 1.35rem !important;
+            }
+
+            .catalog-hub-title,
+            .diseno-hub-title,
+            .contact-hub-title {
+                font-size: clamp(1.4rem, 5.8vw, 1.85rem) !important;
+                line-height: 1.2 !important;
+            }
+
+            .catalog-hub-sub,
+            .diseno-hub-sub,
+            .contact-hub-sub {
+                font-size: .8rem !important;
+                line-height: 1.45 !important;
+            }
+
+            .diseno-hub-pills,
+            .contact-hub-pills {
+                gap: .35rem !important;
+                margin-top: .8rem !important;
+            }
+
+            .diseno-hub-badge,
+            .contact-hub-badge {
+                font-size: .68rem !important;
+                padding: .25rem .55rem !important;
+            }
+
+            /* 3. Hero Section (Inicio) */
+            .hero-wrapper {
+                min-height: auto !important;
+                padding: .5rem .25rem 1.2rem !important;
+            }
+
+            .hero-card {
+                border-radius: 18px !important;
+            }
+
+            .hero-card-body {
+                padding: 1.65rem 1rem !important;
+            }
+
+            .hero-badge {
+                font-size: .62rem !important;
+                padding: .25rem .6rem !important;
+                margin-bottom: .8rem !important;
+                white-space: normal !important;
+                line-height: 1.35 !important;
+            }
+
+            .hero-card-body h1 {
+                font-size: clamp(1.55rem, 6.8vw, 2rem) !important;
+                line-height: 1.18 !important;
+                margin-bottom: .65rem !important;
+            }
+
+            .hero-desc {
+                font-size: .82rem !important;
+                line-height: 1.5 !important;
+                margin-bottom: 1.25rem !important;
+            }
+
+            .hero-stats {
+                display: grid !important;
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: .4rem !important;
+                margin-bottom: 1.35rem !important;
+                padding-bottom: 1.15rem !important;
+            }
+
+            .hstat b {
+                font-size: 1.45rem !important;
+            }
+
+            .hstat small {
+                font-size: .56rem !important;
+                letter-spacing: .4px !important;
+            }
+
+            .hero-btns {
+                display: flex !important;
+                flex-direction: column !important;
+                width: 100% !important;
+                gap: .55rem !important;
+            }
+
+            .hero-btns .btn {
+                width: 100% !important;
+                justify-content: center !important;
+                padding: .75rem 1rem !important;
+                font-size: .85rem !important;
+                border-radius: 10px !important;
+            }
+
+            /* 4. Buscador Central y Filtros del Catálogo */
+            .catalog-central-search-card {
+                flex-direction: column !important;
+                align-items: stretch !important;
+                gap: .5rem !important;
+                padding: .65rem .75rem !important;
+                border-radius: 14px !important;
+            }
+
+            .catalog-search-input-group {
+                width: 100% !important;
+            }
+
+            #catalogSearchInput {
+                font-size: .86rem !important;
+            }
+
+            .catalog-cat-select-group {
+                border-left: none !important;
+                border-top: 1px solid #e5e7eb !important;
+                padding: .45rem .4rem 0 !important;
+                width: 100% !important;
+            }
+
+            #catalogCategorySelect {
+                width: 100% !important;
+                font-size: .8rem !important;
+            }
+
+            .catalog-search-hint {
+                flex-direction: column !important;
+                gap: .25rem !important;
+                font-size: .7rem !important;
+                padding: 0 .2rem !important;
+            }
+
+            .cat-pills-wrapper {
+                padding: .32rem !important;
+                border-radius: 12px !important;
+            }
+
+            .cat-scroll-btn {
+                width: 26px !important;
+                height: 26px !important;
+                font-size: 1rem !important;
+            }
+
+            .cat-pill {
+                padding: .32rem .65rem !important;
+                font-size: .73rem !important;
+            }
+
+            .catalog-status-bar {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: .35rem !important;
+                font-size: .74rem !important;
+            }
+
+            .catalog-status-divider {
+                display: none !important;
+            }
+
+            /* 5. Catálogo: Grid y Tarjetas */
+            .catalog-grid-motos {
+                grid-template-columns: 1fr !important;
+                gap: 1.1rem !important;
+            }
+
+            .prod-card-moto {
+                padding: 1rem !important;
+                border-radius: 16px !important;
+            }
+
+            .card-moto-media {
+                height: 160px !important;
+            }
+
+            .card-moto-emoji {
+                font-size: 3.5rem !important;
+            }
+
+            .card-moto-title {
+                font-size: .95rem !important;
+            }
+
+            .card-moto-specs {
+                font-size: .72rem !important;
+                gap: .4rem !important;
+            }
+
+            .card-moto-price-val {
+                font-size: 1.35rem !important;
+            }
+
+            .btn-moto-cart {
+                width: 38px !important;
+                height: 38px !important;
+                font-size: 1rem !important;
+            }
+
+            /* 6. Modal Ficha Técnica Optimizado para Pantalla Táctil */
+            .prod-modal-box {
+                width: 95% !important;
+                max-width: 95% !important;
+                padding: 1rem .85rem !important;
+                border-radius: 16px !important;
+                max-height: 88dvh !important;
+                margin: 0 auto !important;
+            }
+
+            .prod-modal-tabs {
+                margin: .35rem 0 .65rem !important;
+                gap: 4px !important;
+            }
+
+            .modal-tab-btn {
+                padding: .42rem .4rem !important;
+                font-size: .72rem !important;
+                flex-direction: column !important;
+                gap: 2px !important;
+                text-align: center !important;
+            }
+
+            .modal-tab-btn span:first-child {
+                font-size: .75rem !important;
+            }
+
+            .modal-tab-btn span:last-child {
+                font-size: .63rem !important;
+            }
+
+            .prod-modal-grid {
+                grid-template-columns: 1fr !important;
+                gap: .75rem !important;
+            }
+
+            #modalMediaCard {
+                padding: .7rem .85rem !important;
+                flex-direction: row !important;
+                justify-content: space-between !important;
+                text-align: left !important;
+                gap: .8rem !important;
+                align-items: center !important;
+            }
+
+            #modalMediaCard span:first-child {
+                font-size: 2.7rem !important;
+                line-height: 1 !important;
+            }
+
+            #modalPriceBlock {
+                margin-top: 0 !important;
+                width: auto !important;
+                text-align: right !important;
+            }
+
+            #modalSizesContainer {
+                max-height: 80px !important;
+                gap: .3rem !important;
+            }
+
+            .modal-size-btn {
+                padding: .32rem .58rem !important;
+                font-size: .74rem !important;
+                min-height: 32px !important;
+            }
+
+            /* 7. Taller de Diseño en Móvil (Mockup arriba) */
+            .diseno-grid {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 1.2rem !important;
+            }
+
+            .diseno-preview-box {
+                order: -1 !important;
+                position: static !important;
+                padding: 1rem .85rem !important;
+                border-radius: 16px !important;
+            }
+
+            #mockupCanvas {
+                width: 100% !important;
+                max-height: 330px !important;
+                height: auto !important;
+            }
+
+            .diseno-panel {
+                padding: 1.25rem .95rem !important;
+                border-radius: 16px !important;
+            }
+
+            /* 8. Orden de Compra en Móvil */
+            .oc-grid {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 1.2rem !important;
+            }
+
+            .oc-card,
+            .oc-summary-card {
+                padding: 1.25rem .95rem !important;
+                border-radius: 16px !important;
+            }
+
+            .oc-inputs-grid,
+            .oc-condiciones-grid {
+                grid-template-columns: 1fr !important;
+                gap: .65rem !important;
+            }
+
+            .oc-summary-card {
+                order: 2 !important;
+                position: static !important;
+            }
+
+            /* 9. Contacto y Cotización en Móvil */
+            .contact-cards-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+
+            .contact-info-card {
+                padding: 1.2rem .95rem !important;
+                border-radius: 16px !important;
+            }
+
+            .contact-form-box {
+                padding: 1.3rem .95rem !important;
+                border-radius: 16px !important;
+            }
+
+            /* 10. Pie de página (Footer) */
+            .footer-contact-pills {
+                flex-direction: column !important;
+                align-items: stretch !important;
+                gap: .45rem !important;
+            }
+
+            .footer-link-pill {
+                width: 100% !important;
+                justify-content: center !important;
+                text-align: center !important;
+                padding: .65rem .85rem !important;
+                font-size: .78rem !important;
+            }
+
+            .footer-social-chips {
+                flex-wrap: wrap !important;
+                justify-content: center !important;
+            }
+
+            #chatBtn {
+                bottom: 16px !important;
+                right: 16px !important;
+                width: 52px !important;
+                height: 52px !important;
+            }
+        }
     </style>
 </head>
 
@@ -4576,7 +4958,8 @@
                                 </div>
                             </div>
 
-                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1.5rem">
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1.5rem"
+                                class="oc-condiciones-grid">
                                 <div>
                                     <label
                                         style="display:block;font-size:.7rem;text-transform:uppercase;font-weight:700;color:var(--gri);margin-bottom:.3rem">Condición
@@ -6160,6 +6543,26 @@
             if (!list) return;
             list.scrollBy({ left: direction * Math.max(220, list.clientWidth * .65), behavior: 'smooth' });
         }
+
+        /* Desplazamiento horizontal con la rueda del mouse en la barra de categorías sin mover la página */
+        function initCategoriasWheelScroll() {
+            const wrapper = document.querySelector('.cat-pills-wrapper');
+            const list = document.getElementById('catPillsList');
+            if (!wrapper || !list || wrapper._hasWheelListener) return;
+
+            wrapper._hasWheelListener = true;
+            wrapper.addEventListener('wheel', function(e) {
+                if (e.deltaY !== 0 || e.deltaX !== 0) {
+                    // Evita que la página suba o baje al girar la rueda del mouse sobre este filtro
+                    e.preventDefault();
+                    // Convierte el scroll vertical de la rueda del mouse en desplazamiento lateral
+                    const delta = e.deltaX !== 0 ? e.deltaX : e.deltaY;
+                    list.scrollBy({ left: delta * 1.15, behavior: 'auto' });
+                }
+            }, { passive: false });
+        }
+        initCategoriasWheelScroll();
+        window.addEventListener('DOMContentLoaded', initCategoriasWheelScroll);
 
         function limpiarBusquedaCatalogo() {
             const input = document.getElementById('catalogSearchInput');
