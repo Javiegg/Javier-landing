@@ -20,7 +20,7 @@
             --bla: #FFF;
             --gcl: #C5C5C5;
             --npu: #000;
-            --gw: linear-gradient(135deg, #FDC417, #D35914);
+            --gw: linear-gradient(135deg, #FFBD3B 0%, #FA6400 100%);
             --gd: linear-gradient(135deg, #1D1D1B, #323231)
         }
 
@@ -69,6 +69,11 @@
         }
 
         p {
+            font-style: normal
+        }
+
+        /* Cursiva reservada SOLO para frases de impacto / teasers de marca */
+        .text-italic {
             font-style: italic
         }
 
@@ -218,6 +223,7 @@
             .nav-brand-row .brand-left {
                 left: 0.8rem;
             }
+
             header.header-scrolled .nav-brand-row .brand-left {
                 transform: translate(0, -50%) scale(0.76);
             }
@@ -293,6 +299,64 @@
             }
         }
 
+        /* ===== FASE 3: MOBILE HEADER COMPACTO (< 540px) ===== */
+        @media (max-width: 540px) {
+
+            /* Reducir la altura del bloque de logo en móviles pequeños */
+            .nav-brand-row {
+                height: 54px;
+                padding: .4rem 1rem;
+            }
+
+            header.header-scrolled .nav-brand-row {
+                height: 42px;
+            }
+
+            /* Logo ligeramente más pequeño en móviles */
+            .brand-logo-img,
+            .brand-escudo-img {
+                height: 36px;
+                max-height: 38px;
+            }
+
+            /* Barra de nav con scroll táctil suave, un poco más compacta */
+            .nav-btns-row {
+                height: 44px;
+                justify-content: flex-start;
+                padding-left: .35rem;
+                gap: 0;
+            }
+
+            .nav-item {
+                padding: .55rem .9rem;
+                font-size: .68rem;
+                letter-spacing: .4px;
+                flex-shrink: 0;
+            }
+
+            /* El spacer bajo el header se ajusta */
+            .header-spacer {
+                height: 100px;
+            }
+
+            /* Carrito del drawer ocupa todo el ancho en pantallas pequeñas */
+            .cart-drawer {
+                width: 100vw;
+                border-left: none;
+                border-radius: 16px 16px 0 0;
+                top: auto;
+                height: 92dvh;
+                border-top: 1.5px solid rgba(253, 196, 23, 0.3);
+            }
+
+            /* Botones de cantidad más grandes para dedos */
+            .cart-qty-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 1rem;
+            }
+        }
+
         /* Bloque de marca en footer */
         .footer-brand {
             display: inline-flex;
@@ -310,9 +374,7 @@
             max-width: 230px;
             object-fit: contain;
             display: block;
-            filter: drop-shadow(0 0 1px #ffffff) 
-                    drop-shadow(0 0 2px rgba(255, 255, 255, 0.92)) 
-                    drop-shadow(0 0 5px rgba(255, 255, 255, 0.45));
+            filter: drop-shadow(0 0 1px #ffffff) drop-shadow(0 0 2px rgba(255, 255, 255, 0.92)) drop-shadow(0 0 5px rgba(255, 255, 255, 0.45));
         }
 
         /* ===== MENÚ DE NAVEGACIÓN (bajo el logo) ===== */
@@ -526,11 +588,17 @@
             margin-bottom: .75rem
         }
 
+        /* Clase universal de degradado armónico corporativo */
+        .gold,
+        .text-gradient,
         .hero-card-body h1 .gold {
             background: var(--gw);
             -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             background-clip: text;
-            color: transparent
+            color: transparent;
+            -webkit-box-decoration-break: clone;
+            box-decoration-break: clone;
         }
 
         /* Descripción */
@@ -729,7 +797,13 @@
         }
 
         .catalog-hub-title span {
-            color: var(--ama) !important;
+            background: var(--gw);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            -webkit-box-decoration-break: clone;
+            box-decoration-break: clone;
         }
 
         .catalog-hub-sub {
@@ -1229,7 +1303,7 @@
             padding: 1.25rem 1.6rem;
             position: relative;
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
-            max-height: 94vh;
+            max-height: 80vh;
             overflow-y: auto;
         }
 
@@ -1302,7 +1376,14 @@
             justify-content: center;
         }
 
-        .modal-size-btn:hover,
+        /* Solo indicio visual al pasar el mouse: borde dorado tenue, sin relleno */
+        .modal-size-btn:hover {
+            border-color: var(--ama);
+            color: #ffffff;
+            background: rgba(253, 196, 23, 0.12);
+        }
+
+        /* Selección confirmada con clic: relleno amarillo completo */
         .modal-size-btn.active-size {
             background: var(--ama);
             color: #111110;
@@ -1323,6 +1404,7 @@
             .prod-modal-grid {
                 grid-template-columns: 1fr;
             }
+
             .catalog-search-hint {
                 flex-direction: column;
                 gap: .25rem;
@@ -1351,7 +1433,7 @@
             cursor: pointer;
             z-index: 1010;
             box-shadow: 0 10px 30px rgba(211, 89, 20, .45), 0 0 0 2px rgba(253, 196, 23, .3);
-            transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s ease;
+            transition: transform .25s cubic-bezier(.34, 1.56, .64, 1), box-shadow .25s ease;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1404,7 +1486,7 @@
             max-height: min(560px, calc(100dvh - 120px));
             background: #fff;
             border-radius: 20px;
-            box-shadow: 0 25px 70px rgba(0, 0, 0, .35), 0 0 0 1px rgba(0,0,0,.08);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, .35), 0 0 0 1px rgba(0, 0, 0, .08);
             z-index: 1010;
             display: flex;
             flex-direction: column;
@@ -1413,7 +1495,7 @@
             transform: translateY(20px) scale(.95);
             opacity: 0;
             pointer-events: none;
-            transition: transform .32s cubic-bezier(.34,1.56,.64,1), opacity .25s ease;
+            transition: transform .32s cubic-bezier(.34, 1.56, .64, 1), opacity .25s ease;
         }
 
         #chatBox.open {
@@ -1435,17 +1517,19 @@
             font-family: Poppins, sans-serif;
             font-style: italic;
             font-weight: 600;
-            box-shadow: 0 10px 35px rgba(0,0,0,.35), 0 0 0 1px rgba(253,196,23,.2);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, .35), 0 0 0 1px rgba(253, 196, 23, .2);
             z-index: 1009;
             max-width: 230px;
             line-height: 1.35;
-            animation: chatBubbleIn .5s cubic-bezier(.34,1.56,.64,1) forwards;
+            animation: chatBubbleIn .5s cubic-bezier(.34, 1.56, .64, 1) forwards;
             cursor: pointer;
             transition: opacity .3s ease, transform .2s ease;
         }
+
         .chat-greeting-bubble:hover {
             transform: translateY(-2px);
         }
+
         .chat-greeting-bubble::after {
             content: '';
             position: absolute;
@@ -1457,6 +1541,7 @@
             border-right: 8px solid transparent;
             border-top: 8px solid #1D1D1B;
         }
+
         .chat-greeting-bubble .greeting-close {
             position: absolute;
             top: -6px;
@@ -1475,12 +1560,21 @@
             line-height: 1;
             transition: transform .2s ease;
         }
+
         .chat-greeting-bubble .greeting-close:hover {
             transform: scale(1.15);
         }
+
         @keyframes chatBubbleIn {
-            0% { transform: translateY(10px) scale(.8); opacity: 0 }
-            100% { transform: translateY(0) scale(1); opacity: 1 }
+            0% {
+                transform: translateY(10px) scale(.8);
+                opacity: 0
+            }
+
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 1
+            }
         }
 
         /* Badge de notificación en botón (sin romper position fixed) */
@@ -1493,13 +1587,21 @@
             background: #e53935;
             border-radius: 50%;
             border: 2.5px solid #fff;
-            box-shadow: 0 2px 6px rgba(0,0,0,.3);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, .3);
             animation: notifPulse 2s infinite;
             pointer-events: none;
         }
+
         @keyframes notifPulse {
-            0%, 100% { transform: scale(1) }
-            50% { transform: scale(1.3) }
+
+            0%,
+            100% {
+                transform: scale(1)
+            }
+
+            50% {
+                transform: scale(1.3)
+            }
         }
 
         .chat-head {
@@ -1520,7 +1622,7 @@
             width: 28px;
             height: 30px;
             flex-shrink: 0;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,.3));
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .3));
         }
 
         .chat-head-info {
@@ -1547,6 +1649,7 @@
             font-size: .65rem;
             color: var(--ama);
         }
+
         .chat-head small::before {
             content: '';
             width: 7px;
@@ -1556,9 +1659,17 @@
             display: inline-block;
             animation: onlinePulse 2.5s infinite;
         }
+
         @keyframes onlinePulse {
-            0%, 100% { opacity: 1 }
-            50% { opacity: .4 }
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: .4
+            }
         }
 
         .chat-head-actions {
@@ -1610,8 +1721,15 @@
             background: linear-gradient(180deg, #fafafa 0%, #f5f4f0 100%);
             scroll-behavior: smooth;
         }
-        #chatLog::-webkit-scrollbar { width: 4px }
-        #chatLog::-webkit-scrollbar-thumb { background: rgba(0,0,0,.15); border-radius: 4px }
+
+        #chatLog::-webkit-scrollbar {
+            width: 4px
+        }
+
+        #chatLog::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, .15);
+            border-radius: 4px
+        }
 
         .msg {
             max-width: 84%;
@@ -1623,9 +1741,17 @@
             animation: msgSlideIn .3s ease-out;
             word-break: break-word;
         }
+
         @keyframes msgSlideIn {
-            from { transform: translateY(8px); opacity: 0 }
-            to { transform: translateY(0); opacity: 1 }
+            from {
+                transform: translateY(8px);
+                opacity: 0
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1
+            }
         }
 
         .msg .msg-time {
@@ -1641,17 +1767,17 @@
             color: var(--neg);
             align-self: flex-start;
             border-bottom-left-radius: 4px;
-            border: 1px solid rgba(0,0,0,.06);
-            box-shadow: 0 1px 4px rgba(0,0,0,.05);
+            border: 1px solid rgba(0, 0, 0, .06);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, .05);
         }
 
         .usr {
-            background: linear-gradient(135deg, #FDC417, #D35914);
+            background: var(--gw);
             color: #fff;
             align-self: flex-end;
             border-bottom-right-radius: 4px;
             font-weight: 600;
-            box-shadow: 0 2px 8px rgba(211,89,20,.25);
+            box-shadow: 0 2px 8px rgba(211, 89, 20, .25);
         }
 
         /* Indicador de "escribiendo..." */
@@ -1662,21 +1788,43 @@
             padding: .7rem 1rem;
             background: #fff;
             border-radius: 16px 16px 16px 4px;
-            border: 1px solid rgba(0,0,0,.06);
-            box-shadow: 0 1px 4px rgba(0,0,0,.05);
+            border: 1px solid rgba(0, 0, 0, .06);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, .05);
         }
+
         .typing-indicator span {
-            width: 7px; height: 7px;
+            width: 7px;
+            height: 7px;
             background: #bbb;
             border-radius: 50%;
             animation: typingDot 1.4s infinite ease-in-out both;
         }
-        .typing-indicator span:nth-child(1) { animation-delay: 0s }
-        .typing-indicator span:nth-child(2) { animation-delay: .2s }
-        .typing-indicator span:nth-child(3) { animation-delay: .4s }
+
+        .typing-indicator span:nth-child(1) {
+            animation-delay: 0s
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: .2s
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: .4s
+        }
+
         @keyframes typingDot {
-            0%, 80%, 100% { transform: scale(.6); opacity: .4 }
-            40% { transform: scale(1); opacity: 1 }
+
+            0%,
+            80%,
+            100% {
+                transform: scale(.6);
+                opacity: .4
+            }
+
+            40% {
+                transform: scale(1);
+                opacity: 1
+            }
         }
 
         .opts {
@@ -1685,18 +1833,26 @@
             gap: .4rem;
             padding: .45rem .85rem .75rem;
             background: linear-gradient(180deg, #f5f4f0 0%, #fafafa 100%);
-            border-top: 1px solid rgba(0,0,0,.04);
+            border-top: 1px solid rgba(0, 0, 0, .04);
             max-height: 130px;
             overflow-y: auto;
             flex-shrink: 0;
         }
+
         .opts:empty {
             display: none;
             padding: 0;
             border: none;
         }
-        .opts::-webkit-scrollbar { width: 3px; }
-        .opts::-webkit-scrollbar-thumb { background: rgba(0,0,0,.15); border-radius: 3px; }
+
+        .opts::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        .opts::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, .15);
+            border-radius: 3px;
+        }
 
         .opts button {
             background: #fff;
@@ -1709,15 +1865,15 @@
             font-weight: 600;
             cursor: pointer;
             transition: all .25s ease;
-            box-shadow: 0 1px 3px rgba(0,0,0,.06);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, .06);
         }
 
         .opts button:hover {
-            background: linear-gradient(135deg, #FDC417, #D35914);
+            background: var(--gw);
             color: #fff;
             border-color: transparent;
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(211,89,20,.3);
+            box-shadow: 0 4px 12px rgba(211, 89, 20, .3);
         }
 
         #chatForm {
@@ -1736,10 +1892,14 @@
             outline: none;
             background: transparent;
         }
-        #chatForm input::placeholder { color: #bbb; font-style: italic }
+
+        #chatForm input::placeholder {
+            color: #bbb;
+            font-style: italic
+        }
 
         #chatForm button {
-            background: linear-gradient(135deg, #FDC417, #D35914);
+            background: var(--gw);
             border: none;
             padding: 0 1.3rem;
             font-weight: 800;
@@ -1748,7 +1908,10 @@
             color: #fff;
             transition: filter .2s;
         }
-        #chatForm button:hover { filter: brightness(1.1) }
+
+        #chatForm button:hover {
+            filter: brightness(1.1)
+        }
 
         @media (max-width: 480px) {
             #chatBtn {
@@ -1757,6 +1920,7 @@
                 width: 56px;
                 height: 56px;
             }
+
             #chatBox {
                 right: 12px;
                 left: 12px;
@@ -1766,6 +1930,7 @@
                 max-height: calc(100dvh - 96px);
                 border-radius: 16px;
             }
+
             .chat-greeting-bubble {
                 right: 18px;
                 bottom: 80px;
@@ -1812,7 +1977,7 @@
             border-radius: 10px;
             margin-bottom: .8rem;
             font-family: Poppins;
-            font-style: italic;
+            font-style: normal;
             font-size: .85rem
         }
 
@@ -1839,7 +2004,7 @@
             padding: .7rem 0;
             border-bottom: 1px solid #eee;
             font-size: .85rem;
-            font-style: italic
+            font-style: normal
         }
 
         footer {
@@ -1865,6 +2030,7 @@
                 grid-template-columns: 1fr 1fr;
                 gap: 1.8rem;
             }
+
             .footer-col-maps {
                 grid-column: 1 / -1;
             }
@@ -2133,7 +2299,7 @@
         .footer-map-meta {
             font-size: .68rem;
             color: var(--gcl);
-            font-style: italic;
+            font-style: normal;
         }
 
         .copy {
@@ -2212,7 +2378,7 @@
             letter-spacing: 1.2px;
             color: var(--gri);
             margin-bottom: .6rem;
-            font-style: italic;
+            font-style: normal;
         }
 
         .opt-chips {
@@ -2228,7 +2394,7 @@
             background: #fafafa;
             font-family: Poppins;
             font-size: .78rem;
-            font-style: italic;
+            font-style: normal;
             cursor: pointer;
             transition: .22s ease;
             font-weight: 600;
@@ -2420,7 +2586,7 @@
             max-width: 100%;
             display: block;
             pointer-events: none;
-            filter: drop-shadow(0 3px 6px rgba(0,0,0,.45));
+            filter: drop-shadow(0 3px 6px rgba(0, 0, 0, .45));
         }
 
         .placed-logo-item .text-badge {
@@ -2466,8 +2632,15 @@
         }
 
         @keyframes fadeInPop {
-            from { opacity: 0; transform: translateX(-50%) scale(0.85); }
-            to { opacity: 1; transform: translateX(-50%) scale(1); }
+            from {
+                opacity: 0;
+                transform: translateX(-50%) scale(0.85);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(-50%) scale(1);
+            }
         }
 
         .placed-logo-item.active .logo-resize-bar-wrap {
@@ -2673,7 +2846,7 @@
             justify-content: center;
             font-size: 1.15rem;
             flex-shrink: 0;
-            box-shadow: 0 4px 12px rgba(0,0,0,.25);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
         }
 
         .contact-card-title {
@@ -2796,7 +2969,7 @@
             border: 1px solid rgba(253, 196, 23, 0.2);
             border-radius: 22px;
             padding: 2rem 2.2rem;
-            box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
             max-width: 820px;
             margin: 0 auto;
             color: #fff;
@@ -2976,6 +3149,16 @@
             line-height: 1.15;
         }
 
+        .contact-hub-title span {
+            background: var(--gw);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            -webkit-box-decoration-break: clone;
+            box-decoration-break: clone;
+        }
+
         .contact-hub-sub {
             font-size: clamp(.84rem, 1.4vw, .95rem);
             color: #bfc2c2;
@@ -3066,6 +3249,16 @@
             line-height: 1.15;
         }
 
+        .diseno-hub-title span {
+            background: var(--gw);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            -webkit-box-decoration-break: clone;
+            box-decoration-break: clone;
+        }
+
         .diseno-hub-sub {
             font-size: clamp(.84rem, 1.4vw, .95rem);
             color: #bfc2c2;
@@ -3127,14 +3320,14 @@
             text-transform: uppercase;
             letter-spacing: 1.2px;
             color: var(--gri);
-            font-style: italic;
+            font-style: normal;
         }
 
         .oc-table td {
             padding: .75rem .65rem;
             border-bottom: 1px solid #eee;
             vertical-align: middle;
-            font-style: italic;
+            font-style: normal;
         }
 
         .oc-summary-card {
@@ -3149,6 +3342,7 @@
         }
 
         @media(max-width: 920px) {
+
             .diseno-grid,
             .oc-grid {
                 grid-template-columns: 1fr;
@@ -3375,7 +3569,7 @@
         .cart-drawer-sub {
             font-size: .75rem;
             color: var(--gcl);
-            font-style: italic;
+            font-style: normal;
             margin: 0;
         }
 
@@ -3810,19 +4004,22 @@
         <!-- Fila 1: Escudo a la izquierda y Logo oficial con iluminación blanca al ras -->
         <div class="nav-brand-row">
             <!-- 1. Marca en estado inicial (centrada) -->
-            <a href="#inicio" class="brand brand-center" onclick="navigateToTab('inicio'); return false;" title="Grupo Unifortex - Volver al inicio">
+            <a href="#inicio" class="brand brand-center" onclick="navigateToTab('inicio'); return false;"
+                title="Grupo Unifortex - Volver al inicio">
                 <img src="imagenes pasantias/escudo.png" alt="Escudo Unifortex" class="brand-escudo-img">
                 <img src="imagenes pasantias/logo.png" alt="Grupo Unifortex" class="brand-logo-img">
             </a>
 
             <!-- 2. Marca en estado contraído/scrolled (fijada a la izquierda superior) -->
-            <a href="#inicio" class="brand brand-left" onclick="navigateToTab('inicio'); return false;" title="Grupo Unifortex - Volver al inicio">
+            <a href="#inicio" class="brand brand-left" onclick="navigateToTab('inicio'); return false;"
+                title="Grupo Unifortex - Volver al inicio">
                 <img src="imagenes pasantias/escudo.png" alt="Escudo Unifortex" class="brand-escudo-img">
                 <img src="imagenes pasantias/logo.png" alt="Grupo Unifortex" class="brand-logo-img">
             </a>
 
             <!-- 3. Botón de acceso rápido al carrito en modo contraído -->
-            <button class="scrolled-header-cart" onclick="openCartDrawer()" aria-label="Ver carrito" title="Ver carrito">
+            <button class="scrolled-header-cart" onclick="openCartDrawer()" aria-label="Ver carrito"
+                title="Ver carrito">
                 🛒 <span>Carrito</span>
                 <span class="nav-cart-badge" id="scrolledNavCartBadge" style="display:none">0</span>
             </button>
@@ -3833,10 +4030,11 @@
             <a href="#inicio" class="nav-item active" onclick="navigateToTab('inicio'); return false;">Inicio</a>
             <a href="#config" class="nav-item" onclick="navigateToTab('config'); return false;">Catálogo</a>
             <a href="#diseno" class="nav-item" onclick="navigateToTab('diseno'); return false;">Diseño Personalizado</a>
-            <a href="#orden-compra" class="nav-item" onclick="navigateToTab('orden-compra'); return false;">Orden de Compra</a>
+            <a href="#orden-compra" class="nav-item" onclick="navigateToTab('orden-compra'); return false;">Orden de
+                Compra</a>
             <a href="#cotiza" class="nav-item" onclick="navigateToTab('cotiza'); return false;">Contacto</a>
-            <button class="nav-item nav-item-cart" onclick="openCartDrawer()"
-                aria-label="Carrito de compras" style="display:inline-flex;align-items:center;gap:.35rem">
+            <button class="nav-item nav-item-cart" onclick="openCartDrawer()" aria-label="Carrito de compras"
+                style="display:inline-flex;align-items:center;gap:.35rem">
                 🛒 <span class="nav-cart-text">Carrito</span>
                 <span class="nav-cart-badge" id="navCartBadge" style="display:none">0</span>
             </button>
@@ -3885,9 +4083,12 @@
 
                         <!-- Tres botones de acción: borde dorado, fondo negro -->
                         <div class="hero-btns">
-                            <a href="#config" class="btn btn-o" onclick="navigateToTab('config'); return false;">🛒 Catálogo</a>
-                            <a href="#diseno" class="btn btn-o" onclick="navigateToTab('diseno'); return false;">🎨 Diseño Personalizado</a>
-                            <a href="#orden-compra" class="btn btn-o" onclick="navigateToTab('orden-compra'); return false;">📋 Orden de Compra</a>
+                            <a href="#config" class="btn btn-o" onclick="navigateToTab('config'); return false;">🛒
+                                Catálogo</a>
+                            <a href="#diseno" class="btn btn-o" onclick="navigateToTab('diseno'); return false;">🎨
+                                Diseño Personalizado</a>
+                            <a href="#orden-compra" class="btn btn-o"
+                                onclick="navigateToTab('orden-compra'); return false;">📋 Orden de Compra</a>
                         </div>
 
                     </div><!-- /hero-card-body -->
@@ -3912,23 +4113,26 @@
                     <div class="catalog-filter-hub">
                         <div class="catalog-hub-header">
                             <span class="catalog-hub-tag">🛡️ DOTACIONES &amp; EPP CERTIFICADO</span>
-                            <h2 class="catalog-hub-title">Catálogo <span style="color:var(--nar)">UNIFORTEX</span></h2>
-                            <p class="catalog-hub-sub">Encuentra rápidamente uniformes y equipos de protección para tu empresa</p>
+                            <h2 class="catalog-hub-title">Catálogo <span class="gold">UNIFORTEX</span></h2>
+                            <p class="catalog-hub-sub">Encuentra rápidamente uniformes y equipos de protección para tu
+                                empresa</p>
                         </div>
 
                         <!-- Barra de Búsqueda Centralizada con Filtro Integrado -->
                         <div class="catalog-central-search-card">
                             <div class="catalog-search-input-group">
                                 <span class="search-ico">🔍</span>
-                                <input type="text" id="catalogSearchInput" 
-                                    placeholder="Buscar por código, prenda, material o norma (ej: Blue Jeans, Nitrilo, BS01)..." 
-                                    oninput="buscarEnCatalogo(this.value)"
-                                    autocomplete="off">
-                                <button id="clearSearchBtn" onclick="limpiarBusquedaCatalogo()" title="Limpiar búsqueda">✕</button>
+                                <input type="text" id="catalogSearchInput"
+                                    placeholder="Buscar por código, prenda, material o norma (ej: Blue Jeans, Nitrilo, BS01)..."
+                                    oninput="buscarEnCatalogo(this.value)" autocomplete="off">
+                                <button id="clearSearchBtn" onclick="limpiarBusquedaCatalogo()"
+                                    title="Limpiar búsqueda">✕</button>
                             </div>
                             <div class="catalog-cat-select-group">
                                 <span class="cat-select-ico">🏷️</span>
-                                <select id="catalogCategorySelect" onchange="seleccionarCategoriaDesdeSelect(this.value)" aria-label="Filtrar por categoría">
+                                <select id="catalogCategorySelect"
+                                    onchange="seleccionarCategoriaDesdeSelect(this.value)"
+                                    aria-label="Filtrar por categoría">
                                     <option value="Todos">Todas las categorías (60)</option>
                                     <option value="Pantalones & Jeans">👖 Pantalones &amp; Jeans</option>
                                     <option value="Camisas & Chemises">👕 Camisas &amp; Chemises</option>
@@ -3952,30 +4156,43 @@
 
                         <!-- Panel de categorías desplazable -->
                         <div class="cat-pills-wrapper">
-                            <button class="cat-scroll-btn" type="button" onclick="desplazarCategorias(-1)" aria-label="Mostrar categorías anteriores">‹</button>
+                            <button class="cat-scroll-btn" type="button" onclick="desplazarCategorias(-1)"
+                                aria-label="Mostrar categorías anteriores">‹</button>
                             <div class="cat-pills-scroll" id="catPillsList">
                                 <button class="cat-pill active" onclick="filtrarCatalogo('Todos', this)">Todos</button>
-                                <button class="cat-pill" onclick="filtrarCatalogo('Pantalones & Jeans', this)">👖 Pantalones</button>
-                                <button class="cat-pill" onclick="filtrarCatalogo('Camisas & Chemises', this)">👕 Camisas</button>
-                                <button class="cat-pill" onclick="filtrarCatalogo('Bragas & Batas', this)">🦺 Bragas</button>
-                                <button class="cat-pill" onclick="filtrarCatalogo('Delantales', this)">🎽 Delantales</button>
+                                <button class="cat-pill" onclick="filtrarCatalogo('Pantalones & Jeans', this)">👖
+                                    Pantalones</button>
+                                <button class="cat-pill" onclick="filtrarCatalogo('Camisas & Chemises', this)">👕
+                                    Camisas</button>
+                                <button class="cat-pill" onclick="filtrarCatalogo('Bragas & Batas', this)">🦺
+                                    Bragas</button>
+                                <button class="cat-pill" onclick="filtrarCatalogo('Delantales', this)">🎽
+                                    Delantales</button>
                                 <button class="cat-pill" onclick="filtrarCatalogo('Calzado', this)">🥾 Calzado</button>
-                                <button class="cat-pill" onclick="filtrarCatalogo('Protección Visual', this)">🥽 Visual</button>
-                                <button class="cat-pill" onclick="filtrarCatalogo('Protección Auditiva', this)">🎧 Auditiva</button>
+                                <button class="cat-pill" onclick="filtrarCatalogo('Protección Visual', this)">🥽
+                                    Visual</button>
+                                <button class="cat-pill" onclick="filtrarCatalogo('Protección Auditiva', this)">🎧
+                                    Auditiva</button>
                                 <button class="cat-pill" onclick="filtrarCatalogo('Guantes', this)">🧤 Guantes</button>
-                                <button class="cat-pill" onclick="filtrarCatalogo('Protección General', this)">⛑️ General</button>
-                                <button class="cat-pill" onclick="filtrarCatalogo('Respiratoria', this)">😷 Respiratoria</button>
-                                <button class="cat-pill" onclick="filtrarCatalogo('Impermeables & Vial', this)">🌧️ Impermeables</button>
+                                <button class="cat-pill" onclick="filtrarCatalogo('Protección General', this)">⛑️
+                                    General</button>
+                                <button class="cat-pill" onclick="filtrarCatalogo('Respiratoria', this)">😷
+                                    Respiratoria</button>
+                                <button class="cat-pill" onclick="filtrarCatalogo('Impermeables & Vial', this)">🌧️
+                                    Impermeables</button>
                             </div>
-                            <button class="cat-scroll-btn" type="button" onclick="desplazarCategorias(1)" aria-label="Mostrar más categorías">›</button>
+                            <button class="cat-scroll-btn" type="button" onclick="desplazarCategorias(1)"
+                                aria-label="Mostrar más categorías">›</button>
                         </div>
 
                         <!-- Barra de Estado Compacta y Centrada -->
                         <div class="catalog-status-bar">
                             <span class="catalog-status-count">Mostrando <b id="catalogCounterTxt">60</b> modelos</span>
                             <span class="catalog-status-divider">•</span>
-                            <span class="catalog-status-filter">Categoría: <b id="catalogActiveFilterTxt">Todos</b></span>
-                            <button id="catalogResetBtn" class="catalog-reset-link" onclick="limpiarBusquedaCatalogo()" style="display:none;">Restablecer filtro</button>
+                            <span class="catalog-status-filter">Categoría: <b
+                                    id="catalogActiveFilterTxt">Todos</b></span>
+                            <button id="catalogResetBtn" class="catalog-reset-link" onclick="limpiarBusquedaCatalogo()"
+                                style="display:none;">Restablecer filtro</button>
                         </div>
                     </div>
 
@@ -3991,419 +4208,471 @@
         <!-- ===== VISTA 2: DISEÑO PERSONALIZADO ===== -->
         <div class="tab-view" id="view-diseno">
             <section id="diseno" style="background:#fbfbfa;padding:2rem 0 4.5rem;min-height:85vh">
-        <div class="container">
-            <!-- TARJETA SUPERIOR CON LOS COLORES CORPORATIVOS -->
-            <div class="diseno-header-hub">
-                <div class="diseno-hub-header">
-                    <span class="diseno-hub-tag">🎨 TALLER DE PERSONALIZACIÓN &amp; BORDADOS</span>
-                    <h2 class="diseno-hub-title">Diseño &amp; <span style="color:var(--nar)">Bordados</span> <span class="gold">Corporativos</span></h2>
-                    <p class="diseno-hub-sub">
-                        Personaliza uniformes, camisas industriales y cascos de protección con el logotipo corporativo y colores de tu empresa. Confección bajo norma COVENIN y acabados de alta resistencia.
-                    </p>
-                </div>
-                <div class="diseno-hub-pills">
-                    <span class="diseno-hub-badge">🧵 Bordado Computarizado HD</span>
-                    <span class="diseno-hub-badge">🖨️ Serigrafía / Estampado Textil</span>
-                    <span class="diseno-hub-badge">🎨 Selección de Colores Corporativos</span>
-                    <span class="diseno-hub-badge">🛡️ Normas COVENIN &amp; OSHA</span>
-                </div>
-            </div>
-
-            <div class="diseno-grid">
-                <!-- Panel de Configuración -->
-                <div class="diseno-panel">
-                    <!-- 1. Tipo de prenda (Camisa, Chemise, Franela, etc.) -->
-                    <div class="opt-group">
-                        <span class="opt-label">1. Prenda a Personalizar</span>
-                        <div class="opt-chips" id="chipsPrenda">
-                            <button class="opt-chip active"
-                                onclick="setDisenoPrenda('camisa', '👔', 'Camisa Industrial Reforzada', 22.0, this)">
-                                👔 Camisa Industrial
-                            </button>
-                            <button class="opt-chip"
-                                onclick="setDisenoPrenda('chemise', '👕', 'Chemise Corporativa Institucional', 18.5, this)">
-                                👕 Chemise
-                            </button>
-                            <button class="opt-chip"
-                                onclick="setDisenoPrenda('franela', '👕', 'Franela de Algodón Cuello Redondo', 9.5, this)">
-                                👕 Franela
-                            </button>
-                            <button class="opt-chip"
-                                onclick="setDisenoPrenda('chaleco', '🦺', 'Chaleco Reflectivo Alta Visibilidad', 12.4, this)">
-                                🦺 Chaleco Reflectivo
-                            </button>
-                            <button class="opt-chip"
-                                onclick="setDisenoPrenda('jean', '👖', 'Pantalón Jean 3 Costuras', 28.5, this)">
-                                👖 Jean de Trabajo
-                            </button>
-                            <button class="opt-chip"
-                                onclick="setDisenoPrenda('casco', '⛑️', 'Casco Dieléctrico de Seguridad', 18.5, this)">
-                                ⛑️ Casco Seguridad
-                            </button>
+                <div class="container">
+                    <!-- TARJETA SUPERIOR CON LOS COLORES CORPORATIVOS -->
+                    <div class="diseno-header-hub">
+                        <div class="diseno-hub-header">
+                            <span class="diseno-hub-tag">🎨 TALLER DE PERSONALIZACIÓN &amp; BORDADOS</span>
+                            <h2 class="diseno-hub-title">Diseño &amp; <span class="gold">Bordados Corporativos</span></h2>
+                            <p class="diseno-hub-sub">
+                                Personaliza uniformes, camisas industriales y cascos de protección con el logotipo
+                                corporativo y colores de tu empresa. Confección bajo norma COVENIN y acabados de alta
+                                resistencia.
+                            </p>
+                        </div>
+                        <div class="diseno-hub-pills">
+                            <span class="diseno-hub-badge">🧵 Bordado Computarizado HD</span>
+                            <span class="diseno-hub-badge">🖨️ Serigrafía / Estampado Textil</span>
+                            <span class="diseno-hub-badge">🎨 Selección de Colores Corporativos</span>
+                            <span class="diseno-hub-badge">🛡️ Normas COVENIN &amp; OSHA</span>
                         </div>
                     </div>
 
-                    <!-- 2. Ángulos del Boceto (Frente, Espalda, Manga Izquierda, Manga Derecha) -->
-                    <div class="opt-group">
-                        <span class="opt-label">2. Ángulo de Visualización del Boceto</span>
-                        <div class="opt-chips" id="chipsAngulo">
-                            <button class="opt-chip active" onclick="setDisenoAngulo('frente', this)">👕 Frente</button>
-                            <button class="opt-chip" onclick="setDisenoAngulo('espalda', this)">🔄 Espalda</button>
-                            <button class="opt-chip" onclick="setDisenoAngulo('manga-izq', this)">👈 Manga Izquierda</button>
-                            <button class="opt-chip" onclick="setDisenoAngulo('manga-der', this)">👉 Manga Derecha</button>
-                        </div>
-                    </div>
-
-                    <!-- 3. Color Corporativo de la Prenda -->
-                    <div class="opt-group">
-                        <span class="opt-label">3. Color de Tela de la Prenda</span>
-                        <div class="swatches-bar">
-                            <div class="swatch-circle active" style="background:#0a192f"
-                                onclick="setDisenoColor('#0a192f', 'Azul Marino', this)" title="Azul Marino"></div>
-                            <div class="swatch-circle" style="background:#1d1d1b"
-                                onclick="setDisenoColor('#1d1d1b', 'Negro Industrial', this)" title="Negro Industrial"></div>
-                            <div class="swatch-circle" style="background:#f4f5f7;border:1px solid #ccc"
-                                onclick="setDisenoColor('#f4f5f7', 'Blanco Puro', this)" title="Blanco Puro"></div>
-                            <div class="swatch-circle" style="background:#1565c0"
-                                onclick="setDisenoColor('#1565c0', 'Azul Rey', this)" title="Azul Rey"></div>
-                            <div class="swatch-circle" style="background:#c62828"
-                                onclick="setDisenoColor('#c62828', 'Rojo Industrial', this)" title="Rojo Industrial"></div>
-                            <div class="swatch-circle" style="background:#2e4732"
-                                onclick="setDisenoColor('#2e4732', 'Verde Militar', this)" title="Verde Militar"></div>
-                            <div class="swatch-circle" style="background:#d35914"
-                                onclick="setDisenoColor('#d35914', 'Naranja de Seguridad', this)" title="Naranja Seguridad"></div>
-                            <div class="swatch-circle" style="background:#4a5568"
-                                onclick="setDisenoColor('#4a5568', 'Gris Plomo', this)" title="Gris Plomo"></div>
-                            <div class="swatch-circle" style="background:#c2a649"
-                                onclick="setDisenoColor('#c2a649', 'Caqui / Beige', this)" title="Caqui"></div>
-                            <div class="swatch-circle" style="background:#fdc417"
-                                onclick="setDisenoColor('#fdc417', 'Amarillo Vial', this)" title="Amarillo Vial"></div>
-                            <span id="disenoColorLabel"
-                                style="font-size:.78rem;font-style:italic;color:var(--gri);font-weight:700">Azul Marino</span>
-                        </div>
-                    </div>
-
-                    <!-- 4. Técnica de Personalización -->
-                    <div class="opt-group">
-                        <span class="opt-label">4. Técnica de Aplicación</span>
-                        <div class="opt-chips" id="chipsTecnica">
-                            <button class="opt-chip active"
-                                onclick="setDisenoTecnica('Bordado Computarizado', 3.5, this)">🧵 Bordado Computarizado (+$3.50)</button>
-                            <button class="opt-chip"
-                                onclick="setDisenoTecnica('Serigrafía Textil HD', 2.0, this)">🎨 Serigrafía Industrial (+$2.00)</button>
-                            <button class="opt-chip"
-                                onclick="setDisenoTecnica('Vinil Textil Reflectivo', 3.0, this)">✨ Vinil Reflectivo (+$3.00)</button>
-                            <button class="opt-chip"
-                                onclick="setDisenoTecnica('Parche Vulcanizado', 4.0, this)">🛡️ Parche Vulcanizado (+$4.00)</button>
-                        </div>
-                    </div>
-
-                    <!-- 5. Carga de Logo, Quitar Fondo y Duplicar -->
-                    <div class="opt-group" style="margin-bottom:0">
-                        <span class="opt-label">5. Logotipo Corporativo (Sube tu imagen)</span>
-                        <div style="display:flex;gap:.6rem;align-items:center;flex-wrap:wrap">
-                            <button class="btn btn-w" style="padding:.65rem 1.1rem;font-size:.78rem"
-                                onclick="document.getElementById('logoFileInput').click()">
-                                📁 Subir Imagen de Logo
-                            </button>
-                            <input type="file" id="logoFileInput" accept="image/*" style="display:none"
-                                onchange="cargarLogoSimulado(event)">
-                            <button class="btn btn-o" id="btnSideToggleBg" style="padding:.65rem 1rem;font-size:.75rem"
-                                onclick="toggleQuitarFondo()">
-                                ✨ Quitar fondo automático
-                            </button>
-                            <button class="btn btn-o" style="padding:.65rem 1rem;font-size:.75rem"
-                                onclick="duplicarLogo()">
-                                ➕ Duplicar Logo
-                            </button>
-                        </div>
-
-                        <div style="margin-top:.75rem;display:flex;gap:.5rem;align-items:center">
-                            <input id="disenoLogoTexto" type="text" placeholder="O ingresa texto si no tienes imagen..."
-                                value="TU LOGO AQUÍ" oninput="actualizarTextoLogo(this.value)"
-                                style="flex:1;padding:.6rem .85rem;border:1.5px solid #ddd;border-radius:8px;font-family:Poppins;font-style:italic;font-size:.8rem">
-                            <button class="btn btn-o" style="padding:.6rem .9rem;font-size:.75rem"
-                                onclick="agregarLogoTexto(disenoState.logoTexto)">
-                                Añadir Texto
-                            </button>
-                        </div>
-
-                        <div id="uploadedLogoCard" class="uploaded-logo-card" style="display:none">
-                            <div class="uploaded-logo-thumb">
-                                <img id="uploadedLogoThumbImg" src="" alt="Thumbnail Logo">
+                    <div class="diseno-grid">
+                        <!-- Panel de Configuración -->
+                        <div class="diseno-panel">
+                            <!-- 1. Tipo de prenda (Camisa, Chemise, Franela, etc.) -->
+                            <div class="opt-group">
+                                <span class="opt-label">1. Prenda a Personalizar</span>
+                                <div class="opt-chips" id="chipsPrenda">
+                                    <button class="opt-chip active"
+                                        onclick="setDisenoPrenda('camisa', '👔', 'Camisa Industrial Reforzada', 22.0, this)">
+                                        👔 Camisa Industrial
+                                    </button>
+                                    <button class="opt-chip"
+                                        onclick="setDisenoPrenda('chemise', '👕', 'Chemise Corporativa Institucional', 18.5, this)">
+                                        👕 Chemise
+                                    </button>
+                                    <button class="opt-chip"
+                                        onclick="setDisenoPrenda('franela', '👕', 'Franela de Algodón Cuello Redondo', 9.5, this)">
+                                        👕 Franela
+                                    </button>
+                                    <button class="opt-chip"
+                                        onclick="setDisenoPrenda('chaleco', '🦺', 'Chaleco Reflectivo Alta Visibilidad', 12.4, this)">
+                                        🦺 Chaleco Reflectivo
+                                    </button>
+                                    <button class="opt-chip"
+                                        onclick="setDisenoPrenda('jean', '👖', 'Pantalón Jean 3 Costuras', 28.5, this)">
+                                        👖 Jean de Trabajo
+                                    </button>
+                                    <button class="opt-chip"
+                                        onclick="setDisenoPrenda('casco', '⛑️', 'Casco Dieléctrico de Seguridad', 18.5, this)">
+                                        ⛑️ Casco Seguridad
+                                    </button>
+                                </div>
                             </div>
-                            <div style="flex:1">
-                                <div style="font-size:.78rem;font-weight:700;color:#222" id="uploadedLogoFilename">Logo cargado</div>
-                                <div style="font-size:.7rem;color:#666" id="uploadedLogoStatus">Fondo transparente aplicado</div>
+
+                            <!-- 2. Ángulos del Boceto (Frente, Espalda, Manga Izquierda, Manga Derecha) -->
+                            <div class="opt-group">
+                                <span class="opt-label">2. Ángulo de Visualización del Boceto</span>
+                                <div class="opt-chips" id="chipsAngulo">
+                                    <button class="opt-chip active" onclick="setDisenoAngulo('frente', this)">👕
+                                        Frente</button>
+                                    <button class="opt-chip" onclick="setDisenoAngulo('espalda', this)">🔄
+                                        Espalda</button>
+                                    <button class="opt-chip" onclick="setDisenoAngulo('manga-izq', this)">👈 Manga
+                                        Izquierda</button>
+                                    <button class="opt-chip" onclick="setDisenoAngulo('manga-der', this)">👉 Manga
+                                        Derecha</button>
+                                </div>
                             </div>
-                            <button class="btn btn-o" style="padding:.35rem .7rem;font-size:.7rem;border-color:#ff5252;color:#ff5252"
-                                onclick="eliminarLogoActivo()">
-                                🗑️ Quitar
+
+                            <!-- 3. Color Corporativo de la Prenda -->
+                            <div class="opt-group">
+                                <span class="opt-label">3. Color de Tela de la Prenda</span>
+                                <div class="swatches-bar">
+                                    <div class="swatch-circle active" style="background:#0a192f"
+                                        onclick="setDisenoColor('#0a192f', 'Azul Marino', this)" title="Azul Marino">
+                                    </div>
+                                    <div class="swatch-circle" style="background:#1d1d1b"
+                                        onclick="setDisenoColor('#1d1d1b', 'Negro Industrial', this)"
+                                        title="Negro Industrial"></div>
+                                    <div class="swatch-circle" style="background:#f4f5f7;border:1px solid #ccc"
+                                        onclick="setDisenoColor('#f4f5f7', 'Blanco Puro', this)" title="Blanco Puro">
+                                    </div>
+                                    <div class="swatch-circle" style="background:#1565c0"
+                                        onclick="setDisenoColor('#1565c0', 'Azul Rey', this)" title="Azul Rey"></div>
+                                    <div class="swatch-circle" style="background:#c62828"
+                                        onclick="setDisenoColor('#c62828', 'Rojo Industrial', this)"
+                                        title="Rojo Industrial"></div>
+                                    <div class="swatch-circle" style="background:#2e4732"
+                                        onclick="setDisenoColor('#2e4732', 'Verde Militar', this)"
+                                        title="Verde Militar"></div>
+                                    <div class="swatch-circle" style="background:#d35914"
+                                        onclick="setDisenoColor('#d35914', 'Naranja de Seguridad', this)"
+                                        title="Naranja Seguridad"></div>
+                                    <div class="swatch-circle" style="background:#4a5568"
+                                        onclick="setDisenoColor('#4a5568', 'Gris Plomo', this)" title="Gris Plomo">
+                                    </div>
+                                    <div class="swatch-circle" style="background:#c2a649"
+                                        onclick="setDisenoColor('#c2a649', 'Caqui / Beige', this)" title="Caqui"></div>
+                                    <div class="swatch-circle" style="background:#fdc417"
+                                        onclick="setDisenoColor('#fdc417', 'Amarillo Vial', this)"
+                                        title="Amarillo Vial"></div>
+                                    <span id="disenoColorLabel"
+                                        style="font-size:.78rem;font-style:italic;color:var(--gri);font-weight:700">Azul
+                                        Marino</span>
+                                </div>
+                            </div>
+
+                            <!-- 4. Técnica de Personalización -->
+                            <div class="opt-group">
+                                <span class="opt-label">4. Técnica de Aplicación</span>
+                                <div class="opt-chips" id="chipsTecnica">
+                                    <button class="opt-chip active"
+                                        onclick="setDisenoTecnica('Bordado Computarizado', 3.5, this)">🧵 Bordado
+                                        Computarizado (+$3.50)</button>
+                                    <button class="opt-chip"
+                                        onclick="setDisenoTecnica('Serigrafía Textil HD', 2.0, this)">🎨 Serigrafía
+                                        Industrial (+$2.00)</button>
+                                    <button class="opt-chip"
+                                        onclick="setDisenoTecnica('Vinil Textil Reflectivo', 3.0, this)">✨ Vinil
+                                        Reflectivo (+$3.00)</button>
+                                    <button class="opt-chip"
+                                        onclick="setDisenoTecnica('Parche Vulcanizado', 4.0, this)">🛡️ Parche
+                                        Vulcanizado (+$4.00)</button>
+                                </div>
+                            </div>
+
+                            <!-- 5. Carga de Logo, Quitar Fondo y Duplicar -->
+                            <div class="opt-group" style="margin-bottom:0">
+                                <span class="opt-label">5. Logotipo Corporativo (Sube tu imagen)</span>
+                                <div style="display:flex;gap:.6rem;align-items:center;flex-wrap:wrap">
+                                    <button class="btn btn-w" style="padding:.65rem 1.1rem;font-size:.78rem"
+                                        onclick="document.getElementById('logoFileInput').click()">
+                                        📁 Subir Imagen de Logo
+                                    </button>
+                                    <input type="file" id="logoFileInput" accept="image/*" style="display:none"
+                                        onchange="cargarLogoSimulado(event)">
+                                    <button class="btn btn-o" id="btnSideToggleBg"
+                                        style="padding:.65rem 1rem;font-size:.75rem" onclick="toggleQuitarFondo()">
+                                        ✨ Quitar fondo automático
+                                    </button>
+                                    <button class="btn btn-o" style="padding:.65rem 1rem;font-size:.75rem"
+                                        onclick="duplicarLogo()">
+                                        ➕ Duplicar Logo
+                                    </button>
+                                </div>
+
+                                <div style="margin-top:.75rem;display:flex;gap:.5rem;align-items:center">
+                                    <input id="disenoLogoTexto" type="text"
+                                        placeholder="O ingresa texto si no tienes imagen..." value="TU LOGO AQUÍ"
+                                        oninput="actualizarTextoLogo(this.value)"
+                                        style="flex:1;padding:.6rem .85rem;border:1.5px solid #ddd;border-radius:8px;font-family:Poppins;font-style:italic;font-size:.8rem">
+                                    <button class="btn btn-o" style="padding:.6rem .9rem;font-size:.75rem"
+                                        onclick="agregarLogoTexto(disenoState.logoTexto)">
+                                        Añadir Texto
+                                    </button>
+                                </div>
+
+                                <div id="uploadedLogoCard" class="uploaded-logo-card" style="display:none">
+                                    <div class="uploaded-logo-thumb">
+                                        <img id="uploadedLogoThumbImg" src="" alt="Thumbnail Logo">
+                                    </div>
+                                    <div style="flex:1">
+                                        <div style="font-size:.78rem;font-weight:700;color:#222"
+                                            id="uploadedLogoFilename">Logo cargado</div>
+                                        <div style="font-size:.7rem;color:#666" id="uploadedLogoStatus">Fondo
+                                            transparente aplicado</div>
+                                    </div>
+                                    <button class="btn btn-o"
+                                        style="padding:.35rem .7rem;font-size:.7rem;border-color:#ff5252;color:#ff5252"
+                                        onclick="eliminarLogoActivo()">
+                                        🗑️ Quitar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Preview y Estimación en Vivo (Estudio Mockup Interactivo) -->
+                        <div class="diseno-preview-box">
+                            <div
+                                style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem">
+                                <div>
+                                    <h3 style="color:var(--ama);margin:0;font-size:1.15rem">Estudio de Mockup</h3>
+                                    <p style="color:var(--gcl);font-size:.75rem;margin:0">Boceto interactivo 3D con
+                                        arrastre libre</p>
+                                </div>
+                                <span id="previewAnguloBadge"
+                                    style="background:rgba(253,196,23,.18);border:1px solid var(--ama);color:var(--ama);padding:.25rem .65rem;border-radius:999px;font-size:.7rem;font-weight:800">
+                                    FRENTE
+                                </span>
+                            </div>
+
+                            <!-- Botones de Ángulo sobre el Boceto -->
+                            <div class="diseno-angle-nav" id="previewAngleNav">
+                                <button class="diseno-angle-btn active" onclick="setDisenoAngulo('frente')">👕
+                                    Frente</button>
+                                <button class="diseno-angle-btn" onclick="setDisenoAngulo('espalda')">🔄
+                                    Espalda</button>
+                                <button class="diseno-angle-btn" onclick="setDisenoAngulo('manga-izq')">👈 Manga
+                                    Izq.</button>
+                                <button class="diseno-angle-btn" onclick="setDisenoAngulo('manga-der')">👉 Manga
+                                    Der.</button>
+                            </div>
+
+                            <!-- Escenario del Boceto con SVG Realista y Capa Drag-and-Drop -->
+                            <div class="preview-stage" id="previewStage">
+                                <div class="stage-lighting"></div>
+
+                                <!-- SVG vectorial de la prenda en alta resolución -->
+                                <div class="mockup-svg-wrap" id="mockupSvgWrap">
+                                    <!-- Inyectado dinámicamente según prenda y ángulo -->
+                                </div>
+
+                                <!-- Capa de logos arrastrables libremente -->
+                                <div class="diseno-drag-layer" id="disenoDragLayer">
+                                    <!-- Los logos colocados se renderizan aquí y pueden moverse libremente -->
+                                </div>
+                            </div>
+
+                            <!-- Barra Rápida de Herramientas de Logo -->
+                            <div class="diseno-quick-toolbar">
+                                <button class="diseno-quick-btn"
+                                    onclick="document.getElementById('logoFileInput').click()" title="Subir logo">
+                                    📁 Subir
+                                </button>
+                                <button class="diseno-quick-btn" id="btnToolbarBg" onclick="toggleQuitarFondo()"
+                                    title="Quitar o restaurar fondo">
+                                    ✨ Sin fondo
+                                </button>
+                                <button class="diseno-quick-btn" onclick="duplicarLogo()"
+                                    title="Duplicar logo cuantas veces quieras">
+                                    ➕ Duplicar Logo
+                                </button>
+                                <button class="diseno-quick-btn" onclick="ajustarEscalaLogo(0.15)" title="Agrandar">
+                                    🔍 +
+                                </button>
+                                <button class="diseno-quick-btn" onclick="ajustarEscalaLogo(-0.15)" title="Reducir">
+                                    🔍 -
+                                </button>
+                                <button class="diseno-quick-btn danger" onclick="eliminarLogoActivo()"
+                                    title="Eliminar logo">
+                                    🗑️ Borrar
+                                </button>
+                                <button class="diseno-quick-btn" onclick="limpiarLogosAngulo()"
+                                    title="Limpiar ángulo actual">
+                                    🧹 Limpiar
+                                </button>
+                            </div>
+
+                            <div
+                                style="text-align:center;font-size:.7rem;color:var(--gcl);margin-bottom:.85rem;line-height:1.3">
+                                💡 <b>Arrastra el logo libremente</b> sobre la prenda. Puedes duplicarlo cuantas veces
+                                quieras y colocarlo en el frente, espalda o mangas.
+                            </div>
+
+                            <div
+                                style="border-top:1px solid rgba(255,255,255,.1);padding-top:.85rem;margin-bottom:1rem">
+                                <div
+                                    style="display:flex;justify-content:space-between;margin-bottom:.35rem;font-size:.82rem">
+                                    <span style="color:var(--gcl)" id="prevPrendaNombre">Camisa Industrial
+                                        Reforzada:</span>
+                                    <b id="prevPrendaPrecio">$22.00</b>
+                                </div>
+                                <div
+                                    style="display:flex;justify-content:space-between;margin-bottom:.35rem;font-size:.82rem">
+                                    <span style="color:var(--gcl)" id="prevTecnicaNombre">Técnica (Bordado):</span>
+                                    <b id="prevTecnicaPrecio">+$3.50</b>
+                                </div>
+                                <div
+                                    style="display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:.65rem">
+                                    <span style="color:var(--gcl)">Logos colocados:</span>
+                                    <b id="prevTotalLogosCount" style="color:var(--ama)">1 en Frente</b>
+                                </div>
+                                <div class="total"
+                                    style="padding:.7rem 0;border-top:1px solid rgba(253,196,23,.3);border-bottom:1px solid rgba(253,196,23,.3);margin-bottom:.85rem">
+                                    <span style="font-size:1.02rem">COSTO ESTIMADO / UD</span>
+                                    <span style="color:var(--ama);font-size:1.35rem"
+                                        id="disenoPrecioTotal">$25.50</span>
+                                </div>
+                                <p style="font-size:.68rem;color:var(--gcl);margin-bottom:1rem;line-height:1.3">
+                                    * Precios por unidad para lotes corporativos a partir de 24 piezas. Incluye
+                                    digitalización de matriz.
+                                </p>
+                            </div>
+
+                            <button class="btn btn-w" style="width:100%;justify-content:center"
+                                onclick="solicitarMuestraDiseno()">
+                                🎨 Solicitar Cotización de este Diseño
                             </button>
                         </div>
                     </div>
                 </div>
-
-                <!-- Preview y Estimación en Vivo (Estudio Mockup Interactivo) -->
-                <div class="diseno-preview-box">
-                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem">
-                        <div>
-                            <h3 style="color:var(--ama);margin:0;font-size:1.15rem">Estudio de Mockup</h3>
-                            <p style="color:var(--gcl);font-size:.75rem;margin:0">Boceto interactivo 3D con arrastre libre</p>
-                        </div>
-                        <span id="previewAnguloBadge" style="background:rgba(253,196,23,.18);border:1px solid var(--ama);color:var(--ama);padding:.25rem .65rem;border-radius:999px;font-size:.7rem;font-weight:800">
-                            FRENTE
-                        </span>
-                    </div>
-
-                    <!-- Botones de Ángulo sobre el Boceto -->
-                    <div class="diseno-angle-nav" id="previewAngleNav">
-                        <button class="diseno-angle-btn active" onclick="setDisenoAngulo('frente')">👕 Frente</button>
-                        <button class="diseno-angle-btn" onclick="setDisenoAngulo('espalda')">🔄 Espalda</button>
-                        <button class="diseno-angle-btn" onclick="setDisenoAngulo('manga-izq')">👈 Manga Izq.</button>
-                        <button class="diseno-angle-btn" onclick="setDisenoAngulo('manga-der')">👉 Manga Der.</button>
-                    </div>
-
-                    <!-- Escenario del Boceto con SVG Realista y Capa Drag-and-Drop -->
-                    <div class="preview-stage" id="previewStage">
-                        <div class="stage-lighting"></div>
-                        
-                        <!-- SVG vectorial de la prenda en alta resolución -->
-                        <div class="mockup-svg-wrap" id="mockupSvgWrap">
-                            <!-- Inyectado dinámicamente según prenda y ángulo -->
-                        </div>
-
-                        <!-- Capa de logos arrastrables libremente -->
-                        <div class="diseno-drag-layer" id="disenoDragLayer">
-                            <!-- Los logos colocados se renderizan aquí y pueden moverse libremente -->
-                        </div>
-                    </div>
-
-                    <!-- Barra Rápida de Herramientas de Logo -->
-                    <div class="diseno-quick-toolbar">
-                        <button class="diseno-quick-btn" onclick="document.getElementById('logoFileInput').click()" title="Subir logo">
-                            📁 Subir
-                        </button>
-                        <button class="diseno-quick-btn" id="btnToolbarBg" onclick="toggleQuitarFondo()" title="Quitar o restaurar fondo">
-                            ✨ Sin fondo
-                        </button>
-                        <button class="diseno-quick-btn" onclick="duplicarLogo()" title="Duplicar logo cuantas veces quieras">
-                            ➕ Duplicar Logo
-                        </button>
-                        <button class="diseno-quick-btn" onclick="ajustarEscalaLogo(0.15)" title="Agrandar">
-                            🔍 +
-                        </button>
-                        <button class="diseno-quick-btn" onclick="ajustarEscalaLogo(-0.15)" title="Reducir">
-                            🔍 -
-                        </button>
-                        <button class="diseno-quick-btn danger" onclick="eliminarLogoActivo()" title="Eliminar logo">
-                            🗑️ Borrar
-                        </button>
-                        <button class="diseno-quick-btn" onclick="limpiarLogosAngulo()" title="Limpiar ángulo actual">
-                            🧹 Limpiar
-                        </button>
-                    </div>
-
-                    <div style="text-align:center;font-size:.7rem;color:var(--gcl);margin-bottom:.85rem;line-height:1.3">
-                        💡 <b>Arrastra el logo libremente</b> sobre la prenda. Puedes duplicarlo cuantas veces quieras y colocarlo en el frente, espalda o mangas.
-                    </div>
-
-                    <div style="border-top:1px solid rgba(255,255,255,.1);padding-top:.85rem;margin-bottom:1rem">
-                        <div style="display:flex;justify-content:space-between;margin-bottom:.35rem;font-size:.82rem">
-                            <span style="color:var(--gcl)" id="prevPrendaNombre">Camisa Industrial Reforzada:</span>
-                            <b id="prevPrendaPrecio">$22.00</b>
-                        </div>
-                        <div style="display:flex;justify-content:space-between;margin-bottom:.35rem;font-size:.82rem">
-                            <span style="color:var(--gcl)" id="prevTecnicaNombre">Técnica (Bordado):</span>
-                            <b id="prevTecnicaPrecio">+$3.50</b>
-                        </div>
-                        <div style="display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:.65rem">
-                            <span style="color:var(--gcl)">Logos colocados:</span>
-                            <b id="prevTotalLogosCount" style="color:var(--ama)">1 en Frente</b>
-                        </div>
-                        <div class="total"
-                            style="padding:.7rem 0;border-top:1px solid rgba(253,196,23,.3);border-bottom:1px solid rgba(253,196,23,.3);margin-bottom:.85rem">
-                            <span style="font-size:1.02rem">COSTO ESTIMADO / UD</span>
-                            <span style="color:var(--ama);font-size:1.35rem" id="disenoPrecioTotal">$25.50</span>
-                        </div>
-                        <p style="font-size:.68rem;color:var(--gcl);margin-bottom:1rem;line-height:1.3">
-                            * Precios por unidad para lotes corporativos a partir de 24 piezas. Incluye digitalización de matriz.
-                        </p>
-                    </div>
-
-                    <button class="btn btn-w" style="width:100%;justify-content:center" onclick="solicitarMuestraDiseno()">
-                        🎨 Solicitar Cotización de este Diseño
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
+            </section>
         </div><!-- /view-diseno -->
 
         <!-- ===== VISTA 3: ORDEN DE COMPRA ===== -->
         <div class="tab-view" id="view-orden-compra">
-            <section id="orden-compra" style="background:#fbfbfa;color:var(--neg);padding:2rem 0 4.5rem;min-height:85vh">
-        <div class="container">
-            <!-- TARJETA SUPERIOR CON LOS COLORES CORPORATIVOS -->
-            <div class="oc-top-bar">
-                <div style="position:relative;z-index:2">
-                    <span class="hero-badge" style="margin-bottom:.5rem;background:rgba(253,196,23,.12);border-color:rgba(253,196,23,.3);color:var(--ama)">📋 Portal Corporativo B2B</span>
-                    <h2 style="font-size:clamp(1.4rem,3vw,2rem);margin:0;color:#fff">Orden de <span class="gold"
-                            style="background:var(--gw);-webkit-background-clip:text;background-clip:text;color:transparent">Compra
-                            Empresarial</span></h2>
-                    <p style="margin:.45rem 0 0;font-size:.85rem;color:#bfc2c2;max-width:620px;line-height:1.5">
-                        Genera tu orden formal con desglose de ítems, cálculo automático de IVA y cotización lista para emitir o descargar en PDF.
-                    </p>
+            <section id="orden-compra"
+                style="background:#fbfbfa;color:var(--neg);padding:2rem 0 4.5rem;min-height:85vh">
+                <div class="container">
+                    <!-- TARJETA SUPERIOR CON LOS COLORES CORPORATIVOS -->
+                    <div class="oc-top-bar">
+                        <div style="position:relative;z-index:2">
+                            <span class="hero-badge"
+                                style="margin-bottom:.5rem;background:rgba(253,196,23,.12);border-color:rgba(253,196,23,.3);color:var(--ama)">📋
+                                Portal Corporativo B2B</span>
+                            <h2 style="font-size:clamp(1.4rem,3vw,2rem);margin:0;color:#fff">Orden de <span class="gold">Compra Empresarial</span></h2>
+                            <p style="margin:.45rem 0 0;font-size:.85rem;color:#bfc2c2;max-width:620px;line-height:1.5">
+                                Genera tu orden formal con desglose de ítems, cálculo automático de IVA y cotización
+                                lista para emitir o descargar en PDF.
+                            </p>
+                        </div>
+                        <div
+                            style="display:flex;gap:.8rem;align-items:center;flex-wrap:wrap;position:relative;z-index:2">
+                            <span
+                                style="background:rgba(253,196,23,.15);border:1px solid var(--ama);color:var(--ama);padding:.45rem 1rem;border-radius:999px;font-size:.74rem;font-weight:700;letter-spacing:.03em"
+                                id="ocNumeroDisplay">
+                                O.C. Nº: UF-2026-4820
+                            </span>
+                            <button class="btn btn-w" style="padding:.55rem 1.2rem;font-size:.74rem"
+                                onclick="importarKitAOrden()">
+                                📥 Cargar Productos del Kit
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="oc-grid">
+                        <!-- Formulario y Detalle de la Orden -->
+                        <div class="oc-card">
+                            <h3
+                                style="color:var(--neg);margin-bottom:1.2rem;font-size:1.1rem;display:flex;align-items:center;gap:.5rem">
+                                🏢 Datos Comerciales de Facturación
+                            </h3>
+
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1.2rem"
+                                class="oc-inputs-grid">
+                                <div>
+                                    <label
+                                        style="display:block;font-size:.7rem;text-transform:uppercase;font-weight:700;color:var(--gri);margin-bottom:.3rem">Razón
+                                        Social *</label>
+                                    <input id="ocEmpresa" required placeholder="Ej. Constructora Andina C.A."
+                                        value="Constructora Andina C.A."
+                                        style="width:100%;padding:.75rem;border:1.5px solid #ddd;border-radius:10px;font-family:Poppins;font-style:italic;font-size:.82rem">
+                                </div>
+                                <div>
+                                    <label
+                                        style="display:block;font-size:.7rem;text-transform:uppercase;font-weight:700;color:var(--gri);margin-bottom:.3rem">RIF
+                                        Fiscal *</label>
+                                    <input id="ocRif" required placeholder="J-00000000-0" value="J-31048921-4"
+                                        style="width:100%;padding:.75rem;border:1.5px solid #ddd;border-radius:10px;font-family:Poppins;font-style:italic;font-size:.82rem">
+                                </div>
+                                <div>
+                                    <label
+                                        style="display:block;font-size:.7rem;text-transform:uppercase;font-weight:700;color:var(--gri);margin-bottom:.3rem">Contacto
+                                        / Dpto. Compras *</label>
+                                    <input id="ocContacto" required placeholder="Nombre del solicitante"
+                                        value="Ing. Marcos Benítez"
+                                        style="width:100%;padding:.75rem;border:1.5px solid #ddd;border-radius:10px;font-family:Poppins;font-style:italic;font-size:.82rem">
+                                </div>
+                                <div>
+                                    <label
+                                        style="display:block;font-size:.7rem;text-transform:uppercase;font-weight:700;color:var(--gri);margin-bottom:.3rem">Correo
+                                        para Enviar O.C. *</label>
+                                    <input id="ocEmail" required type="email" placeholder="compras@empresa.com"
+                                        value="compras@constructoraandina.com"
+                                        style="width:100%;padding:.75rem;border:1.5px solid #ddd;border-radius:10px;font-family:Poppins;font-style:italic;font-size:.82rem">
+                                </div>
+                            </div>
+
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1.5rem">
+                                <div>
+                                    <label
+                                        style="display:block;font-size:.7rem;text-transform:uppercase;font-weight:700;color:var(--gri);margin-bottom:.3rem">Condición
+                                        de Pago Acordada</label>
+                                    <select id="ocCondicionPago" onchange="calcularTotalesOC()"
+                                        style="width:100%;padding:.75rem;border:1.5px solid #ddd;border-radius:10px;font-family:Poppins;font-style:italic;font-size:.82rem">
+                                        <option value="contado">Contado / Transferencia (5% Descuento B2B)</option>
+                                        <option value="credito15" selected>Crédito Comercial a 15 días</option>
+                                        <option value="credito30">Crédito Comercial a 30 días</option>
+                                        <option value="anticipo">50% Anticipo / 50% Contra Entrega</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label
+                                        style="display:block;font-size:.7rem;text-transform:uppercase;font-weight:700;color:var(--gri);margin-bottom:.3rem">Dirección
+                                        de Despacho / Almacén</label>
+                                    <input id="ocDespacho" placeholder="Zona Industrial, Almacén Central"
+                                        value="Zona Ind. El Recreo, Galpón 4"
+                                        style="width:100%;padding:.75rem;border:1.5px solid #ddd;border-radius:10px;font-family:Poppins;font-style:italic;font-size:.82rem">
+                                </div>
+                            </div>
+
+                            <h4
+                                style="color:var(--neg);font-size:.9rem;border-top:1px solid #eee;padding-top:1.2rem;margin-bottom:.5rem;display:flex;justify-content:space-between;align-items:center">
+                                <span>📦 Ítems Incluidos en la Orden</span>
+                                <button class="btn btn-o" style="padding:.35rem .8rem;font-size:.68rem"
+                                    onclick="agregarItemManualOC()">+ Añadir Ítem</button>
+                            </h4>
+
+                            <div style="overflow-x:auto">
+                                <table class="oc-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Descripción</th>
+                                            <th style="width:90px;text-align:center">Cant.</th>
+                                            <th style="width:100px;text-align:right">P. Unit</th>
+                                            <th style="width:110px;text-align:right">Subtotal</th>
+                                            <th style="width:40px;text-align:center"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="ocItemsBody">
+                                        <!-- Filas dinámicas -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Resumen Financiero y Validación -->
+                        <div class="oc-summary-card">
+                            <h3 style="color:var(--ama);margin-bottom:.4rem">Resumen Financiero</h3>
+                            <p style="color:var(--gcl);font-size:.75rem;margin-bottom:1.2rem">Facturación fiscal con
+                                soporte legal</p>
+
+                            <div
+                                style="display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:.85rem">
+                                <span style="color:var(--gcl)">Subtotal Mercancía:</span>
+                                <b id="ocSubtotalTxt">$0.00</b>
+                            </div>
+                            <div
+                                style="display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:.85rem">
+                                <span style="color:var(--gcl)">Descuento Comercial:</span>
+                                <b style="color:var(--ama)" id="ocDescuentoTxt">-$0.00</b>
+                            </div>
+                            <div
+                                style="display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:.85rem">
+                                <span style="color:var(--gcl)">IVA Estimado (16%):</span>
+                                <b id="ocIvaTxt">$0.00</b>
+                            </div>
+
+                            <div class="total" style="padding:1rem 0;margin:1rem 0;border-top:2px solid var(--ama)">
+                                <span style="font-size:1.1rem">TOTAL ORDEN</span>
+                                <span id="ocTotalTxt" style="color:var(--ama);font-size:1.5rem">$0.00</span>
+                            </div>
+
+                            <div style="display:grid;gap:.7rem">
+                                <button class="btn btn-w" style="width:100%;justify-content:center"
+                                    onclick="procesarOrdenCompraOficial()">
+                                    🚀 Emitir y Procesar Orden de Compra
+                                </button>
+                                <button class="btn btn-o"
+                                    style="width:100%;justify-content:center;border-color:#777;color:#fff"
+                                    onclick="descargarResumenOC()">
+                                    📄 Descargar / Imprimir O.C. (PDF)
+                                </button>
+                            </div>
+
+                            <div
+                                style="margin-top:1.2rem;padding:.8rem;background:rgba(255,255,255,.05);border-radius:10px;font-size:.7rem;color:var(--gcl);line-height:1.4">
+                                🛡️ <b>Garantía UNIFORTEX:</b> Despacho asegurado, certificados de calidad por lote y
+                                soporte
+                                post-venta permanente.
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div style="display:flex;gap:.8rem;align-items:center;flex-wrap:wrap;position:relative;z-index:2">
-                    <span
-                        style="background:rgba(253,196,23,.15);border:1px solid var(--ama);color:var(--ama);padding:.45rem 1rem;border-radius:999px;font-size:.74rem;font-weight:700;letter-spacing:.03em"
-                        id="ocNumeroDisplay">
-                        O.C. Nº: UF-2026-4820
-                    </span>
-                    <button class="btn btn-w" style="padding:.55rem 1.2rem;font-size:.74rem" onclick="importarKitAOrden()">
-                        📥 Cargar Productos del Kit
-                    </button>
-                </div>
-            </div>
-
-            <div class="oc-grid">
-                <!-- Formulario y Detalle de la Orden -->
-                <div class="oc-card">
-                    <h3 style="color:var(--neg);margin-bottom:1.2rem;font-size:1.1rem;display:flex;align-items:center;gap:.5rem">
-                        🏢 Datos Comerciales de Facturación
-                    </h3>
-
-                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1.2rem"
-                        class="oc-inputs-grid">
-                        <div>
-                            <label
-                                style="display:block;font-size:.7rem;text-transform:uppercase;font-weight:700;color:var(--gri);margin-bottom:.3rem">Razón
-                                Social *</label>
-                            <input id="ocEmpresa" required placeholder="Ej. Constructora Andina C.A."
-                                value="Constructora Andina C.A."
-                                style="width:100%;padding:.75rem;border:1.5px solid #ddd;border-radius:10px;font-family:Poppins;font-style:italic;font-size:.82rem">
-                        </div>
-                        <div>
-                            <label
-                                style="display:block;font-size:.7rem;text-transform:uppercase;font-weight:700;color:var(--gri);margin-bottom:.3rem">RIF
-                                Fiscal *</label>
-                            <input id="ocRif" required placeholder="J-00000000-0" value="J-31048921-4"
-                                style="width:100%;padding:.75rem;border:1.5px solid #ddd;border-radius:10px;font-family:Poppins;font-style:italic;font-size:.82rem">
-                        </div>
-                        <div>
-                            <label
-                                style="display:block;font-size:.7rem;text-transform:uppercase;font-weight:700;color:var(--gri);margin-bottom:.3rem">Contacto
-                                / Dpto. Compras *</label>
-                            <input id="ocContacto" required placeholder="Nombre del solicitante"
-                                value="Ing. Marcos Benítez"
-                                style="width:100%;padding:.75rem;border:1.5px solid #ddd;border-radius:10px;font-family:Poppins;font-style:italic;font-size:.82rem">
-                        </div>
-                        <div>
-                            <label
-                                style="display:block;font-size:.7rem;text-transform:uppercase;font-weight:700;color:var(--gri);margin-bottom:.3rem">Correo
-                                para Enviar O.C. *</label>
-                            <input id="ocEmail" required type="email" placeholder="compras@empresa.com"
-                                value="compras@constructoraandina.com"
-                                style="width:100%;padding:.75rem;border:1.5px solid #ddd;border-radius:10px;font-family:Poppins;font-style:italic;font-size:.82rem">
-                        </div>
-                    </div>
-
-                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1.5rem">
-                        <div>
-                            <label
-                                style="display:block;font-size:.7rem;text-transform:uppercase;font-weight:700;color:var(--gri);margin-bottom:.3rem">Condición
-                                de Pago Acordada</label>
-                            <select id="ocCondicionPago" onchange="calcularTotalesOC()"
-                                style="width:100%;padding:.75rem;border:1.5px solid #ddd;border-radius:10px;font-family:Poppins;font-style:italic;font-size:.82rem">
-                                <option value="contado">Contado / Transferencia (5% Descuento B2B)</option>
-                                <option value="credito15" selected>Crédito Comercial a 15 días</option>
-                                <option value="credito30">Crédito Comercial a 30 días</option>
-                                <option value="anticipo">50% Anticipo / 50% Contra Entrega</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label
-                                style="display:block;font-size:.7rem;text-transform:uppercase;font-weight:700;color:var(--gri);margin-bottom:.3rem">Dirección
-                                de Despacho / Almacén</label>
-                            <input id="ocDespacho" placeholder="Zona Industrial, Almacén Central"
-                                value="Zona Ind. El Recreo, Galpón 4"
-                                style="width:100%;padding:.75rem;border:1.5px solid #ddd;border-radius:10px;font-family:Poppins;font-style:italic;font-size:.82rem">
-                        </div>
-                    </div>
-
-                    <h4
-                        style="color:var(--neg);font-size:.9rem;border-top:1px solid #eee;padding-top:1.2rem;margin-bottom:.5rem;display:flex;justify-content:space-between;align-items:center">
-                        <span>📦 Ítems Incluidos en la Orden</span>
-                        <button class="btn btn-o" style="padding:.35rem .8rem;font-size:.68rem"
-                            onclick="agregarItemManualOC()">+ Añadir Ítem</button>
-                    </h4>
-
-                    <div style="overflow-x:auto">
-                        <table class="oc-table">
-                            <thead>
-                                <tr>
-                                    <th>Descripción</th>
-                                    <th style="width:90px;text-align:center">Cant.</th>
-                                    <th style="width:100px;text-align:right">P. Unit</th>
-                                    <th style="width:110px;text-align:right">Subtotal</th>
-                                    <th style="width:40px;text-align:center"></th>
-                                </tr>
-                            </thead>
-                            <tbody id="ocItemsBody">
-                                <!-- Filas dinámicas -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Resumen Financiero y Validación -->
-                <div class="oc-summary-card">
-                    <h3 style="color:var(--ama);margin-bottom:.4rem">Resumen Financiero</h3>
-                    <p style="color:var(--gcl);font-size:.75rem;margin-bottom:1.2rem">Facturación fiscal con soporte legal</p>
-
-                    <div
-                        style="display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:.85rem">
-                        <span style="color:var(--gcl)">Subtotal Mercancía:</span>
-                        <b id="ocSubtotalTxt">$0.00</b>
-                    </div>
-                    <div
-                        style="display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:.85rem">
-                        <span style="color:var(--gcl)">Descuento Comercial:</span>
-                        <b style="color:var(--ama)" id="ocDescuentoTxt">-$0.00</b>
-                    </div>
-                    <div
-                        style="display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:.85rem">
-                        <span style="color:var(--gcl)">IVA Estimado (16%):</span>
-                        <b id="ocIvaTxt">$0.00</b>
-                    </div>
-
-                    <div class="total" style="padding:1rem 0;margin:1rem 0;border-top:2px solid var(--ama)">
-                        <span style="font-size:1.1rem">TOTAL ORDEN</span>
-                        <span id="ocTotalTxt" style="color:var(--ama);font-size:1.5rem">$0.00</span>
-                    </div>
-
-                    <div style="display:grid;gap:.7rem">
-                        <button class="btn btn-w" style="width:100%;justify-content:center"
-                            onclick="procesarOrdenCompraOficial()">
-                            🚀 Emitir y Procesar Orden de Compra
-                        </button>
-                        <button class="btn btn-o"
-                            style="width:100%;justify-content:center;border-color:#777;color:#fff"
-                            onclick="descargarResumenOC()">
-                            📄 Descargar / Imprimir O.C. (PDF)
-                        </button>
-                    </div>
-
-                    <div
-                        style="margin-top:1.2rem;padding:.8rem;background:rgba(255,255,255,.05);border-radius:10px;font-size:.7rem;color:var(--gcl);line-height:1.4">
-                        🛡️ <b>Garantía UNIFORTEX:</b> Despacho asegurado, certificados de calidad por lote y soporte
-                        post-venta permanente.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            </section>
         </div><!-- /view-orden-compra -->
 
         <!-- ===== VISTA 4: CONTACTO Y COTIZACIÓN ===== -->
@@ -4414,8 +4683,10 @@
                     <div class="contact-header-hub">
                         <div class="contact-hub-header">
                             <span class="contact-hub-tag">🛡️ ATENCIÓN CORPORATIVA &amp; COTIZACIONES</span>
-                            <h2 class="contact-hub-title">Información de <span style="color:var(--nar)">Contacto</span> &amp; <span class="gold">Sedes</span></h2>
-                            <p class="contact-hub-sub">Comunícate directamente con nuestro equipo de atención corporativa, visítanos en nuestras sedes de Maracay y Caracas, o solicita tu cotización formal a medida con soporte técnico garantizado.</p>
+                            <h2 class="contact-hub-title">Información de <span class="gold">Contacto &amp; Sedes</span></h2>
+                            <p class="contact-hub-sub">Comunícate directamente con nuestro equipo de atención
+                                corporativa, visítanos en nuestras sedes de Maracay y Caracas, o solicita tu cotización
+                                formal a medida con soporte técnico garantizado.</p>
                         </div>
                         <div class="contact-hub-pills">
                             <span class="contact-hub-badge">🏢 2 Sedes Físicas</span>
@@ -4427,7 +4698,7 @@
 
                     <!-- CUADRÍCULA DE CARTAS DE DATOS INFORMATIVOS -->
                     <div class="contact-cards-grid">
-                        
+
                         <!-- CARTA 1: UBICACIÓN Y SEDES -->
                         <div class="contact-info-card">
                             <div class="contact-card-header">
@@ -4446,7 +4717,8 @@
                                     <strong>🏢 Sede Caracas:</strong>
                                     <span>Av. Libertador, Edif. Fertec, Piso 4, Caracas.</span>
                                 </li>
-                                <li class="contact-card-item" style="border-top:1px dashed rgba(255,255,255,0.12);padding-top:.5rem">
+                                <li class="contact-card-item"
+                                    style="border-top:1px dashed rgba(255,255,255,0.12);padding-top:.5rem">
                                     <strong>⏰ Horario Maracay:</strong>
                                     <span style="color:var(--ama);font-weight:700">8:00 am - 5:00 pm</span>
                                 </li>
@@ -4465,24 +4737,42 @@
                             <ul class="contact-card-list">
                                 <li class="contact-phone-row">
                                     <div>
-                                        <div style="font-size:.72rem;color:var(--gcl);text-transform:uppercase;font-weight:700">Atención Ventas</div>
-                                        <a href="tel:+584144938316" class="contact-link" onclick="navigateToTab('cotiza')">+58 414-4938316</a>
+                                        <div
+                                            style="font-size:.72rem;color:var(--gcl);text-transform:uppercase;font-weight:700">
+                                            Atención Ventas</div>
+                                        <a href="javascript:void(0)" class="contact-link"
+                                            onclick="abrirWhatsAppDirecto('584144938316', '', event)">+58 414-4938316</a>
                                     </div>
-                                    <a href="https://wa.me/584144938316" target="_blank" rel="noopener noreferrer" class="btn-logo-action" style="background:#25d366;border-color:#25d366;width:28px;height:28px" title="Escribir por WhatsApp" onclick="navigateToTab('cotiza')">💬</a>
+                                    <a href="javascript:void(0)"
+                                        class="btn-logo-action"
+                                        style="background:#25d366;border-color:#25d366;width:28px;height:28px"
+                                        title="Escribir directo a WhatsApp" onclick="abrirWhatsAppDirecto('584144938316', '', event)">💬</a>
                                 </li>
                                 <li class="contact-phone-row">
                                     <div>
-                                        <div style="font-size:.72rem;color:var(--gcl);text-transform:uppercase;font-weight:700">Asesoría Comercial</div>
-                                        <a href="tel:+584243409898" class="contact-link" onclick="navigateToTab('cotiza')">+58 424-3409898</a>
+                                        <div
+                                            style="font-size:.72rem;color:var(--gcl);text-transform:uppercase;font-weight:700">
+                                            Asesoría Comercial</div>
+                                        <a href="javascript:void(0)" class="contact-link"
+                                            onclick="abrirWhatsAppDirecto('584243409898', '', event)">+58 424-3409898</a>
                                     </div>
-                                    <a href="https://wa.me/584243409898" target="_blank" rel="noopener noreferrer" class="btn-logo-action" style="background:#25d366;border-color:#25d366;width:28px;height:28px" title="Escribir por WhatsApp" onclick="navigateToTab('cotiza')">💬</a>
+                                    <a href="javascript:void(0)"
+                                        class="btn-logo-action"
+                                        style="background:#25d366;border-color:#25d366;width:28px;height:28px"
+                                        title="Escribir directo a WhatsApp" onclick="abrirWhatsAppDirecto('584243409898', '', event)">💬</a>
                                 </li>
                                 <li class="contact-phone-row">
                                     <div>
-                                        <div style="font-size:.72rem;color:var(--gcl);text-transform:uppercase;font-weight:700">Cotizaciones B2B</div>
-                                        <a href="tel:+584243056068" class="contact-link" onclick="navigateToTab('cotiza')">+58 424-3056068</a>
+                                        <div
+                                            style="font-size:.72rem;color:var(--gcl);text-transform:uppercase;font-weight:700">
+                                            Cotizaciones B2B</div>
+                                        <a href="javascript:void(0)" class="contact-link"
+                                            onclick="abrirWhatsAppDirecto('584243056068', '', event)">+58 424-3056068</a>
                                     </div>
-                                    <a href="https://wa.me/584243056068" target="_blank" rel="noopener noreferrer" class="btn-logo-action" style="background:#25d366;border-color:#25d366;width:28px;height:28px" title="Escribir por WhatsApp" onclick="navigateToTab('cotiza')">💬</a>
+                                    <a href="javascript:void(0)"
+                                        class="btn-logo-action"
+                                        style="background:#25d366;border-color:#25d366;width:28px;height:28px"
+                                        title="Escribir directo a WhatsApp" onclick="abrirWhatsAppDirecto('584243056068', '', event)">💬</a>
                                 </li>
                             </ul>
                         </div>
@@ -4497,15 +4787,18 @@
                                 </div>
                             </div>
                             <div class="social-chips-list">
-                                <a href="https://instagram.com/grupounifortex" target="_blank" rel="noopener noreferrer" class="social-chip-btn" onclick="navigateToTab('cotiza')">
+                                <a href="https://instagram.com/grupounifortex" target="_blank" rel="noopener noreferrer"
+                                    class="social-chip-btn" onclick="navigateToTab('cotiza')">
                                     <span>📸 Instagram</span>
                                     <span style="color:var(--ama)">@grupounifortex ↗</span>
                                 </a>
-                                <a href="https://tiktok.com/@grupounifortex" target="_blank" rel="noopener noreferrer" class="social-chip-btn" onclick="navigateToTab('cotiza')">
+                                <a href="https://tiktok.com/@grupounifortex" target="_blank" rel="noopener noreferrer"
+                                    class="social-chip-btn" onclick="navigateToTab('cotiza')">
                                     <span>🎵 TikTok</span>
                                     <span style="color:var(--ama)">@grupounifortex ↗</span>
                                 </a>
-                                <a href="https://facebook.com/grupounifortex" target="_blank" rel="noopener noreferrer" class="social-chip-btn" onclick="navigateToTab('cotiza')">
+                                <a href="https://facebook.com/grupounifortex" target="_blank" rel="noopener noreferrer"
+                                    class="social-chip-btn" onclick="navigateToTab('cotiza')">
                                     <span>👥 Facebook</span>
                                     <span style="color:var(--ama)">@grupounifortex ↗</span>
                                 </a>
@@ -4524,7 +4817,8 @@
                             <ul class="contact-card-list">
                                 <li class="contact-card-item">
                                     <strong>📧 Correo Electrónico:</strong>
-                                    <a href="mailto:grupounifortexventas@gmail.com" class="contact-link" style="word-break:break-all">
+                                    <a href="javascript:void(0)" onclick="abrirCorreoUnifortex(event)" class="contact-link"
+                                        style="word-break:break-all" title="Redactar correo en Gmail">
                                         grupounifortexventas@gmail.com
                                     </a>
                                 </li>
@@ -4543,48 +4837,65 @@
 
                     <!-- FORMULARIO DE COTIZACIÓN RÁPIDA (ENFOQUE PERSONAL) -->
                     <div class="contact-form-box">
-                        <h3 style="margin-bottom:.5rem;font-size:1.4rem;color:#ffffff !important">Cotiza en <span style="color:var(--ama)">60 segundos</span></h3>
+                        <h3 style="margin-bottom:.5rem;font-size:1.4rem;color:#ffffff !important">Cotiza en <span
+                                class="gold">60 segundos</span></h3>
                         <p style="margin:0 0 1.5rem;color:var(--gcl);font-size:.92rem">
-                            Déjanos tus datos de contacto y te enviaremos una propuesta personalizada a tu medida con atención directa e inmediata.
+                            Déjanos tus datos de contacto y te enviaremos una propuesta personalizada a tu medida con
+                            atención directa e inmediata.
                         </p>
 
-                        
+
                         <!-- BANNER DINÁMICO DE DETECCIÓN DE CARRITO PARA COTIZACIÓN Y ORDEN DE COMPRA -->
                         <div id="cotizaCartBannerContainer" style="margin-bottom:1.4rem">
                             <!-- Estado A: Cuando el cliente TIENE productos en el carrito -->
-                            <div id="cotizaCartActiveBox" style="display:none;background:linear-gradient(135deg, rgba(253,196,23,0.12) 0%, rgba(226,30,44,0.08) 100%);border:1px solid rgba(253,196,23,0.4);border-radius:14px;padding:1.1rem 1.25rem;box-shadow:0 6px 24px rgba(0,0,0,0.22);text-align:left">
-                                <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:.85rem">
+                            <div id="cotizaCartActiveBox"
+                                style="display:none;background:linear-gradient(135deg, rgba(253,196,23,0.12) 0%, rgba(226,30,44,0.08) 100%);border:1px solid rgba(253,196,23,0.4);border-radius:14px;padding:1.1rem 1.25rem;box-shadow:0 6px 24px rgba(0,0,0,0.22);text-align:left">
+                                <div
+                                    style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:.85rem">
                                     <div style="flex:1;min-width:240px">
-                                        <div style="display:inline-flex;align-items:center;gap:.35rem;background:var(--ama);color:#111;font-size:.7rem;font-weight:800;padding:.25rem .6rem;border-radius:6px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.45rem">
+                                        <div
+                                            style="display:inline-flex;align-items:center;gap:.35rem;background:var(--ama);color:#111;font-size:.7rem;font-weight:800;padding:.25rem .6rem;border-radius:6px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.45rem">
                                             🛒 Material en Carrito Detectado
                                         </div>
-                                        <h4 style="margin:0 0 .25rem;font-size:1.08rem;color:#ffffff;display:flex;align-items:center;gap:.5rem">
-                                            Prendas listas para cotizar <span id="cotizaCartCountBadge" style="color:var(--ama);font-weight:700">(0 prendas)</span>
+                                        <h4
+                                            style="margin:0 0 .25rem;font-size:1.08rem;color:#ffffff;display:flex;align-items:center;gap:.5rem">
+                                            Prendas listas para cotizar <span id="cotizaCartCountBadge"
+                                                style="color:var(--ama);font-weight:700">(0 prendas)</span>
                                         </h4>
                                         <p style="margin:0;font-size:.82rem;color:var(--gcl);line-height:1.4">
-                                            Detectamos tus prendas seleccionadas. Puedes descargar directamente tu <b>Cotización Oficial en PDF</b> con membrete y precios o transferirlas a tu <b>Orden de Compra</b>.
+                                            Detectamos tus prendas seleccionadas. Puedes descargar directamente tu
+                                            <b>Cotización Oficial en PDF</b> con membrete y precios o transferirlas a tu
+                                            <b>Orden de Compra</b>.
                                         </p>
                                     </div>
 
-                                    <div style="background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.12);padding:.6rem .95rem;border-radius:10px;text-align:right;min-width:145px">
-                                        <div style="font-size:.68rem;color:var(--gcl);text-transform:uppercase;letter-spacing:.04em">Total Cotización</div>
-                                        <div id="cotizaCartTotalVal" style="font-size:1.35rem;font-weight:800;color:var(--ama);line-height:1.15;margin:.15rem 0">$0.00</div>
+                                    <div
+                                        style="background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.12);padding:.6rem .95rem;border-radius:10px;text-align:right;min-width:145px">
+                                        <div
+                                            style="font-size:.68rem;color:var(--gcl);text-transform:uppercase;letter-spacing:.04em">
+                                            Total Cotización</div>
+                                        <div id="cotizaCartTotalVal"
+                                            style="font-size:1.35rem;font-weight:800;color:var(--ama);line-height:1.15;margin:.15rem 0">
+                                            $0.00</div>
                                         <div style="font-size:.68rem;color:#9ca3af">IVA (16%) Incluido</div>
                                     </div>
                                 </div>
 
                                 <!-- Chips con resumen de prendas del carrito -->
-                                <div id="cotizaCartChipsList" style="display:flex;flex-wrap:wrap;gap:.45rem;max-height:115px;overflow-y:auto;padding:.4rem 0;margin-bottom:1rem;border-top:1px solid rgba(255,255,255,0.08);border-bottom:1px solid rgba(255,255,255,0.08)">
+                                <div id="cotizaCartChipsList"
+                                    style="display:flex;flex-wrap:wrap;gap:.45rem;max-height:115px;overflow-y:auto;padding:.4rem 0;margin-bottom:1rem;border-top:1px solid rgba(255,255,255,0.08);border-bottom:1px solid rgba(255,255,255,0.08)">
                                     <!-- Se inyecta dinámicamente -->
                                 </div>
 
                                 <!-- Botones de acción directa -->
-                                <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(210px, 1fr));gap:.75rem">
+                                <div
+                                    style="display:grid;grid-template-columns:repeat(auto-fit, minmax(210px, 1fr));gap:.75rem">
                                     <button type="button" class="btn btn-w" onclick="generarPDFCotizacionCarrito()"
                                         style="justify-content:center;padding:.8rem 1rem;font-size:.88rem;box-shadow:0 4px 16px rgba(226,30,44,0.35);cursor:pointer">
                                         📄 Descargar Cotización en PDF
                                     </button>
-                                    <button type="button" class="btn btn-o" onclick="transferirCarritoAOrdenDesdeCotiza()"
+                                    <button type="button" class="btn btn-o"
+                                        onclick="transferirCarritoAOrdenDesdeCotiza()"
                                         style="justify-content:center;padding:.8rem 1rem;font-size:.88rem;border-color:rgba(253,196,23,0.6);color:var(--ama);cursor:pointer">
                                         📋 Pasar a Orden de Compra B2B ↗
                                     </button>
@@ -4592,12 +4903,14 @@
                             </div>
 
                             <!-- Estado B: Cuando el carrito está vacío -->
-                            <div id="cotizaCartEmptyBox" style="background:rgba(255,255,255,0.04);border:1px dashed rgba(255,255,255,0.2);border-radius:12px;padding:.9rem 1.15rem;text-align:left;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem">
+                            <div id="cotizaCartEmptyBox"
+                                style="background:rgba(255,255,255,0.04);border:1px dashed rgba(255,255,255,0.2);border-radius:12px;padding:.9rem 1.15rem;text-align:left;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem">
                                 <div style="display:flex;align-items:center;gap:.7rem;max-width:440px">
                                     <span style="font-size:1.5rem">💡</span>
                                     <div style="font-size:.82rem;color:var(--gcl);line-height:1.4">
                                         <b style="color:#ffffff">¿Deseas una cotización con prendas específicas?</b><br>
-                                        Añade productos a tu carrito desde nuestro catálogo y podrás generar tu cotización formal con membrete en PDF al instante.
+                                        Añade productos a tu carrito desde nuestro catálogo y podrás generar tu
+                                        cotización formal con membrete en PDF al instante.
                                     </div>
                                 </div>
                                 <button type="button" onclick="navigateToTab('diseno')" class="btn btn-o"
@@ -4608,52 +4921,67 @@
                         </div>
 
                         <!-- Mensaje de aviso amigable y suave si faltan datos obligatorios -->
-                        <div id="cotizaFriendlyNotice" style="display:none;background:rgba(253,196,23,0.12);border:1px solid rgba(253,196,23,0.4);color:var(--ama);padding:.85rem 1.1rem;border-radius:12px;font-size:.85rem;margin-bottom:1.2rem;line-height:1.45;transition:all .3s ease"></div>
+                        <div id="cotizaFriendlyNotice"
+                            style="display:none;background:rgba(253,196,23,0.12);border:1px solid rgba(253,196,23,0.4);color:var(--ama);padding:.85rem 1.1rem;border-radius:12px;font-size:.85rem;margin-bottom:1.2rem;line-height:1.45;transition:all .3s ease">
+                        </div>
 
-                        <form id="formCotizaPersonal" onsubmit="return enviarCotizacionPersonal(event)" novalidate style="display:grid;gap:1.1rem;text-align:left">
-                            <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(210px, 1fr));gap:1rem">
+                        <form id="formCotizaPersonal" onsubmit="return enviarCotizacionPersonal(event)" novalidate
+                            style="display:grid;gap:1.1rem;text-align:left">
+                            <div
+                                style="display:grid;grid-template-columns:repeat(auto-fit, minmax(210px, 1fr));gap:1rem">
                                 <!-- 1. Nombre Completo (Obligatorio) -->
                                 <div>
-                                    <label for="cotizaNombre" style="display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--gcl);margin-bottom:.35rem">
+                                    <label for="cotizaNombre"
+                                        style="display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--gcl);margin-bottom:.35rem">
                                         Nombre Completo <span style="color:var(--ama)">*</span>
                                     </label>
                                     <input type="text" id="cotizaNombre" placeholder="Ej: Carlos Pérez" required
                                         style="width:100%;padding:.9rem 1rem;border:1px solid rgba(255,255,255,0.15);border-radius:10px;background:rgba(255,255,255,0.06);color:#fff;font-family:Poppins;font-size:.86rem;outline:none;transition:border-color .2s"
-                                        onfocus="this.style.borderColor='var(--ama)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+                                        onfocus="this.style.borderColor='var(--ama)'"
+                                        onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
                                 </div>
 
                                 <!-- 2. Teléfono / WhatsApp (Obligatorio) -->
                                 <div>
-                                    <label for="cotizaTelefono" style="display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--gcl);margin-bottom:.35rem">
+                                    <label for="cotizaTelefono"
+                                        style="display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--gcl);margin-bottom:.35rem">
                                         Teléfono / WhatsApp <span style="color:var(--ama)">*</span>
                                     </label>
                                     <input type="tel" id="cotizaTelefono" placeholder="Ej: +58 412 1234567" required
                                         style="width:100%;padding:.9rem 1rem;border:1px solid rgba(255,255,255,0.15);border-radius:10px;background:rgba(255,255,255,0.06);color:#fff;font-family:Poppins;font-size:.86rem;outline:none;transition:border-color .2s"
-                                        onfocus="this.style.borderColor='var(--ama)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+                                        onfocus="this.style.borderColor='var(--ama)'"
+                                        onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
                                 </div>
 
                                 <!-- 3. Correo Electrónico (Obligatorio) -->
                                 <div>
-                                    <label for="cotizaEmail" style="display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--gcl);margin-bottom:.35rem">
+                                    <label for="cotizaEmail"
+                                        style="display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--gcl);margin-bottom:.35rem">
                                         Correo Electrónico <span style="color:var(--ama)">*</span>
                                     </label>
                                     <input type="email" id="cotizaEmail" placeholder="tu@correo.com" required
                                         style="width:100%;padding:.9rem 1rem;border:1px solid rgba(255,255,255,0.15);border-radius:10px;background:rgba(255,255,255,0.06);color:#fff;font-family:Poppins;font-size:.86rem;outline:none;transition:border-color .2s"
-                                        onfocus="this.style.borderColor='var(--ama)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+                                        onfocus="this.style.borderColor='var(--ama)'"
+                                        onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
                                 </div>
                             </div>
 
                             <!-- 4. Comentarios o Dudas (Opcional - Si no deja comentario no pasa nada) -->
                             <div>
-                                <label for="cotizaComentarios" style="display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--gcl);margin-bottom:.35rem">
-                                    Comentarios o Requerimiento <span style="color:#9ca3af;font-weight:400;text-transform:none">(Opcional)</span>
+                                <label for="cotizaComentarios"
+                                    style="display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--gcl);margin-bottom:.35rem">
+                                    Comentarios o Requerimiento <span
+                                        style="color:#9ca3af;font-weight:400;text-transform:none">(Opcional)</span>
                                 </label>
-                                <textarea id="cotizaComentarios" rows="3" placeholder="Escribe aquí cualquier duda, prendas de tu interés, cantidades estimadas o detalles que desees comentarnos (opcional)..."
+                                <textarea id="cotizaComentarios" rows="3"
+                                    placeholder="Escribe aquí cualquier duda, prendas de tu interés, cantidades estimadas o detalles que desees comentarnos (opcional)..."
                                     style="width:100%;padding:.9rem 1rem;border:1px solid rgba(255,255,255,0.15);border-radius:10px;background:rgba(255,255,255,0.06);color:#fff;font-family:Poppins;font-size:.86rem;outline:none;resize:vertical;transition:border-color .2s"
-                                    onfocus="this.style.borderColor='var(--ama)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'"></textarea>
+                                    onfocus="this.style.borderColor='var(--ama)'"
+                                    onblur="this.style.borderColor='rgba(255,255,255,0.15)'"></textarea>
                             </div>
 
-                            <button type="submit" class="btn btn-w" style="justify-content:center;padding:1rem;font-size:.95rem;margin-top:.4rem;width:100%">
+                            <button type="submit" class="btn btn-w"
+                                style="justify-content:center;padding:1rem;font-size:.95rem;margin-top:.4rem;width:100%">
                                 📨 Solicitar Cotización Personal
                             </button>
                         </form>
@@ -4671,28 +4999,40 @@
                 <!-- Columna 1: Marca y Contactos Principales -->
                 <div>
                     <div class="footer-brand">
-                        <img src="imagenes pasantias/escudo.png" alt="Escudo Unifortex" class="brand-escudo-img" style="height:36px;max-width:36px">
+                        <img src="imagenes pasantias/escudo.png" alt="Escudo Unifortex" class="brand-escudo-img"
+                            style="height:36px;max-width:36px">
                         <img src="imagenes pasantias/logo.png" alt="Grupo Unifortex" class="footer-logo-img">
                     </div>
-                    <p style="font-size:.82rem;line-height:1.5;color:#bfc2c2">Grupo Unifortex EPP · Protección, seguridad y estilo para el trabajador venezolano con confección bajo normas COVENIN y OSHA.</p>
+                    <p style="font-size:.82rem;line-height:1.5;color:#bfc2c2">Grupo Unifortex EPP · Protección,
+                        seguridad y estilo para el trabajador venezolano con confección bajo normas COVENIN y OSHA.</p>
                     <div class="footer-contact-pills">
-                        <a href="mailto:grupounifortexventas@gmail.com" class="footer-link-pill" onclick="navigateToTab('cotiza')">📧 grupounifortexventas@gmail.com</a>
-                        <a href="https://wa.me/584144938316" target="_blank" rel="noopener noreferrer" class="footer-link-pill" onclick="navigateToTab('cotiza')">💬 WhatsApp Ventas: +58 414-4938316</a>
-                        <a href="https://wa.me/584243409898" target="_blank" rel="noopener noreferrer" class="footer-link-pill" onclick="navigateToTab('cotiza')">💬 WhatsApp Asesoría: +58 424-3409898</a>
-                        <a href="https://wa.me/584243056068" target="_blank" rel="noopener noreferrer" class="footer-link-pill" onclick="navigateToTab('cotiza')">💬 WhatsApp B2B: +58 424-3056068</a>
+                        <a href="javascript:void(0)" class="footer-link-pill"
+                            onclick="abrirCorreoUnifortex(event)" title="Abrir y redactar en Gmail">📧 grupounifortexventas@gmail.com</a>
+                        <a href="javascript:void(0)" class="footer-link-pill"
+                            onclick="abrirWhatsAppDirecto('584144938316', '', event)" title="Abrir chat directo en WhatsApp">💬 WhatsApp Ventas: +58 414-4938316</a>
+                        <a href="javascript:void(0)" class="footer-link-pill"
+                            onclick="abrirWhatsAppDirecto('584243409898', '', event)" title="Abrir chat directo en WhatsApp">💬 WhatsApp Asesoría: +58 424-3409898</a>
+                        <a href="javascript:void(0)" class="footer-link-pill"
+                            onclick="abrirWhatsAppDirecto('584243056068', '', event)" title="Abrir chat directo en WhatsApp">💬 WhatsApp B2B: +58 424-3056068</a>
                     </div>
 
                     <!-- Redes Sociales Oficiales bajo los números -->
                     <div class="footer-social-wrapper">
                         <span class="footer-social-label">🌐 Síguenos en Redes</span>
                         <div class="footer-social-chips">
-                            <a href="https://instagram.com/grupounifortex" target="_blank" rel="noopener noreferrer" class="footer-social-pill" onclick="navigateToTab('cotiza')" title="Instagram @grupounifortex">
+                            <a href="https://instagram.com/grupounifortex" target="_blank" rel="noopener noreferrer"
+                                class="footer-social-pill"
+                                title="Instagram @grupounifortex">
                                 <span>📸 Instagram</span>
                             </a>
-                            <a href="https://tiktok.com/@grupounifortex" target="_blank" rel="noopener noreferrer" class="footer-social-pill" onclick="navigateToTab('cotiza')" title="TikTok @grupounifortex">
+                            <a href="https://tiktok.com/@grupounifortex" target="_blank" rel="noopener noreferrer"
+                                class="footer-social-pill"
+                                title="TikTok @grupounifortex">
                                 <span>🎵 TikTok</span>
                             </a>
-                            <a href="https://facebook.com/grupounifortex" target="_blank" rel="noopener noreferrer" class="footer-social-pill" onclick="navigateToTab('cotiza')" title="Facebook @grupounifortex">
+                            <a href="https://facebook.com/grupounifortex" target="_blank" rel="noopener noreferrer"
+                                class="footer-social-pill"
+                                title="Facebook @grupounifortex">
                                 <span>👥 Facebook</span>
                             </a>
                         </div>
@@ -4703,11 +5043,16 @@
                 <div>
                     <h5>🛡️ Soluciones</h5>
                     <a href="#config" onclick="navigateToTab('config');filtrarCatalogo('Todos');">Catálogo General</a>
-                    <a href="#config" onclick="navigateToTab('config');filtrarCatalogo('Pantalones & Jeans');">Pantalones & Jeans</a>
-                    <a href="#config" onclick="navigateToTab('config');filtrarCatalogo('Camisas & Chemises');">Camisas & Chemises</a>
-                    <a href="#config" onclick="navigateToTab('config');filtrarCatalogo('Bragas & Batas');">Bragas Industriales</a>
-                    <a href="#config" onclick="navigateToTab('config');filtrarCatalogo('Calzado');">Calzado de Seguridad</a>
-                    <a href="#config" onclick="navigateToTab('config');filtrarCatalogo('Respiratoria');">Protección Respiratoria</a>
+                    <a href="#config"
+                        onclick="navigateToTab('config');filtrarCatalogo('Pantalones & Jeans');">Pantalones & Jeans</a>
+                    <a href="#config" onclick="navigateToTab('config');filtrarCatalogo('Camisas & Chemises');">Camisas &
+                        Chemises</a>
+                    <a href="#config" onclick="navigateToTab('config');filtrarCatalogo('Bragas & Batas');">Bragas
+                        Industriales</a>
+                    <a href="#config" onclick="navigateToTab('config');filtrarCatalogo('Calzado');">Calzado de
+                        Seguridad</a>
+                    <a href="#config" onclick="navigateToTab('config');filtrarCatalogo('Respiratoria');">Protección
+                        Respiratoria</a>
                     <a href="#diseno" onclick="navigateToTab('diseno')">Personalizador de Prendas</a>
                     <a href="#orden-compra" onclick="navigateToTab('orden-compra')">Generador Orden de Compra</a>
                 </div>
@@ -4716,31 +5061,27 @@
                 <div class="footer-col-maps">
                     <h5>📍 Nuestras Sedes en Google Maps</h5>
                     <div class="footer-maps-grid">
-                        
+
                         <!-- Sede Maracay -->
                         <div class="footer-map-card">
                             <div class="footer-map-header">
                                 <span class="footer-map-badge">🏢 Sede Maracay</span>
-                                <a href="https://www.google.com/maps/search/?api=1&query=Centro+Comercial+Ciudad+Jard%C3%ADn+Maracay+Aragua" 
-                                   target="_blank" rel="noopener noreferrer" 
-                                   class="footer-map-btn" 
-                                   title="Abrir ubicación exacta en Google Maps">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Centro+Comercial+Ciudad+Jard%C3%ADn+Maracay+Aragua"
+                                    target="_blank" rel="noopener noreferrer" class="footer-map-btn"
+                                    title="Abrir ubicación exacta en Google Maps">
                                     Abrir Maps ↗
                                 </a>
                             </div>
                             <p class="footer-map-addr">📍 C.C. Ciudad Jardín, Local 20, Maracay, Edo. Aragua</p>
                             <div class="footer-map-frame-wrap">
-                                <iframe 
-                                    src="https://maps.google.com/maps?q=Centro+Comercial+Ciudad+Jardin+Maracay+Aragua&t=&z=15&ie=UTF8&iwloc=&output=embed" 
-                                    class="footer-map-iframe" 
-                                    title="Google Maps Sede Maracay" 
-                                    loading="lazy" 
+                                <iframe
+                                    src="https://maps.google.com/maps?q=Centro+Comercial+Ciudad+Jardin+Maracay+Aragua&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                                    class="footer-map-iframe" title="Google Maps Sede Maracay" loading="lazy"
                                     referrerpolicy="no-referrer-when-downgrade">
                                 </iframe>
-                                <a href="https://www.google.com/maps/search/?api=1&query=Centro+Comercial+Ciudad+Jard%C3%ADn+Maracay+Aragua" 
-                                   target="_blank" rel="noopener noreferrer" 
-                                   class="footer-map-overlay-link" 
-                                   aria-label="Abrir Sede Maracay en Google Maps">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Centro+Comercial+Ciudad+Jard%C3%ADn+Maracay+Aragua"
+                                    target="_blank" rel="noopener noreferrer" class="footer-map-overlay-link"
+                                    aria-label="Abrir Sede Maracay en Google Maps">
                                     <span class="footer-map-overlay-hint">Click para abrir en Google Maps ↗</span>
                                 </a>
                             </div>
@@ -4751,26 +5092,22 @@
                         <div class="footer-map-card">
                             <div class="footer-map-header">
                                 <span class="footer-map-badge">🏢 Sede Caracas</span>
-                                <a href="https://www.google.com/maps/search/?api=1&query=Edificio+Fertec+Av+Libertador+Caracas" 
-                                   target="_blank" rel="noopener noreferrer" 
-                                   class="footer-map-btn" 
-                                   title="Abrir ubicación exacta en Google Maps">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Edificio+Fertec+Av+Libertador+Caracas"
+                                    target="_blank" rel="noopener noreferrer" class="footer-map-btn"
+                                    title="Abrir ubicación exacta en Google Maps">
                                     Abrir Maps ↗
                                 </a>
                             </div>
                             <p class="footer-map-addr">📍 Av. Libertador, Edif. Fertec, Piso 4, Caracas</p>
                             <div class="footer-map-frame-wrap">
-                                <iframe 
-                                    src="https://maps.google.com/maps?q=Edificio+Fertec+Av+Libertador+Caracas&t=&z=15&ie=UTF8&iwloc=&output=embed" 
-                                    class="footer-map-iframe" 
-                                    title="Google Maps Sede Caracas" 
-                                    loading="lazy" 
+                                <iframe
+                                    src="https://maps.google.com/maps?q=Edificio+Fertec+Av+Libertador+Caracas&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                                    class="footer-map-iframe" title="Google Maps Sede Caracas" loading="lazy"
                                     referrerpolicy="no-referrer-when-downgrade">
                                 </iframe>
-                                <a href="https://www.google.com/maps/search/?api=1&query=Edificio+Fertec+Av+Libertador+Caracas" 
-                                   target="_blank" rel="noopener noreferrer" 
-                                   class="footer-map-overlay-link" 
-                                   aria-label="Abrir Sede Caracas en Google Maps">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Edificio+Fertec+Av+Libertador+Caracas"
+                                    target="_blank" rel="noopener noreferrer" class="footer-map-overlay-link"
+                                    aria-label="Abrir Sede Caracas en Google Maps">
                                     <span class="footer-map-overlay-hint">Click para abrir en Google Maps ↗</span>
                                 </a>
                             </div>
@@ -4807,7 +5144,8 @@
                 <div class="cart-drawer-empty-ico">🛒</div>
                 <h4>Tu carrito está vacío</h4>
                 <p>Agrega productos desde el catálogo para armar la dotación o equipamiento de tu empresa.</p>
-                <button class="btn btn-w" style="font-size:.78rem;padding:.7rem 1.4rem" onclick="closeCartDrawer(); navigateToTab('config');">
+                <button class="btn btn-w" style="font-size:.78rem;padding:.7rem 1.4rem"
+                    onclick="closeCartDrawer(); navigateToTab('config');">
                     Explorar Catálogo
                 </button>
             </div>
@@ -4834,10 +5172,12 @@
             </button>
 
             <div class="cart-drawer-actions-sub">
-                <button type="button" class="btn-drawer-sec" onclick="closeCartDrawer()" title="Cerrar carrito y seguir explorando el catálogo">
+                <button type="button" class="btn-drawer-sec" onclick="closeCartDrawer()"
+                    title="Cerrar carrito y seguir explorando el catálogo">
                     <span>🛍️</span> Seguir explorando
                 </button>
-                <button type="button" class="btn-drawer-clear" onclick="clearCart()" title="Vaciar todos los productos del carrito">
+                <button type="button" class="btn-drawer-clear" onclick="clearCart()"
+                    title="Vaciar todos los productos del carrito">
                     <span>🗑️</span> Vaciar carrito
                 </button>
             </div>
@@ -4852,11 +5192,14 @@
     <div class="unifortex-toast" id="unifortexToast"></div>
 
     <!-- Chatbot Proactivo -->
-    <div class="chat-greeting-bubble" id="chatGreetingBubble" onclick="openChat(); dismissGreeting()" style="display:none">
+    <div class="chat-greeting-bubble" id="chatGreetingBubble" onclick="openChat(); dismissGreeting()"
+        style="display:none">
         👋 ¡Hola! ¿Necesitas ayuda con tu pedido?
-        <button type="button" class="greeting-close" onclick="event.stopPropagation(); dismissGreeting()" aria-label="Cerrar saludo">✕</button>
+        <button type="button" class="greeting-close" onclick="event.stopPropagation(); dismissGreeting()"
+            aria-label="Cerrar saludo">✕</button>
     </div>
-    <button id="chatBtn" onclick="toggleChat()" aria-label="Abrir asesor virtual" aria-expanded="false" title="Asesor Virtual UNIFORTEX">
+    <button id="chatBtn" onclick="toggleChat()" aria-label="Abrir asesor virtual" aria-expanded="false"
+        title="Asesor Virtual UNIFORTEX">
         <img src="imagenes pasantias/escudo.png" alt="Asesor UNIFORTEX" class="chat-btn-escudo">
         <span class="chat-notif-dot" id="chatNotifDot" style="display:none"></span>
     </button>
@@ -4868,14 +5211,17 @@
                 <small>En línea</small>
             </div>
             <div class="chat-head-actions">
-                <button type="button" class="chat-head-btn" onclick="restartChat()" aria-label="Reiniciar conversación" title="Reiniciar conversación">🔄</button>
-                <button type="button" class="chat-head-btn btn-close" onclick="toggleChat()" aria-label="Cerrar y minimizar chat" title="Cerrar (mantiene tu conversación)">✕</button>
+                <button type="button" class="chat-head-btn" onclick="restartChat()" aria-label="Reiniciar conversación"
+                    title="Reiniciar conversación">🔄</button>
+                <button type="button" class="chat-head-btn btn-close" onclick="toggleChat()"
+                    aria-label="Cerrar y minimizar chat" title="Cerrar (mantiene tu conversación)">✕</button>
             </div>
         </div>
         <div id="chatLog" aria-live="polite"></div>
         <div class="opts" id="chatOpts"></div>
         <form id="chatForm" onsubmit="event.preventDefault();sendMsg()">
-            <input id="chatInput" placeholder="Escribe tu mensaje…" autocomplete="off" aria-label="Mensaje para el asesor">
+            <input id="chatInput" placeholder="Escribe tu mensaje…" autocomplete="off"
+                aria-label="Mensaje para el asesor">
             <button type="submit" aria-label="Enviar mensaje">➤</button>
         </form>
     </div>
@@ -5721,11 +6067,16 @@
                 return;
             }
 
-            grid.innerHTML = filtered.map(p => `
+            grid.innerHTML = filtered.map(p => {
+                // FASE 4: Si el producto tiene foto real, usarla; si no, mostrar el emoji como fallback.
+                const mediaHtml = p.img
+                    ? `<img src="${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;border-radius:12px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="card-moto-emoji" style="display:none">${p.ico}</div>`
+                    : `<div class="card-moto-emoji">${p.ico}</div>`;
+                return `
                 <div class="prod-card-moto">
                     <span class="card-moto-badge">🏷️ ${p.code}</span>
                     <div class="card-moto-media" onclick="abrirDetalleProducto(${p.id})" title="Click para ver especificaciones de ${p.name}">
-                        <div class="card-moto-emoji">${p.ico}</div>
+                        ${mediaHtml}
                     </div>
                     <div class="card-moto-brand">UNIFORTEX · ${p.cat}</div>
                     <h3 class="card-moto-title" onclick="abrirDetalleProducto(${p.id})" title="${p.name}">${p.name}</h3>
@@ -5748,8 +6099,8 @@
                             🛒
                         </button>
                     </div>
-                </div>
-            `).join('');
+                </div>`;
+            }).join('');
         }
 
         function actualizarEstadoFiltrosCatalogo(cat, search) {
@@ -6010,13 +6361,7 @@
                 }
             }
 
-            // 2. Indicador superior
-            const indBadge = document.getElementById('modalTierIndicatorBadge');
-            if (indBadge) {
-                indBadge.textContent = isMayor ? '⭐ Tarifa Mayorista' : '🛍️ Tarifa Detallado';
-                indBadge.style.cssText = 'font-size:.72rem;padding:.2rem .65rem;border-radius:20px;font-weight:700;display:inline-flex;align-items:center;gap:.3rem;' +
-                    (isMayor ? 'background:rgba(253,196,23,.2);color:var(--ama);border:1px solid rgba(253,196,23,.4)' : 'background:rgba(148,163,184,.15);color:#cbd5e1;border:1px solid rgba(148,163,184,.3)');
-            }
+
 
             // 3. Tarjeta de producto izquierda
             const mediaCard = document.getElementById('modalMediaCard');
@@ -6031,14 +6376,8 @@
                 priceBlock.innerHTML = isMayor ? `
                     <div style="font-size:.78rem;color:#9ca3af;text-decoration:line-through;margin-bottom:2px">$${p.price.toFixed(2)} USD</div>
                     <div style="font-size:1.55rem;font-weight:900;color:var(--ama);line-height:1.15">$${unitPrice.toFixed(2)} <span style="font-size:.75rem;color:#e5e7eb">USD/u</span></div>
-                    <div style="display:inline-block;font-size:.7rem;color:var(--ama);font-weight:800;background:rgba(253,196,23,.15);border:1px solid rgba(253,196,23,.35);padding:.18rem .5rem;border-radius:6px;margin-top:.3rem">
-                        🏭 Tarifa Mayorista
-                    </div>
                 ` : `
                     <div style="font-size:1.55rem;font-weight:900;color:#ffffff;line-height:1.15">$${p.price.toFixed(2)} <span style="font-size:.75rem;color:#9ca3af">USD/u</span></div>
-                    <div style="display:inline-block;font-size:.7rem;color:#94a3b8;font-weight:700;background:rgba(148,163,184,.15);border:1px solid rgba(148,163,184,.3);padding:.18rem .5rem;border-radius:6px;margin-top:.3rem">
-                        🛍️ Tarifa Detallado
-                    </div>
                 `;
             }
 
@@ -6106,10 +6445,8 @@
                             ${p.cat}
                         </span>
                     </div>
-                    <div id="modalTierIndicatorBadge" style="font-size:.72rem;padding:.2rem .65rem;border-radius:20px;font-weight:700;display:inline-flex;align-items:center;gap:.3rem;${isMayor ? 'background:rgba(253,196,23,.2);color:var(--ama);border:1px solid rgba(253,196,23,.4)' : 'background:rgba(148,163,184,.15);color:#cbd5e1;border:1px solid rgba(148,163,184,.3)'}">
-                        ${isMayor ? '⭐ Tarifa Mayorista' : '🛍️ Tarifa Detallado'}
-                    </div>
                 </div>
+
 
                 <!-- PESTAÑAS DETALLADO VS MAYORISTA -->
                 <div class="prod-modal-tabs">
@@ -6119,7 +6456,7 @@
                     </button>
                     <button type="button" id="tabMayorBtn" class="modal-tab-btn ${isMayor ? 'active-mayor' : ''}" onclick="cambiarTierModal('mayor')">
                         <span>🏭 Venta al Mayor</span>
-                        <span style="font-size:.7rem;background:${isMayor ? '#111' : '#fdc417'};color:${isMayor ? '#fdc417' : '#111'};padding:1px 6px;border-radius:4px;font-weight:800">Tarifa B2B (≥12)</span>
+                        <span style="font-size:.7rem;background:${isMayor ? '#111' : '#fdc417'};color:${isMayor ? '#fdc417' : '#111'};padding:1px 6px;border-radius:4px;font-weight:800">Tarifa B2B (+11)</span>
                     </button>
                 </div>
 
@@ -6132,14 +6469,8 @@
                             ${isMayor ? `
                                 <div style="font-size:.78rem;color:#9ca3af;text-decoration:line-through;margin-bottom:2px">$${p.price.toFixed(2)} USD</div>
                                 <div style="font-size:1.55rem;font-weight:900;color:var(--ama);line-height:1.15">$${unitPrice.toFixed(2)} <span style="font-size:.75rem;color:#e5e7eb">USD/u</span></div>
-                                <div style="display:inline-block;font-size:.7rem;color:var(--ama);font-weight:800;background:rgba(253,196,23,.15);border:1px solid rgba(253,196,23,.35);padding:.18rem .5rem;border-radius:6px;margin-top:.3rem">
-                                    🏭 Tarifa Mayorista
-                                </div>
                             ` : `
                                 <div style="font-size:1.55rem;font-weight:900;color:#ffffff;line-height:1.15">$${p.price.toFixed(2)} <span style="font-size:.75rem;color:#9ca3af">USD/u</span></div>
-                                <div style="display:inline-block;font-size:.7rem;color:#94a3b8;font-weight:700;background:rgba(148,163,184,.15);border:1px solid rgba(148,163,184,.3);padding:.18rem .5rem;border-radius:6px;margin-top:.3rem">
-                                    🛍️ Tarifa Detallado
-                                </div>
                             `}
                         </div>
 
@@ -6183,7 +6514,6 @@
                             <div id="modalSizesContainer" style="display:flex;flex-wrap:wrap;gap:.35rem;max-height:65px;overflow-y:auto;padding:2px 0">
                                 ${sizesArr.map(s => `
                                     <button type="button" class="modal-size-btn ${s === modalSelectedSize ? 'active-size' : ''}"
-                                        onmouseenter="seleccionarTallaModal('${s}')"
                                         onclick="seleccionarTallaModal('${s}')"
                                         data-size="${s}">
                                         ${s}
@@ -6535,7 +6865,7 @@
 
         function getTimeStr() {
             const now = new Date();
-            return now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
+            return now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
         }
 
         function toggleChat() {
@@ -6709,7 +7039,7 @@
         // Manejar acciones rápidas
         async function handleAction(action) {
             setOpts([]);
-            switch(action) {
+            switch (action) {
                 case 'cotizar':
                     chatStep = 'sector';
                     await botSay('¡Perfecto! Para darte la mejor recomendación, cuéntame: <b>¿en qué sector opera tu empresa?</b>');
@@ -6740,7 +7070,7 @@
 
                 case 'sedes':
                     await botSay('📍 <b>Nuestras sedes:</b><br><br>🏢 <b>Maracay:</b> CC Ciudad Jardín, Local 20<br>⏰ Lun-Vie 8:00am - 5:00pm<br><br>🏢 <b>Caracas:</b> Av. Libertador, Edif. Fertec, Piso 4');
-                    await botSay('📱 <b>Teléfonos:</b><br>• +58 414-4938316<br>• +58 424-3409898<br>• +58 424-3056068<br><br>📧 grupounifortexventas@gmail.com', 800);
+                    await botSay('📱 <b>Teléfonos:</b><br>• <a href="javascript:void(0)" onclick="abrirWhatsAppDirecto(\'584144938316\', \'\', event)" style="color:var(--ama);text-decoration:underline">+58 414-4938316</a><br>• <a href="javascript:void(0)" onclick="abrirWhatsAppDirecto(\'584243409898\', \'\', event)" style="color:var(--ama);text-decoration:underline">+58 424-3409898</a><br>• <a href="javascript:void(0)" onclick="abrirWhatsAppDirecto(\'584243056068\', \'\', event)" style="color:var(--ama);text-decoration:underline">+58 424-3056068</a><br><br>📧 <a href="javascript:void(0)" onclick="abrirCorreoUnifortex()" style="color:var(--ama);text-decoration:underline">grupounifortexventas@gmail.com</a>', 800);
                     await botSay('¿Te gustaría algo más?', 1000);
                     setOpts([
                         { label: '🛒 Cotizar productos', action: 'cotizar' },
@@ -6751,7 +7081,7 @@
 
                 case 'asesor':
                     await botSay('📞 ¡Con gusto! Un asesor comercial estará encantado de atenderte.');
-                    await botSay('Puedes contactarnos directamente:<br>📱 <b>WhatsApp:</b> +58 414-4938316<br>📧 <b>Email:</b> grupounifortexventas@gmail.com<br><br>O llena el formulario en <b>Contacto</b> y te respondemos en menos de 24h.', 800);
+                    await botSay('Puedes contactarnos directamente:<br>📱 <b>WhatsApp:</b> <a href="javascript:void(0)" onclick="abrirWhatsAppDirecto(\'584144938316\', \'\', event)" style="color:var(--ama);text-decoration:underline">+58 414-4938316</a><br>📧 <b>Email:</b> <a href="javascript:void(0)" onclick="abrirCorreoUnifortex()" style="color:var(--ama);text-decoration:underline">grupounifortexventas@gmail.com</a><br><br>O llena el formulario en <b>Contacto</b> y te respondemos en menos de 24h.', 800);
                     setTimeout(() => navigateToTab('cotiza'), 1200);
                     await botSay('¿Necesitas algo más?', 1400);
                     setOpts([
@@ -6967,18 +7297,18 @@
                 // disenoLogos se guarda sin imágenes binarias (solo logos de texto)
                 const logosClean = {};
                 for (const [ang, arr] of Object.entries(disenoLogos)) {
-                    logosClean[ang] = arr.filter(l => l.type === 'text').map(l => ({...l}));
+                    logosClean[ang] = arr.filter(l => l.type === 'text').map(l => ({ ...l }));
                 }
                 localStorage.setItem('uf_disenoLogos', JSON.stringify(logosClean));
                 localStorage.setItem('uf_disenoState', JSON.stringify(disenoState));
-            } catch(e) { /* localStorage lleno o no disponible */ }
+            } catch (e) { /* localStorage lleno o no disponible */ }
         }
 
         function loadState() {
             try {
                 const savedCart = localStorage.getItem('uf_cart');
                 const savedCartSizes = localStorage.getItem('uf_cartSizes');
-                if (savedCartSizes) { try { cartSizes = JSON.parse(savedCartSizes); } catch(e){} }
+                if (savedCartSizes) { try { cartSizes = JSON.parse(savedCartSizes); } catch (e) { } }
                 if (savedCart) { cart = JSON.parse(savedCart); renderCart(); }
 
                 const savedOC = localStorage.getItem('uf_ocItems');
@@ -7012,30 +7342,30 @@
                 if (chatHistory && chatHistory.length) {
                     restoreChatHistory();
                 }
-            } catch(e) { /* ignorar errores de parseo */ }
+            } catch (e) { /* ignorar errores de parseo */ }
         }
 
         // Auto-guardado en cada modificación de carrito / OC
         const _origAddCart = addCart;
-        addCart = function(id, qty, size) { _origAddCart(id, qty, size); saveState(); };
+        addCart = function (id, qty, size) { _origAddCart(id, qty, size); saveState(); };
         const _origModCart = modCart;
-        modCart = function(id, delta) { _origModCart(id, delta); saveState(); };
+        modCart = function (id, delta) { _origModCart(id, delta); saveState(); };
         const _origDelCart = delCart;
-        delCart = function(id) { if (cartSizes[id]) delete cartSizes[id]; _origDelCart(id); saveState(); };
+        delCart = function (id) { if (cartSizes[id]) delete cartSizes[id]; _origDelCart(id); saveState(); };
         const _origClearCart = clearCart;
-        clearCart = function() { cartSizes = {}; _origClearCart(); saveState(); };
+        clearCart = function () { cartSizes = {}; _origClearCart(); saveState(); };
         const _origCambiarCantOC = cambiarCantOC;
-        cambiarCantOC = function(idx, d) { _origCambiarCantOC(idx, d); saveState(); };
+        cambiarCantOC = function (idx, d) { _origCambiarCantOC(idx, d); saveState(); };
         const _origEliminarItemOC = eliminarItemOC;
-        eliminarItemOC = function(idx) { _origEliminarItemOC(idx); saveState(); };
+        eliminarItemOC = function (idx) { _origEliminarItemOC(idx); saveState(); };
         const _origAgregarItemManualOC = agregarItemManualOC;
-        agregarItemManualOC = function() { _origAgregarItemManualOC(); saveState(); };
+        agregarItemManualOC = function () { _origAgregarItemManualOC(); saveState(); };
 
         // Cargar estado guardado
         loadState();
 
         // Cerrar chat con Escape (minimizar)
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape' && chatBox && chatBox.classList.contains('open')) {
                 closeChat();
             }
@@ -8093,7 +8423,7 @@
 
                 try {
                     element.setPointerCapture(e.pointerId);
-                } catch (err) {}
+                } catch (err) { }
 
                 e.stopPropagation();
             });
@@ -8135,7 +8465,7 @@
                     isDragging = false;
                     try {
                         element.releasePointerCapture(e.pointerId);
-                    } catch (err) {}
+                    } catch (err) { }
                 }
             };
 
@@ -8303,7 +8633,7 @@
             window.print();
         }
 
-        
+
         /* ---------- INTEGRACIÓN CARRITO Y GENERACIÓN DE COTIZACIÓN EN PDF ---------- */
         function actualizarBannerCotizacionCarrito() {
             const activeBox = document.getElementById('cotizaCartActiveBox');
@@ -8349,7 +8679,7 @@
                             '<span>' + p.ico + ' ' + p.name + '</span>' +
                             '<b style="color:var(--ama)">×' + q + '</b>' +
                             '<span style="color:var(--gcl);font-size:.72rem">($' + itemSub.toFixed(2) + ')</span>' +
-                        '</div>';
+                            '</div>';
                     }).join('');
                 }
             } else {
@@ -8442,333 +8772,333 @@
                     '<td style="text-align:center;font-weight:800;color:#111827">' + item.cant + '</td>' +
                     '<td style="text-align:right;color:#374151">$' + item.precio.toFixed(2) + '</td>' +
                     '<td style="text-align:right;font-weight:800;color:#111827">$' + item.subtotal.toFixed(2) + '</td>' +
-                '</tr>';
+                    '</tr>';
             }).join('');
 
             // Construir HTML de la página imprimible
             const printableHtml = '<!DOCTYPE html>' +
-'<html lang="es">' +
-'<head>' +
-'    <meta charset="UTF-8">' +
-'    <title>Cotización Oficial ' + cotNum + ' - UNIFORTEX INDUSTRIAL</title>' +
-'    <style>' +
-'        * { box-sizing: border-box; margin: 0; padding: 0; }' +
-'        body {' +
-'            font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;' +
-'            color: #1f2937;' +
-'            background: #f8fafc;' +
-'            padding: 24px;' +
-'            font-size: 13px;' +
-'            line-height: 1.5;' +
-'        }' +
-'        .sheet {' +
-'            max-width: 840px;' +
-'            margin: 0 auto;' +
-'            background: #ffffff;' +
-'            border-radius: 12px;' +
-'            box-shadow: 0 4px 20px rgba(0,0,0,0.08);' +
-'            padding: 36px 40px;' +
-'        }' +
-'        .toolbar {' +
-'            max-width: 840px;' +
-'            margin: 0 auto 16px auto;' +
-'            display: flex;' +
-'            align-items: center;' +
-'            justify-content: space-between;' +
-'            background: #111827;' +
-'            color: #fff;' +
-'            padding: 12px 20px;' +
-'            border-radius: 10px;' +
-'            box-shadow: 0 4px 14px rgba(0,0,0,0.15);' +
-'        }' +
-'        .btn-print {' +
-'            background: #e21e2c;' +
-'            color: #fff;' +
-'            border: none;' +
-'            padding: 8px 18px;' +
-'            border-radius: 6px;' +
-'            font-weight: 700;' +
-'            font-size: 13px;' +
-'            cursor: pointer;' +
-'            display: inline-flex;' +
-'            align-items: center;' +
-'            gap: 6px;' +
-'        }' +
-'        .btn-close {' +
-'            background: rgba(255,255,255,0.15);' +
-'            color: #fff;' +
-'            border: none;' +
-'            padding: 8px 14px;' +
-'            border-radius: 6px;' +
-'            font-size: 12px;' +
-'            cursor: pointer;' +
-'        }' +
-'        .header-grid {' +
-'            display: grid;' +
-'            grid-template-columns: 1.5fr 1fr;' +
-'            gap: 20px;' +
-'            border-bottom: 2px solid #e21e2c;' +
-'            padding-bottom: 20px;' +
-'            margin-bottom: 24px;' +
-'        }' +
-'        .brand-title {' +
-'            font-size: 22px;' +
-'            font-weight: 900;' +
-'            letter-spacing: -0.02em;' +
-'            color: #111827;' +
-'            display: flex;' +
-'            align-items: center;' +
-'            gap: 8px;' +
-'        }' +
-'        .brand-sub {' +
-'            font-size: 11px;' +
-'            color: #4b5563;' +
-'            margin-top: 3px;' +
-'            line-height: 1.35;' +
-'        }' +
-'        .badge-rif {' +
-'            display: inline-block;' +
-'            background: #fee2e2;' +
-'            color: #991b1b;' +
-'            font-weight: 800;' +
-'            font-size: 11px;' +
-'            padding: 2px 8px;' +
-'            border-radius: 4px;' +
-'            margin-top: 6px;' +
-'        }' +
-'        .quote-box {' +
-'            background: #f8fafc;' +
-'            border: 1px solid #e2e8f0;' +
-'            border-radius: 8px;' +
-'            padding: 14px 16px;' +
-'            text-align: right;' +
-'        }' +
-'        .quote-box h3 {' +
-'            color: #e21e2c;' +
-'            font-size: 15px;' +
-'            font-weight: 800;' +
-'            margin-bottom: 4px;' +
-'            text-transform: uppercase;' +
-'            letter-spacing: .04em;' +
-'        }' +
-'        .quote-box .num {' +
-'            font-size: 17px;' +
-'            font-weight: 900;' +
-'            color: #111827;' +
-'            margin-bottom: 6px;' +
-'        }' +
-'        .meta-line {' +
-'            font-size: 11px;' +
-'            color: #64748b;' +
-'        }' +
-'        .section-box {' +
-'            background: #fafafa;' +
-'            border: 1px solid #e5e7eb;' +
-'            border-radius: 8px;' +
-'            padding: 14px 18px;' +
-'            margin-bottom: 22px;' +
-'        }' +
-'        .section-box h4 {' +
-'            font-size: 12px;' +
-'            text-transform: uppercase;' +
-'            letter-spacing: .05em;' +
-'            color: #4b5563;' +
-'            margin-bottom: 8px;' +
-'            border-bottom: 1px solid #e5e7eb;' +
-'            padding-bottom: 4px;' +
-'        }' +
-'        .cust-grid {' +
-'            display: grid;' +
-'            grid-template-columns: 1fr 1fr;' +
-'            gap: 10px 18px;' +
-'            font-size: 12px;' +
-'        }' +
-'        .cust-field b { color: #111827; }' +
-'        .cust-field span { color: #4b5563; }' +
-'        table.prod-table {' +
-'            width: 100%;' +
-'            border-collapse: collapse;' +
-'            margin-bottom: 20px;' +
-'        }' +
-'        table.prod-table th {' +
-'            background: #111827;' +
-'            color: #ffffff;' +
-'            font-size: 11px;' +
-'            text-transform: uppercase;' +
-'            letter-spacing: .04em;' +
-'            padding: 10px 12px;' +
-'            text-align: left;' +
-'        }' +
-'        table.prod-table td {' +
-'            padding: 11px 12px;' +
-'            border-bottom: 1px solid #e5e7eb;' +
-'            font-size: 12px;' +
-'        }' +
-'        table.prod-table tr:nth-child(even) {' +
-'            background: #fbfbfa;' +
-'        }' +
-'        .totals-container {' +
-'            display: flex;' +
-'            justify-content: flex-end;' +
-'            margin-bottom: 24px;' +
-'        }' +
-'        .totals-table {' +
-'            width: 330px;' +
-'            border-collapse: collapse;' +
-'        }' +
-'        .totals-table td {' +
-'            padding: 6px 12px;' +
-'            font-size: 12px;' +
-'        }' +
-'        .totals-table tr.grand-total {' +
-'            background: #111827;' +
-'            color: #ffffff;' +
-'        }' +
-'        .totals-table tr.grand-total td {' +
-'            padding: 10px 12px;' +
-'            font-size: 14px;' +
-'            font-weight: 800;' +
-'        }' +
-'        .grand-total-val {' +
-'            color: #fdc417 !important;' +
-'            font-size: 17px !important;' +
-'        }' +
-'        .terms-box {' +
-'            border-top: 1px solid #e5e7eb;' +
-'            padding-top: 14px;' +
-'            margin-bottom: 24px;' +
-'            font-size: 10.5px;' +
-'            color: #64748b;' +
-'            line-height: 1.5;' +
-'        }' +
-'        .terms-box b { color: #374151; }' +
-'        .signatures {' +
-'            display: grid;' +
-'            grid-template-columns: 1fr 1fr;' +
-'            gap: 40px;' +
-'            margin-top: 30px;' +
-'            padding-top: 20px;' +
-'            text-align: center;' +
-'        }' +
-'        .sign-line {' +
-'            border-top: 1px dashed #9ca3af;' +
-'            padding-top: 8px;' +
-'            font-size: 11px;' +
-'            color: #4b5563;' +
-'        }' +
-'        .sign-line b { display: block; color: #111827; font-size: 12px; }' +
-'        @media print {' +
-'            body { background: #fff !important; padding: 0 !important; }' +
-'            .toolbar { display: none !important; }' +
-'            .sheet {' +
-'                box-shadow: none !important;' +
-'                border-radius: 0 !important;' +
-'                padding: 0 !important;' +
-'                max-width: 100% !important;' +
-'            }' +
-'            @page {' +
-'                size: letter portrait;' +
-'                margin: 14mm 15mm;' +
-'            }' +
-'        }' +
-'    </style>' +
-'</head>' +
-'<body>' +
-'    <div class="toolbar">' +
-'        <div>' +
-'            <b>UNIFORTEX INDUSTRIAL C.A.</b> | Vista previa oficial de cotización' +
-'            <span style="font-size:11px;color:#9ca3af;margin-left:10px">(Selecciona "Guardar como PDF" en Destino de impresión)</span>' +
-'        </div>' +
-'        <div style="display:flex;gap:8px">' +
-'            <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Guardar en PDF</button>' +
-'            <button class="btn-close" onclick="window.close()">✕ Cerrar</button>' +
-'        </div>' +
-'    </div>' +
-'    <div class="sheet">' +
-'        <div class="header-grid">' +
-'            <div>' +
-'                <div class="brand-title">🛡️ UNIFORTEX INDUSTRIAL C.A.</div>' +
-'                <div class="brand-sub">' +
-'                    Fabricación de Uniformes Industriales, Ropa de Trabajo y Distribución de EPP Certificado.<br>' +
-'                    <b>Sede Principal Maracay:</b> Zona Ind. San Vicente II, Calle F, Galpón 14, Edo. Aragua.<br>' +
-'                    <b>Sede Comercial Caracas:</b> Av. Principal de Las Mercedes, Centro Empresarial, Caracas.<br>' +
-'                    <b>Teléfonos:</b> +58 (243) 234-5678 / +58 (412) UNIFORT (864-3678) / +58 (414) 888-9900<br>' +
-'                    <b>Email:</b> cotizaciones@unifortex.com | <b>Web:</b> www.unifortex.com' +
-'                </div>' +
-'                <div class="badge-rif">R.I.F.: J-31048921-4 | NIT: 0142987114</div>' +
-'            </div>' +
-'            <div class="quote-box">' +
-'                <h3>Cotización Comercial</h3>' +
-'                <div class="num">' + cotNum + '</div>' +
-'                <div class="meta-line"><b>Fecha de Emisión:</b> ' + fechaHoy + '</div>' +
-'                <div class="meta-line"><b>Vigencia Oferta:</b> 15 días continuos</div>' +
-'                <div class="meta-line"><b>Condición:</b> Confección y Suministro B2B</div>' +
-'                <div class="meta-line"><b>Asesor Comercial:</b> Dpto. Ventas Técnicas</div>' +
-'            </div>' +
-'        </div>' +
-'        <div class="section-box">' +
-'            <h4>Información del Solicitante / Cliente</h4>' +
-'            <div class="cust-grid">' +
-'                <div class="cust-field"><b>Cliente / Razón Social:</b> <span>' + nombreVal + '</span></div>' +
-'                <div class="cust-field"><b>Teléfono / WhatsApp:</b> <span>' + telVal + '</span></div>' +
-'                <div class="cust-field"><b>Correo Electrónico:</b> <span>' + emailVal + '</span></div>' +
-'                <div class="cust-field"><b>Condiciones Requeridas:</b> <span>' + comentariosVal + '</span></div>' +
-'            </div>' +
-'        </div>' +
-'        <table class="prod-table">' +
-'            <thead>' +
-'                <tr>' +
-'                    <th style="width:38px;text-align:center">#</th>' +
-'                    <th>Descripción de la Prenda / EPP</th>' +
-'                    <th>Categoría & Norma</th>' +
-'                    <th style="width:65px;text-align:center">Cant.</th>' +
-'                    <th style="width:95px;text-align:right">P. Unit ($)</th>' +
-'                    <th style="width:105px;text-align:right">Subtotal ($)</th>' +
-'                </tr>' +
-'            </thead>' +
-'            <tbody>' +
+                '<html lang="es">' +
+                '<head>' +
+                '    <meta charset="UTF-8">' +
+                '    <title>Cotización Oficial ' + cotNum + ' - UNIFORTEX INDUSTRIAL</title>' +
+                '    <style>' +
+                '        * { box-sizing: border-box; margin: 0; padding: 0; }' +
+                '        body {' +
+                '            font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;' +
+                '            color: #1f2937;' +
+                '            background: #f8fafc;' +
+                '            padding: 24px;' +
+                '            font-size: 13px;' +
+                '            line-height: 1.5;' +
+                '        }' +
+                '        .sheet {' +
+                '            max-width: 840px;' +
+                '            margin: 0 auto;' +
+                '            background: #ffffff;' +
+                '            border-radius: 12px;' +
+                '            box-shadow: 0 4px 20px rgba(0,0,0,0.08);' +
+                '            padding: 36px 40px;' +
+                '        }' +
+                '        .toolbar {' +
+                '            max-width: 840px;' +
+                '            margin: 0 auto 16px auto;' +
+                '            display: flex;' +
+                '            align-items: center;' +
+                '            justify-content: space-between;' +
+                '            background: #111827;' +
+                '            color: #fff;' +
+                '            padding: 12px 20px;' +
+                '            border-radius: 10px;' +
+                '            box-shadow: 0 4px 14px rgba(0,0,0,0.15);' +
+                '        }' +
+                '        .btn-print {' +
+                '            background: #e21e2c;' +
+                '            color: #fff;' +
+                '            border: none;' +
+                '            padding: 8px 18px;' +
+                '            border-radius: 6px;' +
+                '            font-weight: 700;' +
+                '            font-size: 13px;' +
+                '            cursor: pointer;' +
+                '            display: inline-flex;' +
+                '            align-items: center;' +
+                '            gap: 6px;' +
+                '        }' +
+                '        .btn-close {' +
+                '            background: rgba(255,255,255,0.15);' +
+                '            color: #fff;' +
+                '            border: none;' +
+                '            padding: 8px 14px;' +
+                '            border-radius: 6px;' +
+                '            font-size: 12px;' +
+                '            cursor: pointer;' +
+                '        }' +
+                '        .header-grid {' +
+                '            display: grid;' +
+                '            grid-template-columns: 1.5fr 1fr;' +
+                '            gap: 20px;' +
+                '            border-bottom: 2px solid #e21e2c;' +
+                '            padding-bottom: 20px;' +
+                '            margin-bottom: 24px;' +
+                '        }' +
+                '        .brand-title {' +
+                '            font-size: 22px;' +
+                '            font-weight: 900;' +
+                '            letter-spacing: -0.02em;' +
+                '            color: #111827;' +
+                '            display: flex;' +
+                '            align-items: center;' +
+                '            gap: 8px;' +
+                '        }' +
+                '        .brand-sub {' +
+                '            font-size: 11px;' +
+                '            color: #4b5563;' +
+                '            margin-top: 3px;' +
+                '            line-height: 1.35;' +
+                '        }' +
+                '        .badge-rif {' +
+                '            display: inline-block;' +
+                '            background: #fee2e2;' +
+                '            color: #991b1b;' +
+                '            font-weight: 800;' +
+                '            font-size: 11px;' +
+                '            padding: 2px 8px;' +
+                '            border-radius: 4px;' +
+                '            margin-top: 6px;' +
+                '        }' +
+                '        .quote-box {' +
+                '            background: #f8fafc;' +
+                '            border: 1px solid #e2e8f0;' +
+                '            border-radius: 8px;' +
+                '            padding: 14px 16px;' +
+                '            text-align: right;' +
+                '        }' +
+                '        .quote-box h3 {' +
+                '            color: #e21e2c;' +
+                '            font-size: 15px;' +
+                '            font-weight: 800;' +
+                '            margin-bottom: 4px;' +
+                '            text-transform: uppercase;' +
+                '            letter-spacing: .04em;' +
+                '        }' +
+                '        .quote-box .num {' +
+                '            font-size: 17px;' +
+                '            font-weight: 900;' +
+                '            color: #111827;' +
+                '            margin-bottom: 6px;' +
+                '        }' +
+                '        .meta-line {' +
+                '            font-size: 11px;' +
+                '            color: #64748b;' +
+                '        }' +
+                '        .section-box {' +
+                '            background: #fafafa;' +
+                '            border: 1px solid #e5e7eb;' +
+                '            border-radius: 8px;' +
+                '            padding: 14px 18px;' +
+                '            margin-bottom: 22px;' +
+                '        }' +
+                '        .section-box h4 {' +
+                '            font-size: 12px;' +
+                '            text-transform: uppercase;' +
+                '            letter-spacing: .05em;' +
+                '            color: #4b5563;' +
+                '            margin-bottom: 8px;' +
+                '            border-bottom: 1px solid #e5e7eb;' +
+                '            padding-bottom: 4px;' +
+                '        }' +
+                '        .cust-grid {' +
+                '            display: grid;' +
+                '            grid-template-columns: 1fr 1fr;' +
+                '            gap: 10px 18px;' +
+                '            font-size: 12px;' +
+                '        }' +
+                '        .cust-field b { color: #111827; }' +
+                '        .cust-field span { color: #4b5563; }' +
+                '        table.prod-table {' +
+                '            width: 100%;' +
+                '            border-collapse: collapse;' +
+                '            margin-bottom: 20px;' +
+                '        }' +
+                '        table.prod-table th {' +
+                '            background: #111827;' +
+                '            color: #ffffff;' +
+                '            font-size: 11px;' +
+                '            text-transform: uppercase;' +
+                '            letter-spacing: .04em;' +
+                '            padding: 10px 12px;' +
+                '            text-align: left;' +
+                '        }' +
+                '        table.prod-table td {' +
+                '            padding: 11px 12px;' +
+                '            border-bottom: 1px solid #e5e7eb;' +
+                '            font-size: 12px;' +
+                '        }' +
+                '        table.prod-table tr:nth-child(even) {' +
+                '            background: #fbfbfa;' +
+                '        }' +
+                '        .totals-container {' +
+                '            display: flex;' +
+                '            justify-content: flex-end;' +
+                '            margin-bottom: 24px;' +
+                '        }' +
+                '        .totals-table {' +
+                '            width: 330px;' +
+                '            border-collapse: collapse;' +
+                '        }' +
+                '        .totals-table td {' +
+                '            padding: 6px 12px;' +
+                '            font-size: 12px;' +
+                '        }' +
+                '        .totals-table tr.grand-total {' +
+                '            background: #111827;' +
+                '            color: #ffffff;' +
+                '        }' +
+                '        .totals-table tr.grand-total td {' +
+                '            padding: 10px 12px;' +
+                '            font-size: 14px;' +
+                '            font-weight: 800;' +
+                '        }' +
+                '        .grand-total-val {' +
+                '            color: #fdc417 !important;' +
+                '            font-size: 17px !important;' +
+                '        }' +
+                '        .terms-box {' +
+                '            border-top: 1px solid #e5e7eb;' +
+                '            padding-top: 14px;' +
+                '            margin-bottom: 24px;' +
+                '            font-size: 10.5px;' +
+                '            color: #64748b;' +
+                '            line-height: 1.5;' +
+                '        }' +
+                '        .terms-box b { color: #374151; }' +
+                '        .signatures {' +
+                '            display: grid;' +
+                '            grid-template-columns: 1fr 1fr;' +
+                '            gap: 40px;' +
+                '            margin-top: 30px;' +
+                '            padding-top: 20px;' +
+                '            text-align: center;' +
+                '        }' +
+                '        .sign-line {' +
+                '            border-top: 1px dashed #9ca3af;' +
+                '            padding-top: 8px;' +
+                '            font-size: 11px;' +
+                '            color: #4b5563;' +
+                '        }' +
+                '        .sign-line b { display: block; color: #111827; font-size: 12px; }' +
+                '        @media print {' +
+                '            body { background: #fff !important; padding: 0 !important; }' +
+                '            .toolbar { display: none !important; }' +
+                '            .sheet {' +
+                '                box-shadow: none !important;' +
+                '                border-radius: 0 !important;' +
+                '                padding: 0 !important;' +
+                '                max-width: 100% !important;' +
+                '            }' +
+                '            @page {' +
+                '                size: letter portrait;' +
+                '                margin: 14mm 15mm;' +
+                '            }' +
+                '        }' +
+                '    </style>' +
+                '</head>' +
+                '<body>' +
+                '    <div class="toolbar">' +
+                '        <div>' +
+                '            <b>UNIFORTEX INDUSTRIAL C.A.</b> | Vista previa oficial de cotización' +
+                '            <span style="font-size:11px;color:#9ca3af;margin-left:10px">(Selecciona "Guardar como PDF" en Destino de impresión)</span>' +
+                '        </div>' +
+                '        <div style="display:flex;gap:8px">' +
+                '            <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Guardar en PDF</button>' +
+                '            <button class="btn-close" onclick="window.close()">✕ Cerrar</button>' +
+                '        </div>' +
+                '    </div>' +
+                '    <div class="sheet">' +
+                '        <div class="header-grid">' +
+                '            <div>' +
+                '                <div class="brand-title">🛡️ UNIFORTEX INDUSTRIAL C.A.</div>' +
+                '                <div class="brand-sub">' +
+                '                    Fabricación de Uniformes Industriales, Ropa de Trabajo y Distribución de EPP Certificado.<br>' +
+                '                    <b>Sede Principal Maracay:</b> Zona Ind. San Vicente II, Calle F, Galpón 14, Edo. Aragua.<br>' +
+                '                    <b>Sede Comercial Caracas:</b> Av. Principal de Las Mercedes, Centro Empresarial, Caracas.<br>' +
+                '                    <b>Teléfonos:</b> +58 (243) 234-5678 / +58 (412) UNIFORT (864-3678) / +58 (414) 888-9900<br>' +
+                '                    <b>Email:</b> cotizaciones@unifortex.com | <b>Web:</b> www.unifortex.com' +
+                '                </div>' +
+                '                <div class="badge-rif">R.I.F.: J-31048921-4 | NIT: 0142987114</div>' +
+                '            </div>' +
+                '            <div class="quote-box">' +
+                '                <h3>Cotización Comercial</h3>' +
+                '                <div class="num">' + cotNum + '</div>' +
+                '                <div class="meta-line"><b>Fecha de Emisión:</b> ' + fechaHoy + '</div>' +
+                '                <div class="meta-line"><b>Vigencia Oferta:</b> 15 días continuos</div>' +
+                '                <div class="meta-line"><b>Condición:</b> Confección y Suministro B2B</div>' +
+                '                <div class="meta-line"><b>Asesor Comercial:</b> Dpto. Ventas Técnicas</div>' +
+                '            </div>' +
+                '        </div>' +
+                '        <div class="section-box">' +
+                '            <h4>Información del Solicitante / Cliente</h4>' +
+                '            <div class="cust-grid">' +
+                '                <div class="cust-field"><b>Cliente / Razón Social:</b> <span>' + nombreVal + '</span></div>' +
+                '                <div class="cust-field"><b>Teléfono / WhatsApp:</b> <span>' + telVal + '</span></div>' +
+                '                <div class="cust-field"><b>Correo Electrónico:</b> <span>' + emailVal + '</span></div>' +
+                '                <div class="cust-field"><b>Condiciones Requeridas:</b> <span>' + comentariosVal + '</span></div>' +
+                '            </div>' +
+                '        </div>' +
+                '        <table class="prod-table">' +
+                '            <thead>' +
+                '                <tr>' +
+                '                    <th style="width:38px;text-align:center">#</th>' +
+                '                    <th>Descripción de la Prenda / EPP</th>' +
+                '                    <th>Categoría & Norma</th>' +
+                '                    <th style="width:65px;text-align:center">Cant.</th>' +
+                '                    <th style="width:95px;text-align:right">P. Unit ($)</th>' +
+                '                    <th style="width:105px;text-align:right">Subtotal ($)</th>' +
+                '                </tr>' +
+                '            </thead>' +
+                '            <tbody>' +
                 rowsHtml +
-'            </tbody>' +
-'        </table>' +
-'        <div class="totals-container">' +
-'            <table class="totals-table">' +
-'                <tr>' +
-'                    <td style="color:#4b5563">Subtotal Neto (' + totalPrendas + ' prendas):</td>' +
-'                    <td style="text-align:right;font-weight:700">$' + subtotal.toFixed(2) + '</td>' +
-'                </tr>' +
-'                <tr>' +
-'                    <td style="color:#4b5563">IVA Estimado (16%):</td>' +
-'                    <td style="text-align:right;font-weight:700">$' + iva.toFixed(2) + '</td>' +
-'                </tr>' +
-'                <tr class="grand-total">' +
-'                    <td>TOTAL GENERAL (USD):</td>' +
-'                    <td style="text-align:right" class="grand-total-val">$' + total.toFixed(2) + '</td>' +
-'                </tr>' +
-'            </table>' +
-'        </div>' +
-'        <div class="terms-box">' +
-'            <p><b>Condiciones Comerciales y de Suministro:</b></p>' +
-'            <ul style="padding-left:18px;margin-top:4px">' +
-'                <li><b>Moneda y Facturación:</b> Precios expresados en Dólares de los Estados Unidos (USD). Pagos en Bolívares calculados a la tasa oficial del Banco Central de Venezuela (BCV) a la fecha de pago.</li>' +
-'                <li><b>Tiempos de Despacho:</b> Inmediato para existencias en inventario. De 7 a 12 días hábiles para órdenes de confección con bordado computarizado o tallas especiales.</li>' +
-'                <li><b>Garantía de Calidad:</b> Confección con costuras triples reforzadas, hilos de alta tenacidad y telas certificadas (Algodón, Dril, Gabardina, Ignífugas). Calzado con normativas COVENIN.</li>' +
-'                <li><b>Despacho y Envíos:</b> Entregas directas en sedes Maracay y Caracas. Despacho nacional por encomiendas aseguradas.</li>' +
-'            </ul>' +
-'        </div>' +
-'        <div class="signatures">' +
-'            <div class="sign-line">' +
-'                <b>UNIFORTEX INDUSTRIAL C.A.</b>' +
-'                <span>Dpto. de Ventas Técnicas & Cotizaciones</span><br>' +
-'                <span style="font-size:10px;color:#9ca3af;font-style:italic">[Documento emitido electrónicamente con validez comercial]</span>' +
-'            </div>' +
-'            <div class="sign-line">' +
-'                <b>Aceptación / Aprobación del Cliente</b>' +
-'                <span>Firma Autorizada, Nombre y Sello de la Empresa</span>' +
-'            </div>' +
-'        </div>' +
-'    </div>' +
-'</body>' +
-'</html>';
+                '            </tbody>' +
+                '        </table>' +
+                '        <div class="totals-container">' +
+                '            <table class="totals-table">' +
+                '                <tr>' +
+                '                    <td style="color:#4b5563">Subtotal Neto (' + totalPrendas + ' prendas):</td>' +
+                '                    <td style="text-align:right;font-weight:700">$' + subtotal.toFixed(2) + '</td>' +
+                '                </tr>' +
+                '                <tr>' +
+                '                    <td style="color:#4b5563">IVA Estimado (16%):</td>' +
+                '                    <td style="text-align:right;font-weight:700">$' + iva.toFixed(2) + '</td>' +
+                '                </tr>' +
+                '                <tr class="grand-total">' +
+                '                    <td>TOTAL GENERAL (USD):</td>' +
+                '                    <td style="text-align:right" class="grand-total-val">$' + total.toFixed(2) + '</td>' +
+                '                </tr>' +
+                '            </table>' +
+                '        </div>' +
+                '        <div class="terms-box">' +
+                '            <p><b>Condiciones Comerciales y de Suministro:</b></p>' +
+                '            <ul style="padding-left:18px;margin-top:4px">' +
+                '                <li><b>Moneda y Facturación:</b> Precios expresados en Dólares de los Estados Unidos (USD). Pagos en Bolívares calculados a la tasa oficial del Banco Central de Venezuela (BCV) a la fecha de pago.</li>' +
+                '                <li><b>Tiempos de Despacho:</b> Inmediato para existencias en inventario. De 7 a 12 días hábiles para órdenes de confección con bordado computarizado o tallas especiales.</li>' +
+                '                <li><b>Garantía de Calidad:</b> Confección con costuras triples reforzadas, hilos de alta tenacidad y telas certificadas (Algodón, Dril, Gabardina, Ignífugas). Calzado con normativas COVENIN.</li>' +
+                '                <li><b>Despacho y Envíos:</b> Entregas directas en sedes Maracay y Caracas. Despacho nacional por encomiendas aseguradas.</li>' +
+                '            </ul>' +
+                '        </div>' +
+                '        <div class="signatures">' +
+                '            <div class="sign-line">' +
+                '                <b>UNIFORTEX INDUSTRIAL C.A.</b>' +
+                '                <span>Dpto. de Ventas Técnicas & Cotizaciones</span><br>' +
+                '                <span style="font-size:10px;color:#9ca3af;font-style:italic">[Documento emitido electrónicamente con validez comercial]</span>' +
+                '            </div>' +
+                '            <div class="sign-line">' +
+                '                <b>Aceptación / Aprobación del Cliente</b>' +
+                '                <span>Firma Autorizada, Nombre y Sello de la Empresa</span>' +
+                '            </div>' +
+                '        </div>' +
+                '    </div>' +
+                '</body>' +
+                '</html>';
 
             // Abrir documento en ventana emergente o pestaña
             const printWindow = window.open('', '_blank', 'width=950,height=800,scrollbars=yes,resizable=yes');
@@ -8786,7 +9116,7 @@
                 try {
                     printWindow.focus();
                     printWindow.print();
-                } catch(e) {}
+                } catch (e) { }
             }, 350);
         }
 
@@ -8909,6 +9239,123 @@
             checkScroll();
         }
 
+        /* ---------- REDIRECCIÓN INTELIGENTE A GMAIL / CORREO ---------- */
+        function abrirCorreoUnifortex(event) {
+            if (event && event.preventDefault) event.preventDefault();
+
+            const emailDestino = 'grupounifortexventas@gmail.com';
+            const asunto = 'Solicitud de Cotización y Pedido - Grupo Unifortex';
+
+            let cuerpo = '¡Hola, equipo de Grupo Unifortex!\n\n';
+            cuerpo += 'Deseo solicitar información y cotización formal para el siguiente requerimiento:\n\n';
+
+            // Si el cliente tiene productos en el carrito, se desglosan automáticamente
+            if (typeof cart !== 'undefined' && Array.isArray(cart) && cart.length > 0) {
+                cuerpo += '========================================\n';
+                cuerpo += '📦 PRODUCTOS SELECCIONADOS EN MI PEDIDO:\n';
+                cuerpo += '========================================\n';
+                let totalItems = 0;
+                let estimatedTotal = 0;
+                cart.forEach(item => {
+                    const p = (typeof productos !== 'undefined') ? productos.find(x => x.id === item.id) : null;
+                    if (p) {
+                        const isMayor = item.qty >= 12;
+                        const unitPrice = isMayor ? (p.mayorPrice || p.price) : p.price;
+                        const subtotal = unitPrice * item.qty;
+                        estimatedTotal += subtotal;
+                        totalItems += item.qty;
+                        const sizeStr = item.size ? ` [Talla: ${item.size}]` : '';
+                        cuerpo += `• ${item.qty}x ${p.name}${sizeStr} — Ref: $${unitPrice.toFixed(2)} c/u (Subtotal: $${subtotal.toFixed(2)})\n`;
+                    }
+                });
+                cuerpo += '----------------------------------------\n';
+                cuerpo += `Total estimado: $${estimatedTotal.toFixed(2)} USD (${totalItems} unidades)\n`;
+                cuerpo += '========================================\n\n';
+            }
+
+            cuerpo += '📋 DATOS DE LA EMPRESA / CONTACTO:\n';
+            cuerpo += '- Nombre de la Empresa o Razón Social:\n';
+            cuerpo += '- RIF o Documento de Identidad:\n';
+            cuerpo += '- Persona de Contacto:\n';
+            cuerpo += '- Teléfono o WhatsApp:\n';
+            cuerpo += '- Ciudad o Dirección de Entrega:\n\n';
+            cuerpo += 'Quedo a la espera de su respuesta y cotización formal. ¡Muchas gracias!';
+
+            // URL directa para abrir la pestaña de redacción de Gmail en la web
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(emailDestino)}&su=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+
+            // Si es dispositivo móvil (Android/iOS), mailto: abre directamente la app de Gmail u otra app nativa
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            
+            if (isMobile) {
+                const mailtoUrl = `mailto:${emailDestino}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+                window.location.href = mailtoUrl;
+            } else {
+                // En computadoras de escritorio, abre directamente la pestaña de Gmail
+                const win = window.open(gmailUrl, '_blank', 'noopener,noreferrer');
+                if (!win) {
+                    window.location.href = `mailto:${emailDestino}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+                }
+            }
+        }
+
+        /* ---------- REDIRECCIÓN DIRECTA A WHATSAPP (SIN PANTALLA INTERMEDIA) ---------- */
+        function abrirWhatsAppDirecto(numero, mensaje, event) {
+            if (event && event.preventDefault) event.preventDefault();
+
+            // 1. Dirigirse en la página a la pestaña de contactos
+            if (typeof navigateToTab === 'function') {
+                navigateToTab('cotiza');
+            }
+
+            const cleanPhone = (numero || '584144938316').replace(/\D/g, '');
+
+            // 2. Construir mensaje pre-redactado si no viene uno específico
+            let msg = mensaje;
+            if (!msg) {
+                if (typeof cart !== 'undefined' && Array.isArray(cart) && cart.length > 0) {
+                    let itemsCount = 0;
+                    let total = 0;
+                    let lista = '';
+                    cart.forEach(item => {
+                        const p = (typeof productos !== 'undefined') ? productos.find(x => x.id === item.id) : null;
+                        if (p) {
+                            const isMayor = item.qty >= 12;
+                            const price = isMayor ? (p.mayorPrice || p.price) : p.price;
+                            total += price * item.qty;
+                            itemsCount += item.qty;
+                            const sizeStr = item.size ? ` [Talla: ${item.size}]` : '';
+                            lista += `• ${item.qty}x ${p.name}${sizeStr} ($${price.toFixed(2)} c/u)\n`;
+                        }
+                    });
+                    msg = `¡Hola, Grupo Unifortex! 👋\n\nQuiero consultar la disponibilidad y cotización de mi pedido (${itemsCount} prendas, total aprox. $${total.toFixed(2)} USD):\n\n${lista}\n¿Me podrían asesorar para concretar la compra? ¡Gracias!`;
+                } else {
+                    msg = `¡Hola, Grupo Unifortex! 👋 Deseo solicitar información, precios y asesoría sobre sus uniformes y dotaciones EPP.`;
+                }
+            }
+
+            const encodedMsg = encodeURIComponent(msg);
+
+            // 3. Abrir DIRECTO al chat sin pasar por la página intermedia de wa.me
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+            if (isMobile) {
+                // En móviles, el protocolo nativo whatsapp:// abre la APP de WhatsApp directamente en el chat
+                const appUrl = `whatsapp://send?phone=${cleanPhone}&text=${encodedMsg}`;
+                const apiFallback = `https://api.whatsapp.com/send?phone=${cleanPhone}&text=${encodedMsg}`;
+                
+                window.location.href = appUrl;
+                setTimeout(() => {
+                    window.location.href = apiFallback;
+                }, 750);
+            } else {
+                // En computadoras / laptops: web.whatsapp.com/send abre WhatsApp Web directamente en la conversación
+                // sin la pantalla intermedia de wa.me ("Continuar al chat")
+                const webWhatsappUrl = `https://web.whatsapp.com/send?phone=${cleanPhone}&text=${encodedMsg}`;
+                window.open(webWhatsappUrl, '_blank', 'noopener,noreferrer');
+            }
+        }
+
         /* ---------- COTIZACIÓN RÁPIDA (ENFOQUE PERSONAL) ---------- */
         function enviarCotizacionPersonal(event) {
             if (event) event.preventDefault();
@@ -8972,11 +9419,35 @@
             // Guardar datos en memoria para que el PDF los conserve aunque el formulario se limpie
             window.ultimaCotizacionData = { nombre, telefono, email, comentarios };
 
-            // Éxito: El campo de comentarios es opcional (si no dejó comentarios, no pasa nada)
-            const detalleComentario = comentarios ? ' y revisaremos con atención tus comentarios' : '';
+            // ── FASE 2: Construcción del mensaje de WhatsApp pre-redactado ────────────
             const tienePrendasEnCarro = Object.keys(cart).length > 0;
-            const extraCarroMsg = tienePrendasEnCarro ? '\n\n📄 Nota: Tienes productos en tu carrito. Puedes descargar tu cotización formal en PDF con membrete usando el botón que aparece arriba.' : '';
-            const confirmMsg = `✅ ¡Muchas gracias, ${nombre}! Hemos recibido tu solicitud correctamente${detalleComentario}. Un asesor se comunicará contigo vía WhatsApp o correo a la brevedad.${extraCarroMsg}`;
+            let resumenCarrito = '';
+            if (tienePrendasEnCarro) {
+                const lineas = Object.keys(cart).map(id => {
+                    const p = PRODUCTS.find(x => x.id == id);
+                    if (!p) return null;
+                    const qty = cart[id];
+                    const talla = cartSizes[id] ? ' (Talla ' + cartSizes[id] + ')' : '';
+                    return `  • ${qty}x ${p.name}${talla} [${p.code}]`;
+                }).filter(Boolean);
+                resumenCarrito = `\n\n🛒 *Prendas en mi carrito:*\n${lineas.join('\n')}`;
+            }
+
+            const comentariosMsg = comentarios ? `\n\n💬 *Comentarios adicionales:*\n${comentarios}` : '';
+
+            const mensajeWA = encodeURIComponent(
+                `¡Hola UNIFORTEX! 👋\n\nSolicito una cotización formal.\n\n` +
+                `👤 *Nombre:* ${nombre}\n` +
+                `📞 *Teléfono/WhatsApp:* ${telefono}\n` +
+                `✉️ *Correo:* ${email}` +
+                resumenCarrito +
+                comentariosMsg +
+                `\n\n¡Quedo atento a su respuesta!`
+            );
+
+            // Número de ventas principal de UNIFORTEX
+            const whatsappUrl = `https://wa.me/584144938316?text=${mensajeWA}`;
+            // ── Fin FASE 2 ────────────────────────────────────────────────────────────
 
             if (notice) {
                 notice.style.display = 'block';
@@ -8984,16 +9455,19 @@
                 notice.style.borderColor = '#25d366';
                 notice.style.color = '#25d366';
                 const extraNoticeCarro = tienePrendasEnCarro ? '<div style="margin-top:.45rem;padding-top:.4rem;border-top:1px solid rgba(37,211,102,0.3);font-size:.82rem;color:#ffffff">📄 <b>Tip:</b> Tienes productos en el carrito. Haz clic en <b>"Descargar Cotización en PDF"</b> arriba para guardarla o imprimirla al instante.</div>' : '';
-                notice.innerHTML = `<div style="display:flex;align-items:flex-start;gap:.6rem"><span style="font-size:1.2rem">✨</span><div><div>${confirmMsg.replace('\n\n', '<br><br>')}</div>${extraNoticeCarro}</div></div>`;
+                notice.innerHTML = `<div style="display:flex;align-items:flex-start;gap:.6rem"><span style="font-size:1.2rem">✨</span><div><div>Tu mensaje ya está listo. En un momento se abrirá <b>WhatsApp</b> para enviarlo directamente a nuestro equipo de ventas. 💬</div>${extraNoticeCarro}</div></div>`;
             }
-
-            alert(confirmMsg);
 
             // Limpiar formulario
             const form = document.getElementById('formCotizaPersonal');
             if (form) form.reset();
 
-            // Ocultar mensaje después de un tiempo prudencial
+            // Abrir WhatsApp con el mensaje pre-redactado DIRECTO al chat
+            setTimeout(() => {
+                abrirWhatsAppDirecto('584144938316', mensajeWA, null);
+            }, 400);
+
+            // Ocultar mensaje de éxito después de 10 segundos
             setTimeout(() => {
                 if (notice) {
                     notice.style.display = 'none';
@@ -9001,7 +9475,7 @@
                     notice.style.borderColor = 'rgba(253, 196, 23, 0.4)';
                     notice.style.color = 'var(--ama)';
                 }
-            }, 8000);
+            }, 10000);
 
             return false;
         }
