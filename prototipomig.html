@@ -20,7 +20,7 @@
             --bla: #FFF;
             --gcl: #C5C5C5;
             --npu: #000;
-            --gw: linear-gradient(135deg, #FFBD3B 0%, #FA6400 100%);
+            --gw: linear-gradient(135deg, #FDC417, #D35914);
             --gd: linear-gradient(135deg, #1D1D1B, #323231)
         }
 
@@ -69,11 +69,6 @@
         }
 
         p {
-            font-style: normal
-        }
-
-        /* Cursiva reservada SOLO para frases de impacto / teasers de marca */
-        .text-italic {
             font-style: italic
         }
 
@@ -296,64 +291,6 @@
                 right: 0.8rem;
                 padding: .28rem .6rem;
                 font-size: .7rem;
-            }
-        }
-
-        /* ===== FASE 3: MOBILE HEADER COMPACTO (< 540px) ===== */
-        @media (max-width: 540px) {
-
-            /* Reducir la altura del bloque de logo en móviles pequeños */
-            .nav-brand-row {
-                height: 54px;
-                padding: .4rem 1rem;
-            }
-
-            header.header-scrolled .nav-brand-row {
-                height: 42px;
-            }
-
-            /* Logo ligeramente más pequeño en móviles */
-            .brand-logo-img,
-            .brand-escudo-img {
-                height: 36px;
-                max-height: 38px;
-            }
-
-            /* Barra de nav con scroll táctil suave, un poco más compacta */
-            .nav-btns-row {
-                height: 44px;
-                justify-content: flex-start;
-                padding-left: .35rem;
-                gap: 0;
-            }
-
-            .nav-item {
-                padding: .55rem .9rem;
-                font-size: .68rem;
-                letter-spacing: .4px;
-                flex-shrink: 0;
-            }
-
-            /* El spacer bajo el header se ajusta */
-            .header-spacer {
-                height: 100px;
-            }
-
-            /* Carrito del drawer ocupa todo el ancho en pantallas pequeñas */
-            .cart-drawer {
-                width: 100vw;
-                border-left: none;
-                border-radius: 16px 16px 0 0;
-                top: auto;
-                height: 92dvh;
-                border-top: 1.5px solid rgba(253, 196, 23, 0.3);
-            }
-
-            /* Botones de cantidad más grandes para dedos */
-            .cart-qty-btn {
-                width: 32px;
-                height: 32px;
-                font-size: 1rem;
             }
         }
 
@@ -588,17 +525,11 @@
             margin-bottom: .75rem
         }
 
-        /* Clase universal de degradado armónico corporativo */
-        .gold,
-        .text-gradient,
         .hero-card-body h1 .gold {
             background: var(--gw);
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             background-clip: text;
-            color: transparent;
-            -webkit-box-decoration-break: clone;
-            box-decoration-break: clone;
+            color: transparent
         }
 
         /* Descripción */
@@ -797,13 +728,7 @@
         }
 
         .catalog-hub-title span {
-            background: var(--gw);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
-            -webkit-box-decoration-break: clone;
-            box-decoration-break: clone;
+            color: var(--ama) !important;
         }
 
         .catalog-hub-sub {
@@ -968,7 +893,6 @@
             scroll-behavior: smooth;
             scrollbar-width: none;
             -ms-overflow-style: none;
-            overscroll-behavior: contain;
             flex: 1;
             padding: .15rem 0;
         }
@@ -1304,7 +1228,7 @@
             padding: 1.25rem 1.6rem;
             position: relative;
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
-            max-height: 80vh;
+            max-height: 94vh;
             overflow-y: auto;
         }
 
@@ -1377,14 +1301,7 @@
             justify-content: center;
         }
 
-        /* Solo indicio visual al pasar el mouse: borde dorado tenue, sin relleno */
-        .modal-size-btn:hover {
-            border-color: var(--ama);
-            color: #ffffff;
-            background: rgba(253, 196, 23, 0.12);
-        }
-
-        /* Selección confirmada con clic: relleno amarillo completo */
+        .modal-size-btn:hover,
         .modal-size-btn.active-size {
             background: var(--ama);
             color: #111110;
@@ -1773,7 +1690,7 @@
         }
 
         .usr {
-            background: var(--gw);
+            background: linear-gradient(135deg, #FDC417, #D35914);
             color: #fff;
             align-self: flex-end;
             border-bottom-right-radius: 4px;
@@ -1870,7 +1787,7 @@
         }
 
         .opts button:hover {
-            background: var(--gw);
+            background: linear-gradient(135deg, #FDC417, #D35914);
             color: #fff;
             border-color: transparent;
             transform: translateY(-1px);
@@ -1900,7 +1817,7 @@
         }
 
         #chatForm button {
-            background: var(--gw);
+            background: linear-gradient(135deg, #FDC417, #D35914);
             border: none;
             padding: 0 1.3rem;
             font-weight: 800;
@@ -1978,7 +1895,7 @@
             border-radius: 10px;
             margin-bottom: .8rem;
             font-family: Poppins;
-            font-style: normal;
+            font-style: italic;
             font-size: .85rem
         }
 
@@ -2005,7 +1922,7 @@
             padding: .7rem 0;
             border-bottom: 1px solid #eee;
             font-size: .85rem;
-            font-style: normal
+            font-style: italic
         }
 
         footer {
@@ -2300,7 +2217,7 @@
         .footer-map-meta {
             font-size: .68rem;
             color: var(--gcl);
-            font-style: normal;
+            font-style: italic;
         }
 
         .copy {
@@ -2379,7 +2296,7 @@
             letter-spacing: 1.2px;
             color: var(--gri);
             margin-bottom: .6rem;
-            font-style: normal;
+            font-style: italic;
         }
 
         .opt-chips {
@@ -2395,7 +2312,7 @@
             background: #fafafa;
             font-family: Poppins;
             font-size: .78rem;
-            font-style: normal;
+            font-style: italic;
             cursor: pointer;
             transition: .22s ease;
             font-weight: 600;
@@ -3150,16 +3067,6 @@
             line-height: 1.15;
         }
 
-        .contact-hub-title span {
-            background: var(--gw);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
-            -webkit-box-decoration-break: clone;
-            box-decoration-break: clone;
-        }
-
         .contact-hub-sub {
             font-size: clamp(.84rem, 1.4vw, .95rem);
             color: #bfc2c2;
@@ -3250,16 +3157,6 @@
             line-height: 1.15;
         }
 
-        .diseno-hub-title span {
-            background: var(--gw);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
-            -webkit-box-decoration-break: clone;
-            box-decoration-break: clone;
-        }
-
         .diseno-hub-sub {
             font-size: clamp(.84rem, 1.4vw, .95rem);
             color: #bfc2c2;
@@ -3321,14 +3218,14 @@
             text-transform: uppercase;
             letter-spacing: 1.2px;
             color: var(--gri);
-            font-style: normal;
+            font-style: italic;
         }
 
         .oc-table td {
             padding: .75rem .65rem;
             border-bottom: 1px solid #eee;
             vertical-align: middle;
-            font-style: normal;
+            font-style: italic;
         }
 
         .oc-summary-card {
@@ -3570,7 +3467,7 @@
         .cart-drawer-sub {
             font-size: .75rem;
             color: var(--gcl);
-            font-style: normal;
+            font-style: italic;
             margin: 0;
         }
 
@@ -3983,387 +3880,6 @@
             transform: translateX(-50%) translateY(0);
             opacity: 1;
         }
-
-        /* ========================================================
-           OPTIMIZACIÓN PREMIUM MÓVIL (SMARTPHONES < 680px Y < 480px)
-           Equilibrio de proporciones, elegancia y funcionalidad táctil
-           ======================================================== */
-        @media (max-width: 680px) {
-            /* 1. Contenedores y márgenes generales */
-            .container,
-            .catalog-container {
-                padding-left: 0.95rem !important;
-                padding-right: 0.95rem !important;
-                width: 100% !important;
-            }
-
-            section {
-                padding-top: 1.25rem !important;
-                padding-bottom: 2.8rem !important;
-            }
-
-            /* 2. Tarjetas Hub y Cabeceras de Sección */
-            .catalog-filter-hub,
-            .diseno-header-hub,
-            .oc-top-bar,
-            .contact-header-hub {
-                padding: 1.25rem 1rem !important;
-                border-radius: 18px !important;
-                margin-bottom: 1.35rem !important;
-            }
-
-            .catalog-hub-title,
-            .diseno-hub-title,
-            .contact-hub-title {
-                font-size: clamp(1.4rem, 5.8vw, 1.85rem) !important;
-                line-height: 1.2 !important;
-            }
-
-            .catalog-hub-sub,
-            .diseno-hub-sub,
-            .contact-hub-sub {
-                font-size: .8rem !important;
-                line-height: 1.45 !important;
-            }
-
-            .diseno-hub-pills,
-            .contact-hub-pills {
-                gap: .35rem !important;
-                margin-top: .8rem !important;
-            }
-
-            .diseno-hub-badge,
-            .contact-hub-badge {
-                font-size: .68rem !important;
-                padding: .25rem .55rem !important;
-            }
-
-            /* 3. Hero Section (Inicio) */
-            .hero-wrapper {
-                min-height: auto !important;
-                padding: .5rem .25rem 1.2rem !important;
-            }
-
-            .hero-card {
-                border-radius: 18px !important;
-            }
-
-            .hero-card-body {
-                padding: 1.65rem 1rem !important;
-            }
-
-            .hero-badge {
-                font-size: .62rem !important;
-                padding: .25rem .6rem !important;
-                margin-bottom: .8rem !important;
-                white-space: normal !important;
-                line-height: 1.35 !important;
-            }
-
-            .hero-card-body h1 {
-                font-size: clamp(1.55rem, 6.8vw, 2rem) !important;
-                line-height: 1.18 !important;
-                margin-bottom: .65rem !important;
-            }
-
-            .hero-desc {
-                font-size: .82rem !important;
-                line-height: 1.5 !important;
-                margin-bottom: 1.25rem !important;
-            }
-
-            .hero-stats {
-                display: grid !important;
-                grid-template-columns: repeat(3, 1fr) !important;
-                gap: .4rem !important;
-                margin-bottom: 1.35rem !important;
-                padding-bottom: 1.15rem !important;
-            }
-
-            .hstat b {
-                font-size: 1.45rem !important;
-            }
-
-            .hstat small {
-                font-size: .56rem !important;
-                letter-spacing: .4px !important;
-            }
-
-            .hero-btns {
-                display: flex !important;
-                flex-direction: column !important;
-                width: 100% !important;
-                gap: .55rem !important;
-            }
-
-            .hero-btns .btn {
-                width: 100% !important;
-                justify-content: center !important;
-                padding: .75rem 1rem !important;
-                font-size: .85rem !important;
-                border-radius: 10px !important;
-            }
-
-            /* 4. Buscador Central y Filtros del Catálogo */
-            .catalog-central-search-card {
-                flex-direction: column !important;
-                align-items: stretch !important;
-                gap: .5rem !important;
-                padding: .65rem .75rem !important;
-                border-radius: 14px !important;
-            }
-
-            .catalog-search-input-group {
-                width: 100% !important;
-            }
-
-            #catalogSearchInput {
-                font-size: .86rem !important;
-            }
-
-            .catalog-cat-select-group {
-                border-left: none !important;
-                border-top: 1px solid #e5e7eb !important;
-                padding: .45rem .4rem 0 !important;
-                width: 100% !important;
-            }
-
-            #catalogCategorySelect {
-                width: 100% !important;
-                font-size: .8rem !important;
-            }
-
-            .catalog-search-hint {
-                flex-direction: column !important;
-                gap: .25rem !important;
-                font-size: .7rem !important;
-                padding: 0 .2rem !important;
-            }
-
-            .cat-pills-wrapper {
-                padding: .32rem !important;
-                border-radius: 12px !important;
-            }
-
-            .cat-scroll-btn {
-                width: 26px !important;
-                height: 26px !important;
-                font-size: 1rem !important;
-            }
-
-            .cat-pill {
-                padding: .32rem .65rem !important;
-                font-size: .73rem !important;
-            }
-
-            .catalog-status-bar {
-                flex-direction: column !important;
-                align-items: flex-start !important;
-                gap: .35rem !important;
-                font-size: .74rem !important;
-            }
-
-            .catalog-status-divider {
-                display: none !important;
-            }
-
-            /* 5. Catálogo: Grid y Tarjetas */
-            .catalog-grid-motos {
-                grid-template-columns: 1fr !important;
-                gap: 1.1rem !important;
-            }
-
-            .prod-card-moto {
-                padding: 1rem !important;
-                border-radius: 16px !important;
-            }
-
-            .card-moto-media {
-                height: 160px !important;
-            }
-
-            .card-moto-emoji {
-                font-size: 3.5rem !important;
-            }
-
-            .card-moto-title {
-                font-size: .95rem !important;
-            }
-
-            .card-moto-specs {
-                font-size: .72rem !important;
-                gap: .4rem !important;
-            }
-
-            .card-moto-price-val {
-                font-size: 1.35rem !important;
-            }
-
-            .btn-moto-cart {
-                width: 38px !important;
-                height: 38px !important;
-                font-size: 1rem !important;
-            }
-
-            /* 6. Modal Ficha Técnica Optimizado para Pantalla Táctil */
-            .prod-modal-box {
-                width: 95% !important;
-                max-width: 95% !important;
-                padding: 1rem .85rem !important;
-                border-radius: 16px !important;
-                max-height: 88dvh !important;
-                margin: 0 auto !important;
-            }
-
-            .prod-modal-tabs {
-                margin: .35rem 0 .65rem !important;
-                gap: 4px !important;
-            }
-
-            .modal-tab-btn {
-                padding: .42rem .4rem !important;
-                font-size: .72rem !important;
-                flex-direction: column !important;
-                gap: 2px !important;
-                text-align: center !important;
-            }
-
-            .modal-tab-btn span:first-child {
-                font-size: .75rem !important;
-            }
-
-            .modal-tab-btn span:last-child {
-                font-size: .63rem !important;
-            }
-
-            .prod-modal-grid {
-                grid-template-columns: 1fr !important;
-                gap: .75rem !important;
-            }
-
-            #modalMediaCard {
-                padding: .7rem .85rem !important;
-                flex-direction: row !important;
-                justify-content: space-between !important;
-                text-align: left !important;
-                gap: .8rem !important;
-                align-items: center !important;
-            }
-
-            #modalMediaCard span:first-child {
-                font-size: 2.7rem !important;
-                line-height: 1 !important;
-            }
-
-            #modalPriceBlock {
-                margin-top: 0 !important;
-                width: auto !important;
-                text-align: right !important;
-            }
-
-            #modalSizesContainer {
-                max-height: 80px !important;
-                gap: .3rem !important;
-            }
-
-            .modal-size-btn {
-                padding: .32rem .58rem !important;
-                font-size: .74rem !important;
-                min-height: 32px !important;
-            }
-
-            /* 7. Taller de Diseño en Móvil (Mockup arriba) */
-            .diseno-grid {
-                display: flex !important;
-                flex-direction: column !important;
-                gap: 1.2rem !important;
-            }
-
-            .diseno-preview-box {
-                order: -1 !important;
-                position: static !important;
-                padding: 1rem .85rem !important;
-                border-radius: 16px !important;
-            }
-
-            #mockupCanvas {
-                width: 100% !important;
-                max-height: 330px !important;
-                height: auto !important;
-            }
-
-            .diseno-panel {
-                padding: 1.25rem .95rem !important;
-                border-radius: 16px !important;
-            }
-
-            /* 8. Orden de Compra en Móvil */
-            .oc-grid {
-                display: flex !important;
-                flex-direction: column !important;
-                gap: 1.2rem !important;
-            }
-
-            .oc-card,
-            .oc-summary-card {
-                padding: 1.25rem .95rem !important;
-                border-radius: 16px !important;
-            }
-
-            .oc-inputs-grid,
-            .oc-condiciones-grid {
-                grid-template-columns: 1fr !important;
-                gap: .65rem !important;
-            }
-
-            .oc-summary-card {
-                order: 2 !important;
-                position: static !important;
-            }
-
-            /* 9. Contacto y Cotización en Móvil */
-            .contact-cards-grid {
-                grid-template-columns: 1fr !important;
-                gap: 1rem !important;
-            }
-
-            .contact-info-card {
-                padding: 1.2rem .95rem !important;
-                border-radius: 16px !important;
-            }
-
-            .contact-form-box {
-                padding: 1.3rem .95rem !important;
-                border-radius: 16px !important;
-            }
-
-            /* 10. Pie de página (Footer) */
-            .footer-contact-pills {
-                flex-direction: column !important;
-                align-items: stretch !important;
-                gap: .45rem !important;
-            }
-
-            .footer-link-pill {
-                width: 100% !important;
-                justify-content: center !important;
-                text-align: center !important;
-                padding: .65rem .85rem !important;
-                font-size: .78rem !important;
-            }
-
-            .footer-social-chips {
-                flex-wrap: wrap !important;
-                justify-content: center !important;
-            }
-
-            #chatBtn {
-                bottom: 16px !important;
-                right: 16px !important;
-                width: 52px !important;
-                height: 52px !important;
-            }
-        }
     </style>
 </head>
 
@@ -4495,7 +4011,7 @@
                     <div class="catalog-filter-hub">
                         <div class="catalog-hub-header">
                             <span class="catalog-hub-tag">🛡️ DOTACIONES &amp; EPP CERTIFICADO</span>
-                            <h2 class="catalog-hub-title">Catálogo <span class="gold">UNIFORTEX</span></h2>
+                            <h2 class="catalog-hub-title">Catálogo <span style="color:var(--nar)">UNIFORTEX</span></h2>
                             <p class="catalog-hub-sub">Encuentra rápidamente uniformes y equipos de protección para tu
                                 empresa</p>
                         </div>
@@ -4595,7 +4111,9 @@
                     <div class="diseno-header-hub">
                         <div class="diseno-hub-header">
                             <span class="diseno-hub-tag">🎨 TALLER DE PERSONALIZACIÓN &amp; BORDADOS</span>
-                            <h2 class="diseno-hub-title">Diseño &amp; <span class="gold">Bordados Corporativos</span></h2>
+                            <h2 class="diseno-hub-title">Diseño &amp; <span style="color:var(--nar)">Bordados</span>
+                                <span class="gold">Corporativos</span>
+                            </h2>
                             <p class="diseno-hub-sub">
                                 Personaliza uniformes, camisas industriales y cascos de protección con el logotipo
                                 corporativo y colores de tu empresa. Confección bajo norma COVENIN y acabados de alta
@@ -4895,7 +4413,9 @@
                             <span class="hero-badge"
                                 style="margin-bottom:.5rem;background:rgba(253,196,23,.12);border-color:rgba(253,196,23,.3);color:var(--ama)">📋
                                 Portal Corporativo B2B</span>
-                            <h2 style="font-size:clamp(1.4rem,3vw,2rem);margin:0;color:#fff">Orden de <span class="gold">Compra Empresarial</span></h2>
+                            <h2 style="font-size:clamp(1.4rem,3vw,2rem);margin:0;color:#fff">Orden de <span class="gold"
+                                    style="background:var(--gw);-webkit-background-clip:text;background-clip:text;color:transparent">Compra
+                                    Empresarial</span></h2>
                             <p style="margin:.45rem 0 0;font-size:.85rem;color:#bfc2c2;max-width:620px;line-height:1.5">
                                 Genera tu orden formal con desglose de ítems, cálculo automático de IVA y cotización
                                 lista para emitir o descargar en PDF.
@@ -4958,8 +4478,7 @@
                                 </div>
                             </div>
 
-                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1.5rem"
-                                class="oc-condiciones-grid">
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1.5rem">
                                 <div>
                                     <label
                                         style="display:block;font-size:.7rem;text-transform:uppercase;font-weight:700;color:var(--gri);margin-bottom:.3rem">Condición
@@ -5066,7 +4585,8 @@
                     <div class="contact-header-hub">
                         <div class="contact-hub-header">
                             <span class="contact-hub-tag">🛡️ ATENCIÓN CORPORATIVA &amp; COTIZACIONES</span>
-                            <h2 class="contact-hub-title">Información de <span class="gold">Contacto &amp; Sedes</span></h2>
+                            <h2 class="contact-hub-title">Información de <span style="color:var(--nar)">Contacto</span>
+                                &amp; <span class="gold">Sedes</span></h2>
                             <p class="contact-hub-sub">Comunícate directamente con nuestro equipo de atención
                                 corporativa, visítanos en nuestras sedes de Maracay y Caracas, o solicita tu cotización
                                 formal a medida con soporte técnico garantizado.</p>
@@ -5123,39 +4643,39 @@
                                         <div
                                             style="font-size:.72rem;color:var(--gcl);text-transform:uppercase;font-weight:700">
                                             Atención Ventas</div>
-                                        <a href="javascript:void(0)" class="contact-link"
-                                            onclick="abrirWhatsAppDirecto('584144938316', '', event)">+58 414-4938316</a>
+                                        <a href="tel:+584144938316" class="contact-link"
+                                            onclick="navigateToTab('cotiza')">+58 414-4938316</a>
                                     </div>
-                                    <a href="javascript:void(0)"
+                                    <a href="https://wa.me/584144938316" target="_blank" rel="noopener noreferrer"
                                         class="btn-logo-action"
                                         style="background:#25d366;border-color:#25d366;width:28px;height:28px"
-                                        title="Escribir directo a WhatsApp" onclick="abrirWhatsAppDirecto('584144938316', '', event)">💬</a>
+                                        title="Escribir por WhatsApp" onclick="navigateToTab('cotiza')">💬</a>
                                 </li>
                                 <li class="contact-phone-row">
                                     <div>
                                         <div
                                             style="font-size:.72rem;color:var(--gcl);text-transform:uppercase;font-weight:700">
                                             Asesoría Comercial</div>
-                                        <a href="javascript:void(0)" class="contact-link"
-                                            onclick="abrirWhatsAppDirecto('584243409898', '', event)">+58 424-3409898</a>
+                                        <a href="tel:+584243409898" class="contact-link"
+                                            onclick="navigateToTab('cotiza')">+58 424-3409898</a>
                                     </div>
-                                    <a href="javascript:void(0)"
+                                    <a href="https://wa.me/584243409898" target="_blank" rel="noopener noreferrer"
                                         class="btn-logo-action"
                                         style="background:#25d366;border-color:#25d366;width:28px;height:28px"
-                                        title="Escribir directo a WhatsApp" onclick="abrirWhatsAppDirecto('584243409898', '', event)">💬</a>
+                                        title="Escribir por WhatsApp" onclick="navigateToTab('cotiza')">💬</a>
                                 </li>
                                 <li class="contact-phone-row">
                                     <div>
                                         <div
                                             style="font-size:.72rem;color:var(--gcl);text-transform:uppercase;font-weight:700">
                                             Cotizaciones B2B</div>
-                                        <a href="javascript:void(0)" class="contact-link"
-                                            onclick="abrirWhatsAppDirecto('584243056068', '', event)">+58 424-3056068</a>
+                                        <a href="tel:+584243056068" class="contact-link"
+                                            onclick="navigateToTab('cotiza')">+58 424-3056068</a>
                                     </div>
-                                    <a href="javascript:void(0)"
+                                    <a href="https://wa.me/584243056068" target="_blank" rel="noopener noreferrer"
                                         class="btn-logo-action"
                                         style="background:#25d366;border-color:#25d366;width:28px;height:28px"
-                                        title="Escribir directo a WhatsApp" onclick="abrirWhatsAppDirecto('584243056068', '', event)">💬</a>
+                                        title="Escribir por WhatsApp" onclick="navigateToTab('cotiza')">💬</a>
                                 </li>
                             </ul>
                         </div>
@@ -5200,8 +4720,8 @@
                             <ul class="contact-card-list">
                                 <li class="contact-card-item">
                                     <strong>📧 Correo Electrónico:</strong>
-                                    <a href="javascript:void(0)" onclick="abrirCorreoUnifortex(event)" class="contact-link"
-                                        style="word-break:break-all" title="Redactar correo en Gmail">
+                                    <a href="mailto:grupounifortexventas@gmail.com" class="contact-link"
+                                        style="word-break:break-all">
                                         grupounifortexventas@gmail.com
                                     </a>
                                 </li>
@@ -5221,7 +4741,7 @@
                     <!-- FORMULARIO DE COTIZACIÓN RÁPIDA (ENFOQUE PERSONAL) -->
                     <div class="contact-form-box">
                         <h3 style="margin-bottom:.5rem;font-size:1.4rem;color:#ffffff !important">Cotiza en <span
-                                class="gold">60 segundos</span></h3>
+                                style="color:var(--ama)">60 segundos</span></h3>
                         <p style="margin:0 0 1.5rem;color:var(--gcl);font-size:.92rem">
                             Déjanos tus datos de contacto y te enviaremos una propuesta personalizada a tu medida con
                             atención directa e inmediata.
@@ -5389,14 +4909,17 @@
                     <p style="font-size:.82rem;line-height:1.5;color:#bfc2c2">Grupo Unifortex EPP · Protección,
                         seguridad y estilo para el trabajador venezolano con confección bajo normas COVENIN y OSHA.</p>
                     <div class="footer-contact-pills">
-                        <a href="javascript:void(0)" class="footer-link-pill"
-                            onclick="abrirCorreoUnifortex(event)" title="Abrir y redactar en Gmail">📧 grupounifortexventas@gmail.com</a>
-                        <a href="javascript:void(0)" class="footer-link-pill"
-                            onclick="abrirWhatsAppDirecto('584144938316', '', event)" title="Abrir chat directo en WhatsApp">💬 WhatsApp Ventas: +58 414-4938316</a>
-                        <a href="javascript:void(0)" class="footer-link-pill"
-                            onclick="abrirWhatsAppDirecto('584243409898', '', event)" title="Abrir chat directo en WhatsApp">💬 WhatsApp Asesoría: +58 424-3409898</a>
-                        <a href="javascript:void(0)" class="footer-link-pill"
-                            onclick="abrirWhatsAppDirecto('584243056068', '', event)" title="Abrir chat directo en WhatsApp">💬 WhatsApp B2B: +58 424-3056068</a>
+                        <a href="mailto:grupounifortexventas@gmail.com" class="footer-link-pill"
+                            onclick="navigateToTab('cotiza')">📧 grupounifortexventas@gmail.com</a>
+                        <a href="https://wa.me/584144938316" target="_blank" rel="noopener noreferrer"
+                            class="footer-link-pill" onclick="navigateToTab('cotiza')">💬 WhatsApp Ventas: +58
+                            414-4938316</a>
+                        <a href="https://wa.me/584243409898" target="_blank" rel="noopener noreferrer"
+                            class="footer-link-pill" onclick="navigateToTab('cotiza')">💬 WhatsApp Asesoría: +58
+                            424-3409898</a>
+                        <a href="https://wa.me/584243056068" target="_blank" rel="noopener noreferrer"
+                            class="footer-link-pill" onclick="navigateToTab('cotiza')">💬 WhatsApp B2B: +58
+                            424-3056068</a>
                     </div>
 
                     <!-- Redes Sociales Oficiales bajo los números -->
@@ -5404,17 +4927,17 @@
                         <span class="footer-social-label">🌐 Síguenos en Redes</span>
                         <div class="footer-social-chips">
                             <a href="https://instagram.com/grupounifortex" target="_blank" rel="noopener noreferrer"
-                                class="footer-social-pill"
+                                class="footer-social-pill" onclick="navigateToTab('cotiza')"
                                 title="Instagram @grupounifortex">
                                 <span>📸 Instagram</span>
                             </a>
                             <a href="https://tiktok.com/@grupounifortex" target="_blank" rel="noopener noreferrer"
-                                class="footer-social-pill"
+                                class="footer-social-pill" onclick="navigateToTab('cotiza')"
                                 title="TikTok @grupounifortex">
                                 <span>🎵 TikTok</span>
                             </a>
                             <a href="https://facebook.com/grupounifortex" target="_blank" rel="noopener noreferrer"
-                                class="footer-social-pill"
+                                class="footer-social-pill" onclick="navigateToTab('cotiza')"
                                 title="Facebook @grupounifortex">
                                 <span>👥 Facebook</span>
                             </a>
@@ -6450,16 +5973,11 @@
                 return;
             }
 
-            grid.innerHTML = filtered.map(p => {
-                // FASE 4: Si el producto tiene foto real, usarla; si no, mostrar el emoji como fallback.
-                const mediaHtml = p.img
-                    ? `<img src="${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;border-radius:12px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="card-moto-emoji" style="display:none">${p.ico}</div>`
-                    : `<div class="card-moto-emoji">${p.ico}</div>`;
-                return `
+            grid.innerHTML = filtered.map(p => `
                 <div class="prod-card-moto">
                     <span class="card-moto-badge">🏷️ ${p.code}</span>
                     <div class="card-moto-media" onclick="abrirDetalleProducto(${p.id})" title="Click para ver especificaciones de ${p.name}">
-                        ${mediaHtml}
+                        <div class="card-moto-emoji">${p.ico}</div>
                     </div>
                     <div class="card-moto-brand">UNIFORTEX · ${p.cat}</div>
                     <h3 class="card-moto-title" onclick="abrirDetalleProducto(${p.id})" title="${p.name}">${p.name}</h3>
@@ -6482,8 +6000,8 @@
                             🛒
                         </button>
                     </div>
-                </div>`;
-            }).join('');
+                </div>
+            `).join('');
         }
 
         function actualizarEstadoFiltrosCatalogo(cat, search) {
@@ -6543,26 +6061,6 @@
             if (!list) return;
             list.scrollBy({ left: direction * Math.max(220, list.clientWidth * .65), behavior: 'smooth' });
         }
-
-        /* Desplazamiento horizontal con la rueda del mouse en la barra de categorías sin mover la página */
-        function initCategoriasWheelScroll() {
-            const wrapper = document.querySelector('.cat-pills-wrapper');
-            const list = document.getElementById('catPillsList');
-            if (!wrapper || !list || wrapper._hasWheelListener) return;
-
-            wrapper._hasWheelListener = true;
-            wrapper.addEventListener('wheel', function(e) {
-                if (e.deltaY !== 0 || e.deltaX !== 0) {
-                    // Evita que la página suba o baje al girar la rueda del mouse sobre este filtro
-                    e.preventDefault();
-                    // Convierte el scroll vertical de la rueda del mouse en desplazamiento lateral
-                    const delta = e.deltaX !== 0 ? e.deltaX : e.deltaY;
-                    list.scrollBy({ left: delta * 1.15, behavior: 'auto' });
-                }
-            }, { passive: false });
-        }
-        initCategoriasWheelScroll();
-        window.addEventListener('DOMContentLoaded', initCategoriasWheelScroll);
 
         function limpiarBusquedaCatalogo() {
             const input = document.getElementById('catalogSearchInput');
@@ -6764,7 +6262,13 @@
                 }
             }
 
-
+            // 2. Indicador superior
+            const indBadge = document.getElementById('modalTierIndicatorBadge');
+            if (indBadge) {
+                indBadge.textContent = isMayor ? '⭐ Tarifa Mayorista' : '🛍️ Tarifa Detallado';
+                indBadge.style.cssText = 'font-size:.72rem;padding:.2rem .65rem;border-radius:20px;font-weight:700;display:inline-flex;align-items:center;gap:.3rem;' +
+                    (isMayor ? 'background:rgba(253,196,23,.2);color:var(--ama);border:1px solid rgba(253,196,23,.4)' : 'background:rgba(148,163,184,.15);color:#cbd5e1;border:1px solid rgba(148,163,184,.3)');
+            }
 
             // 3. Tarjeta de producto izquierda
             const mediaCard = document.getElementById('modalMediaCard');
@@ -6779,8 +6283,14 @@
                 priceBlock.innerHTML = isMayor ? `
                     <div style="font-size:.78rem;color:#9ca3af;text-decoration:line-through;margin-bottom:2px">$${p.price.toFixed(2)} USD</div>
                     <div style="font-size:1.55rem;font-weight:900;color:var(--ama);line-height:1.15">$${unitPrice.toFixed(2)} <span style="font-size:.75rem;color:#e5e7eb">USD/u</span></div>
+                    <div style="display:inline-block;font-size:.7rem;color:var(--ama);font-weight:800;background:rgba(253,196,23,.15);border:1px solid rgba(253,196,23,.35);padding:.18rem .5rem;border-radius:6px;margin-top:.3rem">
+                        🏭 Tarifa Mayorista
+                    </div>
                 ` : `
                     <div style="font-size:1.55rem;font-weight:900;color:#ffffff;line-height:1.15">$${p.price.toFixed(2)} <span style="font-size:.75rem;color:#9ca3af">USD/u</span></div>
+                    <div style="display:inline-block;font-size:.7rem;color:#94a3b8;font-weight:700;background:rgba(148,163,184,.15);border:1px solid rgba(148,163,184,.3);padding:.18rem .5rem;border-radius:6px;margin-top:.3rem">
+                        🛍️ Tarifa Detallado
+                    </div>
                 `;
             }
 
@@ -6848,8 +6358,10 @@
                             ${p.cat}
                         </span>
                     </div>
+                    <div id="modalTierIndicatorBadge" style="font-size:.72rem;padding:.2rem .65rem;border-radius:20px;font-weight:700;display:inline-flex;align-items:center;gap:.3rem;${isMayor ? 'background:rgba(253,196,23,.2);color:var(--ama);border:1px solid rgba(253,196,23,.4)' : 'background:rgba(148,163,184,.15);color:#cbd5e1;border:1px solid rgba(148,163,184,.3)'}">
+                        ${isMayor ? '⭐ Tarifa Mayorista' : '🛍️ Tarifa Detallado'}
+                    </div>
                 </div>
-
 
                 <!-- PESTAÑAS DETALLADO VS MAYORISTA -->
                 <div class="prod-modal-tabs">
@@ -6859,7 +6371,7 @@
                     </button>
                     <button type="button" id="tabMayorBtn" class="modal-tab-btn ${isMayor ? 'active-mayor' : ''}" onclick="cambiarTierModal('mayor')">
                         <span>🏭 Venta al Mayor</span>
-                        <span style="font-size:.7rem;background:${isMayor ? '#111' : '#fdc417'};color:${isMayor ? '#fdc417' : '#111'};padding:1px 6px;border-radius:4px;font-weight:800">Tarifa B2B (+11)</span>
+                        <span style="font-size:.7rem;background:${isMayor ? '#111' : '#fdc417'};color:${isMayor ? '#fdc417' : '#111'};padding:1px 6px;border-radius:4px;font-weight:800">Tarifa B2B (≥12)</span>
                     </button>
                 </div>
 
@@ -6872,8 +6384,14 @@
                             ${isMayor ? `
                                 <div style="font-size:.78rem;color:#9ca3af;text-decoration:line-through;margin-bottom:2px">$${p.price.toFixed(2)} USD</div>
                                 <div style="font-size:1.55rem;font-weight:900;color:var(--ama);line-height:1.15">$${unitPrice.toFixed(2)} <span style="font-size:.75rem;color:#e5e7eb">USD/u</span></div>
+                                <div style="display:inline-block;font-size:.7rem;color:var(--ama);font-weight:800;background:rgba(253,196,23,.15);border:1px solid rgba(253,196,23,.35);padding:.18rem .5rem;border-radius:6px;margin-top:.3rem">
+                                    🏭 Tarifa Mayorista
+                                </div>
                             ` : `
                                 <div style="font-size:1.55rem;font-weight:900;color:#ffffff;line-height:1.15">$${p.price.toFixed(2)} <span style="font-size:.75rem;color:#9ca3af">USD/u</span></div>
+                                <div style="display:inline-block;font-size:.7rem;color:#94a3b8;font-weight:700;background:rgba(148,163,184,.15);border:1px solid rgba(148,163,184,.3);padding:.18rem .5rem;border-radius:6px;margin-top:.3rem">
+                                    🛍️ Tarifa Detallado
+                                </div>
                             `}
                         </div>
 
@@ -6917,6 +6435,7 @@
                             <div id="modalSizesContainer" style="display:flex;flex-wrap:wrap;gap:.35rem;max-height:65px;overflow-y:auto;padding:2px 0">
                                 ${sizesArr.map(s => `
                                     <button type="button" class="modal-size-btn ${s === modalSelectedSize ? 'active-size' : ''}"
+                                        onmouseenter="seleccionarTallaModal('${s}')"
                                         onclick="seleccionarTallaModal('${s}')"
                                         data-size="${s}">
                                         ${s}
@@ -7473,7 +6992,7 @@
 
                 case 'sedes':
                     await botSay('📍 <b>Nuestras sedes:</b><br><br>🏢 <b>Maracay:</b> CC Ciudad Jardín, Local 20<br>⏰ Lun-Vie 8:00am - 5:00pm<br><br>🏢 <b>Caracas:</b> Av. Libertador, Edif. Fertec, Piso 4');
-                    await botSay('📱 <b>Teléfonos:</b><br>• <a href="javascript:void(0)" onclick="abrirWhatsAppDirecto(\'584144938316\', \'\', event)" style="color:var(--ama);text-decoration:underline">+58 414-4938316</a><br>• <a href="javascript:void(0)" onclick="abrirWhatsAppDirecto(\'584243409898\', \'\', event)" style="color:var(--ama);text-decoration:underline">+58 424-3409898</a><br>• <a href="javascript:void(0)" onclick="abrirWhatsAppDirecto(\'584243056068\', \'\', event)" style="color:var(--ama);text-decoration:underline">+58 424-3056068</a><br><br>📧 <a href="javascript:void(0)" onclick="abrirCorreoUnifortex()" style="color:var(--ama);text-decoration:underline">grupounifortexventas@gmail.com</a>', 800);
+                    await botSay('📱 <b>Teléfonos:</b><br>• +58 414-4938316<br>• +58 424-3409898<br>• +58 424-3056068<br><br>📧 grupounifortexventas@gmail.com', 800);
                     await botSay('¿Te gustaría algo más?', 1000);
                     setOpts([
                         { label: '🛒 Cotizar productos', action: 'cotizar' },
@@ -7484,7 +7003,7 @@
 
                 case 'asesor':
                     await botSay('📞 ¡Con gusto! Un asesor comercial estará encantado de atenderte.');
-                    await botSay('Puedes contactarnos directamente:<br>📱 <b>WhatsApp:</b> <a href="javascript:void(0)" onclick="abrirWhatsAppDirecto(\'584144938316\', \'\', event)" style="color:var(--ama);text-decoration:underline">+58 414-4938316</a><br>📧 <b>Email:</b> <a href="javascript:void(0)" onclick="abrirCorreoUnifortex()" style="color:var(--ama);text-decoration:underline">grupounifortexventas@gmail.com</a><br><br>O llena el formulario en <b>Contacto</b> y te respondemos en menos de 24h.', 800);
+                    await botSay('Puedes contactarnos directamente:<br>📱 <b>WhatsApp:</b> +58 414-4938316<br>📧 <b>Email:</b> grupounifortexventas@gmail.com<br><br>O llena el formulario en <b>Contacto</b> y te respondemos en menos de 24h.', 800);
                     setTimeout(() => navigateToTab('cotiza'), 1200);
                     await botSay('¿Necesitas algo más?', 1400);
                     setOpts([
@@ -9642,123 +9161,6 @@
             checkScroll();
         }
 
-        /* ---------- REDIRECCIÓN INTELIGENTE A GMAIL / CORREO ---------- */
-        function abrirCorreoUnifortex(event) {
-            if (event && event.preventDefault) event.preventDefault();
-
-            const emailDestino = 'grupounifortexventas@gmail.com';
-            const asunto = 'Solicitud de Cotización y Pedido - Grupo Unifortex';
-
-            let cuerpo = '¡Hola, equipo de Grupo Unifortex!\n\n';
-            cuerpo += 'Deseo solicitar información y cotización formal para el siguiente requerimiento:\n\n';
-
-            // Si el cliente tiene productos en el carrito, se desglosan automáticamente
-            if (typeof cart !== 'undefined' && Array.isArray(cart) && cart.length > 0) {
-                cuerpo += '========================================\n';
-                cuerpo += '📦 PRODUCTOS SELECCIONADOS EN MI PEDIDO:\n';
-                cuerpo += '========================================\n';
-                let totalItems = 0;
-                let estimatedTotal = 0;
-                cart.forEach(item => {
-                    const p = (typeof productos !== 'undefined') ? productos.find(x => x.id === item.id) : null;
-                    if (p) {
-                        const isMayor = item.qty >= 12;
-                        const unitPrice = isMayor ? (p.mayorPrice || p.price) : p.price;
-                        const subtotal = unitPrice * item.qty;
-                        estimatedTotal += subtotal;
-                        totalItems += item.qty;
-                        const sizeStr = item.size ? ` [Talla: ${item.size}]` : '';
-                        cuerpo += `• ${item.qty}x ${p.name}${sizeStr} — Ref: $${unitPrice.toFixed(2)} c/u (Subtotal: $${subtotal.toFixed(2)})\n`;
-                    }
-                });
-                cuerpo += '----------------------------------------\n';
-                cuerpo += `Total estimado: $${estimatedTotal.toFixed(2)} USD (${totalItems} unidades)\n`;
-                cuerpo += '========================================\n\n';
-            }
-
-            cuerpo += '📋 DATOS DE LA EMPRESA / CONTACTO:\n';
-            cuerpo += '- Nombre de la Empresa o Razón Social:\n';
-            cuerpo += '- RIF o Documento de Identidad:\n';
-            cuerpo += '- Persona de Contacto:\n';
-            cuerpo += '- Teléfono o WhatsApp:\n';
-            cuerpo += '- Ciudad o Dirección de Entrega:\n\n';
-            cuerpo += 'Quedo a la espera de su respuesta y cotización formal. ¡Muchas gracias!';
-
-            // URL directa para abrir la pestaña de redacción de Gmail en la web
-            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(emailDestino)}&su=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
-
-            // Si es dispositivo móvil (Android/iOS), mailto: abre directamente la app de Gmail u otra app nativa
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            
-            if (isMobile) {
-                const mailtoUrl = `mailto:${emailDestino}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
-                window.location.href = mailtoUrl;
-            } else {
-                // En computadoras de escritorio, abre directamente la pestaña de Gmail
-                const win = window.open(gmailUrl, '_blank', 'noopener,noreferrer');
-                if (!win) {
-                    window.location.href = `mailto:${emailDestino}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
-                }
-            }
-        }
-
-        /* ---------- REDIRECCIÓN DIRECTA A WHATSAPP (SIN PANTALLA INTERMEDIA) ---------- */
-        function abrirWhatsAppDirecto(numero, mensaje, event) {
-            if (event && event.preventDefault) event.preventDefault();
-
-            // 1. Dirigirse en la página a la pestaña de contactos
-            if (typeof navigateToTab === 'function') {
-                navigateToTab('cotiza');
-            }
-
-            const cleanPhone = (numero || '584144938316').replace(/\D/g, '');
-
-            // 2. Construir mensaje pre-redactado si no viene uno específico
-            let msg = mensaje;
-            if (!msg) {
-                if (typeof cart !== 'undefined' && Array.isArray(cart) && cart.length > 0) {
-                    let itemsCount = 0;
-                    let total = 0;
-                    let lista = '';
-                    cart.forEach(item => {
-                        const p = (typeof productos !== 'undefined') ? productos.find(x => x.id === item.id) : null;
-                        if (p) {
-                            const isMayor = item.qty >= 12;
-                            const price = isMayor ? (p.mayorPrice || p.price) : p.price;
-                            total += price * item.qty;
-                            itemsCount += item.qty;
-                            const sizeStr = item.size ? ` [Talla: ${item.size}]` : '';
-                            lista += `• ${item.qty}x ${p.name}${sizeStr} ($${price.toFixed(2)} c/u)\n`;
-                        }
-                    });
-                    msg = `¡Hola, Grupo Unifortex! 👋\n\nQuiero consultar la disponibilidad y cotización de mi pedido (${itemsCount} prendas, total aprox. $${total.toFixed(2)} USD):\n\n${lista}\n¿Me podrían asesorar para concretar la compra? ¡Gracias!`;
-                } else {
-                    msg = `¡Hola, Grupo Unifortex! 👋 Deseo solicitar información, precios y asesoría sobre sus uniformes y dotaciones EPP.`;
-                }
-            }
-
-            const encodedMsg = encodeURIComponent(msg);
-
-            // 3. Abrir DIRECTO al chat sin pasar por la página intermedia de wa.me
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
-            if (isMobile) {
-                // En móviles, el protocolo nativo whatsapp:// abre la APP de WhatsApp directamente en el chat
-                const appUrl = `whatsapp://send?phone=${cleanPhone}&text=${encodedMsg}`;
-                const apiFallback = `https://api.whatsapp.com/send?phone=${cleanPhone}&text=${encodedMsg}`;
-                
-                window.location.href = appUrl;
-                setTimeout(() => {
-                    window.location.href = apiFallback;
-                }, 750);
-            } else {
-                // En computadoras / laptops: web.whatsapp.com/send abre WhatsApp Web directamente en la conversación
-                // sin la pantalla intermedia de wa.me ("Continuar al chat")
-                const webWhatsappUrl = `https://web.whatsapp.com/send?phone=${cleanPhone}&text=${encodedMsg}`;
-                window.open(webWhatsappUrl, '_blank', 'noopener,noreferrer');
-            }
-        }
-
         /* ---------- COTIZACIÓN RÁPIDA (ENFOQUE PERSONAL) ---------- */
         function enviarCotizacionPersonal(event) {
             if (event) event.preventDefault();
@@ -9822,35 +9224,11 @@
             // Guardar datos en memoria para que el PDF los conserve aunque el formulario se limpie
             window.ultimaCotizacionData = { nombre, telefono, email, comentarios };
 
-            // ── FASE 2: Construcción del mensaje de WhatsApp pre-redactado ────────────
+            // Éxito: El campo de comentarios es opcional (si no dejó comentarios, no pasa nada)
+            const detalleComentario = comentarios ? ' y revisaremos con atención tus comentarios' : '';
             const tienePrendasEnCarro = Object.keys(cart).length > 0;
-            let resumenCarrito = '';
-            if (tienePrendasEnCarro) {
-                const lineas = Object.keys(cart).map(id => {
-                    const p = PRODUCTS.find(x => x.id == id);
-                    if (!p) return null;
-                    const qty = cart[id];
-                    const talla = cartSizes[id] ? ' (Talla ' + cartSizes[id] + ')' : '';
-                    return `  • ${qty}x ${p.name}${talla} [${p.code}]`;
-                }).filter(Boolean);
-                resumenCarrito = `\n\n🛒 *Prendas en mi carrito:*\n${lineas.join('\n')}`;
-            }
-
-            const comentariosMsg = comentarios ? `\n\n💬 *Comentarios adicionales:*\n${comentarios}` : '';
-
-            const mensajeWA = encodeURIComponent(
-                `¡Hola UNIFORTEX! 👋\n\nSolicito una cotización formal.\n\n` +
-                `👤 *Nombre:* ${nombre}\n` +
-                `📞 *Teléfono/WhatsApp:* ${telefono}\n` +
-                `✉️ *Correo:* ${email}` +
-                resumenCarrito +
-                comentariosMsg +
-                `\n\n¡Quedo atento a su respuesta!`
-            );
-
-            // Número de ventas principal de UNIFORTEX
-            const whatsappUrl = `https://wa.me/584144938316?text=${mensajeWA}`;
-            // ── Fin FASE 2 ────────────────────────────────────────────────────────────
+            const extraCarroMsg = tienePrendasEnCarro ? '\n\n📄 Nota: Tienes productos en tu carrito. Puedes descargar tu cotización formal en PDF con membrete usando el botón que aparece arriba.' : '';
+            const confirmMsg = `✅ ¡Muchas gracias, ${nombre}! Hemos recibido tu solicitud correctamente${detalleComentario}. Un asesor se comunicará contigo vía WhatsApp o correo a la brevedad.${extraCarroMsg}`;
 
             if (notice) {
                 notice.style.display = 'block';
@@ -9858,19 +9236,16 @@
                 notice.style.borderColor = '#25d366';
                 notice.style.color = '#25d366';
                 const extraNoticeCarro = tienePrendasEnCarro ? '<div style="margin-top:.45rem;padding-top:.4rem;border-top:1px solid rgba(37,211,102,0.3);font-size:.82rem;color:#ffffff">📄 <b>Tip:</b> Tienes productos en el carrito. Haz clic en <b>"Descargar Cotización en PDF"</b> arriba para guardarla o imprimirla al instante.</div>' : '';
-                notice.innerHTML = `<div style="display:flex;align-items:flex-start;gap:.6rem"><span style="font-size:1.2rem">✨</span><div><div>Tu mensaje ya está listo. En un momento se abrirá <b>WhatsApp</b> para enviarlo directamente a nuestro equipo de ventas. 💬</div>${extraNoticeCarro}</div></div>`;
+                notice.innerHTML = `<div style="display:flex;align-items:flex-start;gap:.6rem"><span style="font-size:1.2rem">✨</span><div><div>${confirmMsg.replace('\n\n', '<br><br>')}</div>${extraNoticeCarro}</div></div>`;
             }
+
+            alert(confirmMsg);
 
             // Limpiar formulario
             const form = document.getElementById('formCotizaPersonal');
             if (form) form.reset();
 
-            // Abrir WhatsApp con el mensaje pre-redactado DIRECTO al chat
-            setTimeout(() => {
-                abrirWhatsAppDirecto('584144938316', mensajeWA, null);
-            }, 400);
-
-            // Ocultar mensaje de éxito después de 10 segundos
+            // Ocultar mensaje después de un tiempo prudencial
             setTimeout(() => {
                 if (notice) {
                     notice.style.display = 'none';
@@ -9878,7 +9253,7 @@
                     notice.style.borderColor = 'rgba(253, 196, 23, 0.4)';
                     notice.style.color = 'var(--ama)';
                 }
-            }, 10000);
+            }, 8000);
 
             return false;
         }
