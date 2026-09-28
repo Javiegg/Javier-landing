@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -3945,8 +3945,15 @@
         }
 
         @keyframes ocFadeIn {
-            from { opacity: 0; transform: translateY(4px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(4px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .oc-field-label {
@@ -4558,6 +4565,252 @@
             transform: translateY(-2px);
             box-shadow: 0 12px 25px rgba(211, 89, 20, 0.55);
         }
+
+        /* ======= MODAL DE AUTENTICACIÓN SANCTUM ======= */
+        .auth-modal-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 99999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            animation: authFadeIn 0.3s ease;
+        }
+        .auth-modal-overlay.open { display: flex; }
+        @keyframes authFadeIn { from { opacity:0 } to { opacity:1 } }
+        @keyframes authSlideUp { from { transform:translateY(30px); opacity:0 } to { transform:translateY(0); opacity:1 } }
+
+        .auth-modal {
+            background: linear-gradient(145deg, #1a1a2e, #16213e);
+            border: 1px solid rgba(253,196,23,0.15);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 440px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 0;
+            position: relative;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5), 0 0 40px rgba(253,196,23,0.08);
+            animation: authSlideUp 0.35s ease;
+        }
+
+        .auth-modal-close {
+            position: absolute;
+            top: 12px; right: 14px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: #fff;
+            width: 32px; height: 32px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .2s;
+            z-index: 10;
+        }
+        .auth-modal-close:hover { background: rgba(239,68,68,0.3); border-color: #ef4444; }
+
+        .auth-tabs {
+            display: flex;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .auth-tab {
+            flex: 1;
+            padding: 1rem;
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-family: Poppins, sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .25s;
+            position: relative;
+        }
+        .auth-tab.active {
+            color: var(--ama, #fdc417);
+        }
+        .auth-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 10%; right: 10%;
+            height: 2px;
+            background: var(--gw, linear-gradient(90deg,#d35914,#fdc417));
+            border-radius: 2px;
+        }
+        .auth-tab:hover:not(.active) { color: #e2e8f0; background: rgba(255,255,255,0.03); }
+
+        .auth-form {
+            padding: 1.5rem 1.75rem;
+        }
+        .auth-form-header {
+            margin-bottom: 1.25rem;
+        }
+        .auth-form-header h3 {
+            font-family: Poppins, sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0 0 0.3rem;
+        }
+        .auth-form-header p {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin: 0;
+            line-height: 1.5;
+        }
+        .auth-field {
+            margin-bottom: 1rem;
+        }
+        .auth-field label {
+            display: block;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #cbd5e1;
+            margin-bottom: 0.35rem;
+        }
+        .auth-field input, .auth-field select {
+            width: 100%;
+            padding: 0.7rem 0.85rem;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 8px;
+            color: #f1f5f9;
+            font-family: Poppins, sans-serif;
+            font-size: 0.85rem;
+            transition: all .2s;
+            outline: none;
+            box-sizing: border-box;
+        }
+        .auth-field input:focus, .auth-field select:focus {
+            border-color: var(--ama, #fdc417);
+            box-shadow: 0 0 0 3px rgba(253,196,23,0.12);
+        }
+        .auth-field input::placeholder {
+            color: #64748b;
+        }
+        .auth-field select option {
+            background: #1a1a2e;
+            color: #f1f5f9;
+        }
+
+        .auth-submit-btn {
+            width: 100%;
+            padding: 0.85rem;
+            background: var(--gw, linear-gradient(135deg,#d35914,#fdc417));
+            color: #111;
+            border: none;
+            border-radius: 10px;
+            font-family: Poppins, sans-serif;
+            font-size: 0.88rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all .25s;
+            margin-top: 0.5rem;
+        }
+        .auth-submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(211,89,20,0.4);
+        }
+        .auth-submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .auth-error {
+            background: rgba(239,68,68,0.12);
+            border: 1px solid rgba(239,68,68,0.3);
+            border-radius: 8px;
+            padding: 0.65rem 0.85rem;
+            margin-top: 0.75rem;
+            color: #fca5a5;
+            font-size: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .auth-footer {
+            padding: 1rem 1.75rem;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            text-align: center;
+            font-size: 0.72rem;
+            color: #64748b;
+        }
+
+        /* Indicador de sesión activa en el header */
+        .auth-user-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.3rem 0.75rem;
+            background: rgba(34,197,94,0.12);
+            border: 1px solid rgba(34,197,94,0.3);
+            border-radius: 999px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: #22c55e;
+            cursor: pointer;
+        }
+        .auth-user-badge:hover {
+            background: rgba(34,197,94,0.2);
+        }
+
+        /* ======= MODAL DE PAGO MÓVIL ======= */
+        .pago-datos-bancarios {
+            margin: 0 1.75rem 1.25rem;
+            background: rgba(34,197,94,0.06);
+            border: 1px solid rgba(34,197,94,0.2);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+        }
+        .pago-dato-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .pago-dato-row:last-child { border-bottom: none; }
+        .pago-dato-label {
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+        .pago-dato-value {
+            font-size: 0.88rem;
+            color: #e2e8f0;
+            font-weight: 600;
+        }
+        .pago-monto-total {
+            margin-top: 0.5rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid rgba(34,197,94,0.3);
+        }
+        .pago-monto-total .pago-dato-value {
+            color: #22c55e;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 480px) {
+            .auth-modal {
+                max-width: 100%;
+                border-radius: 12px;
+            }
+            .auth-form {
+                padding: 1.25rem 1.25rem;
+            }
+            .pago-datos-bancarios {
+                margin: 0 1.25rem 1rem;
+            }
+        }
+
 
         .cart-drawer-actions-sub {
             display: flex;
@@ -6520,8 +6773,11 @@
                     <div class="inicio-card-frame novedad-card-frame">
                         <div class="inicio-hub-header">
                             <span class="inicio-hub-tag-live" id="novedadLiveTag">🔴 DEMO EN VIVO / REEL VERTICAL</span>
-                            <h2 class="inicio-hub-title" id="novedadMainTitle">Novedades &amp; <span class="gold">Lanzamientos</span></h2>
-                            <p class="inicio-hub-sub" id="novedadMainSub">Descubre en video real el ajuste anatómico, la resistencia de materiales y los acabados corporativos de nuestras últimas innovaciones en dotación y EPP.</p>
+                            <h2 class="inicio-hub-title" id="novedadMainTitle">Novedades &amp; <span
+                                    class="gold">Lanzamientos</span></h2>
+                            <p class="inicio-hub-sub" id="novedadMainSub">Descubre en video real el ajuste anatómico, la
+                                resistencia de materiales y los acabados corporativos de nuestras últimas innovaciones
+                                en dotación y EPP.</p>
                         </div>
 
                         <div class="novedad-layout-grid">
@@ -6533,28 +6789,34 @@
                                         <span class="reel-ratio">9:16 HD</span>
                                     </div>
                                     <div class="reel-video-container" onclick="togglePlayReel()">
-                                        <video id="novedadVideoPlayer" playsinline autoplay muted loop preload="metadata">
-                                            <source id="novedadVideoSrc" src="https://assets.mixkit.co/videos/preview/mixkit-man-working-in-a-warehouse-inspecting-boxes-42797-large.mp4" type="video/mp4">
+                                        <video id="novedadVideoPlayer" playsinline autoplay muted loop
+                                            preload="metadata">
+                                            <source id="novedadVideoSrc"
+                                                src="https://assets.mixkit.co/videos/preview/mixkit-man-working-in-a-warehouse-inspecting-boxes-42797-large.mp4"
+                                                type="video/mp4">
                                             Tu navegador no soporta reproducción de video.
                                         </video>
                                         <div class="reel-center-play" id="reelCenterPlay">
                                             <span>▶</span>
                                         </div>
                                         <div class="reel-bottom-controls" onclick="event.stopPropagation()">
-                                            <button type="button" class="reel-control-btn" id="btnReelPlayPause" onclick="togglePlayReel()" title="Reproducir / Pausar">
+                                            <button type="button" class="reel-control-btn" id="btnReelPlayPause"
+                                                onclick="togglePlayReel()" title="Reproducir / Pausar">
                                                 <span id="reelPlayIcon">⏸️</span>
                                             </button>
                                             <div class="reel-timeline">
                                                 <div class="reel-timeline-bar" id="reelTimelineBar"></div>
                                             </div>
-                                            <button type="button" class="reel-control-btn" id="btnReelMute" onclick="toggleMuteReel()" title="Silenciar / Activar Audio">
+                                            <button type="button" class="reel-control-btn" id="btnReelMute"
+                                                onclick="toggleMuteReel()" title="Silenciar / Activar Audio">
                                                 <span id="reelMuteIcon">🔇</span>
                                             </button>
                                         </div>
                                     </div>
                                     <div class="reel-footer-info">
                                         <span class="reel-handle">@unifortex_industrial</span>
-                                        <p class="reel-caption" id="novedadVideoCaption">Demostración de impermeabilidad y visibilidad reflectiva 3M en turnos de trabajo pesado.</p>
+                                        <p class="reel-caption" id="novedadVideoCaption">Demostración de impermeabilidad
+                                            y visibilidad reflectiva 3M en turnos de trabajo pesado.</p>
                                     </div>
                                 </div>
                             </div>
@@ -6567,11 +6829,16 @@
                                     <span class="novedad-stock-tag">⚡ Stock Inmediato para Empresas</span>
                                 </div>
 
-                                <h3 class="novedad-item-headline" id="novedadProdName">Conjunto Motorizado Impermeable Negro 3M</h3>
-                                <p class="novedad-item-subheadline" id="novedadProdSub">Protección hidrostática certificada, doble solapa cortaviento y bandas reflectivas microprismáticas</p>
+                                <h3 class="novedad-item-headline" id="novedadProdName">Conjunto Motorizado Impermeable
+                                    Negro 3M</h3>
+                                <p class="novedad-item-subheadline" id="novedadProdSub">Protección hidrostática
+                                    certificada, doble solapa cortaviento y bandas reflectivas microprismáticas</p>
 
                                 <p class="novedad-item-desc" id="novedadProdDesc">
-                                    Confeccionado en lona textil impermeable de alta densidad con sellado térmico en todas sus uniones. Su diseño ergonómico de 2 piezas (chaqueta con solapa cortaviento y pantalón con tiro reforzado) asegura máxima comodidad y visibilidad 360° en condiciones de lluvia intensa y operaciones logísticas nocturnas.
+                                    Confeccionado en lona textil impermeable de alta densidad con sellado térmico en
+                                    todas sus uniones. Su diseño ergonómico de 2 piezas (chaqueta con solapa cortaviento
+                                    y pantalón con tiro reforzado) asegura máxima comodidad y visibilidad 360° en
+                                    condiciones de lluvia intensa y operaciones logísticas nocturnas.
                                 </p>
 
                                 <!-- Prendas y Equipos en el video -->
@@ -6611,7 +6878,8 @@
                                             <b class="novedad-curr-val" id="novedadCurrVal">$28.00</b>
                                             <span class="novedad-curr-unit">USD / unidad</span>
                                         </div>
-                                        <small class="novedad-saving-note" id="novedadSavingNote">🎉 Ahorras $6.00/ud a partir de 12 dotaciones</small>
+                                        <small class="novedad-saving-note" id="novedadSavingNote">🎉 Ahorras $6.00/ud a
+                                            partir de 12 dotaciones</small>
                                     </div>
                                     <div class="novedad-b2b-perks">
                                         <div class="perk-item"><span>✨</span> Ponchado de logo bonificado</div>
@@ -6622,10 +6890,12 @@
 
                                 <!-- Botones de Acción Solicitados -->
                                 <div class="novedad-btn-actions">
-                                    <button type="button" class="btn-novedad-primary" id="btnNovedadFicha" onclick="abrirFichaNovedad()">
+                                    <button type="button" class="btn-novedad-primary" id="btnNovedadFicha"
+                                        onclick="abrirFichaNovedad()">
                                         📄 Ver Ficha Técnica del Producto ➔
                                     </button>
-                                    <button type="button" class="btn-novedad-secondary" id="btnNovedadCotizar" onclick="cotizarProductoNovedad()">
+                                    <button type="button" class="btn-novedad-secondary" id="btnNovedadCotizar"
+                                        onclick="cotizarProductoNovedad()">
                                         ⚡ Añadir al Carrito de Cotización
                                     </button>
                                     <button type="button" class="btn-novedad-wa" onclick="consultarNovedadWhatsApp()">
@@ -7398,10 +7668,14 @@
                             <div class="opt-group">
                                 <span class="opt-label">2. Ángulo de Visualización del Boceto</span>
                                 <div class="opt-chips" id="chipsAngulo">
-                                    <button class="opt-chip active" id="chipAngFrente" onclick="setDisenoAngulo('frente', this)">👕 Frente</button>
-                                    <button class="opt-chip" id="chipAngEspalda" onclick="setDisenoAngulo('espalda', this)">🔄 Espalda</button>
-                                    <button class="opt-chip" id="chipAngMangaIzq" onclick="setDisenoAngulo('manga-izq', this)">👈 Manga Izquierda</button>
-                                    <button class="opt-chip" id="chipAngMangaDer" onclick="setDisenoAngulo('manga-der', this)">👉 Manga Derecha</button>
+                                    <button class="opt-chip active" id="chipAngFrente"
+                                        onclick="setDisenoAngulo('frente', this)">👕 Frente</button>
+                                    <button class="opt-chip" id="chipAngEspalda"
+                                        onclick="setDisenoAngulo('espalda', this)">🔄 Espalda</button>
+                                    <button class="opt-chip" id="chipAngMangaIzq"
+                                        onclick="setDisenoAngulo('manga-izq', this)">👈 Manga Izquierda</button>
+                                    <button class="opt-chip" id="chipAngMangaDer"
+                                        onclick="setDisenoAngulo('manga-der', this)">👉 Manga Derecha</button>
                                 </div>
                             </div>
 
@@ -7445,9 +7719,12 @@
 
                             <!-- 4. Técnica de Personalización -->
                             <div class="opt-group">
-                                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.35rem">
+                                <div
+                                    style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.35rem">
                                     <span class="opt-label" style="margin-bottom:0">4. Técnica de Aplicación</span>
-                                    <span id="disenoTecnicaReglaBadge" style="font-size:.68rem;padding:.2rem .55rem;border-radius:6px;background:rgba(253,196,23,.12);border:1px solid rgba(253,196,23,.3);color:var(--ama);font-weight:700">Reglas Técnicas UNIFORTEX</span>
+                                    <span id="disenoTecnicaReglaBadge"
+                                        style="font-size:.68rem;padding:.2rem .55rem;border-radius:6px;background:rgba(253,196,23,.12);border:1px solid rgba(253,196,23,.3);color:var(--ama);font-weight:700">Reglas
+                                        Técnicas UNIFORTEX</span>
                                 </div>
                                 <div class="opt-chips" id="chipsTecnica">
                                     <button class="opt-chip active" id="btnTecBordado"
@@ -7463,8 +7740,11 @@
                                         ♨️ Sublimado Cálido (+$2.50)
                                     </button>
                                 </div>
-                                <div id="disenoTecnicaAviso" style="margin-top:.5rem;padding:.45rem .75rem;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid #e2e8f0;font-size:.7rem;color:#4a5568;line-height:1.35">
-                                    🧵 <b>Bordados:</b> Todas las prendas &bull; 🎨 <b>Estampar:</b> Franelas, chalecos, bragas, impermeables y gorras &bull; ♨️ <b>Sublimar cálido:</b> Solo franelas y gorras.
+                                <div id="disenoTecnicaAviso"
+                                    style="margin-top:.5rem;padding:.45rem .75rem;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid #e2e8f0;font-size:.7rem;color:#4a5568;line-height:1.35">
+                                    🧵 <b>Bordados:</b> Todas las prendas &bull; 🎨 <b>Estampar:</b> Franelas, chalecos,
+                                    bragas, impermeables y gorras &bull; ♨️ <b>Sublimar cálido:</b> Solo franelas y
+                                    gorras.
                                 </div>
                             </div>
 
@@ -7671,8 +7951,10 @@
                     <div class="oc-grid">
                         <!-- Formulario y Detalle de la Orden -->
                         <div class="oc-card">
-                            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.1rem;flex-wrap:wrap;gap:.5rem">
-                                <h3 style="color:var(--neg);margin:0;font-size:1.12rem;display:flex;align-items:center;gap:.55rem">
+                            <div
+                                style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.1rem;flex-wrap:wrap;gap:.5rem">
+                                <h3
+                                    style="color:var(--neg);margin:0;font-size:1.12rem;display:flex;align-items:center;gap:.55rem">
                                     <span>🏢</span> Datos Comerciales & Facturación Fiscal
                                 </h3>
                                 <span style="font-size:.72rem;color:var(--gri);font-weight:600">
@@ -7682,38 +7964,48 @@
 
                             <!-- Selector de Facturación: Persona Natural vs Persona Jurídica -->
                             <div class="oc-tipo-selector">
-                                <button type="button" id="btnOCTipoNatural" class="oc-tipo-btn active" onclick="setOCTipoPersona('natural')">
+                                <button type="button" id="btnOCTipoNatural" class="oc-tipo-btn active"
+                                    onclick="setOCTipoPersona('natural')">
                                     <span class="oc-tipo-icon">👤</span>
                                     <div>
-                                        <strong style="display:block;font-size:.85rem;line-height:1.2">Persona Natural</strong>
+                                        <strong style="display:block;font-size:.85rem;line-height:1.2">Persona
+                                            Natural</strong>
                                         <small style="font-size:.69rem">Particular / Nombres, Apellidos y Cédula</small>
                                     </div>
                                 </button>
-                                <button type="button" id="btnOCTipoJuridica" class="oc-tipo-btn" onclick="setOCTipoPersona('juridica')">
+                                <button type="button" id="btnOCTipoJuridica" class="oc-tipo-btn"
+                                    onclick="setOCTipoPersona('juridica')">
                                     <span class="oc-tipo-icon">🏢</span>
                                     <div>
-                                        <strong style="display:block;font-size:.85rem;line-height:1.2">Persona Jurídica</strong>
-                                        <small style="font-size:.69rem">Empresarial / RIF, Razón Social y Empresa</small>
+                                        <strong style="display:block;font-size:.85rem;line-height:1.2">Persona
+                                            Jurídica</strong>
+                                        <small style="font-size:.69rem">Empresarial / RIF, Razón Social y
+                                            Empresa</small>
                                     </div>
                                 </button>
                             </div>
 
                             <!-- PANEL 1: PERSONA NATURAL -->
                             <div id="ocCamposNatural" class="oc-form-panel" style="display:block">
-                                <div style="display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-bottom:1.2rem" class="oc-inputs-grid">
+                                <div style="display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-bottom:1.2rem"
+                                    class="oc-inputs-grid">
                                     <div>
                                         <label class="oc-field-label">
                                             <span>Nombres *</span>
-                                            <span style="font-size:.65rem;color:var(--gri);text-transform:none">Primer y segundo nombre</span>
+                                            <span style="font-size:.65rem;color:var(--gri);text-transform:none">Primer y
+                                                segundo nombre</span>
                                         </label>
-                                        <input id="ocNatNombres" required type="text" placeholder="Ej. Carlos Alberto" class="oc-input">
+                                        <input id="ocNatNombres" required type="text" placeholder="Ej. Carlos Alberto"
+                                            class="oc-input">
                                     </div>
                                     <div>
                                         <label class="oc-field-label">
                                             <span>Apellidos *</span>
-                                            <span style="font-size:.65rem;color:var(--gri);text-transform:none">Primer y segundo apellido</span>
+                                            <span style="font-size:.65rem;color:var(--gri);text-transform:none">Primer y
+                                                segundo apellido</span>
                                         </label>
-                                        <input id="ocNatApellidos" required type="text" placeholder="Ej. Mendoza Rodríguez" class="oc-input">
+                                        <input id="ocNatApellidos" required type="text"
+                                            placeholder="Ej. Mendoza Rodríguez" class="oc-input">
                                     </div>
                                     <div>
                                         <label class="oc-field-label">
@@ -7721,67 +8013,79 @@
                                             <span class="oc-field-badge oc-field-badge-num">Solo números</span>
                                         </label>
                                         <div style="display:flex;gap:.4rem">
-                                            <select id="ocNatCedulaTipo" style="width:72px;padding:.75rem .3rem;border:1.5px solid #ddd;border-radius:10px;font-family:Poppins;font-weight:700;font-size:.82rem;background:#f8fafc;cursor:pointer">
+                                            <select id="ocNatCedulaTipo"
+                                                style="width:72px;padding:.75rem .3rem;border:1.5px solid #ddd;border-radius:10px;font-family:Poppins;font-weight:700;font-size:.82rem;background:#f8fafc;cursor:pointer">
                                                 <option value="V-">V-</option>
                                                 <option value="E-">E-</option>
                                             </select>
-                                            <input id="ocNatCedula" required type="text" inputmode="numeric" pattern="[0-9]*" maxlength="10"
-                                                placeholder="Ej. 18456123"
-                                                oninput="this.value = this.value.replace(/\D/g, '')"
-                                                class="oc-input" style="flex:1">
+                                            <input id="ocNatCedula" required type="text" inputmode="numeric"
+                                                pattern="[0-9]*" maxlength="10" placeholder="Ej. 18456123"
+                                                oninput="this.value = this.value.replace(/\D/g, '')" class="oc-input"
+                                                style="flex:1">
                                         </div>
                                     </div>
                                     <div>
                                         <label class="oc-field-label">
                                             <span>Teléfono / WhatsApp *</span>
                                         </label>
-                                        <input id="ocNatTelefono" required type="tel" placeholder="Ej. 0414-1234567" class="oc-input">
+                                        <input id="ocNatTelefono" required type="tel" placeholder="Ej. 0414-1234567"
+                                            class="oc-input">
                                     </div>
                                     <div style="grid-column: 1 / -1">
                                         <label class="oc-field-label">
                                             <span>Correo Electrónico para Enviar O.C. *</span>
-                                            <span style="font-size:.65rem;color:var(--gri);text-transform:none">Factura proforma y seguimiento</span>
+                                            <span style="font-size:.65rem;color:var(--gri);text-transform:none">Factura
+                                                proforma y seguimiento</span>
                                         </label>
-                                        <input id="ocNatEmail" required type="email" placeholder="Ej. carlos.mendoza@email.com" class="oc-input">
+                                        <input id="ocNatEmail" required type="email"
+                                            placeholder="Ej. carlos.mendoza@email.com" class="oc-input">
                                     </div>
                                 </div>
                             </div>
 
                             <!-- PANEL 2: PERSONA JURÍDICA -->
                             <div id="ocCamposJuridica" class="oc-form-panel" style="display:none">
-                                <div style="display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-bottom:1.2rem" class="oc-inputs-grid">
+                                <div style="display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-bottom:1.2rem"
+                                    class="oc-inputs-grid">
                                     <div>
                                         <label class="oc-field-label">
                                             <span>RIF Fiscal *</span>
                                             <span class="oc-field-badge oc-field-badge-any">Cualquier carácter</span>
                                         </label>
-                                        <input id="ocJurRif" required type="text" placeholder="Ej. J-31048921-4, G-20001234-5..." class="oc-input">
+                                        <input id="ocJurRif" required type="text"
+                                            placeholder="Ej. J-31048921-4, G-20001234-5..." class="oc-input">
                                     </div>
                                     <div>
                                         <label class="oc-field-label">
                                             <span>Razón Social / Nombre de la Empresa *</span>
                                         </label>
-                                        <input id="ocJurEmpresa" required type="text" placeholder="Ej. Constructora Andina C.A." class="oc-input">
+                                        <input id="ocJurEmpresa" required type="text"
+                                            placeholder="Ej. Constructora Andina C.A." class="oc-input">
                                     </div>
                                     <div>
                                         <label class="oc-field-label">
                                             <span>Nombre y Apellido del Contacto / Solicitante</span>
-                                            <span style="font-size:.65rem;color:var(--gri);text-transform:none">Dpto. Compras / RRHH (Opcional)</span>
+                                            <span style="font-size:.65rem;color:var(--gri);text-transform:none">Dpto.
+                                                Compras / RRHH (Opcional)</span>
                                         </label>
-                                        <input id="ocJurContacto" type="text" placeholder="Ej. Ing. Marcos Benítez" class="oc-input">
+                                        <input id="ocJurContacto" type="text" placeholder="Ej. Ing. Marcos Benítez"
+                                            class="oc-input">
                                     </div>
                                     <div>
                                         <label class="oc-field-label">
                                             <span>Teléfono / WhatsApp Corporativo *</span>
                                         </label>
-                                        <input id="ocJurTelefono" required type="tel" placeholder="Ej. 0414-4938316 / 0241-8889900" class="oc-input">
+                                        <input id="ocJurTelefono" required type="tel"
+                                            placeholder="Ej. 0414-4938316 / 0241-8889900" class="oc-input">
                                     </div>
                                     <div style="grid-column: 1 / -1">
                                         <label class="oc-field-label">
                                             <span>Correo Electrónico Corporativo *</span>
-                                            <span style="font-size:.65rem;color:var(--gri);text-transform:none">Para cotización oficial y O.C.</span>
+                                            <span style="font-size:.65rem;color:var(--gri);text-transform:none">Para
+                                                cotización oficial y O.C.</span>
                                         </label>
-                                        <input id="ocJurEmail" required type="email" placeholder="Ej. compras@constructoraandina.com" class="oc-input">
+                                        <input id="ocJurEmail" required type="email"
+                                            placeholder="Ej. compras@constructoraandina.com" class="oc-input">
                                     </div>
                                 </div>
                             </div>
@@ -7790,9 +8094,12 @@
                             <div style="margin-bottom:1.5rem">
                                 <label class="oc-field-label">
                                     <span>Dirección de Despacho / Entrega (Opcional)</span>
-                                    <span style="font-size:.65rem;color:var(--gri);text-transform:none">Opcional · Coordinar con ventas o acordar retiro en tienda</span>
+                                    <span style="font-size:.65rem;color:var(--gri);text-transform:none">Opcional ·
+                                        Coordinar con ventas o acordar retiro en tienda</span>
                                 </label>
-                                <input id="ocDespacho" placeholder="Ej. Zona Industrial, Almacén Central o retiro en tienda..." class="oc-input">
+                                <input id="ocDespacho"
+                                    placeholder="Ej. Zona Industrial, Almacén Central o retiro en tienda..."
+                                    class="oc-input">
                             </div>
 
                             <h4
@@ -8385,8 +8692,161 @@
         </div>
     </aside>
 
+    <!-- ======= MODAL DE AUTENTICACIÓN SANCTUM (Login / Registro) ======= -->
+    <div class="auth-modal-overlay" id="authModalOverlay" onclick="cerrarAuthModal()">
+        <div class="auth-modal" onclick="event.stopPropagation()">
+            <button class="auth-modal-close" onclick="cerrarAuthModal()" title="Cerrar">&times;</button>
+            
+            <!-- Tabs Login / Registro -->
+            <div class="auth-tabs">
+                <button class="auth-tab active" id="tabLogin" onclick="switchAuthTab('login')">
+                    🔑 Iniciar Sesión
+                </button>
+                <button class="auth-tab" id="tabRegister" onclick="switchAuthTab('register')">
+                    ✨ Crear Cuenta
+                </button>
+            </div>
+
+            <!-- Formulario Login -->
+            <form class="auth-form" id="formLogin" onsubmit="handleLogin(event)">
+                <div class="auth-form-header">
+                    <h3>Bienvenido de vuelta</h3>
+                    <p>Inicia sesión para confirmar tu compra</p>
+                </div>
+                <div class="auth-field">
+                    <label>📧 Correo Electrónico</label>
+                    <input type="email" id="authLoginEmail" required placeholder="tucorreo@empresa.com" autocomplete="email">
+                </div>
+                <div class="auth-field">
+                    <label>🔒 Contraseña</label>
+                    <input type="password" id="authLoginPassword" required placeholder="Tu contraseña" autocomplete="current-password">
+                </div>
+                <button type="submit" class="auth-submit-btn" id="btnAuthLogin">
+                    <span class="auth-btn-text">Iniciar Sesión y Continuar</span>
+                    <span class="auth-btn-loader" style="display:none">⏳ Verificando...</span>
+                </button>
+                <div class="auth-error" id="loginError" style="display:none"></div>
+            </form>
+
+            <!-- Formulario Registro -->
+            <form class="auth-form" id="formRegister" style="display:none" onsubmit="handleRegister(event)">
+                <div class="auth-form-header">
+                    <h3>Crea tu cuenta en 1 clic</h3>
+                    <p>Usaremos los datos de tu cotización para agilizar el registro</p>
+                </div>
+                <div class="auth-field">
+                    <label>👤 Nombre Completo</label>
+                    <input type="text" id="authRegName" required placeholder="Ing. Carlos Mendoza" autocomplete="name">
+                </div>
+                <div class="auth-field">
+                    <label>📧 Correo Electrónico</label>
+                    <input type="email" id="authRegEmail" required placeholder="tucorreo@empresa.com" autocomplete="email">
+                </div>
+                <div class="auth-field">
+                    <label>📱 Teléfono</label>
+                    <input type="tel" id="authRegPhone" required placeholder="+58 414 1234567" autocomplete="tel">
+                </div>
+                <div class="auth-field">
+                    <label>🏢 Empresa (Opcional)</label>
+                    <input type="text" id="authRegCompany" placeholder="Constructora Andina C.A." autocomplete="organization">
+                </div>
+                <div class="auth-field">
+                    <label>🔒 Crear Contraseña</label>
+                    <input type="password" id="authRegPassword" required placeholder="Mínimo 8 caracteres" minlength="8" autocomplete="new-password">
+                </div>
+                <div class="auth-field">
+                    <label>🔒 Confirmar Contraseña</label>
+                    <input type="password" id="authRegPasswordConfirm" required placeholder="Repite tu contraseña" autocomplete="new-password">
+                </div>
+                <button type="submit" class="auth-submit-btn" id="btnAuthRegister">
+                    <span class="auth-btn-text">Crear Cuenta y Continuar</span>
+                    <span class="auth-btn-loader" style="display:none">⏳ Creando cuenta...</span>
+                </button>
+                <div class="auth-error" id="registerError" style="display:none"></div>
+            </form>
+
+            <div class="auth-footer">
+                🛡️ Tus datos están protegidos con cifrado SSL y cookies seguras httpOnly
+            </div>
+        </div>
+    </div>
+
+    <!-- ======= MODAL DE PAGO MÓVIL (Después del checkout) ======= -->
+    <div class="auth-modal-overlay" id="pagoMovilOverlay" onclick="cerrarPagoMovilModal()">
+        <div class="auth-modal pago-movil-modal" onclick="event.stopPropagation()">
+            <button class="auth-modal-close" onclick="cerrarPagoMovilModal()" title="Cerrar">&times;</button>
+            
+            <div class="auth-form-header" style="text-align:center">
+                <h3>📱 Realiza tu Pago Móvil</h3>
+                <p>Transfiere el monto indicado a la cuenta de UNIFORTEX</p>
+            </div>
+
+            <!-- Datos bancarios de UNIFORTEX -->
+            <div class="pago-datos-bancarios" id="datosBancariosPanel">
+                <div class="pago-dato-row">
+                    <span class="pago-dato-label">🏦 Banco:</span>
+                    <strong class="pago-dato-value" id="pmBanco">Banesco</strong>
+                </div>
+                <div class="pago-dato-row">
+                    <span class="pago-dato-label">📱 Teléfono:</span>
+                    <strong class="pago-dato-value" id="pmTelefono">0414-4938316</strong>
+                </div>
+                <div class="pago-dato-row">
+                    <span class="pago-dato-label">🆔 Cédula/RIF:</span>
+                    <strong class="pago-dato-value" id="pmCedulaRif">J-30491829-1</strong>
+                </div>
+                <div class="pago-dato-row pago-monto-total">
+                    <span class="pago-dato-label">💰 Monto a Pagar:</span>
+                    <strong class="pago-dato-value" id="pmMontoBs">Bs. 0.00</strong>
+                </div>
+            </div>
+
+            <!-- Formulario de reporte de pago -->
+            <form class="auth-form" id="formPagoMovil" onsubmit="handleReportarPago(event)" style="display:block">
+                <div class="auth-field">
+                    <label>🔢 Número de Referencia Bancaria</label>
+                    <input type="text" id="pmReferencia" required placeholder="Ej: 1234567890" maxlength="20">
+                </div>
+                <div class="auth-field">
+                    <label>🏦 Banco desde donde pagaste</label>
+                    <select id="pmBancoEmisor" required>
+                        <option value="">Selecciona tu banco</option>
+                        <option value="Banesco">Banesco</option>
+                        <option value="Provincial">Provincial</option>
+                        <option value="Mercantil">Mercantil</option>
+                        <option value="Venezuela">Venezuela</option>
+                        <option value="BOD">BOD</option>
+                        <option value="BNC">BNC</option>
+                        <option value="Bicentenario">Bicentenario</option>
+                        <option value="Exterior">Exterior</option>
+                        <option value="Tesoro">Tesoro</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+                <div class="auth-field">
+                    <label>📱 Últimos 4 dígitos de tu teléfono</label>
+                    <input type="text" id="pmUltimos4" required placeholder="8316" maxlength="4" pattern="[0-9]{4}">
+                </div>
+                <div class="auth-field">
+                    <label>💰 Monto pagado (Bs.)</label>
+                    <input type="number" step="0.01" id="pmMontoPagado" required placeholder="28514.22">
+                </div>
+                <button type="submit" class="auth-submit-btn" style="background:linear-gradient(135deg,#22c55e,#16a34a)" id="btnReportarPago">
+                    <span class="auth-btn-text">✅ Reportar Pago Móvil</span>
+                    <span class="auth-btn-loader" style="display:none">⏳ Enviando...</span>
+                </button>
+                <div class="auth-error" id="pagoError" style="display:none"></div>
+            </form>
+
+            <div class="auth-footer">
+                ⏱️ Tu pago será verificado por nuestro equipo en un máximo de 24 horas hábiles
+            </div>
+        </div>
+    </div>
+
     <!-- Toast global -->
     <div class="unifortex-toast" id="unifortexToast"></div>
+
 
     <!-- Chatbot Proactivo -->
     <div class="chat-greeting-bubble" id="chatGreetingBubble" onclick="openChat(); dismissGreeting()">
@@ -10029,6 +10489,7 @@
                 alert('Tu carrito está vacío. Agrega productos desde el catálogo para continuar.');
                 return;
             }
+            // Preparar los items para la OC
             ocItems = [];
             ids.forEach(id => {
                 const p = PRODUCTS.find(x => x.id == id);
@@ -10042,6 +10503,15 @@
                     });
                 }
             });
+
+            // Si el usuario NO está autenticado → Abrir modal de login/registro
+            if (!unifortexAuth.isAuthenticated) {
+                closeCartDrawer();
+                abrirAuthModal();
+                return;
+            }
+
+            // Si ya está autenticado → Ir directo a la Orden de Compra
             renderOCTable();
             closeCartDrawer();
             navigateToTab('orden-compra');
@@ -10052,6 +10522,371 @@
             if (!Object.keys(cart).length) { alert('Añade al menos un producto a tu kit.'); return; }
             navigateToTab('cotiza');
         }
+
+        /* ======================================================================
+           MÓDULO DE AUTENTICACIÓN SANCTUM SPA
+           Maneja login, registro, verificación de sesión y cookies httpOnly.
+           ====================================================================== */
+        const unifortexAuth = {
+            isAuthenticated: false,
+            currentUser: null,
+            apiBaseUrl: 'http://127.0.0.1:8000/api/v1',
+            sanctumUrl: 'http://127.0.0.1:8000',
+            pendingAction: null, // Acción a ejecutar tras autenticarse
+
+            // Lee el token XSRF de la cookie (Sanctum lo inyecta automáticamente)
+            getCsrfToken() {
+                const match = document.cookie.match(/XSRF-TOKEN=([^;]+)/);
+                return match ? decodeURIComponent(match[1]) : '';
+            },
+
+            // Paso 1: Obtener cookie CSRF antes de cualquier POST autenticado
+            async initCsrf() {
+                try {
+                    await fetch(`${this.sanctumUrl}/sanctum/csrf-cookie`, {
+                        credentials: 'include'
+                    });
+                } catch (e) {
+                    console.warn('[SANCTUM] No se pudo obtener cookie CSRF. Modo offline.');
+                }
+            },
+
+            // Petición autenticada con cookies Sanctum
+            async apiRequest(endpoint, options = {}) {
+                const url = `${this.apiBaseUrl}${endpoint}`;
+                try {
+                    const res = await fetch(url, {
+                        ...options,
+                        credentials: 'include',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                            'X-XSRF-TOKEN': this.getCsrfToken(),
+                            ...(options.headers || {})
+                        }
+                    });
+                    const data = await res.json();
+                    return { ok: res.ok, status: res.status, data };
+                } catch (err) {
+                    console.warn('[API] Error de conexión:', err);
+                    return { ok: false, status: 0, data: null };
+                }
+            },
+
+            // Login con Sanctum SPA (cookie httpOnly)
+            async login(email, password) {
+                await this.initCsrf();
+                const result = await this.apiRequest('/login', {
+                    method: 'POST',
+                    body: JSON.stringify({ email, password })
+                });
+                if (result.ok && result.data && result.data.success) {
+                    this.isAuthenticated = true;
+                    this.currentUser = result.data.data.user;
+                    this.updateAuthUI();
+                    return { success: true, user: this.currentUser };
+                }
+                return {
+                    success: false,
+                    message: result.data?.message || 'Credenciales incorrectas. Verifica tu correo y contraseña.'
+                };
+            },
+
+            // Registro 1-clic
+            async register(userData) {
+                await this.initCsrf();
+                const result = await this.apiRequest('/register', {
+                    method: 'POST',
+                    body: JSON.stringify(userData)
+                });
+                if (result.ok && result.data && result.data.success) {
+                    this.isAuthenticated = true;
+                    this.currentUser = result.data.data.user;
+                    this.updateAuthUI();
+                    return { success: true, user: this.currentUser };
+                }
+                return {
+                    success: false,
+                    message: result.data?.message || 'Error al crear la cuenta. Verifica los datos.',
+                    errors: result.data?.errors || {}
+                };
+            },
+
+            // Cerrar sesión
+            async logout() {
+                await this.apiRequest('/logout', { method: 'POST' });
+                this.isAuthenticated = false;
+                this.currentUser = null;
+                this.updateAuthUI();
+                mostrarToast('👋 Sesión cerrada correctamente.');
+            },
+
+            // Verificar si hay sesión activa (al cargar la página)
+            async checkAuth() {
+                const result = await this.apiRequest('/user');
+                if (result.ok && result.data) {
+                    this.isAuthenticated = true;
+                    this.currentUser = result.data.data || result.data;
+                    this.updateAuthUI();
+                    return true;
+                }
+                this.isAuthenticated = false;
+                this.currentUser = null;
+                return false;
+            },
+
+            // Actualizar la interfaz según el estado de autenticación
+            updateAuthUI() {
+                // Actualizar botón de "Confirmar Compra" si existe
+                const btnConfirmar = document.getElementById('btnConfirmarCompraDrawer');
+                if (btnConfirmar) {
+                    if (this.isAuthenticated) {
+                        btnConfirmar.innerHTML = '<span>✓</span> Confirmar Compra';
+                    } else {
+                        btnConfirmar.innerHTML = '<span>🔑</span> Iniciar Sesión y Comprar';
+                    }
+                }
+            }
+        };
+
+        /* ======================================================================
+           FUNCIONES DEL MODAL DE AUTENTICACIÓN
+           ====================================================================== */
+
+        function abrirAuthModal() {
+            const overlay = document.getElementById('authModalOverlay');
+            if (overlay) {
+                overlay.classList.add('open');
+                // Auto-rellenar email si el usuario ya ingresó datos en la cotización
+                const emailCotiza = document.querySelector('#cotizaEmail, input[name="email"]');
+                if (emailCotiza && emailCotiza.value) {
+                    const loginEmail = document.getElementById('authLoginEmail');
+                    const regEmail = document.getElementById('authRegEmail');
+                    if (loginEmail) loginEmail.value = emailCotiza.value;
+                    if (regEmail) regEmail.value = emailCotiza.value;
+                }
+                const nameCotiza = document.querySelector('#cotizaName, input[name="nombre"]');
+                if (nameCotiza && nameCotiza.value) {
+                    const regName = document.getElementById('authRegName');
+                    if (regName) regName.value = nameCotiza.value;
+                }
+                const phoneCotiza = document.querySelector('#cotizaPhone, input[name="telefono"]');
+                if (phoneCotiza && phoneCotiza.value) {
+                    const regPhone = document.getElementById('authRegPhone');
+                    if (regPhone) regPhone.value = phoneCotiza.value;
+                }
+            }
+        }
+
+        function cerrarAuthModal() {
+            const overlay = document.getElementById('authModalOverlay');
+            if (overlay) overlay.classList.remove('open');
+        }
+
+        function switchAuthTab(tab) {
+            const tabLogin = document.getElementById('tabLogin');
+            const tabRegister = document.getElementById('tabRegister');
+            const formLogin = document.getElementById('formLogin');
+            const formRegister = document.getElementById('formRegister');
+
+            if (tab === 'login') {
+                tabLogin.classList.add('active');
+                tabRegister.classList.remove('active');
+                formLogin.style.display = 'block';
+                formRegister.style.display = 'none';
+            } else {
+                tabLogin.classList.remove('active');
+                tabRegister.classList.add('active');
+                formLogin.style.display = 'none';
+                formRegister.style.display = 'block';
+            }
+            // Ocultar errores al cambiar de tab
+            document.getElementById('loginError').style.display = 'none';
+            document.getElementById('registerError').style.display = 'none';
+        }
+
+        async function handleLogin(event) {
+            event.preventDefault();
+            const btn = document.getElementById('btnAuthLogin');
+            const btnText = btn.querySelector('.auth-btn-text');
+            const btnLoader = btn.querySelector('.auth-btn-loader');
+            const errorDiv = document.getElementById('loginError');
+
+            btn.disabled = true;
+            btnText.style.display = 'none';
+            btnLoader.style.display = 'inline';
+            errorDiv.style.display = 'none';
+
+            const email = document.getElementById('authLoginEmail').value.trim();
+            const password = document.getElementById('authLoginPassword').value;
+
+            const result = await unifortexAuth.login(email, password);
+
+            btn.disabled = false;
+            btnText.style.display = 'inline';
+            btnLoader.style.display = 'none';
+
+            if (result.success) {
+                cerrarAuthModal();
+                mostrarToast(`✅ ¡Bienvenido, ${result.user.name || result.user.email}! Continúa con tu compra.`);
+                // Continuar con la acción pendiente (confirmar compra)
+                setTimeout(() => {
+                    renderOCTable();
+                    navigateToTab('orden-compra');
+                }, 400);
+            } else {
+                errorDiv.textContent = result.message;
+                errorDiv.style.display = 'block';
+            }
+        }
+
+        async function handleRegister(event) {
+            event.preventDefault();
+            const btn = document.getElementById('btnAuthRegister');
+            const btnText = btn.querySelector('.auth-btn-text');
+            const btnLoader = btn.querySelector('.auth-btn-loader');
+            const errorDiv = document.getElementById('registerError');
+
+            const password = document.getElementById('authRegPassword').value;
+            const passwordConfirm = document.getElementById('authRegPasswordConfirm').value;
+
+            if (password !== passwordConfirm) {
+                errorDiv.textContent = 'Las contraseñas no coinciden.';
+                errorDiv.style.display = 'block';
+                return;
+            }
+
+            btn.disabled = true;
+            btnText.style.display = 'none';
+            btnLoader.style.display = 'inline';
+            errorDiv.style.display = 'none';
+
+            const userData = {
+                name: document.getElementById('authRegName').value.trim(),
+                email: document.getElementById('authRegEmail').value.trim(),
+                phone: document.getElementById('authRegPhone').value.trim(),
+                company: document.getElementById('authRegCompany').value.trim(),
+                password: password,
+                password_confirmation: passwordConfirm
+            };
+
+            const result = await unifortexAuth.register(userData);
+
+            btn.disabled = false;
+            btnText.style.display = 'inline';
+            btnLoader.style.display = 'none';
+
+            if (result.success) {
+                cerrarAuthModal();
+                mostrarToast(`🎉 ¡Cuenta creada, ${result.user.name || result.user.email}! Continúa con tu compra.`);
+                setTimeout(() => {
+                    renderOCTable();
+                    navigateToTab('orden-compra');
+                }, 400);
+            } else {
+                let errorMsg = result.message;
+                if (result.errors) {
+                    const firstError = Object.values(result.errors)[0];
+                    if (Array.isArray(firstError)) errorMsg = firstError[0];
+                }
+                errorDiv.textContent = errorMsg;
+                errorDiv.style.display = 'block';
+            }
+        }
+
+        /* ======================================================================
+           MÓDULO DE PAGO MÓVIL
+           ====================================================================== */
+
+        let currentOrderForPayment = null; // Almacena la orden actual para el Pago Móvil
+
+        function abrirPagoMovilModal(orderData) {
+            currentOrderForPayment = orderData;
+            const overlay = document.getElementById('pagoMovilOverlay');
+            if (!overlay) return;
+
+            // Rellenar datos bancarios desde la config o defaults
+            const pmBanco = document.getElementById('pmBanco');
+            const pmTelefono = document.getElementById('pmTelefono');
+            const pmCedulaRif = document.getElementById('pmCedulaRif');
+            const pmMontoBs = document.getElementById('pmMontoBs');
+
+            if (orderData.pago_movil) {
+                if (pmBanco) pmBanco.textContent = orderData.pago_movil.banco_receptor || 'Banesco';
+                if (pmTelefono) pmTelefono.textContent = orderData.pago_movil.telefono || '0414-4938316';
+                if (pmCedulaRif) pmCedulaRif.textContent = orderData.pago_movil.cedula_rif || 'J-30491829-1';
+            }
+            if (pmMontoBs) {
+                const monto = orderData.total_bs || orderData.pago_movil?.monto_bs || 0;
+                pmMontoBs.textContent = `Bs. ${parseFloat(monto).toLocaleString('es-VE', { minimumFractionDigits: 2 })}`;
+            }
+            // Pre-rellenar monto en el campo
+            const pmMontoPagado = document.getElementById('pmMontoPagado');
+            if (pmMontoPagado) {
+                pmMontoPagado.value = orderData.total_bs || orderData.pago_movil?.monto_bs || '';
+            }
+
+            overlay.classList.add('open');
+        }
+
+        function cerrarPagoMovilModal() {
+            const overlay = document.getElementById('pagoMovilOverlay');
+            if (overlay) overlay.classList.remove('open');
+        }
+
+        async function handleReportarPago(event) {
+            event.preventDefault();
+            if (!currentOrderForPayment) return;
+
+            const btn = document.getElementById('btnReportarPago');
+            const btnText = btn.querySelector('.auth-btn-text');
+            const btnLoader = btn.querySelector('.auth-btn-loader');
+            const errorDiv = document.getElementById('pagoError');
+
+            btn.disabled = true;
+            btnText.style.display = 'none';
+            btnLoader.style.display = 'inline';
+            errorDiv.style.display = 'none';
+
+            const datosPago = {
+                referencia_bancaria: document.getElementById('pmReferencia').value.trim(),
+                banco_emisor: document.getElementById('pmBancoEmisor').value,
+                telefono_ultimos4: document.getElementById('pmUltimos4').value.trim(),
+                monto_pagado_bs: parseFloat(document.getElementById('pmMontoPagado').value)
+            };
+
+            const result = await unifortexAuth.apiRequest(
+                `/ordenes/${currentOrderForPayment.order_id}/pago-movil`,
+                { method: 'POST', body: JSON.stringify(datosPago) }
+            );
+
+            btn.disabled = false;
+            btnText.style.display = 'inline';
+            btnLoader.style.display = 'none';
+
+            if (result.ok && result.data && result.data.success) {
+                cerrarPagoMovilModal();
+                mostrarToast('✅ ¡Pago reportado! Verificación en proceso (máx. 24h hábiles).');
+                // Limpiar carrito después de pago exitoso
+                cart = {};
+                cartSizes = {};
+                renderCart();
+            } else {
+                const msg = result.data?.message || 'Error al reportar el pago. Intenta de nuevo.';
+                errorDiv.textContent = msg;
+                errorDiv.style.display = 'block';
+            }
+        }
+
+        // Verificar sesión al cargar la página (silencioso)
+        (async function checkAuthOnLoad() {
+            try {
+                await unifortexAuth.checkAuth();
+            } catch (e) {
+                // API no disponible, modo offline — sin autenticación
+            }
+        })();
+
 
         /* ---------- CHATBOT ASISTENTE PROACTIVO DE VENTAS ---------- */
         const chatBox = document.getElementById('chatBox');
@@ -11207,28 +12042,42 @@
             }
         }
 
+        const PRENDAS_DEFAULT_INFO = {
+            'camisas': { ico: '👔', nombre: 'Camisa Industrial Reforzada', precio: 22.0 },
+            'chemise': { ico: '👕', nombre: 'Chemise Corporativa Institucional', precio: 18.5 },
+            'franelas': { ico: '👕', nombre: 'Franela de Algodón Cuello Redondo', precio: 9.5 },
+            'pantalon': { ico: '👖', nombre: 'Pantalón Jean 3 Costuras', precio: 24.5 },
+            'gorras': { ico: '🧢', nombre: 'Gorra Corporativa 6 Paneles', precio: 6.5 },
+            'chalecos': { ico: '🦺', nombre: 'Chaleco Reflectivo Alta Visibilidad', precio: 12.5 },
+            'bragas': { ico: '🧑‍🔧', nombre: 'Braga Industrial Enteriza / Overol', precio: 29.5 },
+            'imperneables': { ico: '🧥', nombre: 'Impermeable Industrial con Capucha', precio: 21.0 }
+        };
+
         // Selección de prenda con validación de técnicas autorizadas
         function setDisenoPrenda(key, ico, nombre, precio, btn) {
             const normKey = MAP_PRENDAS_NORM[key] || key;
+            const defInfo = PRENDAS_DEFAULT_INFO[normKey] || { ico: '👕', nombre: normKey, precio: 15.0 };
+            
             disenoState.prendaKey = normKey;
-            disenoState.prendaIco = ico;
-            disenoState.prendaNombre = nombre;
-            disenoState.prendaPrecio = precio;
+            disenoState.prendaIco = ico || defInfo.ico;
+            disenoState.prendaNombre = nombre || defInfo.nombre;
+            disenoState.prendaPrecio = (typeof precio === 'number' && !isNaN(precio)) ? precio : defInfo.precio;
 
-            if (btn) {
+            const targetBtn = btn || document.querySelector(`#chipsPrenda .opt-chip[onclick*="'${normKey}'"]`);
+            if (targetBtn) {
                 document.querySelectorAll('#chipsPrenda .opt-chip').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
+                targetBtn.classList.add('active');
             }
 
             // Validar técnica permitida para la nueva prenda
             const permitidas = REGLAS_TECNICAS_POR_PRENDA[normKey] || ['bordado'];
             if (!disenoState.tecnicaId || !permitidas.includes(disenoState.tecnicaId)) {
                 const autoTecId = permitidas.includes('bordado') ? 'bordado' : permitidas[0];
-                const def = TECNICAS_DEFINICIONES[autoTecId];
+                const def = TECNICAS_DEFINICIONES[autoTecId] || { id: 'bordado', nombre: 'Bordado Computarizado', ico: '🧵', precio: 3.5 };
                 disenoState.tecnicaId = def.id;
                 disenoState.tecnica = def.nombre;
                 disenoState.tecnicaPrecio = def.precio;
-                mostrarToast(`💡 Para ${nombre} se activó ${def.ico} ${def.nombre}`);
+                mostrarToast(`💡 Para ${disenoState.prendaNombre} se activó ${def.ico} ${def.nombre}`);
             }
 
             actualizarTecnicasUI();
@@ -11236,26 +12085,45 @@
             renderDisenoStudio();
         }
 
+        const MAP_ANGULOS_NORM = {
+            'frente': 'frente',
+            'espalda': 'espalda',
+            'manga-izq': 'manga-izq',
+            'manga-der': 'manga-der',
+            'manga_izq': 'manga-izq',
+            'manga_der': 'manga-der',
+            'perfil-izq': 'manga-izq',
+            'perfil-der': 'manga-der',
+            'perfil_izq': 'manga-izq',
+            'perfil_der': 'manga-der',
+            'lateral-izq': 'manga-izq',
+            'lateral-der': 'manga-der',
+            'lateral_izq': 'manga-izq',
+            'lateral_der': 'manga-der'
+        };
+
         // Selección de ángulo (Frente, Espalda, Manga/Lateral Izq, Manga/Lateral Der)
         function setDisenoAngulo(anguloKey, btn) {
-            disenoState.angulo = anguloKey;
+            const normAngulo = MAP_ANGULOS_NORM[anguloKey] || anguloKey;
+            disenoState.angulo = normAngulo;
+            if (!disenoLogos[normAngulo]) disenoLogos[normAngulo] = [];
 
             // Actualizar botones en panel lateral
             document.querySelectorAll('#chipsAngulo .opt-chip').forEach(b => {
                 const clickAttr = b.getAttribute('onclick') || '';
-                b.classList.toggle('active', clickAttr.includes(`'${anguloKey}'`));
+                b.classList.toggle('active', clickAttr.includes(`'${normAngulo}'`) || clickAttr.includes(`'${anguloKey}'`));
             });
 
             // Actualizar botones en barra sobre el boceto
             document.querySelectorAll('#previewAngleNav .diseno-angle-btn').forEach(b => {
                 const clickAttr = b.getAttribute('onclick') || '';
-                b.classList.toggle('active', clickAttr.includes(`'${anguloKey}'`));
+                b.classList.toggle('active', clickAttr.includes(`'${normAngulo}'`) || clickAttr.includes(`'${anguloKey}'`));
             });
 
             actualizarAngulosUI(disenoState.prendaKey);
 
             // Seleccionar primer logo de este ángulo si existe
-            const list = disenoLogos[anguloKey] || [];
+            const list = disenoLogos[normAngulo] || [];
             activeLogoId = list.length ? list[list.length - 1].id : null;
 
             renderDisenoStudio();
@@ -11466,6 +12334,7 @@
 
         // Añadir nuevo logo a la prenda
         function agregarNuevoLogo(src, type = 'image', text = '') {
+            if (!disenoLogos[disenoState.angulo]) disenoLogos[disenoState.angulo] = [];
             const list = disenoLogos[disenoState.angulo];
             // Posición por defecto según ángulo
             let defX = 145, defY = 150;
@@ -11501,6 +12370,7 @@
 
         // Duplicar el logo cuantas veces sea pedido por el usuario
         function duplicarLogo() {
+            if (!disenoLogos[disenoState.angulo]) disenoLogos[disenoState.angulo] = [];
             const list = disenoLogos[disenoState.angulo];
             let source = list.find(l => l.id === activeLogoId);
             if (!source && list.length > 0) source = list[list.length - 1];
@@ -11535,6 +12405,7 @@
 
         // Ajustar escala del logo seleccionado
         function ajustarEscalaLogo(delta) {
+            if (!disenoLogos[disenoState.angulo]) disenoLogos[disenoState.angulo] = [];
             const list = disenoLogos[disenoState.angulo];
             let item = list.find(l => l.id === activeLogoId);
             if (!item && list.length > 0) item = list[list.length - 1];
@@ -11546,6 +12417,7 @@
 
         // Eliminar logo seleccionado
         function eliminarLogoActivo() {
+            if (!disenoLogos[disenoState.angulo]) disenoLogos[disenoState.angulo] = [];
             const list = disenoLogos[disenoState.angulo];
             const idx = list.findIndex(l => l.id === activeLogoId);
             if (idx !== -1) {
@@ -12487,12 +13359,15 @@
             const tPrecio = document.getElementById('prevTecnicaPrecio');
             const total = document.getElementById('disenoPrecioTotal');
 
-            if (pNombre) pNombre.textContent = disenoState.prendaNombre + ':';
-            if (pPrecio) pPrecio.textContent = '$' + disenoState.prendaPrecio.toFixed(2);
-            if (tNombre) tNombre.textContent = 'Técnica (' + disenoState.tecnica + '):';
-            if (tPrecio) tPrecio.textContent = '+$' + disenoState.tecnicaPrecio.toFixed(2);
+            const pPrecioVal = (typeof disenoState.prendaPrecio === 'number' && !isNaN(disenoState.prendaPrecio)) ? disenoState.prendaPrecio : 0;
+            const tPrecioVal = (typeof disenoState.tecnicaPrecio === 'number' && !isNaN(disenoState.tecnicaPrecio)) ? disenoState.tecnicaPrecio : 0;
 
-            const unitTotal = disenoState.prendaPrecio + disenoState.tecnicaPrecio;
+            if (pNombre) pNombre.textContent = (disenoState.prendaNombre || 'Prenda') + ':';
+            if (pPrecio) pPrecio.textContent = '$' + pPrecioVal.toFixed(2);
+            if (tNombre) tNombre.textContent = 'Técnica (' + (disenoState.tecnica || 'Bordado') + '):';
+            if (tPrecio) tPrecio.textContent = '+$' + tPrecioVal.toFixed(2);
+
+            const unitTotal = pPrecioVal + tPrecioVal;
             if (total) total.textContent = '$' + unitTotal.toFixed(2);
         }
 
@@ -13514,8 +14389,8 @@
         }
 
         /* ---------- INTEGRACIÓN CARRITO Y GENERACIÓN DE COTIZACIÓN EN PDF ---------- */
-        
-function actualizarBannerCotizacionCarrito() {
+
+        function actualizarBannerCotizacionCarrito() {
             const activeBox = document.getElementById('cotizaCartActiveBox');
             const emptyBox = document.getElementById('cotizaCartEmptyBox');
             const countBadge = document.getElementById('cotizaCartCountBadge');
@@ -13672,12 +14547,12 @@ function actualizarBannerCotizacionCarrito() {
                 return '<tr>' +
                     '<td style="text-align:center;font-weight:700;color:#6b7280;padding:9px 10px;border-bottom:1px solid #e5e7eb">' + item.idx + '</td>' +
                     '<td style="padding:9px 10px;border-bottom:1px solid #e5e7eb">' +
-                        '<div style="font-weight:700;color:#111827;font-size:12.5px">' + item.ico + ' ' + escapeHtml(item.name) + '</div>' +
-                        '<div style="font-size:10.5px;color:#6b7280;margin-top:2px">C&oacute;digo: <b style="color:#374151">' + escapeHtml(item.code) + '</b></div>' +
+                    '<div style="font-weight:700;color:#111827;font-size:12.5px">' + item.ico + ' ' + escapeHtml(item.name) + '</div>' +
+                    '<div style="font-size:10.5px;color:#6b7280;margin-top:2px">C&oacute;digo: <b style="color:#374151">' + escapeHtml(item.code) + '</b></div>' +
                     '</td>' +
                     '<td style="padding:9px 10px;border-bottom:1px solid #e5e7eb;font-size:11px;color:#4b5563">' +
-                        '<div>' + escapeHtml(item.cat) + '</div>' +
-                        '<div style="color:#059669;font-weight:600;font-size:10px">&#10003; ' + escapeHtml(item.norma) + '</div>' +
+                    '<div>' + escapeHtml(item.cat) + '</div>' +
+                    '<div style="color:#059669;font-weight:600;font-size:10px">&#10003; ' + escapeHtml(item.norma) + '</div>' +
                     '</td>' +
                     '<td style="text-align:center;font-weight:800;color:#111827;padding:9px 10px;border-bottom:1px solid #e5e7eb;font-size:13px">' + item.cant + '</td>' +
                     '<td style="text-align:right;color:#374151;padding:9px 10px;border-bottom:1px solid #e5e7eb;font-weight:600">$' + item.precio.toFixed(2) + '</td>' +
@@ -14208,7 +15083,7 @@ function actualizarBannerCotizacionCarrito() {
             }, 350);
         }
 
-                /* ---------- CONTROL INTERACTIVO DE BARRA DE SECCIONES (HORIZONTAL ARROWS & DRAG) ---------- */
+        /* ---------- CONTROL INTERACTIVO DE BARRA DE SECCIONES (HORIZONTAL ARROWS & DRAG) ---------- */
         function desplazarMenuNav(dir) {
             const row = document.getElementById('mainNavBtnsRow') || document.querySelector('.nav-btns-row');
             if (!row) return;
@@ -14389,7 +15264,7 @@ function actualizarBannerCotizacionCarrito() {
                         prendaBtn.click();
                     }
                 }
-            } catch(e) {}
+            } catch (e) { }
         });
 
         /* ---------- CONTROL ESTABLE DE HEADER SCROLL (SIN BUCLES NI JITTER) ---------- */
@@ -14677,7 +15552,7 @@ function actualizarBannerCotizacionCarrito() {
                 localStorage.setItem('unifortex_pedidos_recibidos', JSON.stringify(pedidosList));
                 const bc = new BroadcastChannel('unifortex_sync_channel');
                 bc.postMessage({ type: 'new_web_order', data: { numeroOrden: nroOC } });
-            } catch(e) {}
+            } catch (e) { }
 
             // Número de ventas principal de UNIFORTEX
             const whatsappUrl = `https://wa.me/584144938316?text=${mensajeWA}`;
@@ -14728,7 +15603,7 @@ function actualizarBannerCotizacionCarrito() {
             setTimeout(() => {
                 try {
                     generarPDFCotizacionCarrito();
-                } catch(e) {}
+                } catch (e) { }
             }, 850);
 
             return false;
@@ -15379,7 +16254,7 @@ function actualizarBannerCotizacionCarrito() {
                 if (srcEl.getAttribute('src') !== n.videoUrl) {
                     srcEl.setAttribute('src', n.videoUrl);
                     videoEl.load();
-                    videoEl.play().catch(() => {});
+                    videoEl.play().catch(() => { });
                 }
             }
 
@@ -15520,7 +16395,7 @@ function actualizarBannerCotizacionCarrito() {
                     }
                 }
             };
-        } catch(e) {}
+        } catch (e) { }
 
         try {
             if (typeof initNavBarInteractions === 'function') initNavBarInteractions();
