@@ -1938,6 +1938,14 @@
                             </div>
                         </button>
                     </li>
+                    <li class="nav-item" id="nav-config">
+                        <button onclick="switchView('config')">
+                            <div class="nav-item-content">
+                                <span class="nav-item-icon">⚙️</span>
+                                <span>Ajustes &amp; Contacto</span>
+                            </div>
+                        </button>
+                    </li>
                     <li class="nav-item" id="nav-sync">
                         <button onclick="switchView('sync')">
                             <div class="nav-item-content">
@@ -2284,13 +2292,19 @@
                         <form id="form-config" onsubmit="guardarConfiguracion(event)">
                             <div class="form-grid">
                                 <div class="form-group">
-                                    <label class="form-label">WhatsApp de Ventas (Formato internacional sin signos)</label>
+                                    <label class="form-label">Número 1 (Contacto)</label>
                                     <input type="text" class="form-input" id="cfg-wa" required placeholder="584144938316">
-                                    <span class="form-help">Aquí llegarán las cotizaciones con el mensaje pre-cargado.</span>
+                                    <span class="form-help">Número principal de contacto (Obligatorio, mínimo 1).</span>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">Teléfono de Llamadas / Oficina</label>
-                                    <input type="text" class="form-input" id="cfg-telf" required placeholder="+58 (414) 493-8316">
+                                    <label class="form-label">Número 2</label>
+                                    <input type="text" class="form-input" id="cfg-telf" placeholder="584243409898">
+                                    <span class="form-help">Segundo número de contacto (Opcional).</span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Número 3</label>
+                                    <input type="text" class="form-input" id="cfg-num3" placeholder="584243056068">
+                                    <span class="form-help">Tercer número de contacto (Opcional, máximo 3).</span>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Correo de Ventas Corporativas</label>
@@ -2645,6 +2659,10 @@
                 orders: [],
                 novedad: null,
                 config: {
+                    numerosContacto: ['584144938316', '584243409898', '584243056068'],
+                    numero1: '584144938316',
+                    numero2: '584243409898',
+                    numero3: '584243056068',
                     telefonoWhatsApp: '584144938316',
                     telefonoAsesoria: '584243409898',
                     telefonoB2B: '584243056068',
@@ -2682,6 +2700,23 @@
                 } else {
                     this.saveConfig(this.state.config, false);
                 }
+
+                // Normalización de números de contacto (mínimo 1, máximo 3)
+                if (!Array.isArray(this.state.config.numerosContacto) || this.state.config.numerosContacto.length === 0) {
+                    const list = [];
+                    if (this.state.config.numero1 || this.state.config.telefonoWhatsApp) list.push(this.state.config.numero1 || this.state.config.telefonoWhatsApp);
+                    if (this.state.config.numero2 || this.state.config.telefonoAsesoria) list.push(this.state.config.numero2 || this.state.config.telefonoAsesoria);
+                    if (this.state.config.numero3 || this.state.config.telefonoB2B) list.push(this.state.config.numero3 || this.state.config.telefonoB2B);
+                    if (list.length === 0) list.push('584144938316');
+                    this.state.config.numerosContacto = list.slice(0, 3);
+                }
+                this.state.config.numero1 = this.state.config.numerosContacto[0] || '';
+                this.state.config.numero2 = this.state.config.numerosContacto[1] || '';
+                this.state.config.numero3 = this.state.config.numerosContacto[2] || '';
+                this.state.config.telefonoWhatsApp = (this.state.config.numero1 || '').replace(/\D/g, '') || '584144938316';
+                this.state.config.telefonoLlamadas = this.state.config.numero1 || '+58 (414) 493-8316';
+                this.state.config.telefonoAsesoria = (this.state.config.numero2 || '').replace(/\D/g, '') || '';
+                this.state.config.telefonoB2B = (this.state.config.numero3 || '').replace(/\D/g, '') || '';
 
                 // 2. Cargar Productos (o inicializar con los 60 oficiales)
                 const rawProd = localStorage.getItem(this.STORAGE_KEYS.PRODUCTS);
@@ -2773,10 +2808,22 @@
             },
 
             saveConfig(cfg, notify = true) {
-                this.state.config = { ...this.state.config, ...cfg };
+                const merged = { ...this.state.config, ...cfg };
+                if (Array.isArray(merged.numerosContacto)) {
+                    merged.numerosContacto = merged.numerosContacto.map(n => typeof n === 'string' ? n.trim() : String(n)).filter(n => n.length > 0).slice(0, 3);
+                    if (merged.numerosContacto.length === 0) merged.numerosContacto = ['584144938316'];
+                    merged.numero1 = merged.numerosContacto[0] || '';
+                    merged.numero2 = merged.numerosContacto[1] || '';
+                    merged.numero3 = merged.numerosContacto[2] || '';
+                    merged.telefonoWhatsApp = (merged.numero1 || '').replace(/\D/g, '') || '584144938316';
+                    merged.telefonoLlamadas = merged.numero1 || '+58 (414) 493-8316';
+                    merged.telefonoAsesoria = (merged.numero2 || '').replace(/\D/g, '') || '';
+                    merged.telefonoB2B = (merged.numero3 || '').replace(/\D/g, '') || '';
+                }
+                this.state.config = merged;
                 localStorage.setItem(this.STORAGE_KEYS.CONFIG, JSON.stringify(this.state.config));
                 this.broadcast('config_updated', this.state.config);
-                if (notify) showToast('Configuración general y de WhatsApp guardada.', 'success');
+                if (notify) showToast('Configuración de empresa y números telefónicos guardada.', 'success');
                 this.renderAll();
             },
 
@@ -2918,7 +2965,7 @@
                 paquetes: 'Paquetes & Ofertas B2B',
                 novedades: 'Novedades & Video Reel Web',
                 pedidos: 'Cotizaciones Recibidas',
-                config: 'Datos & WhatsApp Web',
+                config: 'Datos & Números de Contacto',
                 sync: 'Sincronización / API'
             };
             const currentTitle = breadcrumbMap[viewName] || 'Módulo E-Commerce';
@@ -2935,6 +2982,8 @@
                 }
             } else if (viewName === 'novedades' && typeof populateNovedadForm === 'function') {
                 populateNovedadForm();
+            } else if (viewName === 'config' && typeof populateConfigForm === 'function') {
+                populateConfigForm();
             }
         }
 
@@ -3446,10 +3495,16 @@
 
         // CONFIGURACIÓN DE EMPRESA
         function populateConfigForm() {
-            const cfg = UnifortexCommerceModule.state.config;
-            document.getElementById('cfg-wa').value = cfg.telefonoWhatsApp || '584144938316';
-            document.getElementById('cfg-telf').value = cfg.telefonoLlamadas || '+58 (414) 493-8316';
-            document.getElementById('cfg-correo').value = cfg.correoVentas || 'ventas@unifortex.com';
+            const cfg = UnifortexCommerceModule.state.config || {};
+            const nums = Array.isArray(cfg.numerosContacto) && cfg.numerosContacto.length > 0
+                ? cfg.numerosContacto
+                : [cfg.numero1 || cfg.telefonoWhatsApp, cfg.numero2 || cfg.telefonoAsesoria, cfg.numero3 || cfg.telefonoB2B].filter(Boolean);
+
+            document.getElementById('cfg-wa').value = nums[0] || cfg.telefonoWhatsApp || '584144938316';
+            document.getElementById('cfg-telf').value = nums[1] || cfg.telefonoAsesoria || cfg.telefonoLlamadas || '';
+            const n3El = document.getElementById('cfg-num3');
+            if (n3El) n3El.value = nums[2] || cfg.telefonoB2B || '';
+            document.getElementById('cfg-correo').value = cfg.correoVentas || 'grupounifortexventas@gmail.com';
             document.getElementById('cfg-tasa').value = cfg.tasaBcv || 36.85;
             document.getElementById('cfg-desc').value = cfg.descuentoMayorista || 18;
             document.getElementById('cfg-min-mayor').value = cfg.pedidoMinimoMayor || 12;
@@ -3459,9 +3514,26 @@
 
         function guardarConfiguracion(ev) {
             ev.preventDefault();
+            const n1 = document.getElementById('cfg-wa').value.trim();
+            const n2 = document.getElementById('cfg-telf').value.trim();
+            const n3El = document.getElementById('cfg-num3');
+            const n3 = n3El ? n3El.value.trim() : '';
+
+            const list = [n1, n2, n3].filter(n => n.length > 0);
+            if (list.length === 0) {
+                showToast('⚠️ Debe ingresar al menos 1 número para definirlo como contacto.', 'warning');
+                return;
+            }
+
             const newCfg = {
-                telefonoWhatsApp: document.getElementById('cfg-wa').value.trim(),
-                telefonoLlamadas: document.getElementById('cfg-telf').value.trim(),
+                numerosContacto: list.slice(0, 3),
+                numero1: list[0] || '',
+                numero2: list[1] || '',
+                numero3: list[2] || '',
+                telefonoWhatsApp: (list[0] || '').replace(/\D/g, '') || '584144938316',
+                telefonoLlamadas: list[0] || '+58 (414) 493-8316',
+                telefonoAsesoria: (list[1] || '').replace(/\D/g, '') || '',
+                telefonoB2B: (list[2] || '').replace(/\D/g, '') || '',
                 correoVentas: document.getElementById('cfg-correo').value.trim(),
                 tasaBcv: parseFloat(document.getElementById('cfg-tasa').value) || 36.85,
                 descuentoMayorista: parseInt(document.getElementById('cfg-desc').value) || 18,
@@ -3470,6 +3542,7 @@
                 horario: document.getElementById('cfg-horario').value.trim(),
             };
             UnifortexCommerceModule.saveConfig(newCfg, true);
+            showToast('✅ Configuración guardada correctamente.', 'success');
         }
 
         // IMPORT / EXPORT JSON
@@ -3772,6 +3845,93 @@
             currentCatFilter: 'Todos',
             searchFilter: '',
             drawerState: null, // { type: 'video' | 'product' | 'package' | 'config', id: ... }
+            currentConfigNumeros: [],
+
+            syncNumerosFromInputs() {
+                const inputs = document.querySelectorAll('.drawer-input-numero');
+                inputs.forEach(input => {
+                    const idx = parseInt(input.getAttribute('data-index'), 10);
+                    if (!isNaN(idx) && this.currentConfigNumeros[idx] !== undefined) {
+                        this.currentConfigNumeros[idx] = input.value.trim();
+                    }
+                });
+            },
+
+            onNumeroInput(index, val) {
+                if (this.currentConfigNumeros[index] !== undefined) {
+                    this.currentConfigNumeros[index] = val;
+                }
+            },
+
+            agregarNumeroConfig() {
+                this.syncNumerosFromInputs();
+                if (this.currentConfigNumeros.length < 3) {
+                    this.currentConfigNumeros.push('');
+                    this.renderDrawerNumeros();
+                } else {
+                    showToast('Máximo permitido: 3 números.', 'warning');
+                }
+            },
+
+            eliminarNumeroConfig(index) {
+                this.syncNumerosFromInputs();
+                if (this.currentConfigNumeros.length > 1) {
+                    this.currentConfigNumeros.splice(index, 1);
+                    this.renderDrawerNumeros();
+                } else {
+                    showToast('Debe existir al menos 1 número para definirlo como contacto.', 'warning');
+                }
+            },
+
+            renderDrawerNumeros() {
+                const container = document.getElementById('drawer-numeros-container');
+                if (!container) return;
+
+                const count = this.currentConfigNumeros.length;
+                let html = `
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem">
+                        <div>
+                            <label class="drawer-form-label" style="margin:0;font-weight:700">📞 Números de Contacto</label>
+                            <span style="font-size:0.75rem;color:#94a3b8">Configura de 1 a 3 números (mínimo 1 de contacto).</span>
+                        </div>
+                        ${count < 3 ? `
+                            <button type="button" class="btn-erp btn-erp-primary" style="padding:0.35rem 0.75rem;font-size:0.75rem;display:inline-flex;align-items:center;gap:4px" onclick="UnifortexWebVisualEditor.agregarNumeroConfig()">
+                                ➕ Añadir Número
+                            </button>
+                        ` : `
+                            <span style="font-size:0.75rem;color:#22c55e;font-weight:600">✓ Máximo 3 números</span>
+                        `}
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:0.75rem">
+                `;
+
+                this.currentConfigNumeros.forEach((num, idx) => {
+                    const numIndex = idx + 1;
+                    const isPrincipal = (idx === 0);
+                    html += `
+                        <div style="background:#0f172a;border:1px solid #334155;border-radius:8px;padding:0.75rem;display:flex;flex-direction:column;gap:0.4rem">
+                            <div style="display:flex;justify-content:space-between;align-items:center">
+                                <span style="font-size:0.8rem;font-weight:700;color:${isPrincipal ? '#38bdf8' : '#e2e8f0'}">
+                                    📞 Número ${numIndex} ${isPrincipal ? '<span style="font-size:0.7rem;font-weight:600;color:#22c55e;margin-left:4px">(Contacto)</span>' : ''}
+                                </span>
+                                ${count > 1 ? `
+                                    <button type="button" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455;border-radius:4px;padding:2px 8px;font-size:0.75rem;cursor:pointer;display:inline-flex;align-items:center;gap:3px" onclick="UnifortexWebVisualEditor.eliminarNumeroConfig(${idx})" title="Eliminar Número ${numIndex}">
+                                        🗑️ Eliminar
+                                    </button>
+                                ` : `
+                                    <span style="font-size:0.7rem;color:#64748b">Requerido (mínimo 1 contacto)</span>
+                                `}
+                            </div>
+                            <div style="display:flex;gap:0.5rem;align-items:center">
+                                <input type="text" class="drawer-form-input drawer-input-numero" data-index="${idx}" value="${escapeHtml(num)}" placeholder="Ej: +58 414 4938316" oninput="UnifortexWebVisualEditor.onNumeroInput(${idx}, this.value)" style="margin:0">
+                            </div>
+                        </div>
+                    `;
+                });
+
+                html += `</div>`;
+                container.innerHTML = html;
+            },
 
             mount(containerSelector) {
                 this.container = typeof containerSelector === 'string' ? document.querySelector(containerSelector) : containerSelector;
@@ -3827,7 +3987,7 @@
                                     <span>📦 Catálogo (${prods.length})</span>
                                 </button>
                                 <button type="button" class="editor-anchor-btn" onclick="UnifortexWebVisualEditor.openDrawer('config')">
-                                    <span>🏢 WhatsApp &amp; Datos</span>
+                                    <span>🏢 Números &amp; Datos</span>
                                 </button>
                             </div>
 
@@ -3868,7 +4028,7 @@
                                 <!-- BLOQUE 1: HEADER & WHATSAPP -->
                                 <div class="editor-hotspot-wrap">
                                     <button type="button" class="editor-hotspot-btn" onclick="UnifortexWebVisualEditor.openDrawer('config')">
-                                        ✏️ Editar Cabecera &amp; WhatsApp
+                                        ✏️ Editar Cabecera &amp; Números
                                     </button>
                                     <div class="canvas-header-bar">
                                         <div class="canvas-brand">
@@ -3879,10 +4039,11 @@
                                             </div>
                                         </div>
                                         <div class="canvas-header-contact">
-                                            <span>📞 ${escapeHtml(cfg.telefonoLlamadas || '+58 (414) 493-8316')}</span>
-                                            <span style="display:inline-flex;align-items:center;gap:4px;color:#25D366;font-weight:700">
-                                                <span>💬 WhatsApp:</span> +${escapeHtml(cfg.telefonoWhatsApp || '584144938316')}
-                                            </span>
+                                            ${(Array.isArray(cfg.numerosContacto) && cfg.numerosContacto.length > 0 ? cfg.numerosContacto : [cfg.numero1 || cfg.telefonoWhatsApp || '584144938316']).map((num, i) => `
+                                                <span style="${i === 0 ? 'display:inline-flex;align-items:center;gap:4px;color:#22c55e;font-weight:700' : ''}">
+                                                    📞 Número ${i + 1}: +${escapeHtml(num)}
+                                                </span>
+                                            `).join('')}
                                             <span style="font-size:0.72rem;background:rgba(255,255,255,0.08);padding:3px 8px;border-radius:4px">
                                                 Tasa BCV: Bs. ${Number(cfg.tasaBcv || 36.85).toFixed(2)}
                                             </span>
@@ -3903,7 +4064,7 @@
                                         </p>
                                         <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap">
                                             <span class="btn-wa-action" style="padding:0.6rem 1.2rem;font-size:0.85rem">
-                                                💬 Contactar por WhatsApp: +${escapeHtml(cfg.telefonoWhatsApp || '584144938316')}
+                                                💬 Contacto: +${escapeHtml((Array.isArray(cfg.numerosContacto) && cfg.numerosContacto[0]) || cfg.numero1 || cfg.telefonoWhatsApp || '584144938316')}
                                             </span>
                                             <button type="button" class="btn-erp btn-erp-secondary" onclick="UnifortexWebVisualEditor.scrollToSection('#sec-edit-catalogo')" style="padding:0.6rem 1.2rem;font-size:0.85rem">
                                                 📦 Explorar Catálogo (${prods.length})
@@ -4430,38 +4591,22 @@
                     saveBtn.onclick = () => this.saveDrawerPackage(pq.id, isNew);
                 } else if (type === 'config') {
                     const cfg = UnifortexCommerceModule.state.config || {};
-                    titleEl.innerHTML = '🏢 Datos de Empresa &amp; WhatsApp';
+                    titleEl.innerHTML = '🏢 Datos de Empresa &amp; Números de Contacto';
+
+                    // Inicializar lista dinámica de 1 a 3 números
+                    const rawNums = Array.isArray(cfg.numerosContacto) && cfg.numerosContacto.length > 0
+                        ? [...cfg.numerosContacto]
+                        : [cfg.numero1 || cfg.telefonoWhatsApp || '584144938316', cfg.numero2 || cfg.telefonoAsesoria, cfg.numero3 || cfg.telefonoB2B].filter(Boolean);
+                    if (rawNums.length === 0) rawNums.push('584144938316');
+                    this.currentConfigNumeros = rawNums.slice(0, 3);
 
                     bodyEl.innerHTML = `
+                        <!-- CONTENEDOR DINÁMICO DE NÚMEROS (1 A 3) -->
+                        <div id="drawer-numeros-container" style="margin-bottom:1.25rem"></div>
+
                         <div class="drawer-form-group">
-                            <label class="drawer-form-label">
-                                <span>WhatsApp Principal (Ventas Web)</span>
-                                <small style="color:#25D366">Destino de Cotizaciones</small>
-                            </label>
-                            <input type="text" class="drawer-form-input" id="drawer-cfg-wa" value="${escapeHtml(cfg.telefonoWhatsApp || '584144938316')}" placeholder="584144938316">
-                            <small style="font-size:0.7rem;color:#94a3b8">Formato internacional sin signos (+ ni espacios).</small>
-                        </div>
-
-                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem">
-                            <div class="drawer-form-group">
-                                <label class="drawer-form-label">WhatsApp Asesoría</label>
-                                <input type="text" class="drawer-form-input" id="drawer-cfg-wa-asesoria" value="${escapeHtml(cfg.telefonoAsesoria || '584243409898')}">
-                            </div>
-                            <div class="drawer-form-group">
-                                <label class="drawer-form-label">WhatsApp B2B</label>
-                                <input type="text" class="drawer-form-input" id="drawer-cfg-wa-b2b" value="${escapeHtml(cfg.telefonoB2B || '584243056068')}">
-                            </div>
-                        </div>
-
-                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem">
-                            <div class="drawer-form-group">
-                                <label class="drawer-form-label">Teléfono Llamadas</label>
-                                <input type="text" class="drawer-form-input" id="drawer-cfg-phone" value="${escapeHtml(cfg.telefonoLlamadas || '+58 (414) 493-8316')}">
-                            </div>
-                            <div class="drawer-form-group">
-                                <label class="drawer-form-label">Correo Oficial Gmail</label>
-                                <input type="email" class="drawer-form-input" id="drawer-cfg-email" value="${escapeHtml(cfg.correoVentas || 'grupounifortexventas@gmail.com')}">
-                            </div>
+                            <label class="drawer-form-label">Correo Oficial Gmail</label>
+                            <input type="email" class="drawer-form-input" id="drawer-cfg-email" value="${escapeHtml(cfg.correoVentas || 'grupounifortexventas@gmail.com')}">
                         </div>
 
                         <div class="drawer-form-group">
@@ -4486,6 +4631,7 @@
                         </div>
                     `;
 
+                    this.renderDrawerNumeros();
                     saveBtn.onclick = () => this.saveDrawerConfig();
                 }
 
@@ -4633,12 +4779,28 @@
             },
 
             saveDrawerConfig() {
+                this.syncNumerosFromInputs();
+                const cleanNumeros = this.currentConfigNumeros.map(n => typeof n === 'string' ? n.trim() : String(n)).filter(n => n.length > 0);
+                if (cleanNumeros.length === 0) {
+                    showToast('⚠️ Debe ingresar al menos 1 número para definirlo como contacto.', 'warning');
+                    return;
+                }
+                const finalNumeros = cleanNumeros.slice(0, 3);
+
                 const getVal = id => { const el = document.getElementById(id); return el ? el.value.trim() : ''; };
+                const num1 = finalNumeros[0] || '584144938316';
+                const num2 = finalNumeros[1] || '';
+                const num3 = finalNumeros[2] || '';
+
                 const cfgData = {
-                    telefonoWhatsApp: getVal('drawer-cfg-wa').replace(/\D/g, '') || '584144938316',
-                    telefonoAsesoria: getVal('drawer-cfg-wa-asesoria').replace(/\D/g, '') || '584243409898',
-                    telefonoB2B: getVal('drawer-cfg-wa-b2b').replace(/\D/g, '') || '584243056068',
-                    telefonoLlamadas: getVal('drawer-cfg-phone') || '+58 (414) 493-8316',
+                    numerosContacto: finalNumeros,
+                    numero1: num1,
+                    numero2: num2,
+                    numero3: num3,
+                    telefonoWhatsApp: num1.replace(/\D/g, '') || '584144938316',
+                    telefonoLlamadas: num1,
+                    telefonoAsesoria: num2 ? num2.replace(/\D/g, '') : '',
+                    telefonoB2B: num3 ? num3.replace(/\D/g, '') : '',
                     correoVentas: getVal('drawer-cfg-email') || 'grupounifortexventas@gmail.com',
                     sedeMaracay: getVal('drawer-cfg-maracay') || 'C.C. Ciudad Jardín, Local 20, Maracay, Edo. Aragua',
                     sedeCaracas: getVal('drawer-cfg-caracas') || 'Av. Libertador, Edif. Fertec, Piso 4, Caracas',
@@ -4650,6 +4812,7 @@
                 UnifortexCommerceModule.saveConfig(cfgData, true);
                 this.closeDrawer();
                 this.render();
+                showToast('✅ Configuración guardada correctamente.', 'success');
             }
         };
 
